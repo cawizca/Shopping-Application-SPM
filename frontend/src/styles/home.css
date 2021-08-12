@@ -1,30 +1,61 @@
-.heroSection{
-    background: linear-gradient(to bottom right, rgba(0,0,0,.65), rgba(0,0,0,.65)), url('../images/homeBackground.png');
+.heroSection {
+    background: linear-gradient(to bottom right, rgba(0, 0, 0, .65), rgba(0, 0, 0, .65)), url('../images/homeBackground.png');
     background-size: cover;
     background-repeat: no-repeat;
     height: 91.5vh;
     display: flex;
 }
 
-.textSection{
-    width: 50% !important; 
+.textSection {
+    width: 50% !important;
 }
 
-.pStyle{
+.pStyle {
     color: #fff;
-    text-align: center; 
-    font-weight: 300;
+    text-align: center;
     font-size: 50px;
     margin-bottom: 2.5%;
     font-family: 'Poppins', sans-serif;
     font-weight: 500;
 }
 
-.offStyle{
+.offStyle {
     background-color: #FA334E;
-    margin: 1% 35%;
+    margin: 1% 32% !important;
     border-radius: 13px;
     font-size: 65px;
+}
+
+@media screen and (max-width : 1533px) {
+
+    .heroSection{
+        height: 88.6vh;
+    }
+
+    .textSection {
+        width: 60% !important;
+    }
+
+    .pStyle {
+        font-size: 45px;
+        font-weight: 100 !important;
+    }
+
+    .offStyle {
+        font-size: 58px;
+        font-weight: 500;
+    }
+
+}
+
+@media screen and (max-width : 1250px) {
+    .heroSection{
+        height: 89vh;
+    }
+
+    .textSection {
+        width: 70% !important;
+    }
 }
 
 .contactButton{

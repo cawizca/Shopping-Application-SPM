@@ -14,3 +14,9 @@ body {
   width: auto;
   margin: 0;
 }
+
+@media screen and (max-width:1533px) {
+  .logo-image{
+    height: 30px;
+  }
+}
