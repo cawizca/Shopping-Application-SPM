@@ -1,0 +1,16 @@
+body {
+  margin: 0;
+  background-color: #252F52;
+  font-family: 'Poppins', sans-serif;
+}
+
+.navbar-custom{
+  background-color: #252F52 !important;
+  color: #fff !important;
+}
+
+.logo-image{
+  height: 40px;
+  width: auto;
+  margin: 0;
+}
