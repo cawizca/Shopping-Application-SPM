@@ -6,8 +6,9 @@ const dotenv=require("dotenv");
 const path = require('path');
 const app = express();
 dotenv.config();
+app.use(bodyParser.json());
 const PORT=process.env.PORT ||8070
-
+app.use(bodyParser.json());
 app.use(cors());
 
 
@@ -29,8 +30,12 @@ connection.once("open",()=>{
 })
 
 app.route('/').get((req,res)=>{
-    res.send('SLIIT Final Exam');
+    res.send('SLIIT SPM');
 })
+
+const RiderAPI = require('./API/Rider.Api.js')
+app.use('/rider',RiderAPI())
+
 
 app.listen(PORT,()=>{
     console.log(`Server is up and running on port ${PORT}`);
@@ -38,5 +43,5 @@ app.listen(PORT,()=>{
 
 // mongodb login credentials
 // email - kandycupcakes.sliit@gmail.com
-
+//password :Abc123456789
 
