@@ -11,8 +11,6 @@ const PORT=process.env.PORT ||8070
 app.use(bodyParser.json());
 app.use(cors());
 
-const productRouter = require('./routes/productRoutes');
-
 
 
 const URL = process.env.MONGODB_URL;
@@ -37,7 +35,7 @@ app.route('/').get((req,res)=>{
 
 const RiderAPI = require('./API/Rider.Api.js')
 app.use('/rider',RiderAPI())
-app.use('/product',productRouter);
+
 
 app.listen(PORT,()=>{
     console.log(`Server is up and running on port ${PORT}`);
@@ -46,3 +44,4 @@ app.listen(PORT,()=>{
 // mongodb login credentials
 // email - kandycupcakes.sliit@gmail.com
 //password :Abc123456789
+
