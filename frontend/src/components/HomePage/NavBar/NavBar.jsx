@@ -34,7 +34,7 @@ function NavBar(props) {
                         <Nav.Link href="/" style={linkStyle} className="mx-3">HOME</Nav.Link>
                         <Nav.Link href="/cart" style={linkStyle} className="mx-3">SHOP</Nav.Link>
                         <Nav.Link href="/gallery" style={linkStyle} className="mx-3">ABOUT</Nav.Link>
-                        <Nav.Link href="#pricing" style={linkStyle} className="mx-3">CONTACT</Nav.Link>
+                        <Nav.Link href="/admin" style={linkStyle} className="mx-3">CONTACT</Nav.Link>
                     </Nav>
                     <Nav>
                         
