@@ -35,6 +35,7 @@ function NavBar(props) {
                         <Nav.Link href="/cart" style={linkStyle} className="mx-3">SHOP</Nav.Link>
                         <Nav.Link href="/gallery" style={linkStyle} className="mx-3">ABOUT</Nav.Link>
                         <Nav.Link href="#pricing" style={linkStyle} className="mx-3">CONTACT</Nav.Link>
+                        <Nav.Link href="/profile" style={linkStyle} className="mx-3">PROFILE</Nav.Link>
                     </Nav>
                     <Nav>
                         

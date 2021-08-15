@@ -4,6 +4,8 @@ import Button from "@material-ui/core/Button";
 import axios from "axios"
 import { useHistory } from "react-router-dom";
 import TextField from '@material-ui/core/TextField';
+import {toast} from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 const buttonStyle = {
     backgroundColor: "#f7312a",
@@ -67,6 +69,9 @@ const loginPathImg = {
     fontFamily: "Montserrat sans-serif"
 }
 
+
+toast.configure()
+
 function MiddleSection() {
 
     const [email, setEmail] = useState("")
@@ -84,9 +89,9 @@ function MiddleSection() {
 
         axios.post("http://localhost:8070/user/login", oldUser).then((response) => {
             if (response.data.message) {
-                alert(response.data.message)
+                toast.error(response.data.message,{position: toast.POSITION.TOP_CENTER , autoClose:3000})
             } else {
-                alert("Login success")
+                toast.success('Login Success!',{position: toast.POSITION.TOP_CENTER , autoClose:1000})
                 localStorage.setItem("token", response.data.token)
                 if (response.data.usertype == "Seller") {
                     history.push("/product")

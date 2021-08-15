@@ -40,7 +40,7 @@ app.post("/register", (req,res) =>{
     })
   })
 
-  app.post("/login", async(req,res) =>{
+app.post("/login", async(req,res) =>{
     await User.findOne({ email: req.body.email }).then( //find corresponding email form users list 
         (user) => {
          //since the password in database is in encrypted format we have to get it and decrypt to compre with user entered password
@@ -59,6 +59,43 @@ app.post("/register", (req,res) =>{
         }
       );
     })
+
+
+
+
+
+    app.put("/profileUpdate", (req,res) =>{
+
+      console.log(req.body.username  ,  req.body.password)
+
+      bcrypt.hash(req.body.password ,saultRounds , (err,hash) =>{
+        const newpassword = hash
+        
+        User.findByIdAndUpdate({_id:req.body.userID},{
+          username:req.body.username,
+          password:newpassword
+        }).then((respond)=>{
+          console.log(respond)
+          res.send(respond)
+        }).catch((err)=>{
+          console.log(err)
+          res.send({Error:"Profile details updatea failed"})
+        })
+     
+      })
+    })
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 app.get("/post",verifyToken,(req, res) =>{
