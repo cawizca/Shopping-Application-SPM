@@ -15,6 +15,7 @@ const productRouter = require('./routes/productRoutes');
 
 
 
+
 const URL = process.env.MONGODB_URL;
 
 mongoose.connect(URL,{
@@ -37,6 +38,7 @@ app.route('/').get((req,res)=>{
 
 const RiderAPI = require('./API/Rider.Api.js')
 app.use('/rider',RiderAPI())
+
 app.use('/product',productRouter);
 
 app.listen(PORT,()=>{
@@ -46,4 +48,3 @@ app.listen(PORT,()=>{
 // mongodb login credentials
 // email - kandycupcakes.sliit@gmail.com
 //password :Abc123456789
-//product route added to server.js
