@@ -64,7 +64,7 @@ router.route("/delete/:id").delete(async(req,res)=>{
 
         .then(data=>{
              
-         res.status(200).send("product deleted")
+         res.status(200).send("product deleted successfully")
      }) 
      .catch(error=>{
          res.status(500).send(error.message);

@@ -11,9 +11,8 @@ const PORT=process.env.PORT ||8070
 app.use(bodyParser.json());
 app.use(cors());
 
-const productRouter = require('./routes/productRoutes');
-
-
+app.use(bodyParser.json({limit:"30mb",extended:true}));
+app.use(bodyParser.urlencoded({limit:"30mb",extended: true}));
 
 
 const URL = process.env.MONGODB_URL;
@@ -32,14 +31,23 @@ connection.once("open",()=>{
     console.log("Mongo DB Connection success");
 })
 
+const userRouter = require("./src/routes/User");
+app.use('/user',userRouter)
+
 app.route('/').get((req,res)=>{
     res.send('SLIIT SPM');
 })
 
+
+
 const RiderAPI = require('./API/Rider.Api.js')
 app.use('/rider',RiderAPI())
 
-app.use('/product',productRouter);
+
+app.use('/product',productRouter)
+
+
+
 
 app.listen(PORT,()=>{
     console.log(`Server is up and running on port ${PORT}`);
@@ -48,3 +56,4 @@ app.listen(PORT,()=>{
 // mongodb login credentials
 // email - kandycupcakes.sliit@gmail.com
 //password :Abc123456789
+
