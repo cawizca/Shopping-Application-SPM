@@ -51,8 +51,8 @@ function NavBar(props) {
                             </Form>
                         ) : (*/}
                             <Form>
-                                <Button className="mx-3" variant="contained" style={buttonStyle} href="/login">SIGN IN</Button>
-                                <Button className="mx-3" variant="contained" style={buttonStyle} href="/register">SIGN UP</Button>
+                                <Button className="mx-3" variant="contained" style={buttonStyle} href="/signin">SIGN IN</Button>
+                                <Button className="mx-3" variant="contained" style={buttonStyle} href="/signup">SIGN UP</Button>
                             </Form>
                        {/*} )*/}
                     </Nav>

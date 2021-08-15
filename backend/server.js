@@ -10,7 +10,8 @@ const PORT=process.env.PORT ||8070
 
 app.use(cors());
 
-
+app.use(bodyParser.json({limit:"30mb",extended:true}));
+app.use(bodyParser.urlencoded({limit:"30mb",extended: true}));
 
 const URL = process.env.MONGODB_URL;
 
@@ -28,9 +29,14 @@ connection.once("open",()=>{
     console.log("Mongo DB Connection success");
 })
 
+const userRouter = require("./src/routes/User");
+app.use('/user',userRouter)
+
 app.route('/').get((req,res)=>{
     res.send('SLIIT Final Exam');
 })
+
+
 
 app.listen(PORT,()=>{
     console.log(`Server is up and running on port ${PORT}`);
@@ -39,5 +45,4 @@ app.listen(PORT,()=>{
 // mongodb login credentials
 // email - kandycupcakes.sliit@gmail.com
 //password :Abc123456789
-//Dinisuru
-//Test
+
