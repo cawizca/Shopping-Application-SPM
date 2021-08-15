@@ -21,10 +21,6 @@ function App() {
           <Route path='/signin' exact component={LoginPageComponent}/>
           <Route path='/signup' exact component={RegistrationPagecomponent}/>
           <Route path='/profile' exact component={Profilecomponenet}/>
-          
-
-          <Route path="/" exact component={Homepage} />
-          <Route path="/cart" exact component={CartComponent} />
           <Route path="/admin" exact component={AdminNavbar} />
 
       </Router>
