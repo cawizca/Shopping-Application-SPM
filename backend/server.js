@@ -6,8 +6,9 @@ const dotenv=require("dotenv");
 const path = require('path');
 const app = express();
 dotenv.config();
+app.use(bodyParser.json());
 const PORT=process.env.PORT ||8070
-
+app.use(bodyParser.json());
 app.use(cors());
 
 app.use(bodyParser.json({limit:"30mb",extended:true}));
@@ -33,8 +34,13 @@ const userRouter = require("./src/routes/User");
 app.use('/user',userRouter)
 
 app.route('/').get((req,res)=>{
-    res.send('SLIIT Final Exam');
+    res.send('SLIIT SPM');
 })
+
+
+
+const RiderAPI = require('./API/Rider.Api.js')
+app.use('/rider',RiderAPI())
 
 
 
