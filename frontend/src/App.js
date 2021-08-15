@@ -8,6 +8,7 @@ import RegistrationPagecomponent from "./components/RegistrationPage/Registratio
 import Profilecomponenet from "./components/ProfilePage/Profilecomponenet";
 
 import AdminNavbar from "./components/Admin/AdminNavigation";
+import WishlistComponent from "./components/Wishlist/WishlistComponent";
 
 
 
@@ -22,6 +23,7 @@ function App() {
           <Route path='/signup' exact component={RegistrationPagecomponent}/>
           <Route path='/profile' exact component={Profilecomponenet}/>
           <Route path="/admin" exact component={AdminNavbar} />
+          <Route path="/wishlist" exact component={WishlistComponent} />
 
       </Router>
     </div>
