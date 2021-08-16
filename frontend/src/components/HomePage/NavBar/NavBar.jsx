@@ -4,9 +4,9 @@ import Nav from 'react-bootstrap/Nav';
 import Button from '@material-ui/core/Button';
 import Form from 'react-bootstrap/Form';
 import logo from '../../../images/logo.png';
-/*import NavBarCart from './NavBarCart';
+import NavBarCart from './NavBarCart';
 import NavBarAvatar from './NavBarAvatar';
-*/
+
 const linkStyle = {
     color: "#fff",
     fontFamily: 'Poppins',
@@ -41,23 +41,21 @@ function NavBar(props) {
                     </Nav>
                     <Nav>
                         
-                        {/*(props.getUserRole === "User" || props.getUserRole === "Admin") ? ( 
+                        {(props.getUserType === "Customer" || props.getUserType === "Admin") ? (
                             <Form>
                                 <Nav className="mx-auto">
                                     <Nav.Link style={linkStyle} className="mx-2">
                                         <NavBarCart />
                                     </Nav.Link>
-                                    <Nav.Link style={linkStyle} className="mx-2"><NavBarAvatar getUser={props.getUserName}></NavBarAvatar></Nav.Link>
+
                                 </Nav>
-
-
                             </Form>
-                        ) : (*/}
+                        ) : (
                             <Form>
                                 <Button className="mx-3" variant="contained" style={buttonStyle} href="/signin">SIGN IN</Button>
                                 <Button className="mx-3" variant="contained" style={buttonStyle} href="/signup">SIGN UP</Button>
                             </Form>
-                       {/*} )*/}
+                        )}
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>
