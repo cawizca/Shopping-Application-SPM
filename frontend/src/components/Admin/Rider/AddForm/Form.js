@@ -106,7 +106,7 @@ export default function Form() {
     const [number,setNumber] = useState("");
 
     function onSubmit(e){
-        e.preventDefault();
+
 
         const RiderObject ={
             riderName: riderName,
@@ -118,7 +118,7 @@ export default function Form() {
 
         axios.post("http://localhost:8070/rider/create",RiderObject)
             .then((res)=>{
-                alert("saved susscessfully")
+                alert("saved successfully")
             })
             .catch(error=>{
                 alert(error)
@@ -131,7 +131,7 @@ export default function Form() {
 
     return(
         <div >
-            <Button variant="outlined" color="primary" onClick={handleClickOpen}>
+            <Button variant="outlined" color="secondary" onClick={handleClickOpen}>
                 Add New
             </Button>
             <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open} >

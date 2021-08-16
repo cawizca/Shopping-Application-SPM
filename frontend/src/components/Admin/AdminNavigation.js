@@ -17,6 +17,7 @@ import InfoIcon from '@material-ui/icons/Info';
 import Rider from "./Rider/Rider";
 import NavBar from "../HomePage/NavBar/NavBar";
 import ManageOrder from "./Rider/ManageOrder";
+import { useHistory } from "react-router";
 
 const useStyles = makeStyles((theme) => ({
     drawerPaper: { width: 'inherit' },
@@ -26,8 +27,19 @@ const useStyles = makeStyles((theme) => ({
     }
 }))
 
+
+
 function AdminNavbar(){
+    const history = useHistory();
     const classes = useStyles();
+
+    const navigateRidermanagement=()=>{
+        history.push("/rider")
+    }
+
+    const navigateOrdermanagement=()=>{
+        history.push("/orders")
+    }
     return (
 
         <Router>
@@ -41,37 +53,27 @@ function AdminNavbar(){
                     classes={{ paper: classes.drawerPaper }}
                 >
                     <List>
-                        <Link to="/" className={classes.link}>
-                            <ListItem button>
+                        <Link to="/rider" className={classes.link}>
+                            <ListItem button onClick={()=>navigateRidermanagement()}>
                                 <ListItemIcon>
                                     <HomeIcon />
                                 </ListItemIcon>
                                 <ListItemText primary={"Rider Management"} />
                             </ListItem>
                         </Link>
-                        <Link to="/about" className={classes.link}>
-                            <ListItem button>
+                        <Link to="/orders" className={classes.link}>
+                            <ListItem button onClick={()=>navigateOrdermanagement()}>
                                 <ListItemIcon>
                                     <InfoIcon />
                                 </ListItemIcon>
-                                <ListItemText primary={"About"} />
+                                <ListItemText primary={"Order Management"} />
                             </ListItem>
                         </Link>
                     </List>
                 </Drawer>
-                <Switch>
-                    <Route exact path="/">
-                        <Container>
-                            <Rider/>
 
-                        </Container>
-                    </Route>
-                    <Route exact path="/about">
-                        <Container>
-                            <ManageOrder/>
-                        </Container>
-                    </Route>
-                </Switch>
+
+
             </div>
         </Router>
     );

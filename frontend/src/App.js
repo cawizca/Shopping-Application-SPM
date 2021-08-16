@@ -8,6 +8,9 @@ import RegistrationPagecomponent from "./components/RegistrationPage/Registratio
 import Profilecomponenet from "./components/ProfilePage/Profilecomponenet";
 
 import AdminNavbar from "./components/Admin/AdminNavigation";
+import Rider from "./components/Admin/Rider/Rider";
+import ManageOrder from "./components/Admin/Rider/ManageOrder";
+import DeleteRider from "./components/Admin/Rider/Table/DeleteRider";
 
 
 
@@ -22,7 +25,9 @@ function App() {
           <Route path='/signup' exact component={RegistrationPagecomponent}/>
           <Route path='/profile' exact component={Profilecomponenet}/>
           <Route path="/admin" exact component={AdminNavbar} />
-
+          <Route path="/rider" exact component={Rider} />
+          <Route path="/orders" exact component={ManageOrder} />
+          <Route path="/delete" exact component={DeleteRider} />
       </Router>
     </div>
   );
