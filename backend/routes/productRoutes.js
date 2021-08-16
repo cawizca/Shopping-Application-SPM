@@ -19,9 +19,9 @@ router.route("/add").post((req,res)=>{
 
 router.route("/readAll").get(async(req,res)=>{
     await Products.find()
-    .then(data=>{
+    .then((product)=>{
             
-        res.status(200).send({data:data})
+        res.json(product)
     }) 
     .catch(error=>{
         res.status(500).send(error.message);
