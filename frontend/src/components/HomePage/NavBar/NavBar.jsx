@@ -37,6 +37,7 @@ function NavBar(props) {
                         <Nav.Link href="#pricing" style={linkStyle} className="mx-3">CONTACT</Nav.Link>
                         <Nav.Link href="/profile" style={linkStyle} className="mx-3">PROFILE</Nav.Link>
                         <Nav.Link href="/admin" style={linkStyle} className="mx-3">CONTACT</Nav.Link>
+                        <Nav.Link href="/productManage" style={linkStyle} className="mx-3">Admin product manage</Nav.Link>
 
                     </Nav>
                     <Nav>

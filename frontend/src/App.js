@@ -9,6 +9,7 @@ import Profilecomponenet from "./components/ProfilePage/Profilecomponenet";
 
 import AdminNavbar from "./components/Admin/AdminNavigation";
 import WishlistComponent from "./components/Wishlist/WishlistComponent";
+import ManageProducts from "../src/components/ProductsComponent/adminProductManage"
 
 
 
@@ -24,6 +25,7 @@ function App() {
           <Route path='/profile' exact component={Profilecomponenet}/>
           <Route path="/admin" exact component={AdminNavbar} />
           <Route path="/wishlist" exact component={WishlistComponent} />
+          <Route path="/productManage" exact component={ManageProducts} />
 
       </Router>
     </div>
