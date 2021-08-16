@@ -3,15 +3,19 @@ import React from "react";
 import "../../../styles/rider.css";
 import ManageOrder from "./ManageOrder";
 import Form from "./AddForm/Form";
+import ManageTable from "./Table/ManageTable";
+import AdminNavigation from "../AdminNavigation";
 function Rider(){
 
     return (
 
-        <div>
-            <div className='container'>
+        <div >
+            <AdminNavigation/>
+            <div className="margin-adjust">
                 <h1 className="page-title">Rider Management</h1>
 
-               <Form/>
+
+                <ManageTable/>
             </div>
 
         </div>
