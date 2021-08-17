@@ -2,6 +2,12 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const CartSchema = new Schema({
+
+    productID : {
+            type:mongoose.Schema.Types.ObjectId,
+            ref:'product',
+            required:false
+    } ,
     name : {
         type : String
     },
@@ -15,7 +21,7 @@ const CartSchema = new Schema({
         type : String
     },
     measuringUnit : {
-        type : Number
+        type : String
     },
     availableQuantity : {
         type : Number

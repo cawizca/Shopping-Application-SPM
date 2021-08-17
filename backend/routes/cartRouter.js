@@ -2,7 +2,7 @@ const router = require("express").Router();
 const Item = require("../models/cartModel");
 
 router.route("/").post((req,res)=>{
-
+   const productID = req.body.productID
    const name = req.body.name;
    const price = req.body.price;
    const category = req.body.category;
@@ -12,6 +12,7 @@ router.route("/").post((req,res)=>{
    const minimumQuantity = req.body.minimumQuantity;
 
    const newItem = new Item({
+      productID,
       name,
       price,
       category,

@@ -15,6 +15,7 @@ import DeleteRider from "./components/Admin/Rider/Table/DeleteRider";
 
 import WishlistComponent from "./components/Wishlist/WishlistComponent";
 import ManageProducts from "../src/components/ProductsComponent/adminProductManage"
+import ShoppingProducts from '../src/components/ProductsComponent/CustomerAllShopping'
 
 
 
@@ -37,6 +38,7 @@ function App() {
 
           <Route path="/wishlist" exact component={WishlistComponent} />
           <Route path="/productManage" exact component={ManageProducts} />
+          <Route path="/ShoppingAll" exact component={ShoppingProducts} />
 
 
       </Router>
