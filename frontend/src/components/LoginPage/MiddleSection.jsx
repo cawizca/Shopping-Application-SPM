@@ -4,7 +4,7 @@ import Button from "@material-ui/core/Button";
 import axios from "axios"
 import { useHistory } from "react-router-dom";
 import TextField from '@material-ui/core/TextField';
-import {toast} from 'react-toastify'
+import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
 const buttonStyle = {
@@ -89,9 +89,9 @@ function MiddleSection() {
 
         axios.post("http://localhost:8070/user/login", oldUser).then((response) => {
             if (response.data.message) {
-                toast.error(response.data.message,{position: toast.POSITION.TOP_CENTER , autoClose:3000})
+                toast.error(response.data.message, { position: toast.POSITION.TOP_CENTER, autoClose: 3000 })
             } else {
-                toast.success('Login Success!',{position: toast.POSITION.TOP_CENTER , autoClose:1000})
+                toast.success('Login Success!', { position: toast.POSITION.TOP_CENTER, autoClose: 1000 })
                 localStorage.setItem("token", response.data.token)
                 if (response.data.usertype == "Seller") {
                     history.push("/product")
@@ -107,19 +107,19 @@ function MiddleSection() {
     return (
         <div>
             <Container fluid>
-            
+
                 <Row>
                     <Col lg={6} sm={12} style={{ backgroundColor: "#ECE6F2", paddingTop: "5%" }}>
-                        
-                    
+
+
 
                     </Col>
                     <Col lg={6} sm={12} className="wholeColumn">
                         <div className="container">
-                            
+
                             <hr width="20%" align="left" className="hrStyle" />
                             <p className="pStyle" >
-                                Welcome back 
+                                Welcome back
                             </p>
 
 
@@ -143,12 +143,12 @@ function MiddleSection() {
                                 <hr width="100%" align="center" style={hrStyle} />
                                 <br />
                                 <Button style={buttonSignUp} >Sign Up</Button>
-                                <br/>
-                                <br/>
-                                <br/>
-                                <br/>
-                                <br/>
-                                <br/>
+                                <br />
+                                <br />
+                                <br />
+                                <br />
+                                <br />
+                                <br />
                             </form>
                         </div>
                     </Col>
