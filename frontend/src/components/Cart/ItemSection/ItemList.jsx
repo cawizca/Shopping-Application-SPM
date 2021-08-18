@@ -1,7 +1,18 @@
 import ItemCard from "./ItemListSub/ItemCard";
 import Button from '@material-ui/core/Button';
+import {useEffect, useState} from "react";
+import axios from "axios";
 
 export default function ItemList(){
+
+    const [products, setProducts] = useState([]);
+
+    useEffect(() => {
+        axios.get('http://localhost:8070/cart/').then((res) => {
+            setProducts(res.data);
+        });
+    });
+
     return(
         <div>
             <div className="row top-section">
@@ -15,10 +26,14 @@ export default function ItemList(){
             <div className="row">
                 <div className="col-lg-12">
                     <div className="item-list">
-                        <ItemCard />
-                        <ItemCard />
-                        <ItemCard />
-                        <ItemCard />
+                        {products.map((product)=>{
+                            return(
+                                <ItemCard
+                                    id = {product._id}
+                                    name = {product.name}
+                                    />
+                            );
+                        })}
                     </div>
                 </div>
             </div>

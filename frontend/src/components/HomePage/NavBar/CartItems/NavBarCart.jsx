@@ -6,15 +6,19 @@ import Badge from '@material-ui/core/Badge';
 import { makeStyles } from '@material-ui/core/styles';
 import Popover from '@material-ui/core/Popover';
 import Typography from '@material-ui/core/Typography';
-import ItemList from '../../Cart/ItemSection/ItemList';
+import ItemList from '../../../Cart/ItemSection/ItemList';
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
+import ItemCard from "../../../Cart/ItemSection/ItemListSub/ItemCard";
 
 import { Button } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import * as PropTypes from "prop-types";
 import {faBell} from "@fortawesome/free-regular-svg-icons";
+import NavBarNotifications from "../Notifications/NavBarNotifications";
+import NavUser from "../NavUser";
+import NavCartCard from "./NavCartCard";
+
 
 const useStyles = makeStyles((theme) => ({
     typography: {
@@ -61,13 +65,11 @@ function NavBarCart() {
                 </div>
 
                 <div className="mx-3">
-                    <Badge badgeContent=" " color="secondary" variant="dot" >
-                        <FontAwesomeIcon icon={faBell} size="lg"/>
-                    </Badge>
+                    <NavBarNotifications />
                 </div>
 
                 <div className="mx-3">
-                    <UilUser />
+                    <NavUser />
                 </div>
 
                 <div className="mx-3">
@@ -93,19 +95,24 @@ function NavBarCart() {
                     horizontal: 'center',
                 }}
                 PaperProps={{
-                    style: { width: '20%' },
+                    style: { width: '18%', backgroundColor: "#50587F", overflow: "auto", maxHeight: "355px", padding:"1% 0 0" },
                 }}
                 
             >
-                    {/*products.map((product) => {
+                    {products.map((product) => {
+                        console.log(product.name)
                         return (
-                            <ItemList
-                                name={product.name}
-                            />
+                            <div className="notification-list">
+                                <NavCartCard
+                                    name = {product.name}
+                                />
+                            </div>
                         )
-                    })*/}
-                
-                <Button component={Link} to="/cart" className={classes.typography} style={{ backgroundColor: "#FA334E", color: "#fff", fontWeight: "700"}} fullWidth variant="contained">View cart.</Button>
+                    })}
+
+                <Button component={Link} to="/cart" className={classes.typography} style={{ backgroundColor: "#FA334E", color: "#fff", fontWeight: "700", marginTop:"5%"}} fullWidth variant="contained">
+                    View cart.
+                </Button>
 
             </Popover>
         </div>

@@ -1,7 +1,6 @@
 import NavBar from "./NavBar/NavBar";
 import HomeMiddle from "./Middle Section/HomeMiddle";
 import '../../styles/home.css';
-import Sessions from "../LoginPage/Sessions";
 import {useEffect, useState} from "react";
 import axios from "axios";
 

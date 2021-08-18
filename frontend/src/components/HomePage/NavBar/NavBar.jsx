@@ -4,8 +4,10 @@ import Nav from 'react-bootstrap/Nav';
 import Button from '@material-ui/core/Button';
 import Form from 'react-bootstrap/Form';
 import logo from '../../../images/logo.png';
-import NavBarCart from './NavBarCart';
+import NavBarCart from './CartItems/NavBarCart';
 import NavBarAvatar from './NavBarAvatar';
+import NavBarNotifications from "./Notifications/NavBarNotifications";
+import NavBarSerach from "./NavBarSerach";
 
 const linkStyle = {
     color: "#fff",
@@ -34,7 +36,6 @@ function NavBar(props) {
                         <Nav.Link href="/" style={linkStyle} className="mx-3">HOME</Nav.Link>
                         <Nav.Link href="/cart" style={linkStyle} className="mx-3">SHOP</Nav.Link>
                         <Nav.Link href="/wishlist" style={linkStyle} className="mx-3">ABOUT</Nav.Link>
-                        <Nav.Link href="#pricing" style={linkStyle} className="mx-3">CONTACT</Nav.Link>
                         <Nav.Link href="/profile" style={linkStyle} className="mx-3">PROFILE</Nav.Link>
                         <Nav.Link href="/admin" style={linkStyle} className="mx-3">CONTACT</Nav.Link>
                         <Nav.Link href="/productManage" style={linkStyle} className="mx-3">Admin product manage</Nav.Link>
@@ -44,11 +45,10 @@ function NavBar(props) {
 
                     </Nav>
                     <Nav>
-                        
                         {(props.getUserType === "Customer" || props.getUserType === "Admin") ? (
                             <Form>
                                 <Nav className="mx-auto">
-                                    <Nav.Link style={linkStyle} className="mx-2">
+                                    <Nav.Link style={linkStyle} className="mx-2" >
                                         <NavBarCart />
                                     </Nav.Link>
 
