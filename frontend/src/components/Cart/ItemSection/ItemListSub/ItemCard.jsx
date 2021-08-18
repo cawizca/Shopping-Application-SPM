@@ -4,12 +4,15 @@ import tomato from "../../../../images/tomato.png";
 import { UilPlus } from '@iconscout/react-unicons';
 import { UilMinus } from '@iconscout/react-unicons';
 import { UilTimes } from '@iconscout/react-unicons';
+import axios from "axios";
 
 
 
-export default function ItemCard() {
+export default function ItemCard(props) {
 
     const [count, setCount] = useState(1);
+
+    let productId = props.id;
 
     function increaseCount() {
         setCount(count + 1);
@@ -19,17 +22,26 @@ export default function ItemCard() {
         setCount(count - 1);
     }
 
+    function deleteProduct() {
+        axios.delete(`http://localhost:8070/cart/${productId}`).then((product)=>{
+            console.log("Product deleted");
+        }).catch((err)=>{
+            console.log(err);
+        })
+    }
+
+
     return (
         <div>
             <div className="item-card">
                 <div className="row">
                     <div className="col-lg-4">
-                        <div className="red-square"><UilTimes /></div>
+                        <div className="red-square" onClick={deleteProduct}><UilTimes /></div>
                         <img src={tomato} className="cart-image" />
                     </div>
                     <div className="col-lg-6 cart-details">
                         <div style={{paddingLeft:"28%"}}>
-                            <span className="cart-title">Tomato</span> <br />
+                            <span className="cart-title">{props.name}</span> <br />
                             <span className="cart-desc">Tomato</span> <br />
                             <div className="price">Rs. {100 * count}.00</div>
                         </div>

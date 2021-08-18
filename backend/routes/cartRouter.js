@@ -40,7 +40,7 @@ router.route("/").get((req,res)=>{
 router.route("/:id").delete((req,res)=>{
    const id = req.params.id;
    Item.findByIdAndRemove(id).then((item)=>{
-      res.json(item.productName+" deleted successfully");
+      res.json(item.name+" deleted successfully");
    }).catch((err)=>{
       console.log(err)
    })
