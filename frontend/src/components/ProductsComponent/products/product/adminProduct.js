@@ -6,6 +6,16 @@ import DeleteIcon from '@material-ui/icons/Delete'
 import {useDispatch}  from 'react-redux';
 import {deleteproduct} from '../../../../actions/productAction'
 
+
+
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import Slide from '@material-ui/core/Slide'
+
+
 /*
 product:"",
 price:"",
@@ -16,9 +26,24 @@ mesuringUnit:"",
 selectedfile:""*/
 
 
+//EventDispatch(deleteproduct(post._id),window.location.reload(false))
+
 const ProductCard = ({post,setCurrentId})=>{
     const classes = Styles();
     const EventDispatch = useDispatch();
+
+    const [open, setOpen] = React.useState(false);
+
+    const handleClickOpen = () => {
+      setOpen(true);
+    };
+  
+    const handleClose = () => {
+      setOpen(false);
+    };
+
+
+
     return(
         <Card className={classes.card}>
 
@@ -26,9 +51,9 @@ const ProductCard = ({post,setCurrentId})=>{
 
             <div className={classes.overlay}>
                 
-                <Typography variant="h6">Product :{post.product}</Typography>
-                <Typography variant="h6">Price :{post.price}</Typography>
-                <Typography variant="h6">For 1{post.mesuringUnit}</Typography>
+                <Typography variant="h5">Product :{post.product}</Typography>
+                <Typography variant="h5">Price :{post.price}</Typography>
+                <Typography variant="h5">For 1{post.mesuringUnit}</Typography>
                 
 
 
@@ -45,22 +70,50 @@ const ProductCard = ({post,setCurrentId})=>{
 
 
             <CardContent>
-            <Typography variant="h5" color="textPrimary">Category :{post.category}</Typography>
-            <Typography variant="h5" color="textPrimary">Available Quantity :{post.availableQty}</Typography>
-            <Typography variant="h5" color="textPrimary">Minimum Quantity :{post.minimumQty}</Typography>
+            <Typography variant="h6" color="textPrimary">Category :{post.category}</Typography>
+            <Typography variant="h6" color="textPrimary">Available Quantity :{post.availableQty}</Typography>
+            <Typography variant="h6" color="textPrimary">Minimum Quantity :{post.minimumQty}</Typography>
             
             
             </CardContent>
 
             <CardActions className= {classes.cardActions}> 
                 
-                <Button size ="small" color="primary" onClick={()=>EventDispatch(deleteproduct(post._id),window.location.reload(false))} >
+                <Button size ="small" color="primary" onClick={handleClickOpen} >
                 <DeleteIcon fontSize = "default" />
                     
-               
+                {handleClickOpen}
 
                     
                 </Button>
+
+
+                <Dialog
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">{"Do you want to delete this item?"}</DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+          <Typography variant="h6">Product :{post.product}</Typography>
+                <Typography variant="h6">Price :{post.price}</Typography>
+                <Typography variant="h6">For 1{post.mesuringUnit}</Typography>   
+          <Typography variant="h6" color="textPrimary">Category :{post.category}</Typography>
+            <Typography variant="h6" color="textPrimary">Available Quantity :{post.availableQty}</Typography>
+            <Typography variant="h6" color="textPrimary">Minimum Quantity :{post.minimumQty}</Typography>
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose} style={{color:'white',background:'red'}} autoFocus>
+            No
+          </Button>
+          <Button onClick={()=>EventDispatch(deleteproduct(post._id),window.location.reload(false))} style={{color:'white',background:'blue'}} >
+            Yes
+          </Button>
+        </DialogActions>
+      </Dialog>
 
                 
             </CardActions>
