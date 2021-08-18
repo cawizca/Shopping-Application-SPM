@@ -7,6 +7,7 @@ import Styles from './styles';
 import {useDispatch} from 'react-redux';
 import {getProduct} from '../../actions/productAction'
 import NavBar from '../HomePage/NavBar/NavBar'
+import ProductNavigation from './SideNavigations/customerNavigation'
 
 
 const ShoppingProducts =() =>{
@@ -25,7 +26,7 @@ const ShoppingProducts =() =>{
     return (
         
         <div>
-              <NavBar />
+              <ProductNavigation />
 
         
             <Container maxwidth ='lg'>
