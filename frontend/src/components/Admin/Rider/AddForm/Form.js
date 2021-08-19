@@ -1,6 +1,6 @@
-import React ,{useState} from "react";
+import React, {useState} from "react";
 import axios from "axios"
-import { withStyles } from '@material-ui/core/styles';
+import {withStyles} from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import MuiDialogTitle from '@material-ui/core/DialogTitle';
@@ -11,8 +11,11 @@ import CloseIcon from '@material-ui/icons/Close';
 import Typography from '@material-ui/core/Typography';
 import FormControl from '@material-ui/core/FormControl';
 import TextField from '@material-ui/core/TextField';
-import { makeStyles } from '@material-ui/core/styles';
+import {makeStyles} from '@material-ui/core/styles';
 import MenuItem from '@material-ui/core/MenuItem';
+import '../../../../styles/rider.css'
+import {FormHelperText} from "@material-ui/core";
+
 const styles = (theme) => ({
     root: {
         margin: 0,
@@ -27,13 +30,13 @@ const styles = (theme) => ({
 });
 
 const DialogTitle = withStyles(styles)((props) => {
-    const { children, classes, onClose, ...other } = props;
+    const {children, classes, onClose, ...other} = props;
     return (
         <MuiDialogTitle disableTypography className={classes.root} {...other}>
             <Typography variant="h6">{children}</Typography>
             {onClose ? (
                 <IconButton aria-label="close" className={classes.closeButton} onClick={onClose}>
-                    <CloseIcon />
+                    <CloseIcon/>
                 </IconButton>
             ) : null}
         </MuiDialogTitle>
@@ -55,6 +58,7 @@ const DialogActions = withStyles((theme) => ({
 
 export default function Form() {
     const [open, setOpen] = React.useState(false);
+    const [helperText, setHelperText] = React.useState('');
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -97,127 +101,178 @@ export default function Form() {
     ];
 
 
-
     //set Data to useStates
-    const [riderName,setRiderName] = useState("");
-    const [nic,setNic] = useState("");
-    const [phone,setPhone] = useState("");
-    const [type,setType] = useState("");
-    const [number,setNumber] = useState("");
+    const [riderName, setRiderName] = useState("");
+    const [nic, setNic] = useState("");
+    const [phone, setPhone] = useState("");
+    const [type, setType] = useState("");
+    const [number, setNumber] = useState("");
 
-    function onSubmit(e){
+    function onSubmit(e) {
 
-
-        const RiderObject ={
+        e.preventDefault()
+        const RiderObject = {
             riderName: riderName,
-            riderNic : nic,
-            riderPhone : phone,
-            vehicleType : type,
+            riderNic: nic,
+            riderPhone: phone,
+            vehicleType: type,
             vehicleNumber: number
         }
 
-        axios.post("http://localhost:8070/rider/create",RiderObject)
-            .then((res)=>{
+        axios.post("http://localhost:8070/rider/create", RiderObject)
+            .then((res) => {
                 alert("saved successfully")
+                setTimeout(() => {
+                    window.location.reload(true)
+                }, 1000)
+
             })
-            .catch(error=>{
+            .catch(error => {
                 alert(error)
             })
     }
 
-    const vehicleTypeChange=(event)=>{
+    const vehicleTypeChange = (event) => {
+        setHelperText(' ');
         setType(event.target.value);
     }
 
-    return(
-        <div >
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+
+        if (riderName == '' && nic == '' && phone == ''&& type == ''&& number == '') {
+            setHelperText('please fill all the fields');
+
+        } else if (riderName == '') {
+            setHelperText('please Enter Rider Name');
+
+        } else if (nic == '') {
+            setHelperText('please Enter NIC Number');
+
+        }  else if (phone == '') {
+            setHelperText('please Enter Mobile Number');
+
+        } else if (number == '') {
+            setHelperText('please Enter Vehicle Number');
+
+        } else if (type == '') {
+            setHelperText('please Select Vehicle Type');
+
+        }else {
+            onSubmit(event)
+        }
+    };
+
+
+    return (
+        <div>
             <Button variant="outlined" color="secondary" onClick={handleClickOpen}>
                 Add New
             </Button>
-            <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open} >
-                <DialogTitle id="customized-dialog-title" onClose={handleClose} className="form-background">
-                    Add a New Rider
+            <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}>
+                <DialogTitle id="customized-dialog-title" onClose={handleClose} >
+                     New Rider
                 </DialogTitle>
-                <form onSubmit={onSubmit}>
-                    <DialogContent dividers className="form-background">
-                        <Typography  >
-
-                            <TextField
-                                label="Rider Name"
-                                id="outlined-margin-dense"
-                                placeholder="W.P. Kumara"
-                                className={classes.textField}
-                                helperText="Enter Rider Name"
-                                margin="dense"
-                                variant="outlined"
-                                onChange={(event)=>{
-                                    setRiderName(event.target.value)
-                                }}
-                            />
-
-                            <TextField
-                                label="Rider NIC"
-                                id="outlined-margin-dense"
-                                placeholder="984511452V"
-                                className={classes.textField}
-                                helperText="Enter Rider NIC"
-                                margin="dense"
-                                variant="outlined"
-                                onChange={(event)=>{
-                                    setNic(event.target.value)
-                                }}
-                            />
+                <form onSubmit={handleSubmit}>
+                    <DialogContent dividers>
 
 
-                            <TextField
-                                label="Rider Phone"
-                                id="outlined-margin-dense"
-                                placeholder="0717845412"
-                                className={classes.textField}
-                                helperText="Enter Rider Phone"
-                                margin="dense"
-                                variant="outlined"
-                                onChange={(event)=>{
-                                    setPhone(event.target.value)
-                                }}
-                            />
+                        <div className="rider-form" style={{marginTop: '-60px'}}>
 
-                            <TextField
-                                label="Vehicle Number"
-                                id="outlined-margin-dense"
-                                placeholder="PA-5684"
-                                className={classes.textField}
-                                helperText="Enter Vehicle Number"
-                                margin="dense"
-                                variant="outlined"
-                                onChange={(event)=>{
-                                    setNumber(event.target.value)
-                                }}
-                            />
 
-                            <TextField
-                                className={classes.textField}
-                                required
-                                id="outlined-select-currency"
-                                select
-                                label="Select Vehicle Type"
-                                margin="dense"
-                                variant="outlined"
-                                value={type}
-                                onChange={vehicleTypeChange}
-                            >
-                                {types.map((option) => (
-                                    <MenuItem key={option.value} value={option.value}>
-                                        {option.label}
-                                    </MenuItem>
-                                ))}
-                            </TextField>
+                            <div className="completion-text">
+                                <TextField
+                                    type='text'
+                                    color="secondary"
+                                    inputProps={{pattern: "[A-Za-z. ]{1,75}"}}
+                                    label="Rider Name"
+                                    placeholder="W.P. Kumara"
+                                    onChange={(event) => {
+                                        setHelperText(' ');
+                                        setRiderName(event.target.value)
+                                    }}
+                                    fullWidth/>
+                            </div>
 
-                        </Typography>
+
+                            <div className="completion-text">
+                                <TextField
+                                    inputProps={{pattern: "[vV0-9 ]{1,12}"}}
+                                    color="secondary"
+                                    type='text'
+                                    label="Rider NIC"
+                                    placeholder="984511452V"
+                                    onChange={(event) => {
+                                        setHelperText(' ');
+                                        setNic(event.target.value)
+                                    }}
+                                    fullWidth/>
+                            </div>
+
+
+                            <div className="completion-text">
+                                <TextField
+                                    color="secondary"
+                                    inputProps={{pattern: "[0-9]{1,10}"}}
+                                    type='text'
+                                    label="Rider Phone"
+                                    placeholder="0717845412"
+                                    onChange={(event) => {
+                                        setHelperText(' ');
+                                        setPhone(event.target.value)
+
+                                    }}
+                                    fullWidth
+
+                                />
+                            </div>
+
+
+                            <div className="completion-text">
+                                <TextField
+                                    color="secondary"
+                                    type='text'
+                                    inputProps={{pattern: "[A-Za-z0-9- ]{1,75}"}}
+                                    label="Vehicle Number"
+                                    placeholder="PA-5684"
+                                    onChange={(event) => {
+                                        setHelperText(' ');
+                                        setNumber(event.target.value)
+                                    }}
+                                    fullWidth
+                                />
+                            </div>
+
+                            <div className="completion-text">
+                                <TextField
+                                    color="secondary"
+                                    id="outlined-select-currency"
+                                    type='select'
+                                    select
+                                    label="Select Vehicle Type"
+                                    value={type}
+                                    onChange={vehicleTypeChange}
+                                    variant='outlined'
+                                    fullWidth
+                                >
+                                    {types.map((option) => (
+                                        <MenuItem key={option.value} value={option.value}>
+                                            {option.label}
+                                        </MenuItem>
+                                    ))}
+
+                                </TextField>
+                            </div>
+
+                            <FormHelperText style={{color: "red"}}>{helperText}</FormHelperText>
+
+                        </div>
+
 
                     </DialogContent>
                     <DialogActions>
-                        <Button type="submit"  color="primary">
+                        <Button type="submit" color="primary">
                             Insert
                         </Button>
                     </DialogActions>
