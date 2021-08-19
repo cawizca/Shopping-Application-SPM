@@ -131,22 +131,22 @@ export default function ComplitionForm() {
             <Button style={buttonStyle} onClick={handleClickOpen}>
                Mark As Complete
             </Button>
-            <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open} >
+            <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open} className='completion-info'>
                 <DialogTitle id="customized-dialog-title" onClose={handleClose} className="form-background">
                     Order Info
                 </DialogTitle>
                 <form>
-                    <DialogContent dividers className="form-background" className='order-info'>
+                    <DialogContent dividers className="form-background" >
 
                         <div className="input-set">
                             <div>
-                                <label>Customer ID</label>
-                                <label style={{marginRight:'95px'}}> - CS4521514</label>
+                                <label>Order ID</label>
+                                <label style={{marginRight:'95px'}}> - ORD845545415</label>
 
                             </div>
 
                             <div>
-                                <label>Address</label>
+                                <label>Location</label>
                                 <label> - No 15/C Malabe</label>
 
                             </div>
@@ -156,96 +156,40 @@ export default function ComplitionForm() {
 
                         <div className="input-set">
                             <div>
-                                <label>Order ID</label>
-                                <label> - OR1558456</label>
+                                <label>Rider ID</label>
+                                <label> - EMP4555555</label>
                             </div>
-
-                            <div>
-                                <label>Phone</label>
-                                <label> - 0717458542</label>
-                            </div>
-                        </div>
-
-                        <div className="input-set">
-                            <div>
-                                <label>Distance</label>
-                                <label> - 25Km</label>
-                            </div>
-
 
                         </div>
 
-
-                        <TableContainer component={Paper} style={{width:'350px'}}>
-                            <Table className={classes.table} aria-label="simple table">
-                                <TableHead>
-                                    <TableRow>
-                                        <StyledTableCell>Item ID</StyledTableCell>
-                                        <StyledTableCell>name</StyledTableCell>
-                                        <StyledTableCell>Price (Rs.)</StyledTableCell>
-                                    </TableRow>
-                                </TableHead>
-                                <TableBody>
-
-                                    <TableRow>
-                                        <TableCell>28542</TableCell>
-                                        <TableCell>Watch</TableCell>
-                                        <TableCell>500.00</TableCell>
-                                    </TableRow>
-
-                                    <TableRow>
-                                        <TableCell>28542</TableCell>
-                                        <TableCell>Watch</TableCell>
-                                        <TableCell>500.00</TableCell>
-                                    </TableRow>
-
-                                    <TableRow>
-                                        <TableCell>28542</TableCell>
-                                        <TableCell>Watch</TableCell>
-                                        <TableCell>500.00</TableCell>
-                                    </TableRow>
+                        <div className="completion-form" style={{marginTop:'-60px'}}>
 
 
+                            <div className="completion-text">
+                                <label>Delivery date : </label>
+                                <TextField type ='date' placeholder="Name" color="secondary" fullWidth/>
+                            </div>
+                            <div className="completion-text">
+                                <label>Time Released: </label>
+                                <TextField type='time' id="standard-basic" placeholder="Description" color="secondary" fullWidth/>
+                            </div>
+                            <div className="completion-text">
+                                <label>Time Received : </label>
+                                <TextField type='time' placeholder="Category" color="secondary" fullWidth/>
+                            </div>
 
-                                    <TableRow className='other-charges'>
-                                        <TableCell>Sub Total</TableCell>
-                                        <TableCell></TableCell>
-                                        <TableCell>2500.00</TableCell>
-                                    </TableRow>
+                            <div className="completion-button">
+                                <Button className="contactButton">Send</Button>
+                            </div>
+                        </div>
 
-                                    <TableRow className='other-charges'>
-                                        <TableCell>Shipping</TableCell>
-                                        <TableCell></TableCell>
-                                        <TableCell>170.00</TableCell>
-                                    </TableRow>
-
-
-
-                                    <TableRow className='final-total'>
-                                        <TableCell>Total</TableCell>
-                                        <TableCell></TableCell>
-                                        <TableCell>4200.00</TableCell>
-                                    </TableRow>
-
-
-
-                                </TableBody>
-                            </Table>
-                        </TableContainer>
 
 
 
 
                     </DialogContent>
 
-                    <div className="input-set" style={{marginLeft:'20px'}}>
-                        <div>
-                            <label>Rider</label>
-                            <label> - Not Assigned</label>
-                        </div>
 
-
-                    </div>
                 </form>
 
 

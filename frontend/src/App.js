@@ -8,6 +8,7 @@ import RegistrationPagecomponent from "./components/RegistrationPage/Registratio
 import Profilecomponenet from "./components/ProfilePage/Profilecomponenet";
 
 import AdminNavbar from "./components/Admin/AdminNavigation";
+import RiderNavigation from "./components/Rider/RiderNavigation";
 
 import Rider from "./components/Admin/Rider/Rider";
 import DeleteRider from "./components/Admin/Rider/Table/DeleteRider";
@@ -18,6 +19,7 @@ import ShoppingProducts from '../src/components/ProductsComponent/CustomerAllSho
 import ManageOrders from "./components/Admin/OrderManagement/ManageOrders";
 import DeliveredOrders from "./components/Admin/DeliveredOrders/DeliveredOrders";
 import DeliveryRequest from "./components/Rider/DeliverRequests/DeliveryRequest";
+import MyDeliveredOrders from "./components/Rider/MyDeliveredOrders/MyDeliveredOrders";
 
 
 
@@ -32,12 +34,14 @@ function App() {
           <Route path='/signup' exact component={RegistrationPagecomponent}/>
           <Route path='/profile' exact component={Profilecomponenet}/>
           <Route path="/admin" exact component={AdminNavbar} />
+          <Route path="/rider-login" exact component={RiderNavigation} />
 
           <Route path="/rider" exact component={Rider} />
           <Route path="/orders" exact component={ManageOrders} />
           <Route path="/delete" exact component={DeleteRider} />
           <Route path="/complete" exact component={DeliveredOrders} />
           <Route path="/requests" exact component={DeliveryRequest} />
+          <Route path="/rider-items" exact component={MyDeliveredOrders} />
 
           <Route path="/wishlist" exact component={WishlistComponent} />
           <Route path="/productManage" exact component={ManageProducts} />

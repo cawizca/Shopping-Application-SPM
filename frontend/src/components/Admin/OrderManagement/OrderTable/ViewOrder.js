@@ -15,6 +15,7 @@ import {makeStyles} from '@material-ui/core/styles';
 import MenuItem from '@material-ui/core/MenuItem';
 import {Label} from "@material-ui/icons";
 import '../../../../styles/orderinfo.css'
+import '../../../../styles/rider.css'
 import TableContainer from "@material-ui/core/TableContainer";
 import Table from "@material-ui/core/Table";
 import TableHead from "@material-ui/core/TableHead";
@@ -126,11 +127,11 @@ export default function ViewOrder() {
 
 
     return (
-        <div >
+        <div>
             <Button style={buttonStyle} onClick={handleClickOpen}>
                 VIEW
             </Button>
-            <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open} >
+            <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}>
                 <DialogTitle id="customized-dialog-title" onClose={handleClose} className="form-background">
                     Order Info
                 </DialogTitle>
@@ -140,7 +141,7 @@ export default function ViewOrder() {
                         <div className="input-set">
                             <div>
                                 <label>Customer ID</label>
-                                <label style={{marginRight:'95px'}}> - CS4521514</label>
+                                <label style={{marginRight: '95px'}}> - CS4521514</label>
 
                             </div>
 
@@ -173,51 +174,49 @@ export default function ViewOrder() {
 
 
                         </div>
+                        <div className='order-form' style={{marginTop:'-60px'}}>
+
+                            <TableContainer component={Paper} style={{width: '350px'}}>
+                                <Table className={classes.table} aria-label="simple table">
+                                    <TableHead>
+                                        <TableRow>
+                                            <StyledTableCell>Item ID</StyledTableCell>
+                                            <StyledTableCell>name</StyledTableCell>
+                                            <StyledTableCell>Price (Rs.)</StyledTableCell>
+                                        </TableRow>
+                                    </TableHead>
+                                    <TableBody>
+
+                                        <TableRow>
+                                            <TableCell>28542</TableCell>
+                                            <TableCell>Watch</TableCell>
+                                            <TableCell>500.00</TableCell>
+                                        </TableRow>
+
+                                        <TableRow>
+                                            <TableCell>28542</TableCell>
+                                            <TableCell>Watch</TableCell>
+                                            <TableCell>500.00</TableCell>
+                                        </TableRow>
+
+                                        <TableRow>
+                                            <TableCell>28542</TableCell>
+                                            <TableCell>Watch</TableCell>
+                                            <TableCell>500.00</TableCell>
+                                        </TableRow>
 
 
-                        <TableContainer component={Paper} style={{width:'350px'}}>
-                            <Table className={classes.table} aria-label="simple table">
-                                <TableHead>
-                                    <TableRow>
-                                        <StyledTableCell>Item ID</StyledTableCell>
-                                        <StyledTableCell>name</StyledTableCell>
-                                        <StyledTableCell>Price (Rs.)</StyledTableCell>
-                                    </TableRow>
-                                </TableHead>
-                                <TableBody>
+                                        <TableRow className='other-charges'>
+                                            <TableCell>Sub Total</TableCell>
+                                            <TableCell></TableCell>
+                                            <TableCell>2500.00</TableCell>
+                                        </TableRow>
 
-                                    <TableRow>
-                                        <TableCell>28542</TableCell>
-                                        <TableCell>Watch</TableCell>
-                                        <TableCell>500.00</TableCell>
-                                    </TableRow>
-
-                                    <TableRow>
-                                        <TableCell>28542</TableCell>
-                                        <TableCell>Watch</TableCell>
-                                        <TableCell>500.00</TableCell>
-                                    </TableRow>
-
-                                    <TableRow>
-                                        <TableCell>28542</TableCell>
-                                        <TableCell>Watch</TableCell>
-                                        <TableCell>500.00</TableCell>
-                                    </TableRow>
-
-
-
-                                    <TableRow className='other-charges'>
-                                        <TableCell>Sub Total</TableCell>
-                                        <TableCell></TableCell>
-                                        <TableCell>2500.00</TableCell>
-                                    </TableRow>
-
-                                    <TableRow className='other-charges'>
-                                        <TableCell>Shipping</TableCell>
-                                        <TableCell></TableCell>
-                                        <TableCell>170.00</TableCell>
-                                    </TableRow>
-
+                                        <TableRow className='other-charges'>
+                                            <TableCell>Shipping</TableCell>
+                                            <TableCell></TableCell>
+                                            <TableCell>170.00</TableCell>
+                                        </TableRow>
 
 
                                         <TableRow className='final-total'>
@@ -227,17 +226,15 @@ export default function ViewOrder() {
                                         </TableRow>
 
 
-
-                                </TableBody>
-                            </Table>
-                        </TableContainer>
-
+                                    </TableBody>
+                                </Table>
+                            </TableContainer>
 
 
-
+                        </div>
                     </DialogContent>
 
-                    <div className="input-set" style={{marginLeft:'20px'}}>
+                    <div className="input-set" style={{marginLeft: '20px' , marginTop:'-50px'}}>
                         <div>
                             <label>Rider</label>
                             <label> - Not Assigned</label>
