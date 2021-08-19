@@ -1,5 +1,4 @@
 import React, {useState} from "react";
-import axios from "axios"
 import {withStyles} from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
@@ -9,11 +8,7 @@ import MuiDialogActions from '@material-ui/core/DialogActions';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import Typography from '@material-ui/core/Typography';
-import FormControl from '@material-ui/core/FormControl';
-import TextField from '@material-ui/core/TextField';
 import {makeStyles} from '@material-ui/core/styles';
-import MenuItem from '@material-ui/core/MenuItem';
-import {Label} from "@material-ui/icons";
 import '../../../../styles/orderinfo.css'
 import '../../../../styles/rider.css'
 import TableContainer from "@material-ui/core/TableContainer";
