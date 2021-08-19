@@ -1,6 +1,6 @@
 import React from 'react';
-import Styles from './style'
-import {Card,CardActions,CardContent,CardMedia,Button,Typography } from '@material-ui/core';
+import Styles from './adminStyles'
+import {Card,CardActions,CardContent,CardMedia,Button,Typography, Divider } from '@material-ui/core';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz'
 import DeleteIcon from '@material-ui/icons/Delete'
 import {useDispatch}  from 'react-redux';
@@ -45,15 +45,16 @@ const ProductCard = ({post,setCurrentId})=>{
 
 
     return(
+      <div style={{margin:'0 15%'}} >
         <Card className={classes.card}>
 
             <CardMedia className={classes.media}  image ={post.selectedfile} title={post.product} />
 
             <div className={classes.overlay}>
                 
-                <Typography variant="h5">Product :{post.product}</Typography>
-                <Typography variant="h5">Price :{post.price}</Typography>
-                <Typography variant="h5">For 1{post.mesuringUnit}</Typography>
+                <Typography style={{fontSize:'25'}} >Product :{post.product}</Typography>
+                <Typography style={{fontSize:'25'}}>Price Rs:{post.price}</Typography>
+                <Typography style={{fontSize:'25'}}>For 1{post.mesuringUnit}</Typography>
                 
 
 
@@ -70,9 +71,9 @@ const ProductCard = ({post,setCurrentId})=>{
 
 
             <CardContent>
-            <Typography variant="h6" color="textPrimary">Category :{post.category}</Typography>
-            <Typography variant="h6" color="textPrimary">Available Quantity :{post.availableQty}</Typography>
-            <Typography variant="h6" color="textPrimary">Minimum Quantity :{post.minimumQty}</Typography>
+            <Typography style={{fontSize:'14'}} color="textPrimary">Category :{post.category}</Typography>
+            <Typography style={{fontSize:'14'}} color="textPrimary">Available Quantity :{post.availableQty}</Typography>
+            <Typography style={{fontSize:'14'}}color="textPrimary">Minimum Quantity :{post.minimumQty}</Typography>
             
             
             </CardContent>
@@ -121,6 +122,8 @@ const ProductCard = ({post,setCurrentId})=>{
 
 
         </Card>
+
+        </div>
     )
 }
 

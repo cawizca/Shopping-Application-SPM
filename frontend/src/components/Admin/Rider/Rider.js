@@ -1,4 +1,3 @@
-
 import React from "react";
 import "../../../styles/rider.css";
 import ManageOrder from "./ManageOrder";
@@ -23,4 +22,4 @@ function Rider(){
 
 }
 
-export default Rider
+export default Rider;

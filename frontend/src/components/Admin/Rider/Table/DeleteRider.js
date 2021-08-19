@@ -49,8 +49,7 @@ export default function DeleteRider(props){
                 <DialogTitle id="alert-dialog-slide-title">{" Are You Sure Want to Delete This ?"}</DialogTitle>
                 <DialogContent>
                     <DialogContentText id="alert-dialog-slide-description">
-                        After deleting you cannot get it !!
-                        {props.riderID}
+                        After deleting that cannot get it again !!
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions>

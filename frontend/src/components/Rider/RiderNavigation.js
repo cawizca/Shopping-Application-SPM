@@ -12,12 +12,12 @@ import {
     Container, Typography,
 } from "@material-ui/core";
 
-import HomeIcon from "@material-ui/icons/Home";
 import InfoIcon from '@material-ui/icons/Info';
-import Rider from "./Rider/Rider";
+
 import NavBar from "../HomePage/NavBar/NavBar";
-import ManageOrder from "./Rider/ManageOrder";
+
 import { useHistory } from "react-router";
+import HomeIcon from "@material-ui/icons/Home";
 
 const useStyles = makeStyles((theme) => ({
     drawerPaper: { width: 'inherit' },
@@ -29,17 +29,20 @@ const useStyles = makeStyles((theme) => ({
 
 
 
-function AdminNavbar(){
+function RiderNavigation(){
     const history = useHistory();
     const classes = useStyles();
 
-    const navigateRidermanagement=()=>{
-        history.push("/rider")
+    const navigateOrdersRequests=()=>{
+        history.push("/requests")
     }
 
-    const navigateOrdermanagement=()=>{
-        history.push("/orders")
+  const navigateMy=()=>{
+        history.push("/rider-items")
     }
+
+
+
 
     return (
 
@@ -54,26 +57,24 @@ function AdminNavbar(){
                     classes={{ paper: classes.drawerPaper }}
                 >
                     <List>
-                        <Link to="/rider" className={classes.link}>
-                            <ListItem button onClick={()=>navigateRidermanagement()}>
-                                <ListItemIcon>
-                                    <HomeIcon />
-                                </ListItemIcon>
-                                <ListItemText primary={"Rider Management"} />
-                            </ListItem>
-                        </Link>
-                        <Link to="/orders" className={classes.link}>
-                            <ListItem button onClick={()=>navigateOrdermanagement()}>
+                        <Link to="/requests" className={classes.link}>
+                            <ListItem button onClick={()=>navigateOrdersRequests()}>
                                 <ListItemIcon>
                                     <InfoIcon />
                                 </ListItemIcon>
-                                <ListItemText primary={"Order Management"} />
+                                <ListItemText primary={"Orders Requests"} />
                             </ListItem>
                         </Link>
-                            </ListItem>
-                        </Link>
-
                     </List>
+
+                    <Link to="/rider-items" className={classes.link}>
+                        <ListItem button onClick={()=>navigateMy()}>
+                            <ListItemIcon>
+                                <HomeIcon />
+                            </ListItemIcon>
+                            <ListItemText primary={"My Delivered Orders"} />
+                        </ListItem>
+                    </Link>
                 </Drawer>
 
 
@@ -83,6 +84,6 @@ function AdminNavbar(){
     );
 }
 
-export default AdminNavbar
+export default RiderNavigation
 
 
