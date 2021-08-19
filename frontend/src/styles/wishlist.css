@@ -65,3 +65,35 @@
     position: relative;
     left: 15%;
 }
+
+
+.wishlist-title-section{
+    display: flex;
+    align-items: center;
+    margin: 5% 0 3%;
+}
+
+.wishlist-title{
+    flex: 15;
+    text-align: center;
+    color: white;
+    font-weight: 500;
+    font-size: xx-large;
+}
+
+.wishlist-button{
+    flex: 1;
+    text-align: right;
+    justify-content: left;
+    color: white;
+}
+
+.wishlist-button .red-square{
+    align-items: center;
+}
+
+.wishlist-item-section{
+    display: grid;
+    grid-template-columns: 400px 400px 400px;
+    justify-content: center;
+}

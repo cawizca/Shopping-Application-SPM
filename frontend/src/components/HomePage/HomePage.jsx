@@ -26,7 +26,7 @@ function Homepage(){
               .catch()
           };
           getusertype();
-    })
+    });
 
     return(
         <div>
