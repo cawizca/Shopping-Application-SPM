@@ -113,7 +113,7 @@ onChange={(e) =>setProductdata({...productData, category : e.target.value })}
 
 >
  <option selected>Select from categories</option>
-<option value="Vegitables">Vegitables</option>
+<option value="Vegetables">Vegetables</option>
 <option value="Grocery">Grocery</option>
 <option value="Detergent">Detergent</option>
 <option value="Meat">Meat</option>
@@ -133,11 +133,11 @@ value={productData.mesuringUnit}
 onChange={(e) =>setProductdata({...productData, mesuringUnit : e.target.value })}
 
 >
- <option selected>Select mesuring unit</option>
+ <option selected>Select measuring unit</option>
 <option value="Kg">Kg</option>
 <option value="l">l</option>
 <option value="packets">packets</option>
-<option value="bottel">bottel</option>
+<option value="bottle">bottle</option>
 <option value="g">g</option>
 
 </select>
