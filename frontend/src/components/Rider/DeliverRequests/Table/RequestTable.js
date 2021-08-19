@@ -1,3 +1,4 @@
+
 import React , {useState,useEffect} from "react";
 import axios from "axios";
 import { withStyles,makeStyles } from '@material-ui/core/styles';
@@ -8,9 +9,16 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import Form from "../AddForm/Form";
-import DeleteRider from "./DeleteRider";
-import UpdateRider from "./UpdateRider";
+import {TextField} from "@material-ui/core";
+import Button from "@material-ui/core/Button";
+import ViewOrder from "../../../Admin/OrderManagement/OrderTable/ViewOrder";
+import ComplitionForm from "./ComplitionForm";
+
+const buttonStyle = {
+    backgroundColor: "#d5d5ce",
+    color: "#000000",
+
+}
 
 const StyledTableCell = withStyles((theme) => ({
     head: {
@@ -35,8 +43,8 @@ const useStyles = makeStyles({
 
 
 
-export default function ManageTable(){
-    let count = 0;
+export default function RequestTable(){
+
     const classes = useStyles();
 
 
@@ -59,50 +67,42 @@ export default function ManageTable(){
         getRiderList()
     },[])
 
-
-
-
     return(
         <div>
-            <Form/>
-            <br/>
+            <div>
+
+
+                <br/><br/>
                 <TableContainer  component={Paper} >
-                    <Table className={classes.table} aria-label="simple table">
+                    <Table  className={classes.table} aria-label="simple table">
                         <TableHead>
                             <TableRow>
-                                <StyledTableCell>ID</StyledTableCell>
-                                <StyledTableCell>Rider Name</StyledTableCell>
-                                <StyledTableCell>NIC</StyledTableCell>
-                                <StyledTableCell>Phone</StyledTableCell>
-                                <StyledTableCell>Vehicle Type</StyledTableCell>
-                                <StyledTableCell>Vehicle Number</StyledTableCell>
+                                <StyledTableCell>Order ID</StyledTableCell>
+                                <StyledTableCell>Order Date</StyledTableCell>
+                                <StyledTableCell>Order Request</StyledTableCell>
                                 <StyledTableCell></StyledTableCell>
                                 <StyledTableCell>Action</StyledTableCell>
+                                <StyledTableCell>Order Info</StyledTableCell>
+                                <StyledTableCell>Mark As Complete</StyledTableCell>
+
                             </TableRow>
                         </TableHead>
                         <TableBody>
                             {
                                 riderList.map(riderList=>(
                                     <TableRow key={riderList._id}>
-                                        <TableCell>{count=count+1}</TableCell>
-                                        <TableCell>{riderList.riderName}</TableCell>
-                                        <TableCell>{riderList.riderNic}</TableCell>
-                                        <TableCell>{riderList.riderPhone}</TableCell>
-                                        <TableCell>{riderList.vehicleType}</TableCell>
-                                        <TableCell>{riderList.vehicleNumber}</TableCell>
-                                        <TableCell>  <DeleteRider riderID = {riderList._id}/></TableCell>
+                                        <TableCell>ORD012</TableCell>
+                                        <TableCell>05/07/2021</TableCell>
+                                        <TableCell>Pending</TableCell>
+                                        <TableCell>  <Button variant="contained" color="secondary">Accepted</Button></TableCell>
                                         <TableCell>
-                                            <UpdateRider
 
-                                            id = {riderList._id}
-                                            riderName = {riderList.riderName}
-                                            nic = {riderList.riderNic}
-                                            phone = {riderList.riderPhone}
-                                            type = {riderList.vehicleType}
-                                            number = {riderList.vehicleNumber}
+                                            <Button variant="contained" color="primary">Declined</Button>
 
-                                            />
                                         </TableCell>
+                                        <TableCell><ViewOrder/></TableCell>
+                                        <TableCell>  <ComplitionForm/></TableCell>
+
 
                                     </TableRow>
                                 ))
@@ -110,7 +110,8 @@ export default function ManageTable(){
                         </TableBody>
                     </Table>
                 </TableContainer>
+            </div>
+
         </div>
     )
 }
-

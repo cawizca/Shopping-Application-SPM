@@ -1,0 +1,25 @@
+.input-set{
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 10px;
+
+
+
+}
+
+.order-info{
+
+
+opacity: 0.9;
+}
+
+
+.other-charges{
+    background-color: #9f9d9f;
+}
+
+.final-total{
+    background-color: #a89999;
+    color: white;
+    font-weight: bold;
+}

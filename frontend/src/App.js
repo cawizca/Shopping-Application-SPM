@@ -10,13 +10,14 @@ import Profilecomponenet from "./components/ProfilePage/Profilecomponenet";
 import AdminNavbar from "./components/Admin/AdminNavigation";
 
 import Rider from "./components/Admin/Rider/Rider";
-import ManageOrder from "./components/Admin/Rider/ManageOrder";
 import DeleteRider from "./components/Admin/Rider/Table/DeleteRider";
 
 import WishlistComponent from "./components/Wishlist/WishlistComponent";
 import ManageProducts from "../src/components/ProductsComponent/adminProductManage"
 import ShoppingProducts from '../src/components/ProductsComponent/CustomerAllShopping'
-
+import ManageOrders from "./components/Admin/OrderManagement/ManageOrders";
+import DeliveredOrders from "./components/Admin/DeliveredOrders/DeliveredOrders";
+import DeliveryRequest from "./components/Rider/DeliverRequests/DeliveryRequest";
 
 
 
@@ -33,8 +34,10 @@ function App() {
           <Route path="/admin" exact component={AdminNavbar} />
 
           <Route path="/rider" exact component={Rider} />
-          <Route path="/orders" exact component={ManageOrder} />
+          <Route path="/orders" exact component={ManageOrders} />
           <Route path="/delete" exact component={DeleteRider} />
+          <Route path="/complete" exact component={DeliveredOrders} />
+          <Route path="/requests" exact component={DeliveryRequest} />
 
           <Route path="/wishlist" exact component={WishlistComponent} />
           <Route path="/productManage" exact component={ManageProducts} />
