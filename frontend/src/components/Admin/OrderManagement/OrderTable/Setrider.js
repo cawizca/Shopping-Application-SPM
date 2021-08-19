@@ -133,7 +133,7 @@ export default function Setrider(){
 
                     </DialogContent>
                     <DialogActions>
-                        <Button type="submit" color="primary">
+                        <Button type="submit" color="secondary">
                             Submit
                         </Button>
                     </DialogActions>

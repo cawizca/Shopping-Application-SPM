@@ -87,14 +87,7 @@ function AdminNavbar(){
                                 <ListItemText primary={"Delivered Orders"} />
                             </ListItem>
                         </Link>
-                        <Link to="/requests" className={classes.link}>
-                            <ListItem button onClick={()=>navigateOrdersRequests()}>
-                                <ListItemIcon>
-                                    <InfoIcon />
-                                </ListItemIcon>
-                                <ListItemText primary={"Orders Requests"} />
-                            </ListItem>
-                        </Link>
+
                     </List>
                 </Drawer>
 

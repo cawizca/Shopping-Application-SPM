@@ -1,17 +1,17 @@
 import React from "react";
-import RequestTable from "./Table/RequestTable";
+import MyDeleveredTable from "./Table/MyDeleveredTable";
 import RiderNavigation from "../RiderNavigation";
 
 
-export default function DeliveryRequest(){
-    return(
+export default function MyDeliveredOrders() {
+    return (
         <div>
             <RiderNavigation/>
             <div className="margin-adjust">
-                <h1 className="page-title">Order Requests</h1>
+                <h1 className="page-title">My Delivered Orders</h1>
                 <br></br>
                 <br></br>
-                <RequestTable/>
+                <MyDeleveredTable/>
 
             </div>
 
