@@ -44,11 +44,8 @@ function ProductNavigation(){
 
     return (
 
-        <div>
-
-        <NavBar />
-
         <Router>
+            <NavBar />
             <div style={{ display: 'flex' }}>
                 <Drawer
                     style={{ width: '240px' }}
@@ -122,8 +119,6 @@ function ProductNavigation(){
 
             </div>
         </Router>
-
-        </div>
     );
 }
 

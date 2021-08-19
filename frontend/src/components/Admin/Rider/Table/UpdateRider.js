@@ -13,6 +13,7 @@ import FormControl from '@material-ui/core/FormControl';
 import TextField from '@material-ui/core/TextField';
 import {makeStyles} from '@material-ui/core/styles';
 import MenuItem from '@material-ui/core/MenuItem';
+import {FormHelperText} from "@material-ui/core";
 
 const styles = (theme) => ({
     root: {
@@ -56,6 +57,7 @@ const DialogActions = withStyles((theme) => ({
 
 export default function (props) {
     const [open, setOpen] = React.useState(false);
+    const [helperText, setHelperText] = React.useState('');
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -123,6 +125,7 @@ export default function (props) {
 
     function handleChange(event) {
         const {name, value} = event.target;
+        setHelperText(' ');
         setData(prevValue => {
             return {
                 ...prevValue,
@@ -137,7 +140,7 @@ export default function (props) {
         const RiderObject = {
             riderName: data.riderName,
             riderNic: data.nic,
-            riderPhone: data.phone,
+            riderPhone: data.nic,
             vehicleType: data.type,
             vehicleNumber: data.number
         }
@@ -145,16 +148,42 @@ export default function (props) {
         axios.put(`http://localhost:8070/rider/update/${props.id}`, RiderObject)
             .then((res) => {
                 alert("saved successfully")
+                setTimeout(() => {
+                    window.location.reload(true)
+                }, 1000)
+
             })
             .catch(error => {
                 alert(error)
             })
     }
 
-    // const vehicleTypeChange=(event)=>{
-    //     setType(event.target.value);
-    // }
 
+    const handleSubmit = (event) => {
+        event.preventDefault();
+
+        if (data.riderName == '' && data.nic == '' && data.phone == ''&& data.type == ''&& data.number == '') {
+            setHelperText('please fill all the fields');
+
+        } else if (data.riderName == '') {
+            setHelperText('please Enter Rider Name');
+
+        } else if (data.nic == '') {
+            setHelperText('please Enter NIC Number');
+
+        }  else if (data.phone == '') {
+            setHelperText('please Enter Mobile Number');
+
+        } else if (data.number == '') {
+            setHelperText('please Enter Vehicle Number');
+
+        } else if (data.type == '') {
+            setHelperText('please Select Vehicle Type');
+
+        }else {
+            onSubmit(event)
+        }
+    };
 
 
 
@@ -167,80 +196,95 @@ export default function (props) {
                 <DialogTitle id="customized-dialog-title" onClose={handleClose} className="form-background">
                     Update Rider
                 </DialogTitle>
-                <form onSubmit={onSubmit}>
+                <form onSubmit={handleSubmit}>
                     <DialogContent dividers className="form-background">
-                        <Typography>
 
-                            <TextField type="text"
-                                       name="riderName"
-                                       label="Rider Name"
-                                       placeholder="W.P. Kumara"
-                                       className={classes.textField}
-                                       helperText="Enter Rider Name"
-                                       margin="dense"
-                                       variant="outlined"
-                                       value={data.riderName}
-                                       onChange={handleChange}
-                            />
-
-                            <TextField
-                                name="nic"
-                                label="Rider NIC"
-                                placeholder="984511452V"
-                                className={classes.textField}
-                                helperText="Enter Rider NIC"
-                                margin="dense"
-                                variant="outlined"
-                                value={data.nic}
-                                onChange={handleChange}
-                            />
+                        <div className="rider-form" style={{marginTop: '-60px'}}>
 
 
-                            <TextField
-                                name="phone"
-                                label="Rider Phone"
+                            <div className="completion-text">
+                                <TextField
+                                    name="riderName"
+                                    type='text'
+                                    color="secondary"
+                                    inputProps={{pattern: "[A-Za-z. ]{1,75}"}}
+                                    label="Rider Name"
+                                    placeholder="W.P. Kumara"
+                                    value={data.riderName}
+                                    onChange={handleChange}
+                                    fullWidth/>
+                            </div>
 
-                                placeholder="0717845412"
-                                className={classes.textField}
-                                helperText="Enter Rider Phone"
-                                margin="dense"
-                                variant="outlined"
-                                value={data.phone}
-                                onChange={handleChange}
-                            />
 
-                            <TextField
-                                name="number"
-                                label="Vehicle Number"
-                                placeholder="PA-5684"
-                                className={classes.textField}
-                                helperText="Enter Vehicle Number"
-                                margin="dense"
-                                variant="outlined"
-                                value={data.number}
-                                onChange={handleChange}
-                            />
+                            <div className="completion-text">
+                                <TextField
+                                    name="nic"
+                                    inputProps={{pattern: "[vV0-9 ]{1,12}"}}
+                                    color="secondary"
+                                    type='text'
+                                    label="Rider NIC"
+                                    placeholder="984511452V"
+                                    value={data.nic}
+                                    onChange={handleChange}
+                                    fullWidth/>
+                            </div>
 
-                            <TextField
-                                name="type"
-                                className={classes.textField}
-                                required
-                                id="outlined-select-currency"
-                                value={data.type}
-                                label="Select Vehicle Type"
-                                margin="dense"
-                                variant="outlined"
 
-                                onChange={handleChange}
-                            >
-                                {types.map((option) => (
-                                    <MenuItem key={option.value} value={option.value}>
-                                        {option.label}
-                                    </MenuItem>
-                                ))}
-                            </TextField>
+                            <div className="completion-text">
+                                <TextField
+                                    name="phone"
+                                    color="secondary"
+                                    inputProps={{pattern: "[0-9]{1,10}"}}
+                                    type='text'
+                                    label="Rider Phone"
+                                    placeholder="0717845412"
+                                    value={data.phone}
+                                    onChange={handleChange}
+                                    fullWidth
 
-                        </Typography>
+                                />
+                            </div>
+
+
+                            <div className="completion-text">
+                                <TextField
+                                    name="number"
+                                    color="secondary"
+                                    type='text'
+                                    inputProps={{pattern: "[A-Za-z0-9- ]{1,75}"}}
+                                    label="Vehicle Number"
+                                    placeholder="PA-5684"
+                                    value={data.number}
+                                    onChange={handleChange}
+                                    fullWidth
+                                />
+                            </div>
+
+                            <div className="completion-text">
+                                <TextField
+                                    name="type"
+                                    color="secondary"
+                                    id="outlined-select-currency"
+                                    type='select'
+                                    select
+                                    label="Select Vehicle Type"
+                                    variant='outlined'
+                                    value={data.type}
+                                    onChange={handleChange}
+                                    fullWidth
+                                >
+                                    {types.map((option) => (
+                                        <MenuItem key={option.value} value={option.value}>
+                                            {option.label}
+                                        </MenuItem>
+                                    ))}
+
+                                </TextField>
+                            </div>
+
+                            <FormHelperText style={{color: "red"}}>{helperText}</FormHelperText>
+
+                        </div>
 
                     </DialogContent>
                     <DialogActions>

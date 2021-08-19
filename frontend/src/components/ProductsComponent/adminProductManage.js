@@ -6,7 +6,6 @@ import EventForm from '../ProductsComponent/products/form/productManageForm';
 import Styles from './styles';
 import {useDispatch} from 'react-redux';
 import {getProduct} from '../../actions/productAction'
-import AdminNavbar from "../Admin/AdminNavigation"
 
 
 const ManageProducts =() =>{
@@ -23,9 +22,7 @@ const ManageProducts =() =>{
         },[currentId,dispatch]);
 
     return (
-
-        <div>
-       <AdminNavbar /> 
+        
             <Container maxwidth ='lg'>
                 
 
@@ -41,13 +38,13 @@ const ManageProducts =() =>{
                         <Grid container justify ="space-between" alignItems="stretch" spacing ={3}>
 
                             <Grid item xs ={12} sm ={7}>
-                                
+                                </Grid>
 
                                 <EventPosts setCurrentId ={setCurrentId}   />     
-                            </Grid >
 
-                                <Grid item xs ={12} sm ={4}   style={{marginRight:'-30%'}} >
-                                    <EventForm  currentId={currentId}  />
+
+                                <Grid item xs ={12} sm ={4}>
+                                    <EventForm  currentId={currentId} />
                                 </Grid>
 
                         </Grid>
@@ -58,7 +55,7 @@ const ManageProducts =() =>{
 
             </Container>
 
-           </div>
+           
     );
 }
 

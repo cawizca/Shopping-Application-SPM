@@ -40,10 +40,14 @@ function AdminNavbar(){
     const navigateOrdermanagement=()=>{
         history.push("/orders")
     }
-
-    const navigateProductManage=()=>{
-        history.push("/productManage")
+       const navigateDeliveredOrders=()=>{
+        history.push("/complete")
     }
+    const navigateOrdersRequests=()=>{
+        history.push("/requests")
+    }
+
+
 
 
     return (
@@ -75,18 +79,14 @@ function AdminNavbar(){
                                 <ListItemText primary={"Order Management"} />
                             </ListItem>
                         </Link>
-
-
-
-                        <Link to="/productManage" className={classes.link}>
-                            <ListItem button onClick={()=>navigateProductManage()}>
+                        <Link to="/complete" className={classes.link}>
+                            <ListItem button onClick={()=>navigateDeliveredOrders()}>
                                 <ListItemIcon>
                                     <InfoIcon />
                                 </ListItemIcon>
-                                <ListItemText primary={"Product Manage"} />
+                                <ListItemText primary={"Delivered Orders"} />
                             </ListItem>
                         </Link>
-
 
                     </List>
                 </Drawer>
