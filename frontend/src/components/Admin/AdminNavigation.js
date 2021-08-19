@@ -40,6 +40,11 @@ function AdminNavbar(){
     const navigateOrdermanagement=()=>{
         history.push("/orders")
     }
+
+    const navigateProductManage=()=>{
+        history.push("/productManage")
+    }
+
     return (
 
         <Router>
@@ -69,6 +74,16 @@ function AdminNavbar(){
                                 <ListItemText primary={"Order Management"} />
                             </ListItem>
                         </Link>
+
+                        <Link to="/productManage" className={classes.link}>
+                            <ListItem button onClick={()=>navigateProductManage()}>
+                                <ListItemIcon>
+                                    <InfoIcon />
+                                </ListItemIcon>
+                                <ListItemText primary={"Products Management"} />
+                            </ListItem>
+                        </Link>
+
                     </List>
                 </Drawer>
 
