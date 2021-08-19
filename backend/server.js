@@ -43,7 +43,8 @@ app.route('/').get((req,res)=>{
 const RiderAPI = require('./API/Rider.Api.js')
 app.use('/rider',RiderAPI())
 
-
+const WishlistItems = require("./routes/wishlistRouter");
+app.use('/wishlist',WishlistItems);
 
 app.use('/product',productRouter)
 

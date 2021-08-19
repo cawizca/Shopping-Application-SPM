@@ -30,29 +30,56 @@ const buttonStyle = {
 export default function WishlistForm(){
 
     const classes = useStyles();
-    const [age, setAge] = useState('');
-
+    const [type, setType] = useState('');
     const [products, setProducts] = useState([]);
+    const [wishlist, setWishlist] = useState({
+        wishlistName: "",
+        wishlistDescription: "",
+        wishlistProducts: []
+    });
 
     const handleChange = (event) => {
-        setAge(event.target.value);
+        setType(event.target.value);
     };
 
-    function getCategory(){
-        axios.get('http://localhost:8070/product/Grocery').then((products)=>{
-            setProducts(products.data.category)
-        })
+    const addToWishlist = (event)=>{
+        const {name, value} = event.target;
+        setWishlist(prevValue=> ({
+            ...prevValue,
+            [name] : value
+            })
+        );
+    };
+
+    function sendDetails(){
+        axios.post('http://localhost:8070/wishlist/',wishlist).then(()=>{
+            alert("Success");
+            window.location.reload();
+        }).catch((err)=>{
+            console.log(err)
+        });
+
+
+
     }
+
+    function getCategory(){
+        axios.get(`http://localhost:8070/product/${type}`).then((products)=>{
+            setProducts(products.data.category);
+            console.log(type)
+        });
+    }
+
 
     return(
         <div className="wishlist-form">
             <h4>Try to make a list for future purchases.</h4>
 
             <div className="wishlist-text">
-                <TextField placeholder="Name" color="secondary" fullWidth/>
+                <TextField placeholder="Name" value={wishlist.wishlistName} name="wishlistName" onChange={addToWishlist} color="secondary" fullWidth/>
             </div>
             <div className="wishlist-text">
-                <TextField id="standard-basic" placeholder="Description" color="secondary" fullWidth/>
+                <TextField id="standard-basic" value={wishlist.wishlistDescription} name="wishlistDescription" onChange={addToWishlist} placeholder="Description" color="secondary" fullWidth/>
             </div>
             <div className="wishlist-text" style={{display:"flex"}}>
                 <div style={{flex:"5"}}>
@@ -61,15 +88,15 @@ export default function WishlistForm(){
                         <Select
                             labelId="demo-simple-select-label"
                             id="demo-simple-select"
-                            value={age}
+                            value={type}
                             onChange={handleChange}
                             fullWidth
                             label="Category"
                         >
-                            <MenuItem value={"Vegetable"}>Vegetable</MenuItem>
+                            <MenuItem value={"Vegetables"} >Vegetables</MenuItem>
                             <MenuItem value={"Meat"}>Meat</MenuItem>
-                            <MenuItem value={"SeaFoods"}>SeaFoods</MenuItem>
-                            <MenuItem value={"Groceries"}>Groceries</MenuItem>
+                            <MenuItem value={"Seafood"}>SeaFoods</MenuItem>
+                            <MenuItem value={"Grocery"}>Grocery</MenuItem>
                         </Select>
 
                 </div>
@@ -83,10 +110,11 @@ export default function WishlistForm(){
                 <Select
                     labelId="demo-simple-select-label"
                     id="demo-simple-select"
-                    value={age}
-                    onChange={handleChange}
+                    value={wishlist.wishlistProducts}
+                    onChange={addToWishlist}
                     fullWidth
-                    label="Category"
+                    name="wishlistProducts"
+                    multiple
                 >
                     {products && !!products.length && products.map((item)=>{
 
@@ -102,7 +130,7 @@ export default function WishlistForm(){
             </div>
 
             <div className="wishlist-button">
-                <Button style={buttonStyle}>Create</Button>
+                <Button onClick={sendDetails} style={buttonStyle}>Create</Button>
             </div>
         </div>
     );

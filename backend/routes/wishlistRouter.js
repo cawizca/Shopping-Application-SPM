@@ -5,13 +5,11 @@ router.route("/").post((req,res)=>{
 
     const wishlistName = req.body.wishlistName;
     const wishlistDescription = req.body.wishlistDescription;
-    const productCategory = req.body.productCategory;
     const wishlistProducts = req.body.wishlistProducts;
 
     const newWishlist = new Wishlist({
         wishlistName,
         wishlistDescription,
-        productCategory,
         wishlistProducts
     });
 
