@@ -22,24 +22,22 @@ const ProductCard = ({post,setCurrentId})=>{
     const classes = Styles();
     const EventDispatch = useDispatch();
     return(
-
-        <div style={{margin:'0 15%'}} >
         <Card className={classes.card}>
 
             <CardMedia className={classes.media}  image ={post.selectedfile} title={post.product} />
 
             <div className={classes.overlay}>
                 
-                <Typography style={{fontSize:'25'}}>Product :{post.product}</Typography>
-                <Typography style={{fontSize:'25'}}>Price Rs :{post.price} </Typography>
-                <Typography style={{fontSize:'25'}}>For 1{post.mesuringUnit}</Typography>
+                <Typography variant="h5">Product :{post.product}</Typography>
+                <Typography variant="h5">Price :{post.price}</Typography>
+                <Typography variant="h5">For 1{post.mesuringUnit}</Typography>
                 
 
 
             </div>
             <div className={classes.overlay2}>
             
-                <Button style={{color:'Red'}} size='small' >
+                <Button style={{color:'Red'}} size='small'>
                     <AddWhsihlist fontSize = "default" />
 
 
@@ -49,11 +47,11 @@ const ProductCard = ({post,setCurrentId})=>{
 
 
             <CardContent>
-            <Typography style={{fontSize:'25'}} color="textPrimary">Category :{post.category}</Typography>
-            <Typography style={{fontSize:'25'}} color="textPrimary">Available Quantity :{post.availableQty} </Typography>
-            
+            <Typography variant="h6" color="textPrimary">Category :{post.category}</Typography>
+            <Typography variant="h6" color="textPrimary">Available Quantity :{post.availableQty}</Typography>
+            <Typography variant="h6" color="textPrimary">Minimum Quantity :{post.minimumQty}</Typography>
 
-            <Typography style={{fontSize:'25'}} style={{color:'green'}}>Status :{post.status}</Typography>
+            <Typography variant="h6" style={{color:'green'}}>Status :{post.status}</Typography>
             
             
             </CardContent>
@@ -99,8 +97,6 @@ const ProductCard = ({post,setCurrentId})=>{
 
 
         </Card>
-
-        </div>
     )
 }
 

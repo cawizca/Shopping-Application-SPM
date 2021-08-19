@@ -1,7 +1,7 @@
 import "../../styles/wishlist.css";
 import WishlistMain from "./WishlistFormPage/WishlistMain";
 import NavBar from "../HomePage/NavBar/NavBar";
-import WishlistBackground from "../../images/wishlistBackground.png";
+import WishlistBackground from "../../images/wishlistBackground.png"
 
 export default function WishlistComponent(){
     return(
