@@ -44,6 +44,14 @@ router.route("/:id").delete((req,res)=>{
    }).catch((err)=>{
       console.log(err)
    })
-})
+});
+
+router.route("/").delete((req, res)=>{
+   Item.deleteMany().then(()=>{
+      res.json("Deleted Successfully.");
+   }).catch((err)=>{
+      console.log(err);
+   })
+});
 
 module.exports = router;
