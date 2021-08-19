@@ -16,6 +16,7 @@ import DeleteRider from "./components/Admin/Rider/Table/DeleteRider";
 import WishlistComponent from "./components/Wishlist/WishlistComponent";
 import ManageProducts from "../src/components/ProductsComponent/adminProductManage"
 import ShoppingProducts from '../src/components/ProductsComponent/CustomerAllShopping'
+import WishlistProductMain from "./components/Wishlist/WishlistProductPage/WishlistProductMain";
 
 
 
@@ -31,6 +32,9 @@ function App() {
           <Route path='/signup' exact component={RegistrationPagecomponent}/>
           <Route path='/profile' exact component={Profilecomponenet}/>
           <Route path="/admin" exact component={AdminNavbar} />
+          <Route path="/wishlist-product" exact component={WishlistProductMain} />
+
+
 
           <Route path="/rider" exact component={Rider} />
           <Route path="/orders" exact component={ManageOrder} />

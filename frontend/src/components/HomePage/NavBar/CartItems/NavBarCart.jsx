@@ -99,7 +99,9 @@ function NavBarCart() {
                 }}
                 
             >
-                    {products.map((product) => {
+
+                    { itemCount>0?
+                        products.map((product) => {
                         console.log(product.name)
                         return (
                             <div className="notification-list">
@@ -108,7 +110,11 @@ function NavBarCart() {
                                 />
                             </div>
                         )
-                    })}
+                    })
+
+                        :
+                    <Typography style={{color:"white", textAlign:"center"}}>Cart is empty.</Typography>
+                    }
 
                 <Button component={Link} to="/cart" className={classes.typography} style={{ backgroundColor: "#FA334E", color: "#fff", fontWeight: "700", marginTop:"5%"}} fullWidth variant="contained">
                     View cart.

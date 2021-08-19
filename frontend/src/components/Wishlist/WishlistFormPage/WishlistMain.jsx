@@ -2,6 +2,10 @@ import WishlistCard from "./WishlistCard";
 import WishlistForm from "./WishlistForm";
 
 export default function WishlistMain(){
+
+    function selectedCard(){
+        ;
+    }
     return(
         <div>
             <div className="row">

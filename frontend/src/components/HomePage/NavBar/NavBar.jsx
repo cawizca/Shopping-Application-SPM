@@ -22,7 +22,8 @@ const buttonStyle = {
     fontWeight: 400,
     borderRadius: '6px',
     width: '100px',
-    boxShadow: '0px 0px 4px #FA334E'
+    boxShadow: '0px 0px 4px #FA334E',
+    textTransform: 'capitalize'
 }
 
 function NavBar(props) {
@@ -34,12 +35,11 @@ function NavBar(props) {
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="mx-auto">
                         <Nav.Link href="/" style={linkStyle} className="mx-3">HOME</Nav.Link>
-                        <Nav.Link href="/cart" style={linkStyle} className="mx-3">SHOP</Nav.Link>
+                        <Nav.Link href="/ShoppingAll" style={linkStyle} className="mx-3">SHOP</Nav.Link>
                         <Nav.Link href="/wishlist" style={linkStyle} className="mx-3">ABOUT</Nav.Link>
                         <Nav.Link href="/profile" style={linkStyle} className="mx-3">PROFILE</Nav.Link>
                         <Nav.Link href="/admin" style={linkStyle} className="mx-3">CONTACT</Nav.Link>
                         <Nav.Link href="/productManage" style={linkStyle} className="mx-3">Admin product manage</Nav.Link>
-                        <Nav.Link href="/ShoppingAll" style={linkStyle} className="mx-3">All Shopping products</Nav.Link>
 
                         
 
@@ -56,8 +56,8 @@ function NavBar(props) {
                             </Form>
                         ) : (
                             <Form>
-                                <Button className="mx-3" variant="contained" style={buttonStyle} href="/signin">SIGN IN</Button>
-                                <Button className="mx-3" variant="contained" style={buttonStyle} href="/signup">SIGN UP</Button>
+                                <Button className="mx-3" variant="contained" style={buttonStyle} href="/signin">Sign In</Button>
+                                <Button className="mx-3" variant="contained" style={buttonStyle} href="/signup">Sign Up</Button>
                             </Form>
                         )}
                     </Nav>
