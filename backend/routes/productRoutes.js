@@ -70,6 +70,15 @@ router.route("/delete/:id").delete(async(req,res)=>{
          res.status(500).send(error.message);
      })
     }
-})
+});
+
+
+router.route("/:category").get((req,res)=>{
+    Products.find({
+        category: req.params.category,
+    }).then((items)=>{
+        res.send({category: items});
+    })
+});
 
 module.exports=router;
