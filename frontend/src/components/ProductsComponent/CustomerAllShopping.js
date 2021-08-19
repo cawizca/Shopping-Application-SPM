@@ -8,6 +8,7 @@ import {useDispatch} from 'react-redux';
 import {getProduct} from '../../actions/productAction'
 import NavBar from '../HomePage/NavBar/NavBar'
 import ProductNavigation from './SideNavigations/customerNavigation'
+import axios from "axios";
 
 
 const ShoppingProducts =() =>{
@@ -17,16 +18,38 @@ const ShoppingProducts =() =>{
         const classes = Styles();
         const dispatch =useDispatch();
         useEffect(()=>{
+
+            const getusertype = async () => {
+                const access_token = localStorage.getItem('token')
+                let config = {
+                    headers: {
+                        'Authorization': 'Bearer ' + access_token
+                    }
+                }
+                axios.get('http://localhost:8070/user/post', config).then((response) => {
+                    if (response.data.message) {
+                        alert(response.data.message)
+                    } else {
+                        setUserType(response.data.user.usertype)
+                    }
+                })
+                    .catch()
+            };
+            getusertype();
             
             dispatch(getProduct());  
             
 
         },[currentId,dispatch]);
 
+
+    const [userType, setUserType] = useState('');
+
+
     return (
         
         <div>
-              <ProductNavigation />
+            <NavBar getUserType={userType}/>
 
         
             <Container maxwidth ='lg'>

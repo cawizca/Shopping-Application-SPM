@@ -3,8 +3,10 @@ import Button from "@material-ui/core/Button";
 import {InputLabel, MenuItem, Select} from "@material-ui/core";
 import FormControl from "@material-ui/core/FormControl";
 import {makeStyles} from "@material-ui/core/styles";
-import {useState} from "react";
+import React, {useRef, useState} from "react";
 import axios from "axios";
+import { UilSearch } from '@iconscout/react-unicons'
+import lottie from "lottie-web";
 
 const useStyles = makeStyles((theme) => ({
     formControl: {
@@ -53,14 +55,10 @@ export default function WishlistForm(){
 
     function sendDetails(){
         axios.post('http://localhost:8070/wishlist/',wishlist).then(()=>{
-            alert("Success");
             window.location.reload();
         }).catch((err)=>{
             console.log(err)
         });
-
-
-
     }
 
     function getCategory(){
@@ -102,7 +100,7 @@ export default function WishlistForm(){
                 </div>
 
                 <div style={{flex:"1"}}>
-                    <Button variant="contained" onClick={getCategory}>+</Button>
+                    <Button variant="contained" onClick={getCategory}><UilSearch /></Button>
                 </div>
 
             </div>

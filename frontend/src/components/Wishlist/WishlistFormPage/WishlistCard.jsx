@@ -1,9 +1,14 @@
 import { UilPlus } from '@iconscout/react-unicons'
 
 export default function WishlistCard(props){
+
+    function selectedCard(){
+        window.location = "/wishlist-product";
+    }
+
     return(
         <div>
-            <div className="wishlist-card">
+            <div className="wishlist-card" onClick={selectedCard}>
                 <div className="card-title">
                     <h5>{props.name}</h5>
                     <span>There are my favourite biscuits which I need to buy later </span>

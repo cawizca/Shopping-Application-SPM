@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import { makeStyles } from "@material-ui/core/styles"
 
 import {
@@ -18,6 +18,7 @@ import NavBar from "../HomePage/NavBar/NavBar";
 
 import { useHistory } from "react-router";
 import HomeIcon from "@material-ui/icons/Home";
+import axios from "axios";
 
 const useStyles = makeStyles((theme) => ({
     drawerPaper: { width: 'inherit' },
@@ -25,13 +26,34 @@ const useStyles = makeStyles((theme) => ({
         textDecoration: 'none',
         color: theme.palette.text.primary
     }
-}))
-
+}));
 
 
 function RiderNavigation(){
     const history = useHistory();
     const classes = useStyles();
+
+    const [userType, setUserType] = useState('');
+
+    useEffect(()=>{
+        const getusertype = async () => {
+            const access_token = localStorage.getItem('token')
+            let config = {
+                headers: {
+                    'Authorization': 'Bearer ' + access_token
+                }
+            }
+            axios.get('http://localhost:8070/user/post', config).then((response) => {
+                if (response.data.message) {
+                    alert(response.data.message)
+                } else {
+                    setUserType(response.data.user.usertype)
+                }
+            })
+                .catch()
+        };
+        getusertype();
+    });
 
     const navigateOrdersRequests=()=>{
         history.push("/requests")
@@ -47,7 +69,7 @@ function RiderNavigation(){
     return (
 
         <Router>
-            <NavBar />
+            <NavBar getUserType={userType}/>
             <div style={{ display: 'flex' }}>
                 <Drawer
                     style={{ width: '240px' }}

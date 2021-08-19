@@ -20,7 +20,7 @@ import ManageOrders from "./components/Admin/OrderManagement/ManageOrders";
 import DeliveredOrders from "./components/Admin/DeliveredOrders/DeliveredOrders";
 import DeliveryRequest from "./components/Rider/DeliverRequests/DeliveryRequest";
 import MyDeliveredOrders from "./components/Rider/MyDeliveredOrders/MyDeliveredOrders";
-import Gateway from "./components/Payment/Gateway";
+import WishlistProductMain from "./components/Wishlist/WishlistProductPage/WishlistProductMain";
 
 
 
@@ -43,11 +43,11 @@ function App() {
           <Route path="/complete" exact component={DeliveredOrders} />
           <Route path="/requests" exact component={DeliveryRequest} />
           <Route path="/rider-items" exact component={MyDeliveredOrders} />
-          <Route path="/gateway" exact component={Gateway} />
 
           <Route path="/wishlist" exact component={WishlistComponent} />
           <Route path="/productManage" exact component={ManageProducts} />
           <Route path="/ShoppingAll" exact component={ShoppingProducts} />
+          <Route path="/wishlist-product" exact component={WishlistProductMain} />
 
 
       </Router>
