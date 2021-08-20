@@ -2,19 +2,20 @@ const express = require("express");
 const mongoose =require("mongoose");
 const bodyParser =require("body-parser");
 const cors=require("cors");
-const dotenv=require("dotenv");
 const path = require('path');
+const dotenv=require("dotenv");
+
 const app = express();
 dotenv.config();
+app.use(cors());
+
 app.use(bodyParser.json());
 const PORT=process.env.PORT ||8070
-app.use(bodyParser.json());
-app.use(cors());
+const URL = process.env.MONGODB_URL;
 
 app.use(bodyParser.json({limit:"30mb",extended:true}));
 app.use(bodyParser.urlencoded({limit:"30mb",extended: true}));
-
-const URL = process.env.MONGODB_URL;
+const productRouter = require('./routes/productRoutes')
 
 mongoose.connect(URL,{
     useCreateIndex:true,
@@ -42,7 +43,13 @@ app.route('/').get((req,res)=>{
 const RiderAPI = require('./API/Rider.Api.js')
 app.use('/rider',RiderAPI())
 
+const WishlistItems = require("./routes/wishlistRouter");
+app.use('/wishlist',WishlistItems);
 
+app.use('/product',productRouter)
+
+const CartItems = require("./routes/cartRouter");
+app.use("/cart",CartItems);
 
 app.listen(PORT,()=>{
     console.log(`Server is up and running on port ${PORT}`);
@@ -51,4 +58,3 @@ app.listen(PORT,()=>{
 // mongodb login credentials
 // email - kandycupcakes.sliit@gmail.com
 //password :Abc123456789
-

@@ -1,0 +1,36 @@
+.input-set{
+    display: flex;
+    justify-content: space-between;
+
+
+
+
+}
+
+.order-info{
+
+
+opacity: 0.9;
+}
+
+
+.other-charges{
+    background-color: #9f9d9f;
+}
+
+.final-total{
+    background-color: #a89999;
+    color: white;
+    font-weight: bold;
+}
+
+.order-form{
+    height: 550px;
+    width: 500px;
+    background-color: rgba(255,255,255,0.15);
+    border-radius: 11px;
+    padding: 15%;
+    margin-top: 20%;
+
+
+}

@@ -19,9 +19,9 @@ router.route("/add").post((req,res)=>{
 
 router.route("/readAll").get(async(req,res)=>{
     await Products.find()
-    .then(data=>{
+    .then((product)=>{
             
-        res.status(200).send({data:data})
+        res.json(product)
     }) 
     .catch(error=>{
         res.status(500).send(error.message);
@@ -64,12 +64,21 @@ router.route("/delete/:id").delete(async(req,res)=>{
 
         .then(data=>{
              
-         res.status(200).send("product deleted")
+         res.status(200).send("product deleted successfully")
      }) 
      .catch(error=>{
          res.status(500).send(error.message);
      })
     }
-})
+});
+
+
+router.route("/:category").get((req,res)=>{
+    Products.find({
+        category: req.params.category,
+    }).then((items)=>{
+        res.send({category: items});
+    })
+});
 
 module.exports=router;
