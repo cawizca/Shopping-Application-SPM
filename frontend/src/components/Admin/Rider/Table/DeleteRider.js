@@ -7,14 +7,22 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Slide from '@material-ui/core/Slide';
 import axios from "axios";
+import MuiAlert from "@material-ui/lab/Alert";
+import Snackbar from "@material-ui/core/Snackbar";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
     return <Slide direction="up" ref={ref} {...props} />;
 });
+
+function Alert(props) {
+    return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
+
 export default function CustomerDelete(props){
 
 
     const [open, setOpen] = React.useState(false);
+    const [openSnack, setOpenSnack] = React.useState(false);
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -24,19 +32,37 @@ export default function CustomerDelete(props){
         setOpen(false);
     };
 
+
+    //snack Bar
+    const handleCloseSnackBar = (event, reason) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+
+        setOpenSnack(false);
+    };
+
     const deleteRider = () => {
 
         axios.delete(`http://localhost:8070/rider/delete/${props.riderID}`)
             .then(()=>{
 
+                setOpenSnack(true);
                 setOpen(false);
-                window.location.reload(true)
+                setTimeout(() => {
+                    window.location.reload(true)
+                }, 1000)
             })
 
     };
 
     return(
         <div>
+            <Snackbar open={openSnack} autoHideDuration={6000} onClose={handleCloseSnackBar}>
+                <Alert onClose={handleCloseSnackBar} severity="success">
+                    Deleted Successfully!
+                </Alert>
+            </Snackbar>
             <Button variant="contained" color="secondary" onClick={handleClickOpen}>Delete</Button>
             <Dialog
                 open={open}
