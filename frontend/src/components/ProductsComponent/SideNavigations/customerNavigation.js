@@ -21,11 +21,18 @@ import { useHistory } from "react-router";
 
 
 const useStyles = makeStyles((theme) => ({
-    drawerPaper: { width: 'inherit' },
+    drawerPaper: { width: 'inherit', zIndex:"-99", paddingTop:"10%" },
     link: {
         textDecoration: 'none',
         color: theme.palette.text.primary
-    }
+    },
+    drawerContainer: {
+        overflow: 'auto',
+    },
+    content: {
+        flexGrow: 1,
+        padding: theme.spacing(3),
+    },
 }))
 
 
@@ -46,9 +53,8 @@ function ProductNavigation(){
 
         <div>
 
-        <NavBar />
-
         <Router>
+
             <div style={{ display: 'flex' }}>
                 <Drawer
                     style={{ width: '240px' }}

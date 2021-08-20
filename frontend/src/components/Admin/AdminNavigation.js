@@ -20,7 +20,7 @@ import ManageOrder from "./Rider/ManageOrder";
 import { useHistory } from "react-router";
 
 const useStyles = makeStyles((theme) => ({
-    drawerPaper: { width: 'inherit' },
+    drawerPaper: { width: 'inherit', zIndex:"-99", paddingTop:"10%" },
     link: {
         textDecoration: 'none',
         color: theme.palette.text.primary
