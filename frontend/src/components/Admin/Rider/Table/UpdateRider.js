@@ -14,6 +14,8 @@ import TextField from '@material-ui/core/TextField';
 import {makeStyles} from '@material-ui/core/styles';
 import MenuItem from '@material-ui/core/MenuItem';
 import {FormHelperText} from "@material-ui/core";
+import Snackbar from "@material-ui/core/Snackbar";
+import MuiAlert from "@material-ui/lab/Alert";
 
 const styles = (theme) => ({
     root: {
@@ -55,6 +57,9 @@ const DialogActions = withStyles((theme) => ({
     },
 }))(MuiDialogActions);
 
+function Alert(props) {
+    return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
 export default function (props) {
     const [open, setOpen] = React.useState(false);
     const [helperText, setHelperText] = React.useState('');
@@ -100,13 +105,17 @@ export default function (props) {
     ];
 
 
-    //set Data to useStates
-    // const [riderName,setRiderName] = useState(props.riderName);
-    // const [nic,setNic] = useState("");
-    // const [phone,setPhone] = useState("");
-    // const [type,setType] = useState("");
-    // const [number,setNumber] = useState("");
 
+
+    const [openSnack, setOpenSnack] = React.useState(false);
+    //snack Bar
+    const handleCloseSnackBar = (event, reason) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+
+        setOpenSnack(false);
+    };
 
     let id = props.id;
     let riderName = props.riderName;
@@ -134,20 +143,24 @@ export default function (props) {
         });
     }
 
+
+
+
     function onSubmit(e) {
 
 
         const RiderObject = {
             riderName: data.riderName,
             riderNic: data.nic,
-            riderPhone: data.nic,
+            riderPhone: data.phone,
             vehicleType: data.type,
             vehicleNumber: data.number
         }
 
         axios.put(`http://localhost:8070/rider/update/${props.id}`, RiderObject)
             .then((res) => {
-                alert("saved successfully")
+                setOpenSnack(true);
+                setOpen(false);
                 setTimeout(() => {
                     window.location.reload(true)
                 }, 1000)
@@ -189,6 +202,12 @@ export default function (props) {
 
     return (
         <div>
+
+            <Snackbar open={openSnack} autoHideDuration={6000} onClose={handleCloseSnackBar}>
+                <Alert onClose={handleCloseSnackBar} severity="success">
+                    Updated Successfully!
+                </Alert>
+            </Snackbar>
             <Button variant="contained" color="primary" onClick={handleClickOpen}>
                 Update
             </Button>

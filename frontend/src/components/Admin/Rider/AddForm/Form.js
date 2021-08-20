@@ -16,7 +16,8 @@ import {makeStyles} from '@material-ui/core/styles';
 import MenuItem from '@material-ui/core/MenuItem';
 import '../../../../styles/rider.css'
 import {FormHelperText} from "@material-ui/core";
-import CloseIcon from "@material-ui/icons/Close";
+import Snackbar from '@material-ui/core/Snackbar';
+import MuiAlert from '@material-ui/lab/Alert';
 
 
 const styles = (theme) => ({
@@ -63,9 +64,17 @@ const DialogActions = withStyles((theme) => ({
     },
 }))(MuiDialogActions);
 
+
+
+function Alert(props) {
+    return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
+
+
 export default function Form() {
     const [open, setOpen] = React.useState(false);
     const [helperText, setHelperText] = React.useState('');
+    const [openSnack, setOpenSnack] = React.useState(false);
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -74,6 +83,14 @@ export default function Form() {
         setOpen(false);
     };
 
+    //snack Bar
+    const handleCloseSnackBar = (event, reason) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+
+        setOpenSnack(false);
+    };
 
     const useStyles = makeStyles((theme) => ({
         root: {
@@ -128,7 +145,9 @@ export default function Form() {
 
         axios.post("http://localhost:8070/rider/create", RiderObject)
             .then((res) => {
-                alert("saved successfully")
+
+                setOpenSnack(true);
+                setOpen(false);
                 setTimeout(() => {
                     window.location.reload(true)
                 }, 1000)
@@ -174,6 +193,12 @@ export default function Form() {
 
     return (
         <div>
+
+            <Snackbar open={openSnack} autoHideDuration={6000} onClose={handleCloseSnackBar}>
+                <Alert onClose={handleCloseSnackBar} severity="success">
+                    Inserted Successfully!
+                </Alert>
+            </Snackbar>
             <Button variant="outlined" color="secondary" onClick={handleClickOpen}>
                 Add New
             </Button>
