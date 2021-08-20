@@ -6,7 +6,7 @@ import {makeStyles} from "@material-ui/core/styles";
 import React, {useRef, useState} from "react";
 import axios from "axios";
 import { UilSearch } from '@iconscout/react-unicons'
-import lottie from "lottie-web";
+
 
 const useStyles = makeStyles((theme) => ({
     formControl: {

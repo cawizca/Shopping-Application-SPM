@@ -16,6 +16,8 @@ import {makeStyles} from '@material-ui/core/styles';
 import MenuItem from '@material-ui/core/MenuItem';
 import '../../../../styles/rider.css'
 import {FormHelperText} from "@material-ui/core";
+import CloseIcon from "@material-ui/icons/Close";
+
 
 const styles = (theme) => ({
     root: {

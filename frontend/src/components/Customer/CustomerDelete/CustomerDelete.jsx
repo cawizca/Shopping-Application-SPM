@@ -1,3 +1,4 @@
+
 import React ,{useState} from "react";
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
@@ -11,7 +12,7 @@ import axios from "axios";
 const Transition = React.forwardRef(function Transition(props, ref) {
     return <Slide direction="up" ref={ref} {...props} />;
 });
-export default function CustomerDelete(props){
+export default function DeleteRider(props){
 
 
     const [open, setOpen] = React.useState(false);
@@ -24,15 +25,12 @@ export default function CustomerDelete(props){
         setOpen(false);
     };
 
-    const deleteRider = () => {
+    const deleteCustomer = () => {
 
-        axios.delete(`http://localhost:8070/rider/delete/${props.riderID}`)
-            .then(()=>{
-
+        axios.delete(`http://localhost:8070/user/delete/${props.customerID}`).then(()=>{
                 setOpen(false);
                 window.location.reload(true)
             })
-
     };
 
     return(
@@ -49,14 +47,14 @@ export default function CustomerDelete(props){
                 <DialogTitle id="alert-dialog-slide-title">{" Are You Sure Want to Delete This ?"}</DialogTitle>
                 <DialogContent>
                     <DialogContentText id="alert-dialog-slide-description">
-                        After deleting that cannot get it again !!
+                        Do you want to delete this customer!
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleClose} color="primary">
                         No
                     </Button>
-                    <Button onClick={()=>deleteRider()} color="primary">
+                    <Button onClick={()=>deleteCustomer()} color="primary">
                         Yes
                     </Button>
                 </DialogActions>
@@ -64,5 +62,3 @@ export default function CustomerDelete(props){
         </div>
     );
 }
-
-
