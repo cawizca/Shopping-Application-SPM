@@ -49,11 +49,11 @@ const ShoppingProducts =() =>{
     return (
         
         <div>
-            <NavBar getUserType={userType}/>
+            <NavBar style={{zIndex:"99"}} getUserType={userType} />
 
-        
+
             <Container maxwidth ='lg'>
-             
+                <ProductNavigation style={{zIndex:"-99"}} />
                 
                 
                 <AppBar className ={classes.appBar} position ="static" color ='inherit'>
@@ -64,14 +64,13 @@ const ShoppingProducts =() =>{
 
                 <Grow in>
 
+
                     <Container>
                         <Grid container justify ="space-between" alignItems="stretch" spacing ={3}>
 
-                            <Grid item xs ={12} sm ={7} style = {{width:"fit-content"}}>
-                                
-                                <EventPosts setCurrentId ={setCurrentId}   />     
+                                <Grid item xs ={12} sm ={7} style = {{width:"fit-content"}}>
+                                    <EventPosts setCurrentId ={setCurrentId}   />
                                 </Grid >
-
                         </Grid>
                     </Container>
 

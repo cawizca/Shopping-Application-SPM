@@ -36,7 +36,6 @@ function NavBar(props) {
                         <Nav.Link href="/" style={linkStyle} className="mx-3">HOME</Nav.Link>
                         <Nav.Link href="/ShoppingAll" style={linkStyle} className="mx-3">SHOP</Nav.Link>
                         <Nav.Link href="/wishlist" style={linkStyle} className="mx-3">ABOUT</Nav.Link>
-                        <Nav.Link href="/profile" style={linkStyle} className="mx-3">PROFILE</Nav.Link>
                         <Nav.Link href="/admin" style={linkStyle} className="mx-3">CONTACT</Nav.Link>
                         <Nav.Link href="/productManage" style={linkStyle} className="mx-3">Admin product manage</Nav.Link>
                         <Nav.Link href="/requests" style={linkStyle} className="mx-3">Rider Login</Nav.Link>
