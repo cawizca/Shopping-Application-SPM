@@ -61,7 +61,26 @@ app.post("/login", async(req,res) =>{
     })
 
 
+    app.get("/getAllCustomers",(req, res)=>{
 
+      User.find({}).then((data)=>{
+        res.status(200).send(data)
+        console.log(data)
+      }).catch((error)=>{
+        res.status(500).send(error.message)
+      })
+
+    })
+
+    app.delete("/delete/:customerID",(req,res)=>{
+
+      User.findByIdAndDelete({_id:req.params.customerID}).then((data)=>{
+        res.status(200).send("Customer deleted succesfully")
+      }).catch((err)=>{
+        res.status(500).send(err.message)
+      })
+
+    })
 
 
     app.put("/profileUpdate", (req,res) =>{

@@ -21,7 +21,7 @@ import DeliveredOrders from "./components/Admin/DeliveredOrders/DeliveredOrders"
 import DeliveryRequest from "./components/Rider/DeliverRequests/DeliveryRequest";
 import MyDeliveredOrders from "./components/Rider/MyDeliveredOrders/MyDeliveredOrders";
 import WishlistProductMain from "./components/Wishlist/WishlistProductPage/WishlistProductMain";
-
+import Customer from "./components/Customer/Customer";
 
 
 function App() {
@@ -48,7 +48,7 @@ function App() {
           <Route path="/productManage" exact component={ManageProducts} />
           <Route path="/ShoppingAll" exact component={ShoppingProducts} />
           <Route path="/wishlist-product" exact component={WishlistProductMain} />
-
+          <Route path="/customer" exact component={Customer} />
 
       </Router>
     </div>

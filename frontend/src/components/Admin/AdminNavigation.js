@@ -14,6 +14,7 @@ import {
 
 import HomeIcon from "@material-ui/icons/Home";
 import InfoIcon from '@material-ui/icons/Info';
+import CustomerIcon from '@material-ui/icons/Group';
 import Rider from "./Rider/Rider";
 import NavBar from "../HomePage/NavBar/NavBar";
 import ManageOrder from "./Rider/ManageOrder";
@@ -45,6 +46,9 @@ function AdminNavbar(){
     }
     const navigateOrdersRequests=()=>{
         history.push("/requests")
+    }
+    const navigateCustomers=()=>{
+        history.push("/customer")
     }
 
 
@@ -85,6 +89,14 @@ function AdminNavbar(){
                                     <InfoIcon />
                                 </ListItemIcon>
                                 <ListItemText primary={"Delivered Orders"} />
+                            </ListItem>
+                        </Link>
+                        <Link to="/customer" className={classes.link}>
+                            <ListItem button onClick={()=>navigateCustomers()}>
+                                <ListItemIcon>
+                                    <CustomerIcon />
+                                </ListItemIcon>
+                                <ListItemText primary={"Customers"} />
                             </ListItem>
                         </Link>
 
