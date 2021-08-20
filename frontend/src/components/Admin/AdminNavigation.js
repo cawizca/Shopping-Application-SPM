@@ -20,7 +20,7 @@ import ManageOrder from "./Rider/ManageOrder";
 import { useHistory } from "react-router";
 
 const useStyles = makeStyles((theme) => ({
-    drawerPaper: { width: 'inherit', zIndex:"-99", paddingTop:"10%" },
+    drawerPaper: { width: 'inherit' },
     link: {
         textDecoration: 'none',
         color: theme.palette.text.primary
@@ -40,15 +40,10 @@ function AdminNavbar(){
     const navigateOrdermanagement=()=>{
         history.push("/orders")
     }
-       const navigateDeliveredOrders=()=>{
-        history.push("/complete")
+
+    const navigateProductManage=()=>{
+        history.push("/productManage")
     }
-    const navigateOrdersRequests=()=>{
-        history.push("/requests")
-    }
-
-
-
 
     return (
 
@@ -79,12 +74,13 @@ function AdminNavbar(){
                                 <ListItemText primary={"Order Management"} />
                             </ListItem>
                         </Link>
-                        <Link to="/complete" className={classes.link}>
-                            <ListItem button onClick={()=>navigateDeliveredOrders()}>
+
+                        <Link to="/productManage" className={classes.link}>
+                            <ListItem button onClick={()=>navigateProductManage()}>
                                 <ListItemIcon>
                                     <InfoIcon />
                                 </ListItemIcon>
-                                <ListItemText primary={"Delivered Orders"} />
+                                <ListItemText primary={"Products Management"} />
                             </ListItem>
                         </Link>
 
