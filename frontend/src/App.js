@@ -22,6 +22,7 @@ import DeliveryRequest from "./components/Rider/DeliverRequests/DeliveryRequest"
 import MyDeliveredOrders from "./components/Rider/MyDeliveredOrders/MyDeliveredOrders";
 import WishlistProductMain from "./components/Wishlist/WishlistProductPage/WishlistProductMain";
 import Gateway from "./components/Payment/Gateway";
+import Inssufficient  from './components/ProductsComponent/insufficientProducts'
 
 import Customer from "./components/Customer/Customer";
 
@@ -52,6 +53,8 @@ function App() {
           <Route path="/ShoppingAll" exact component={ShoppingProducts} />
           <Route path="/wishlist-product" exact component={WishlistProductMain} />
           <Route path="/customer" exact component={Customer} />
+
+          <Route path="/insufficient" exact component={Inssufficient} />
 
       </Router>
     </div>
