@@ -122,9 +122,9 @@ const ProductCard = ({post,setCurrentId})=>{
           <Button onClick={handleClose} style={{color:'white',background:'red'}} autoFocus>
             No
           </Button>
-          <div onClick={()=>EventDispatch(deleteproduct(post._id),window.location.reload(false))} style={{color:'white',background:'blue'}} >
+          <Button onClick={()=>EventDispatch(deleteproduct(post._id),window.location.reload(false))} style={{color:'white',background:'blue'}} >
             Yes
-          </div>
+          </Button>
         </DialogActions>
       </Dialog>
 
