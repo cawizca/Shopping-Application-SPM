@@ -10,6 +10,7 @@ import IconButton from '@material-ui/core/IconButton';
 
 import Typography from '@material-ui/core/Typography';
 import FormControl from '@material-ui/core/FormControl';
+import CloseIcon from '@material-ui/icons/Close'
 import TextField from '@material-ui/core/TextField';
 import {makeStyles} from '@material-ui/core/styles';
 import MenuItem from '@material-ui/core/MenuItem';
