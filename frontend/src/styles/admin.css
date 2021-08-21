@@ -1,3 +1,5 @@
 .table-rows-style{
-    backdrop-filter: blur(30px);
+    background-color: rgba(255, 255, 255, 0.30);
+    backdrop-filter: blur(50px);
+    color: white;
 }

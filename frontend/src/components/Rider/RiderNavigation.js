@@ -21,7 +21,7 @@ import HomeIcon from "@material-ui/icons/Home";
 import axios from "axios";
 
 const useStyles = makeStyles((theme) => ({
-    drawerPaper: { width: 'inherit', zIndex:"-1", paddingTop:"10%",  backgroundColor: "rgba(0, 0, 0, 0.15)" },
+    drawerPaper: { width: 'inherit', paddingTop:"5%", marginTop:"4%", backgroundColor: "rgba(0, 0, 0, 0.15)" },
     link: {
         textDecoration: 'none',
         color: theme.palette.text.primary
