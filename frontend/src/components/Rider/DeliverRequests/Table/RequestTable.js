@@ -22,7 +22,7 @@ const buttonStyle = {
 
 const StyledTableCell = withStyles((theme) => ({
     head: {
-        backgroundColor: '#5E4FA2',
+        backgroundColor: '#FA334E',
         color: theme.palette.common.white,
     },
     body: {
@@ -68,7 +68,7 @@ export default function RequestTable(){
     },[])
 
     return(
-        <div>
+        <div style={{zIndex:"-99"}}>
             <div>
 
 

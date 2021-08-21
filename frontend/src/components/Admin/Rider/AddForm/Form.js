@@ -192,6 +192,8 @@ export default function Form() {
 
 
     return (
+
+        <div style={{zIndex:"-99"}}>
         <div>
 
             <Snackbar open={openSnack} autoHideDuration={6000} onClose={handleCloseSnackBar}>
@@ -199,6 +201,7 @@ export default function Form() {
                     Inserted Successfully!
                 </Alert>
             </Snackbar>
+
             <Button variant="outlined" color="secondary" onClick={handleClickOpen}>
                 Add New
             </Button>

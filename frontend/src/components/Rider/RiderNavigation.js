@@ -21,7 +21,7 @@ import HomeIcon from "@material-ui/icons/Home";
 import axios from "axios";
 
 const useStyles = makeStyles((theme) => ({
-    drawerPaper: { width: 'inherit', zIndex:"-99", paddingTop:"10%" },
+    drawerPaper: { width: 'inherit', zIndex:"-1", paddingTop:"10%",  backgroundColor: "rgba(0, 0, 0, 0.15)" },
     link: {
         textDecoration: 'none',
         color: theme.palette.text.primary
@@ -82,9 +82,9 @@ function RiderNavigation(){
                         <Link to="/requests" className={classes.link}>
                             <ListItem button onClick={()=>navigateOrdersRequests()}>
                                 <ListItemIcon>
-                                    <InfoIcon />
+                                    <InfoIcon style={{color:"white"}}/>
                                 </ListItemIcon>
-                                <ListItemText primary={"Orders Requests"} />
+                                <ListItemText primary={"Orders Requests"} style={{color:"white"}} />
                             </ListItem>
                         </Link>
                     </List>
@@ -92,9 +92,9 @@ function RiderNavigation(){
                     <Link to="/rider-items" className={classes.link}>
                         <ListItem button onClick={()=>navigateMy()}>
                             <ListItemIcon>
-                                <HomeIcon />
+                                <HomeIcon style={{color:"white"}} />
                             </ListItemIcon>
-                            <ListItemText primary={"My Delivered Orders"} />
+                            <ListItemText primary={"My Delivered Orders"} style={{color:"white"}} />
                         </ListItem>
                     </Link>
                 </Drawer>
