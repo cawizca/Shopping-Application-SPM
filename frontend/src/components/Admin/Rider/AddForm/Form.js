@@ -194,8 +194,7 @@ export default function Form() {
     return (
 
         <div style={{zIndex:"-99"}}>
-        <div>
-
+        
             <Snackbar open={openSnack} autoHideDuration={6000} onClose={handleCloseSnackBar}>
                 <Alert onClose={handleCloseSnackBar} severity="success">
                     Inserted Successfully!
