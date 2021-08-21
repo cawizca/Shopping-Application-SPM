@@ -1,5 +1,5 @@
 import React,{useState,useEffect} from 'react';
-import {Container,AppBar,Typography,Grow,Grid} from '@material-ui/core';
+import {Container,AppBar,Typography,Grow,Grid,TextField} from '@material-ui/core';
 
 import EventPosts from '../ProductsComponent/products/customerAlllProducts';
 
@@ -54,6 +54,8 @@ const ShoppingProducts =() =>{
 
             <Container maxwidth ='lg'>
                 <ProductNavigation style={{zIndex:"-99"}} />
+
+
                 
                 
                 <AppBar className ={classes.appBar} position ="static" color ='inherit'>
@@ -65,7 +67,18 @@ const ShoppingProducts =() =>{
                 <Grow in>
 
 
-                    <Container>
+                    <Container >
+                        <div style={{marginLeft:"900px"}}>
+                        <TextField  style={{color:'white',background:'white',marginRight:"-10%",width:'300px'}}
+                    id="outlined-basic"
+                    label="Search"
+                    variant="outlined"
+                    size = "small"
+
+                />
+
+                            </div>
+
                         <Grid container justify ="space-between" alignItems="stretch" spacing ={3}>
 
                                 <Grid item xs ={12} sm ={7} style = {{width:"fit-content"}}>
