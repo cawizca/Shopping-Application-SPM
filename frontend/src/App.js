@@ -36,14 +36,12 @@ function App() {
           <Route path='/profile' exact component={Profilecomponenet}/>
           <Route path="/admin" exact component={AdminNavbar} />
           <Route path="/rider-login" exact component={RiderNavigation} />
-
           <Route path="/rider" exact component={Rider} />
           <Route path="/orders" exact component={ManageOrders} />
           <Route path="/delete" exact component={DeleteRider} />
           <Route path="/complete" exact component={DeliveredOrders} />
           <Route path="/requests" exact component={DeliveryRequest} />
           <Route path="/rider-items" exact component={MyDeliveredOrders} />
-
           <Route path="/wishlist" exact component={WishlistComponent} />
           <Route path="/productManage" exact component={ManageProducts} />
           <Route path="/ShoppingAll" exact component={ShoppingProducts} />
