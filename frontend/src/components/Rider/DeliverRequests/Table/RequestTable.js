@@ -36,8 +36,7 @@ const StyledTableCell = withStyles((theme) => ({
 const useStyles = makeStyles({
     table: {
         minWidth: 650,
-        backgroundColor: 'darkgray',
-        color:'#ffffff',
+        backgroundColor: "white",
     },
 });
 
@@ -73,8 +72,8 @@ export default function RequestTable(){
 
 
                 <br/><br/>
-                <TableContainer  component={Paper} >
-                    <Table  className={classes.table} aria-label="simple table">
+                <TableContainer   >
+                    <Table aria-label="simple table">
                         <TableHead>
                             <TableRow>
                                 <StyledTableCell>Order ID</StyledTableCell>
@@ -84,10 +83,16 @@ export default function RequestTable(){
                                 <StyledTableCell>Action</StyledTableCell>
                                 <StyledTableCell>Order Info</StyledTableCell>
                                 <StyledTableCell>Mark As Complete</StyledTableCell>
-
                             </TableRow>
                         </TableHead>
-                        <TableBody>
+                    </Table>
+                </TableContainer>
+                <TableContainer>
+                    <div style={{height:"500px", overflow:"auto"}}>
+                    <Table className="table-rows-style">
+
+                        <TableBody style={{color:"white"}}>
+
                             {
                                 riderList.map(riderList=>(
                                     <TableRow key={riderList._id}>
@@ -107,8 +112,11 @@ export default function RequestTable(){
                                     </TableRow>
                                 ))
                             }
+
                         </TableBody>
+
                     </Table>
+                    </div>
                 </TableContainer>
             </div>
 

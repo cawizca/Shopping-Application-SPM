@@ -64,9 +64,7 @@ export default function MyDeleveredTable(){
     return(
         <div>
             <div>
-
-                <br/><br/>
-                <TableContainer  component={Paper} >
+                <TableContainer >
                     <Table  className={classes.table} aria-label="simple table">
                         <TableHead>
                             <TableRow>
