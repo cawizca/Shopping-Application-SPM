@@ -64,7 +64,7 @@ export default function WishlistForm(){
     function getCategory(){
         axios.get(`http://localhost:8070/product/${type}`).then((products)=>{
             setProducts(products.data.category);
-            console.log(type)
+
         });
     }
 
@@ -80,31 +80,37 @@ export default function WishlistForm(){
                 <TextField id="standard-basic" value={wishlist.wishlistDescription} name="wishlistDescription" onChange={addToWishlist} placeholder="Description" color="secondary" fullWidth/>
             </div>
             <div className="wishlist-text" style={{display:"flex"}}>
-                <div style={{flex:"5"}}>
+                <div style={{flex:"7"}}>
 
-
+                    <InputLabel id="demo-simple-select-label" style={{textAlign:"left"}}>Category</InputLabel>
                         <Select
                             labelId="demo-simple-select-label"
                             id="demo-simple-select"
                             value={type}
                             onChange={handleChange}
                             fullWidth
-                            label="Category"
+                            style={{textAlign:"left"}}
                         >
                             <MenuItem value={"Vegetables"} >Vegetables</MenuItem>
                             <MenuItem value={"Meat"}>Meat</MenuItem>
                             <MenuItem value={"Seafood"}>SeaFoods</MenuItem>
                             <MenuItem value={"Grocery"}>Grocery</MenuItem>
+                            <MenuItem value={"Detergent"}>Detergent</MenuItem>
                         </Select>
 
                 </div>
 
                 <div style={{flex:"1"}}>
-                    <Button variant="contained" onClick={getCategory}><UilSearch /></Button>
+
+                </div>
+
+                <div style={{flex:"2"}}>
+                    <Button variant="contained" style={{backgroundColor:"#FA334E", color:"#fff", width:"5px !important"}} onClick={getCategory}><UilSearch size="20"/></Button>
                 </div>
 
             </div>
             <div className="wishlist-text">
+                <InputLabel id="demo-simple-select-label" style={{textAlign:"left"}}>Products</InputLabel>
                 <Select
                     labelId="demo-simple-select-label"
                     id="demo-simple-select"
@@ -112,11 +118,11 @@ export default function WishlistForm(){
                     onChange={addToWishlist}
                     fullWidth
                     name="wishlistProducts"
+                    style={{textAlign:"left"}}
                     multiple
                 >
                     {products && !!products.length && products.map((item)=>{
 
-                        console.log(item.product)
                         return(
                             <MenuItem value={item.product}>{item.product}</MenuItem>
                         )

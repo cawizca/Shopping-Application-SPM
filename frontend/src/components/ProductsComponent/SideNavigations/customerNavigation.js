@@ -21,7 +21,7 @@ import { useHistory } from "react-router";
 
 
 const useStyles = makeStyles((theme) => ({
-    drawerPaper: { width: 'inherit' },
+    drawerPaper: { width: 'inherit' ,marginTop:"4%", paddingTop:"5%",  backgroundColor: "rgba(0, 0, 0, 0.15)",backdropFilter: "blur(30px) !important"},
     link: {
         textDecoration: 'none',
         color: theme.palette.text.primary
@@ -61,36 +61,36 @@ function ProductNavigation(){
                         <Link to="/ShoppingAll" className={classes.link} >
                             <ListItem button  onClick ={()=>navigateAllProduct()} href="/ShoppingAll" >
                                 <ListItemIcon>
-                                    <HomeIcon />
+                                    <HomeIcon style={{color:"white"}} />
                                 </ListItemIcon>
-                                <ListItemText primary={"All products"} />
+                                <ListItemText primary={"All products"} style={{color:"white"}}/>
                             </ListItem>
                         </Link>
 
                         <Link to="#" className={classes.link}>
                             <ListItem button >
                                 <ListItemIcon>
-                                    <InfoIcon />
+                                    <InfoIcon style={{color:"white"}} />
                                 </ListItemIcon>
-                                <ListItemText primary={"Groceries"} />
+                                <ListItemText primary={"Groceries"} style={{color:"white"}} />
                             </ListItem>
                         </Link>
 
                         <Link to="#" className={classes.link}>
                             <ListItem button >
                                 <ListItemIcon>
-                                    <InfoIcon />
+                                    <InfoIcon style={{color:"white"}} />
                                 </ListItemIcon>
-                                <ListItemText primary={"Vegitables"} />
+                                <ListItemText primary={"Vegitables"} style={{color:"white"}} />
                             </ListItem>
                         </Link>
 
                         <Link to="#" className={classes.link}>
                             <ListItem button >
                                 <ListItemIcon>
-                                    <InfoIcon />
+                                    <InfoIcon style={{color:"white"}} />
                                 </ListItemIcon>
-                                <ListItemText primary={"Meat"} />
+                                <ListItemText primary={"Meat"} style={{color:"white"}} />
                             </ListItem>
                         </Link>
 
@@ -98,18 +98,18 @@ function ProductNavigation(){
                         <Link to="#" className={classes.link}>
                             <ListItem button >
                                 <ListItemIcon>
-                                    <InfoIcon />
+                                    <InfoIcon style={{color:"white"}} />
                                 </ListItemIcon>
-                                <ListItemText primary={"SeaFood"} />
+                                <ListItemText primary={"SeaFood"} style={{color:"white"}} />
                             </ListItem>
                         </Link> 
                         
                          <Link to="#" className={classes.link}>
                             <ListItem button >
                                 <ListItemIcon>
-                                    <InfoIcon />
+                                    <InfoIcon style={{color:"white"}} />
                                 </ListItemIcon>
-                                <ListItemText primary={"Detergents"} />
+                                <ListItemText primary={"Detergents"} style={{color:"white"}} />
                             </ListItem>
                         </Link>
 

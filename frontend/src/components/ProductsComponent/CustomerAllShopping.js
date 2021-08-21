@@ -49,19 +49,17 @@ const ShoppingProducts =() =>{
     return (
         
         <div>
-            <NavBar style={{zIndex:"99"}} getUserType={userType} />
+            <NavBar getUserType={userType} />
 
 
-            <Container maxwidth ='lg'>
-                <ProductNavigation style={{zIndex:"-99"}} />
-                
-                
-                <AppBar className ={classes.appBar} position ="static" color ='inherit'>
-                <Typography className={classes.heading} variant ="h2" align = "center"> Buy Products Form Us</Typography>
+            <Container maxwidth ='lg' style={{zIndex:"-99"}}>
 
-                    
-                </AppBar>
 
+                <ProductNavigation />
+
+                    <AppBar className ={classes.appBar} position ="static" >
+                        <Typography className={classes.heading} variant ="h2" align = "center"> Buy Products Form Us</Typography>
+                    </AppBar>
                 <Grow in>
 
 

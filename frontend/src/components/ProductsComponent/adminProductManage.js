@@ -7,6 +7,7 @@ import Styles from './styles';
 import {useDispatch} from 'react-redux';
 import {getProduct} from '../../actions/productAction'
 import AdminNavbar from "../Admin/AdminNavigation"
+import NavBar from "../HomePage/NavBar/NavBar";
 
 
 const ManageProducts =() =>{
@@ -25,6 +26,7 @@ const ManageProducts =() =>{
     return (
 
         <div>
+            <NavBar />
        <AdminNavbar /> 
             <Container maxwidth ='lg'>
                 
@@ -46,7 +48,7 @@ const ManageProducts =() =>{
                                 <EventPosts setCurrentId ={setCurrentId}   />     
                             </Grid >
 
-                                <Grid item xs ={12} sm ={4}   style={{marginRight:'-30%'}} >
+                                <Grid item xs ={12} sm ={4}   style={{marginRight:'-28%'}} >
                                     <EventForm  currentId={currentId}  />
                                 </Grid>
 
