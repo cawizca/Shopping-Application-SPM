@@ -68,6 +68,12 @@ export default function NavUser() {
                         Wishlist
                     </div>
                 </Button>
+                <Button component={Link} to="/myorder" className={classes.typography} style={{color:"white", textTransform:"capitalize", display: "flex"}} fullWidth>
+                    <div style={{flex: "1"}}><UilFavorite /></div>
+                    <div style={{flex: "2"}}>
+                        My Orders
+                    </div>
+                </Button>
                 <Button component={Link} to="/cart" className={classes.typography} style={{color:"white", textTransform:"capitalize", display: "flex"}} fullWidth>
                     <div style={{flex: "1"}}><UilSignout /></div>
                     <div style={{flex: "2"}}>

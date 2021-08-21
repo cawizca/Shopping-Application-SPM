@@ -40,6 +40,7 @@ export default function CustomerMyOrders(){
     return(
         <div>
             <NavBar/>
+            <h4 style={{color:"#fff"}}>My Orders</h4>
             <br/>
                 <TableContainer  component={Paper} >
                     <Table className={classes.table} aria-label="simple table">

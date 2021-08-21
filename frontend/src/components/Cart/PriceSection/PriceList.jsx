@@ -113,7 +113,7 @@ export default function PriceList() {
                 </div>
             </div>
             <div className="pay-button">
-                <Button style={buttonStyle} href='/gateway'>Pay</Button>
+                <Button style={buttonStyle} href='/deliverydetails'>Pay</Button>
             </div>
         </div>
     );
