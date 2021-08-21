@@ -9,9 +9,8 @@ export default function WishlistMain(){
     useEffect(()=>{
         axios.get('http://localhost:8070/wishlist/').then(res=>{
             setList(res.data);
-            console.log(res.data)
         })
-    })
+    },[])
     return(
         <div>
             <div className="row">

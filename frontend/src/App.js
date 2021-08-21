@@ -21,6 +21,8 @@ import DeliveredOrders from "./components/Admin/DeliveredOrders/DeliveredOrders"
 import DeliveryRequest from "./components/Rider/DeliverRequests/DeliveryRequest";
 import MyDeliveredOrders from "./components/Rider/MyDeliveredOrders/MyDeliveredOrders";
 import WishlistProductMain from "./components/Wishlist/WishlistProductPage/WishlistProductMain";
+import Gateway from "./components/Payment/Gateway";
+
 import Customer from "./components/Customer/Customer";
 import DeliveryDetails from "./components/DeliveryDetails/DeliveryDetails";
 import CustomerMyOrders from "./components/Customer/CustomerMyOrder/CustomerMyOrders";
@@ -43,6 +45,10 @@ function App() {
           <Route path="/complete" exact component={DeliveredOrders} />
           <Route path="/requests" exact component={DeliveryRequest} />
           <Route path="/rider-items" exact component={MyDeliveredOrders} />
+
+          <Route path="/gateway" exact component={Gateway} />
+
+
           <Route path="/wishlist" exact component={WishlistComponent} />
           <Route path="/productManage" exact component={ManageProducts} />
           <Route path="/ShoppingAll" exact component={ShoppingProducts} />

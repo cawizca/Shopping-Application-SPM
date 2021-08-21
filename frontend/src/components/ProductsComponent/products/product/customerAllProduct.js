@@ -58,9 +58,20 @@ const ProductCard = ({post,setCurrentId})=>{
             
             </CardContent>
 
-            <CardActions className= {classes.cardActions}> 
+            <CardActions className= {classes.cardActions}>
+
                 
-                <Button size ="small" style={{color:'white',background:'red'}}  
+                <div size ="small" style={{color:'white',
+                    background:'red',
+                    position: 'absolute',
+                    bottom: '5px',
+                    right: '10px',
+                    height: '50px',
+                    width: "50px",
+                    cursor: "pointer",
+                    borderRadius:"11px",
+                    boxShadow:"0px 0px 6px rgba(0,0,0,0.5)",
+                backgroundColor: '#FA334E'}}
                 
                 onClick={() => {
 
@@ -86,14 +97,13 @@ const ProductCard = ({post,setCurrentId})=>{
                 
                 
                 >
-                <AddShoppingcartIcon fontSize = "default" />
+                <AddShoppingcartIcon style={{position:"absolute", top:"30%", left:"25%"}} />
                     
                
 
                     
-                </Button>
+                </div>
 
-                
             </CardActions>
 
 

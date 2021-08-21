@@ -4,15 +4,19 @@ export default  makeStyles(()=>(
     {
 
         appBar: {
-            borderRadius: 15,
+            borderRadius: 8,
             margin: '30px 0',
             display: 'flex',
             flexDirection: 'row',
             justifyContent: 'center',
             alignItems: 'center',
+            backgroundColor:"#FA334E",
+
+            padding:"1%",
           },
           heading: {
-            color: 'rgba(0,183,255, 1)',
+            color: 'white',
+              fontSize:"40px"
           },
           image: {
             marginLeft: '15px',

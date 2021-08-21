@@ -63,7 +63,7 @@ export default function ManageTable(){
 
 
     return(
-        <div>
+        <div style={{zIndex:"-99"}}>
             <Form/>
             <br/>
                 <TableContainer  component={Paper} >

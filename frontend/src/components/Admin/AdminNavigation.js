@@ -21,7 +21,7 @@ import ManageOrder from "./Rider/ManageOrder";
 import { useHistory } from "react-router";
 
 const useStyles = makeStyles((theme) => ({
-    drawerPaper: { width: 'inherit' },
+    drawerPaper: { width: 'inherit', marginTop:"4%", paddingTop:"5%", backgroundColor: "rgba(0, 0, 0, 0.15)" },
     link: {
         textDecoration: 'none',
         color: theme.palette.text.primary
@@ -61,9 +61,10 @@ function AdminNavbar(){
 
     return (
 
+        <div style={{ zIndex:"-99" }}>
         <Router>
-            <NavBar />
-            <div style={{ display: 'flex' }}>
+
+            <div >
                 <Drawer
                     style={{ width: '240px' }}
                     variant="persistent"
@@ -75,26 +76,26 @@ function AdminNavbar(){
                         <Link to="/rider" className={classes.link}>
                             <ListItem button onClick={()=>navigateRidermanagement()}>
                                 <ListItemIcon>
-                                    <HomeIcon />
+                                    <HomeIcon style={{color:"white"}} />
                                 </ListItemIcon>
-                                <ListItemText primary={"Rider Management"} />
+                                <ListItemText style={{zIndex:"99"}} primary={"Rider Management"} style={{color:"white"}} />
                             </ListItem>
                         </Link>
                         <Link to="/orders" className={classes.link}>
                             <ListItem button onClick={()=>navigateOrdermanagement()}>
                                 <ListItemIcon>
-                                    <InfoIcon />
+                                    <InfoIcon style={{color:"white"}} />
                                 </ListItemIcon>
-                                <ListItemText primary={"Order Management"} />
+                                <ListItemText primary={"Order Management"} style={{color:"white"}} />
                             </ListItem>
                         </Link>
 
                         <Link to="/productManage" className={classes.link}>
                             <ListItem button onClick={()=>navigateProductManage()}>
                                 <ListItemIcon>
-                                    <InfoIcon />
+                                    <InfoIcon style={{color:"white"}} />
                                 </ListItemIcon>
-                                <ListItemText primary={"Products Management"} />
+                                <ListItemText primary={"Products Management"} style={{color:"white"}} />
                             </ListItem>
                         </Link>
                         <Link to="/customer" className={classes.link}>
@@ -113,6 +114,7 @@ function AdminNavbar(){
 
             </div>
         </Router>
+        </div>
     );
 }
 

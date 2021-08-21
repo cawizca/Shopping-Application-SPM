@@ -100,7 +100,6 @@ function NavBarCart() {
                 
             >
                     {products.map((product) => {
-                        console.log(product.name)
                         return (
                             <div className="notification-list">
                                 <NavCartCard

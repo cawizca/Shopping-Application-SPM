@@ -80,13 +80,25 @@ const ProductCard = ({post,setCurrentId})=>{
 
             <CardActions className= {classes.cardActions}> 
                 
-                <Button size ="small" color="primary" onClick={handleClickOpen} >
-                <DeleteIcon fontSize = "default" />
+                <div size ="small" onClick={handleClickOpen} style={{
+                    color:'white',
+                    background:'red',
+                    position: 'absolute',
+                    bottom: '5px',
+                    right: '10px',
+                    height: '45px',
+                    width: "45px",
+                    cursor: "pointer",
+                    borderRadius:"11px",
+                    boxShadow:"0px 0px 6px rgba(0,0,0,0.5)",
+                    backgroundColor: '#FA334E'
+                }}>
+                <DeleteIcon fontSize = "default" style={{position:"absolute", top:"28%", left:"23%"}} />
                     
                 {handleClickOpen}
 
                     
-                </Button>
+                </div>
 
 
                 <Dialog
