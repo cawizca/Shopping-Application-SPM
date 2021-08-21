@@ -24,7 +24,8 @@ import WishlistProductMain from "./components/Wishlist/WishlistProductPage/Wishl
 import Gateway from "./components/Payment/Gateway";
 
 import Customer from "./components/Customer/Customer";
-
+import DeliveryDetails from "./components/DeliveryDetails/DeliveryDetails";
+import CustomerMyOrders from "./components/Customer/CustomerMyOrder/CustomerMyOrders";
 
 function App() {
   return (
@@ -38,20 +39,24 @@ function App() {
           <Route path='/profile' exact component={Profilecomponenet}/>
           <Route path="/admin" exact component={AdminNavbar} />
           <Route path="/rider-login" exact component={RiderNavigation} />
-
           <Route path="/rider" exact component={Rider} />
           <Route path="/orders" exact component={ManageOrders} />
           <Route path="/delete" exact component={DeleteRider} />
           <Route path="/complete" exact component={DeliveredOrders} />
           <Route path="/requests" exact component={DeliveryRequest} />
           <Route path="/rider-items" exact component={MyDeliveredOrders} />
+
           <Route path="/gateway" exact component={Gateway} />
+
 
           <Route path="/wishlist" exact component={WishlistComponent} />
           <Route path="/productManage" exact component={ManageProducts} />
           <Route path="/ShoppingAll" exact component={ShoppingProducts} />
           <Route path="/wishlist-product" exact component={WishlistProductMain} />
           <Route path="/customer" exact component={Customer} />
+          <Route path="/deliverydetails" exact component={DeliveryDetails} />
+          <Route path="/myorder" exact component={CustomerMyOrders} />
+
 
       </Router>
     </div>
