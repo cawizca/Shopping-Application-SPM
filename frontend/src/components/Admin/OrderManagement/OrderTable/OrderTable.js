@@ -88,24 +88,24 @@ export default function OrderTable(){
 
 
                                     <TableRow key={orderList._id}>
-                                        <TableCell>{orderList._id}</TableCell>
-                                        <TableCell>{orderList.customerID}</TableCell>
-                                        <TableCell>{orderList.orderDate}</TableCell>
-                                        <TableCell>{orderList.request}</TableCell>
-                                        <TableCell>
+                                        <TableCell style={{backgroundColor:orderList.request=='-'? '#f65a5e': ''}}>{orderList.orderId}</TableCell>
+                                        <TableCell style={{backgroundColor:orderList.request=='-'? '#f65a5e': ''}}>{orderList.customerID}</TableCell>
+                                        <TableCell style={{backgroundColor:orderList.request=='-'? '#f65a5e': ''}}>{orderList.orderDate}</TableCell>
+                                        <TableCell style={{backgroundColor:orderList.request=='-'? '#f65a5e': '' ,color:orderList.request=='Declined'? '#f50a0a': ''}} >{orderList.request}</TableCell>
+                                        <TableCell style={{backgroundColor:orderList.request=='-'? '#f65a5e': ''}}>
                                             <RiderRequest
                                                 id={orderList._id}
                                             />
 
                                             </TableCell>
 
-                                        <TableCell>
+                                        <TableCell style={{backgroundColor:orderList.request=='-'? '#f65a5e': ''}}>
                                             <Setrider
                                                 id={orderList._id}
                                                 state={orderList.request}
 
                                             /></TableCell>
-                                        <TableCell><ViewOrder/></TableCell>
+                                        <TableCell style={{backgroundColor:orderList.request=='-'? '#f65a5e': ''}}><ViewOrder/></TableCell>
 
                                     </TableRow>
                                 ))

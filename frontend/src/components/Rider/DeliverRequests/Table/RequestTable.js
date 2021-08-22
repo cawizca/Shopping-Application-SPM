@@ -63,7 +63,8 @@ export default function RequestTable() {
                     alert(response.data.message)
                 } else {
 
-                    getRiderList(response.data.user._id)
+                    getMyOrderList(response.data.user.riders)
+
 
                 }
 
@@ -71,8 +72,8 @@ export default function RequestTable() {
             .catch()
 
 
-        function getRiderList(userid) {
-            axios.get(`http://localhost:8070/order/getOne/611e510c482c693d20e3b65d`)
+        function getMyOrderList(userid) {
+            axios.get(`http://localhost:8070/order/getOne/${userid}`)
                 .then((response) => {
                     setRiderList(response.data)
                     console.log(response.data.data)
@@ -104,7 +105,7 @@ export default function RequestTable() {
     function decline(id) {
         const stateChanged = {
             request: "Declined",
-            riders:null
+
         }
         axios.put(`http://localhost:8070/order/update/${id}`, stateChanged)
             .then((res) => {
@@ -143,7 +144,7 @@ export default function RequestTable() {
                                 {
                                     riderList.map(riderList => (
                                         <TableRow key={riderList._id}>
-                                            <TableCell>{riderList._id}</TableCell>
+                                            <TableCell>{riderList.orderId}</TableCell>
                                             <TableCell>{riderList.orderDate}</TableCell>
                                             <TableCell>{riderList.request}</TableCell>
                                             <TableCell>
@@ -165,7 +166,7 @@ export default function RequestTable() {
                                                     }}
                                                     variant="contained"
                                                     color="primary"
-                                                    disabled={riderList.request == 'Accepted'}
+                                                    disabled={riderList.request == 'Accepted' || riderList.request == 'Declined'}
                                                 >Declined
                                                 </Button>
                                             </TableCell>

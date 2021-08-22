@@ -2,19 +2,38 @@ const OrderModel = require('../models/OrderModel.js')
 
 
 const createOrder = async (req,res)=>{
-    if(req.body){
-        const orderData = new OrderModel(req.body)
-         orderData.save()
-            .then(data=>{
-                res.status(200).send({data:data});
+
+    await OrderModel.find().sort({_id:-1}).limit(1)
+        .then((data)=>{
+            let value= '';
+            data.map((data)=>{
+                value=data.orderId
             })
-            .catch(error=>{
-                res.status(500).send({error:error.message})
+
+            let value2= value.toString();
+            let value3=value2.substr(3,7)
+            let value4= Number(value3)+1
+            const orderData = new OrderModel({
+                "orderId":"ORD"+value4,
+                "customerID":"CUS005",
+                "orderDate":"2021/9/16",
+                "request":"-",
             })
-    }
-    else{
-        res.send('no Data')
-    }
+
+            orderData.save()
+                .then(data=>{
+                    console.log(Number(value3)+1)
+                    res.status(200).send({data:data});
+                })
+                .catch(error=>{
+                    res.status(500).send({error:error.message})
+                })
+
+        })
+
+
+
+
 }
 
 const getAllOrders = async(req,res)=>{
@@ -25,9 +44,9 @@ const getAllOrders = async(req,res)=>{
         )
         res.send(sortedData)
     }
-        catch(error){
-            res.status(500).send({error:error.message})
-        }
+    catch(error){
+        res.status(500).send({error:error.message})
+    }
 }
 
 const getMyOrders = async(req,res)=>{
