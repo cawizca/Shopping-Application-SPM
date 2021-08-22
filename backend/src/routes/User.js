@@ -16,7 +16,8 @@ app.post("/register", (req,res) =>{
     const username = req.body.username
     const email = req.body.email
     const usertype = req.body.userType
-  
+    const riders = req.body.riders
+
     bcrypt.hash(req.body.password ,saultRounds , (err,hash) =>{
 
       const password = hash
@@ -24,7 +25,8 @@ app.post("/register", (req,res) =>{
         username,
         email,
         password,    
-        usertype
+        usertype,
+          riders
     })   
     User.findOne({ email: req.body.email }).then((user) =>{
       if(user){
@@ -145,5 +147,23 @@ if(token == null){
   })
 }
 }
+
+
+
+
+
+////////////
+app.get("/getOne/:id",(req, res)=>{
+
+    const id = req.params.id
+    User.findOne({riders:id}).populate('riders', 'riderName')
+        .then((data)=>{
+        res.send(data)
+        console.log(data)
+    }).catch((error)=>{
+        res.status(500).send(error.message)
+    })
+
+})
 
   module.exports = app;

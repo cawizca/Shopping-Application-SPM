@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import axios from "axios"
 import {withStyles} from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
@@ -60,7 +60,37 @@ const DialogActions = withStyles((theme) => ({
 function Alert(props) {
     return <MuiAlert elevation={6} variant="filled" {...props} />;
 }
-export default function (props) {
+export default function RiderProfile(props) {
+
+    let id = props.id;
+    let email = props.email;
+
+
+    const [uname, setUname] = React.useState('');
+    useEffect(()=>{
+
+
+        function getUser() {
+            axios.get(`http://localhost:8070/user/getOne/${props.id}`)
+                .then((response) => {
+                        setUname(response.data.username)
+                    console.log(response.data.username)
+                })
+                .catch((error) => {
+                    alert(error)
+                })
+
+        }
+
+        getUser()
+    },[])
+
+
+
+
+
+
+
     const [open, setOpen] = React.useState(false);
     const [helperText, setHelperText] = React.useState('');
 
@@ -85,25 +115,6 @@ export default function (props) {
         },
     }));
 
-    const classes = useStyles();
-
-    const types = [
-        {
-            value: 'Van',
-            label: 'Van',
-        },
-        {
-            value: 'Three Wheel',
-            label: 'Three Wheel',
-        },
-        {
-            value: 'Lorry',
-            label: 'Lorry',
-        }
-
-
-    ];
-
 
 
 
@@ -117,21 +128,16 @@ export default function (props) {
         setOpenSnack(false);
     };
 
-    let id = props.id;
-    let riderName = props.riderName;
-    let nic = props.nic;
-    let phone = props.phone;
-    let type = props.type;
-    let number = props.number;
-    let email = props.email;
+
+
+
 
     let [data, setData] = useState({
-        riderName: riderName,
-        nic: nic,
-        phone: phone,
-        type: type,
-        number: number,
-        email:email
+      //  id:id,
+        username: '',
+        email: email,
+        password: '',
+
     });
 
     function handleChange(event) {
@@ -151,16 +157,17 @@ export default function (props) {
     function onSubmit(e) {
 
 
-        const RiderObject = {
-            riderName: data.riderName,
-            riderNic: data.nic,
-            riderPhone: data.phone,
-            vehicleType: data.type,
-            vehicleNumber: data.number,
-            email:data.email
+        const LoginObject = {
+
+            username: data.username,
+            email: data.email,
+            password: data.password,
+            userType:'rider',
+            riders:props.id
+
         }
 
-        axios.put(`http://localhost:8070/rider/update/${props.id}`, RiderObject)
+        axios.post(`http://localhost:8070/user/register`, LoginObject)
             .then((res) => {
                 setOpenSnack(true);
                 setOpen(false);
@@ -175,31 +182,31 @@ export default function (props) {
     }
 
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
-
-        if (data.riderName == '' && data.nic == '' && data.phone == ''&& data.type == ''&& data.number == '') {
-            setHelperText('please fill all the fields');
-
-        } else if (data.riderName == '') {
-            setHelperText('please Enter Rider Name');
-
-        } else if (data.nic == '') {
-            setHelperText('please Enter NIC Number');
-
-        }  else if (data.phone == '') {
-            setHelperText('please Enter Mobile Number');
-
-        } else if (data.number == '') {
-            setHelperText('please Enter Vehicle Number');
-
-        } else if (data.type == '') {
-            setHelperText('please Select Vehicle Type');
-
-        }else {
-            onSubmit(event)
-        }
-    };
+    // const handleSubmit = (event) => {
+    //     event.preventDefault();
+    //
+    //     if (data.riderName == '' && data.nic == '' && data.phone == ''&& data.type == ''&& data.number == '') {
+    //         setHelperText('please fill all the fields');
+    //
+    //     } else if (data.riderName == '') {
+    //         setHelperText('please Enter Rider Name');
+    //
+    //     } else if (data.nic == '') {
+    //         setHelperText('please Enter NIC Number');
+    //
+    //     }  else if (data.phone == '') {
+    //         setHelperText('please Enter Mobile Number');
+    //
+    //     } else if (data.number == '') {
+    //         setHelperText('please Enter Vehicle Number');
+    //
+    //     } else if (data.type == '') {
+    //         setHelperText('please Select Vehicle Type');
+    //
+    //     }else {
+    //         onSubmit(event)
+    //     }
+    // };
 
 
 
@@ -211,14 +218,14 @@ export default function (props) {
                     Updated Successfully!
                 </Alert>
             </Snackbar>
-            <Button variant="contained" color="primary" onClick={handleClickOpen}>
-                Update
+            <Button  disabled={uname!=null} variant="contained" color="primary" onClick={handleClickOpen}>
+                Add Profile
             </Button>
             <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}>
                 <DialogTitle id="customized-dialog-title" onClose={handleClose} className="form-background">
                     Update Rider
                 </DialogTitle>
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={onSubmit}>
                     <DialogContent dividers className="form-background">
 
                         <div className="rider-form" style={{marginTop: '-60px'}}>
@@ -226,38 +233,26 @@ export default function (props) {
 
                             <div className="completion-text">
                                 <TextField
-                                    name="riderName"
+                                    name="username"
                                     type='text'
                                     color="secondary"
                                     inputProps={{pattern: "[A-Za-z. ]{1,75}"}}
-                                    label="Rider Name"
-                                    placeholder="W.P. Kumara"
-                                    value={data.riderName}
+                                    label="User Name"
+                                    placeholder="kumara"
                                     onChange={handleChange}
                                     fullWidth/>
                             </div>
 
+
                             <div className="completion-text">
                                 <TextField
-                                    name='email'
+                                    name="email"
+                                    color="secondary"
                                     type='email'
-                                    color="secondary"
-                                    label="Rider Email"
+                                    label="Email"
+                                    contentEditable={false}
+                                    value={props.email}
                                     placeholder="abc@gmail.com"
-                                    value={data.email}
-                                    onChange={handleChange}
-                                    fullWidth/>
-                            </div>
-
-                            <div className="completion-text">
-                                <TextField
-                                    name="nic"
-                                    inputProps={{pattern: "[vV0-9 ]{1,12}"}}
-                                    color="secondary"
-                                    type='text'
-                                    label="Rider NIC"
-                                    placeholder="984511452V"
-                                    value={data.nic}
                                     onChange={handleChange}
                                     fullWidth/>
                             </div>
@@ -265,55 +260,16 @@ export default function (props) {
 
                             <div className="completion-text">
                                 <TextField
-                                    name="phone"
+                                    name="password"
                                     color="secondary"
-                                    inputProps={{pattern: "[0-9]{1,10}"}}
-                                    type='text'
-                                    label="Rider Phone"
-                                    placeholder="0717845412"
-                                    value={data.phone}
+                                    type='password'
+                                    label="Password"
                                     onChange={handleChange}
                                     fullWidth
 
                                 />
                             </div>
 
-
-                            <div className="completion-text">
-                                <TextField
-                                    name="number"
-                                    color="secondary"
-                                    type='text'
-                                    inputProps={{pattern: "[A-Za-z0-9- ]{1,75}"}}
-                                    label="Vehicle Number"
-                                    placeholder="PA-5684"
-                                    value={data.number}
-                                    onChange={handleChange}
-                                    fullWidth
-                                />
-                            </div>
-
-                            <div className="completion-text">
-                                <TextField
-                                    name="type"
-                                    color="secondary"
-                                    id="outlined-select-currency"
-                                    type='select'
-                                    select
-                                    label="Select Vehicle Type"
-                                    variant='outlined'
-                                    value={data.type}
-                                    onChange={handleChange}
-                                    fullWidth
-                                >
-                                    {types.map((option) => (
-                                        <MenuItem key={option.value} value={option.value}>
-                                            {option.label}
-                                        </MenuItem>
-                                    ))}
-
-                                </TextField>
-                            </div>
 
                             <FormHelperText style={{color: "red"}}>{helperText}</FormHelperText>
 
@@ -322,7 +278,7 @@ export default function (props) {
                     </DialogContent>
                     <DialogActions>
                         <Button type="submit" color="primary">
-                            Update
+                            Add Profile
                         </Button>
                     </DialogActions>
 

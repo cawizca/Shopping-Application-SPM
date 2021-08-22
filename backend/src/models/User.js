@@ -18,6 +18,11 @@ const userSchema = new Schema({
     usertype : {
         type : String,
         required : true
+    },
+    riders:{
+        type:mongoose.Schema.Types.ObjectId,
+        required:false,
+        ref:'riders'
     }
 
 })

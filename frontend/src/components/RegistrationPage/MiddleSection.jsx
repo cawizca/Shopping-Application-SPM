@@ -77,6 +77,7 @@ function MiddleSection() {
         const newUser = {
             username,
             email,
+
             password,
             userType
         }

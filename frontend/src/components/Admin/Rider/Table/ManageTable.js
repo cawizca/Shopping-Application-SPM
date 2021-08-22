@@ -11,6 +11,7 @@ import Paper from '@material-ui/core/Paper';
 import Form from "../AddForm/Form";
 import DeleteRider from "./DeleteRider";
 import UpdateRider from "./UpdateRider";
+import RiderProfile from "../AddForm/RiderProfile";
 
 const StyledTableCell = withStyles((theme) => ({
     head: {
@@ -78,6 +79,7 @@ export default function ManageTable(){
                                 <StyledTableCell>Vehicle Number</StyledTableCell>
                                 <StyledTableCell></StyledTableCell>
                                 <StyledTableCell>Action</StyledTableCell>
+                                <StyledTableCell>Login Profile</StyledTableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
@@ -100,8 +102,17 @@ export default function ManageTable(){
                                             phone = {riderList.riderPhone}
                                             type = {riderList.vehicleType}
                                             number = {riderList.vehicleNumber}
+                                            email = {riderList.email}
 
                                             />
+                                        </TableCell>
+                                        <TableCell>
+                                            <RiderProfile
+                                                id = {riderList._id}
+                                                email = {riderList.email}
+
+                                            />
+
                                         </TableCell>
 
                                     </TableRow>
