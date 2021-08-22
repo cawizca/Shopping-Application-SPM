@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import axios from "axios"
 import {withStyles} from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
@@ -54,7 +54,44 @@ const DialogActions = withStyles((theme) => ({
     },
 }))(MuiDialogActions);
 
-export default function Setrider(){
+export default function Setrider(props){
+
+
+    const [riderList,setRiderList] = useState([]);
+    const [type, setType] = useState("");
+
+    useEffect(()=>{
+
+        function getRiderList() {
+            axios.get("http://localhost:8070/rider/getAllRiders")
+                .then((response) => {
+                    let data=[]
+                    response.data.data.map((item,index)=>{
+                        let category ={
+                            value:item._id,
+                            label:item.riderName
+                        }
+                        data.push(category)
+                    })
+
+                    setRiderList(data)
+                    console.log(response.data)
+                })
+                .catch((error) => {
+                    alert(error)
+                })
+
+        }
+
+        getRiderList()
+    },[])
+
+
+    const riderChange = (event) => {
+        setType(event.target.value);
+    }
+
+
 
     const [open, setOpen] = React.useState(false);
 
@@ -81,34 +118,38 @@ export default function Setrider(){
 
     const classes = useStyles();
 
-    const types = [
-        {
-            value: 'Van',
-            label: 'Van',
-        },
-        {
-            value: 'Three Wheel',
-            label: 'Three Wheel',
-        },
-        {
-            value: 'Lorry',
-            label: 'Lorry',
+
+    function onSubmit(e) {
+
+
+        const RiderAssignObject = {
+            request: "pending",
+            riders: type ,
+
         }
 
+        axios.put(`http://localhost:8070/order/update/${props.id}`, RiderAssignObject)
+            .then((res) => {
+              alert("updated")
 
-    ];
+            })
+            .catch(error => {
+                alert(error)
+            })
+    }
+
 
 
     return(
         <div>
-            <Button variant="contained" color="secondary" onClick={handleClickOpen}>
+            <Button disabled={props.state=='pending'} variant="contained" color="secondary" onClick={handleClickOpen}>
                 SET
             </Button>
             <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}>
                 <DialogTitle id="customized-dialog-title" onClose={handleClose} className="form-background">
                    Assign Rider
                 </DialogTitle>
-                <form >
+                <form onSubmit={onSubmit}>
                     <DialogContent dividers>
                         <Typography >
 
@@ -121,8 +162,10 @@ export default function Setrider(){
                                 label="Select Rider"
                                 margin="dense"
                                 variant="outlined"
+                                select
+                                onChange={riderChange}
                             >
-                                {types.map((option) => (
+                                {riderList.map((option) => (
                                     <MenuItem key={option.value} value={option.value}>
                                         {option.label}
                                     </MenuItem>

@@ -88,33 +88,33 @@ export default function RequestTable(){
                 </TableContainer>
                 <TableContainer>
                     <div style={{height:"500px", overflow:"auto"}}>
-                    <Table className="table-rows-style">
+                        <Table className="table-rows-style">
 
-                        <TableBody style={{color:"white"}}>
+                            <TableBody style={{color:"white"}}>
 
-                            {
-                                riderList.map(riderList=>(
-                                    <TableRow key={riderList._id}>
-                                        <TableCell>ORD012</TableCell>
-                                        <TableCell>05/07/2021</TableCell>
-                                        <TableCell>Pending</TableCell>
-                                        <TableCell>  <Button variant="contained" color="secondary">Accepted</Button></TableCell>
-                                        <TableCell>
+                                {
+                                    riderList.map(riderList=>(
+                                        <TableRow key={riderList._id}>
+                                            <TableCell>ORD012</TableCell>
+                                            <TableCell>05/07/2021</TableCell>
+                                            <TableCell>Pending</TableCell>
+                                            <TableCell>  <Button variant="contained" color="secondary">Accepted</Button></TableCell>
+                                            <TableCell>
 
-                                            <Button variant="contained" color="primary">Declined</Button>
+                                                <Button variant="contained" color="primary">Declined</Button>
 
-                                        </TableCell>
-                                        <TableCell><ViewOrder/></TableCell>
-                                        <TableCell>  <ComplitionForm/></TableCell>
+                                            </TableCell>
+                                            <TableCell><ViewOrder/></TableCell>
+                                            <TableCell>  <ComplitionForm/></TableCell>
 
 
-                                    </TableRow>
-                                ))
-                            }
+                                        </TableRow>
+                                    ))
+                                }
 
-                        </TableBody>
+                            </TableBody>
 
-                    </Table>
+                        </Table>
                     </div>
                 </TableContainer>
             </div>
