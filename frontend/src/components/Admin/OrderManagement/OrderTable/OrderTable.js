@@ -37,18 +37,22 @@ const useStyles = makeStyles({
 
 export default function OrderTable(){
 
-    const classes = useStyles();
+    const classes = useStyles()
 
 
-    const [riderList,setRiderList] = useState([]);
+    const [orderList,setOrderList] = useState([]);
 
     useEffect(()=>{
 
-        function getRiderList() {
-            axios.get("http://localhost:8070/rider/getAllRiders")
+        function getOrderList() {
+            axios.get("http://localhost:8070/order/getAll")
                 .then((response) => {
-                    setRiderList(response.data.data)
-                    console.log(response.data.data)
+                    setOrderList(response.data)
+                    console.log()
+
+                    orderList.map(rider=>{
+
+                    })
                 })
                 .catch((error) => {
                     alert(error)
@@ -56,7 +60,7 @@ export default function OrderTable(){
 
         }
 
-        getRiderList()
+        getOrderList()
     },[])
 
     return(
@@ -78,13 +82,21 @@ export default function OrderTable(){
                         </TableHead>
                         <TableBody>
                             {
-                                riderList.map(riderList=>(
-                                    <TableRow key={riderList._id}>
-                                        <TableCell>ORD012</TableCell>
-                                        <TableCell>CUS001</TableCell>
-                                        <TableCell>15/08/2021</TableCell>
-                                        <TableCell>Pending</TableCell>
-                                        <TableCell><Setrider/></TableCell>
+                                orderList.map(orderList=>(
+
+
+                                    <TableRow key={orderList._id}>
+                                        <TableCell>{orderList._id}</TableCell>
+                                        <TableCell>{orderList.customerID}</TableCell>
+                                        <TableCell>{orderList.orderDate}</TableCell>
+                                        <TableCell>{orderList.request}</TableCell>
+
+                                        <TableCell>
+                                            <Setrider
+                                                id={orderList._id}
+                                                state={orderList.request}
+
+                                            /></TableCell>
                                         <TableCell><ViewOrder/></TableCell>
 
                                     </TableRow>

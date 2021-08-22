@@ -43,6 +43,9 @@ app.route('/').get((req,res)=>{
 const RiderAPI = require('./API/Rider.Api.js')
 app.use('/rider',RiderAPI())
 
+const OrderAPI = require('./API/Order.Api.js')
+app.use('/order',OrderAPI())
+
 const WishlistItems = require("./routes/wishlistRouter");
 app.use('/wishlist',WishlistItems);
 
@@ -55,6 +58,3 @@ app.listen(PORT,()=>{
     console.log(`Server is up and running on port ${PORT}`);
 });
 
-// mongodb login credentials
-// email - kandycupcakes.sliit@gmail.com
-//password :Abc123456789
