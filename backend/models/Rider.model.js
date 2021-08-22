@@ -6,6 +6,10 @@ const riderSchema = new mongoose.Schema({
         type: String,
         required:true
     },
+    email : {
+        type: String,
+        required:true
+    },
     riderNic:{
         type:String,
         required:true

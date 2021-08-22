@@ -131,6 +131,7 @@ export default function Form() {
     const [phone, setPhone] = useState("");
     const [type, setType] = useState("");
     const [number, setNumber] = useState("");
+    const [email, setEmail] = useState("");
 
     function onSubmit(e) {
 
@@ -140,7 +141,8 @@ export default function Form() {
             riderNic: nic,
             riderPhone: phone,
             vehicleType: type,
-            vehicleNumber: number
+            vehicleNumber: number,
+            email:email
         }
 
         axios.post("http://localhost:8070/rider/create", RiderObject)
@@ -229,6 +231,18 @@ export default function Form() {
                                     fullWidth/>
                             </div>
 
+                            <div className="completion-text">
+                                <TextField
+                                    type='email'
+                                    color="secondary"
+                                    label="Rider Email"
+                                    placeholder="abc@gmail.com"
+                                    onChange={(event) => {
+                                        setHelperText(' ');
+                                        setEmail(event.target.value)
+                                    }}
+                                    fullWidth/>
+                            </div>
 
                             <div className="completion-text">
                                 <TextField
