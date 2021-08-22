@@ -10,6 +10,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import RiderRequest from "./RiderRequest";
 
 
 const StyledTableCell = withStyles((theme) => ({
@@ -75,6 +76,7 @@ export default function OrderTable(){
                                 <StyledTableCell>Customer ID</StyledTableCell>
                                 <StyledTableCell>Order Date</StyledTableCell>
                                 <StyledTableCell>Order Request</StyledTableCell>
+                                <StyledTableCell>Deliverer</StyledTableCell>
                                 <StyledTableCell>Assign Deliverer</StyledTableCell>
                                 <StyledTableCell>Order Info</StyledTableCell>
 
@@ -90,6 +92,12 @@ export default function OrderTable(){
                                         <TableCell>{orderList.customerID}</TableCell>
                                         <TableCell>{orderList.orderDate}</TableCell>
                                         <TableCell>{orderList.request}</TableCell>
+                                        <TableCell>
+                                            <RiderRequest
+                                                id={orderList._id}
+                                            />
+
+                                            </TableCell>
 
                                         <TableCell>
                                             <Setrider

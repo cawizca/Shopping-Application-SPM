@@ -17,6 +17,12 @@ import {FormHelperText} from "@material-ui/core";
 import Snackbar from "@material-ui/core/Snackbar";
 import MuiAlert from "@material-ui/lab/Alert";
 
+
+const buttonStyle = {
+    backgroundColor: "#098d36",
+    color: "#fafafa",
+
+}
 const styles = (theme) => ({
     root: {
         margin: 0,
@@ -138,6 +144,7 @@ export default function RiderProfile(props) {
         email: email,
         password: '',
 
+
     });
 
     function handleChange(event) {
@@ -218,17 +225,17 @@ export default function RiderProfile(props) {
                     Updated Successfully!
                 </Alert>
             </Snackbar>
-            <Button  disabled={uname!=null} variant="contained" color="primary" onClick={handleClickOpen}>
+            <button  disabled={uname!=null} class="btn btn-success" style={{color:'white'}} onClick={handleClickOpen}>
                 Add Profile
-            </Button>
+            </button>
             <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}>
                 <DialogTitle id="customized-dialog-title" onClose={handleClose} className="form-background">
-                    Update Rider
+                    Add Login Profile
                 </DialogTitle>
                 <form onSubmit={onSubmit}>
                     <DialogContent dividers className="form-background">
 
-                        <div className="rider-form" style={{marginTop: '-60px'}}>
+                        <div className="rider-profile" style={{marginTop: '-60px'}}>
 
 
                             <div className="completion-text">

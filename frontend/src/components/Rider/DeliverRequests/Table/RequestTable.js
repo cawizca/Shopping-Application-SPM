@@ -1,7 +1,6 @@
-
-import React , {useState,useEffect} from "react";
+import React, {useState, useEffect} from "react";
 import axios from "axios";
-import { withStyles,makeStyles } from '@material-ui/core/styles';
+import {withStyles, makeStyles} from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -32,7 +31,6 @@ const StyledTableCell = withStyles((theme) => ({
 }))(TableCell);
 
 
-
 const useStyles = makeStyles({
     table: {
         minWidth: 650,
@@ -41,20 +39,42 @@ const useStyles = makeStyles({
 });
 
 
-
-export default function RequestTable(){
+export default function RequestTable() {
 
     const classes = useStyles();
 
 
-    const [riderList,setRiderList] = useState([]);
+    const [riderList, setRiderList] = useState([]);
 
-    useEffect(()=>{
+    useEffect(() => {
 
-        function getRiderList() {
-            axios.get("http://localhost:8070/rider/getAllRiders")
+
+        const access_token = localStorage.getItem('token')
+        console.log(access_token)
+        let config = {
+            headers: {
+                'Authorization': 'Bearer ' + access_token
+            }
+        }
+        axios.get('http://localhost:8070/user/post',
+            config)
+            .then((response) => {
+                if (response.data.message) {
+                    alert(response.data.message)
+                } else {
+
+                    getRiderList(response.data.user._id)
+
+                }
+
+            })
+            .catch()
+
+
+        function getRiderList(userid) {
+            axios.get(`http://localhost:8070/order/getOne/611e510c482c693d20e3b65d`)
                 .then((response) => {
-                    setRiderList(response.data.data)
+                    setRiderList(response.data)
                     console.log(response.data.data)
                 })
                 .catch((error) => {
@@ -63,16 +83,47 @@ export default function RequestTable(){
 
         }
 
-        getRiderList()
-    },[])
+
+    }, [])
+
+
+    function accept(id) {
+        const stateChanged = {
+            request: "Accepted",
+        }
+        axios.put(`http://localhost:8070/order/update/${id}`, stateChanged)
+            .then((res) => {
+                alert("updated")
+                window.location.reload(true)
+            })
+            .catch(error => {
+                alert(error)
+            })
+    }
+
+    function decline(id) {
+        const stateChanged = {
+            request: "Declined",
+            riders:null
+        }
+        axios.put(`http://localhost:8070/order/update/${id}`, stateChanged)
+            .then((res) => {
+                alert("updated")
+                window.location.reload(true)
+            })
+            .catch(error => {
+                alert(error)
+            })
+    }
+
 
     // Kavishka pushed
-    return(
-        <div style={{zIndex:"-99"}}>
+    return (
+        <div style={{zIndex: "-99"}}>
             <div>
 
-                <TableContainer   >
-                    <Table aria-label="simple table">
+                <TableContainer>
+                    <Table aria-label="simple table" className="table-rows-style">
                         <TableHead>
                             <TableRow>
                                 <StyledTableCell>Order ID</StyledTableCell>
@@ -84,28 +135,42 @@ export default function RequestTable(){
                                 <StyledTableCell>Mark As Complete</StyledTableCell>
                             </TableRow>
                         </TableHead>
-                    </Table>
-                </TableContainer>
-                <TableContainer>
-                    <div style={{height:"500px", overflow:"auto"}}>
-                        <Table className="table-rows-style">
 
-                            <TableBody style={{color:"white"}}>
+
+
+                            <TableBody style={{color: "white"}}>
 
                                 {
-                                    riderList.map(riderList=>(
+                                    riderList.map(riderList => (
                                         <TableRow key={riderList._id}>
-                                            <TableCell>ORD012</TableCell>
-                                            <TableCell>05/07/2021</TableCell>
-                                            <TableCell>Pending</TableCell>
-                                            <TableCell>  <Button variant="contained" color="secondary">Accepted</Button></TableCell>
+                                            <TableCell>{riderList._id}</TableCell>
+                                            <TableCell>{riderList.orderDate}</TableCell>
+                                            <TableCell>{riderList.request}</TableCell>
                                             <TableCell>
-
-                                                <Button variant="contained" color="primary">Declined</Button>
-
+                                                <Button
+                                                    style={{fontSize: '10px',}}
+                                                    onClick={() => {
+                                                        accept(riderList._id)
+                                                    }}
+                                                    variant="contained" color="secondary"
+                                                    disabled={riderList.request == 'Accepted' }
+                                                >Accepted
+                                                </Button>
+                                            </TableCell>
+                                            <TableCell>
+                                                <Button
+                                                    style={{fontSize: '10px'}}
+                                                    onClick={() => {
+                                                        decline(riderList._id)
+                                                    }}
+                                                    variant="contained"
+                                                    color="primary"
+                                                    disabled={riderList.request == 'Accepted'}
+                                                >Declined
+                                                </Button>
                                             </TableCell>
                                             <TableCell><ViewOrder/></TableCell>
-                                            <TableCell>  <ComplitionForm/></TableCell>
+                                            <TableCell><ComplitionForm/></TableCell>
 
 
                                         </TableRow>
@@ -113,9 +178,7 @@ export default function RequestTable(){
                                 }
 
                             </TableBody>
-
                         </Table>
-                    </div>
                 </TableContainer>
             </div>
 
