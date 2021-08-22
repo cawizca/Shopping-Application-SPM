@@ -240,6 +240,7 @@ export default function RiderProfile(props) {
 
                             <div className="completion-text">
                                 <TextField
+                                    autocomplete="off"
                                     name="username"
                                     type='text'
                                     color="secondary"
