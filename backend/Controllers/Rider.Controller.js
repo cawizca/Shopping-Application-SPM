@@ -63,6 +63,8 @@ const getRider = async (req,res)=>{
         })
 }
 
+
+
 module.exports={
     createRider,
     updateRider,

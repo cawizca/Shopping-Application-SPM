@@ -38,13 +38,13 @@ function NavBar(props) {
                         <Nav.Link href="/wishlist" style={linkStyle} className="mx-3">ABOUT</Nav.Link>
                         <Nav.Link href="/admin" style={linkStyle} className="mx-3">CONTACT</Nav.Link>
                         <Nav.Link href="/productManage" style={linkStyle} className="mx-3">Admin product manage</Nav.Link>
-                        <Nav.Link href="/requests" style={linkStyle} className="mx-3">Rider Login</Nav.Link>
+                        <Nav.Link href="/requests" style={linkStyle} className="mx-3"  hidden={props.getUserType!='rider'}>Rider Login</Nav.Link>
 
                         
 
                     </Nav>
                     <Nav>
-                        {(props.getUserType === "Customer" || props.getUserType === "Admin") ? (
+                        {(props.getUserType === "Customer" || props.getUserType === "Admin" || props.getUserType === "rider"  ) ? (
                             <Form>
                                 <Nav className="mx-auto">
                                     <Nav.Link style={linkStyle} className="mx-2" >

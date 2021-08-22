@@ -19,7 +19,7 @@
 }
 
 .completion-form{
-    height: 550px;
+    height: auto;
     width: 500px;
     background-color: rgba(255,255,255,0.15);
     border-radius: 11px;
@@ -36,7 +36,7 @@
 }
 
 .completion-text{
-    margin: 10% 0;
+    margin: 8% 0;
 }
 
 .completion-button{
@@ -87,7 +87,16 @@
 }
 
 .rider-form{
-    height: 550px;
+    height: 560px;
+    width: 500px;
+    background-color: rgba(255,255,255,0.15);
+    border-radius: 11px;
+    padding: 5%;
+    margin-top: 20%;
+}
+
+.rider-profile{
+    height: auto;
     width: 500px;
     background-color: rgba(255,255,255,0.15);
     border-radius: 11px;
