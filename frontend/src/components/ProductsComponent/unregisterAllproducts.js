@@ -1,17 +1,17 @@
 import React,{useState,useEffect} from 'react';
 import {Container,AppBar,Typography,Grow,Grid,TextField} from '@material-ui/core';
 
-import EventPosts from '../ProductsComponent/products/customerAlllProducts';
+import EventPosts from './products/unregistercutomerProducts';
 
 import Styles from './styles';
 import {useDispatch} from 'react-redux';
 import {getProduct} from '../../actions/productAction'
 import NavBar from '../HomePage/NavBar/NavBar'
-import ProductNavigation from './SideNavigations/customerNavigation'
+import ProductNavigation from './SideNavigations/unregistercustomerNavigation'
 import axios from "axios";
 
 
-const ShoppingProducts =() =>{
+const UnRegisterShoppingProducts =() =>{
 
        
         const [currentId,setCurrentId] = useState(null);
@@ -51,6 +51,7 @@ const ShoppingProducts =() =>{
         <div>
             <NavBar getUserType={userType} />
 
+            
 
             <Container maxwidth ='lg' style={{zIndex:"-99"}}>
            
@@ -59,8 +60,8 @@ const ShoppingProducts =() =>{
 
 
                 <ProductNavigation />
-                <div style={{marginLeft:'200px'}}>
 
+                <div style={{marginLeft:'100px'}}>
                     <AppBar className ={classes.appBar} position ="static" >
                         <Typography className={classes.heading} variant ="h2" align = "center"> Buy Products Form Us</Typography>
                     </AppBar>
@@ -77,7 +78,7 @@ const ShoppingProducts =() =>{
 
                 />
 
-                            </div >
+                            </div>
 
                         <Grid container justify ="space-between" alignItems="stretch" spacing ={3}>
 
@@ -88,16 +89,16 @@ const ShoppingProducts =() =>{
                     </Container>
 
                 </Grow>
+        </div>
 
-                </div>
-            
             </Container>
+            </div>
+            
            
-           </div>
 
             
            
     );
 }
 
-export default ShoppingProducts;
+export default UnRegisterShoppingProducts;

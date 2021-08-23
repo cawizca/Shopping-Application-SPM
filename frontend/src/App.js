@@ -27,6 +27,7 @@ import Inssufficient  from './components/ProductsComponent/insufficientProducts'
 import Customer from "./components/Customer/Customer";
 import DeliveryDetails from "./components/DeliveryDetails/DeliveryDetails";
 import CustomerMyOrders from "./components/Customer/CustomerMyOrder/CustomerMyOrders";
+import UnRegisterShoppingProducts from './components/ProductsComponent/unregisterAllproducts'
 
 function App() {
   return (
@@ -60,6 +61,7 @@ function App() {
 
 
           <Route path="/insufficient" exact component={Inssufficient} />
+          <Route path="/unregisterAll" exact component={UnRegisterShoppingProducts} />
 
       </Router>
     </div>
