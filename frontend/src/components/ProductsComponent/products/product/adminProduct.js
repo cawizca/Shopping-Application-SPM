@@ -45,7 +45,7 @@ const ProductCard = ({post,setCurrentId})=>{
 
 
     return(
-      <div style={{margin:'0 15%'}} >
+      <div style={{margin:'0 2%'}} >
         <Card className={classes.card}>
 
             <CardMedia className={classes.media}  image ={post.selectedfile} title={post.product} />
@@ -86,14 +86,14 @@ const ProductCard = ({post,setCurrentId})=>{
                     position: 'absolute',
                     bottom: '5px',
                     right: '10px',
-                    height: '45px',
-                    width: "45px",
+                    height: '35px',
+                    width: "35px",
                     cursor: "pointer",
-                    borderRadius:"11px",
+                    borderRadius:"4px",
                     boxShadow:"0px 0px 6px rgba(0,0,0,0.5)",
                     backgroundColor: '#FA334E'
                 }}>
-                <DeleteIcon fontSize = "default" style={{position:"absolute", top:"28%", left:"23%"}} />
+                <DeleteIcon fontSize = "default" style={{position:"absolute", top:"18%", left:"18%"}} />
                     
                 {handleClickOpen}
 

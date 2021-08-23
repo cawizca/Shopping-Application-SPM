@@ -25,10 +25,11 @@ const ManageProducts =() =>{
 
     return (
 
-        <div>
+        <div style={{marginLeft:'240px'}}>
             <NavBar />
        <AdminNavbar /> 
-            <Container maxwidth ='lg'>
+       <div style={{marginTop:'13px'}}>
+            <Container maxwidth ='lg' >
                 
 
                 <AppBar className ={classes.appBar} position ="static" color ='inherit'>
@@ -51,7 +52,7 @@ const ManageProducts =() =>{
                             </div>
 
                     <div  className = 'col-lg-6' style={{textAlign:'right'}}>
-                        <TextField   style={{color:'white',background:'white',width:'300px'}}
+                        <TextField   style={{color:'white',background:'white',width:'350px'}}
                     id="outlined-basic"
                     label="Search"
                     variant="outlined"
@@ -71,7 +72,7 @@ const ManageProducts =() =>{
                                 <EventPosts setCurrentId ={setCurrentId}   />     
                             </Grid >
 
-                                <Grid item xs ={12} sm ={4}   style={{marginRight:'-28%'}} >
+                                <Grid item xs ={12} sm ={4}    >
                                     <EventForm  currentId={currentId}  />
                                 </Grid>
 
@@ -82,6 +83,7 @@ const ManageProducts =() =>{
 
 
             </Container>
+            </div>
 
            </div>
     );

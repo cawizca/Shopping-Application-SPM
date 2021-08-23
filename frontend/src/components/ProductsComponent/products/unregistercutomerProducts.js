@@ -1,5 +1,5 @@
 import React from 'react';
-import Posts from './product/adminProduct'
+import Posts from './product/unregisterUserProducts'
 import{useSelector} from 'react-redux'
 import {Grid,CircularProgress} from '@material-ui/core'
 
@@ -17,24 +17,19 @@ const ProductPosts = ({setCurrentId})=>{
         !eventposts.length ? <CircularProgress /> : (
 
             
-             
-            <Grid className={classes.container} container alignItems ="stretch" spacing={3}   style={{height:'700px', width :'120%',overflow:'auto'}}>    
-  
+
+            <Grid className={classes.container} container alignItems ="stretch" spacing={3} style={{height:'700px', width :'170%',overflow:'auto',marginTop:"10px"}}>
                 {
                     eventposts.map((post)=>(
-
-                            
-
-                        <Grid key={post._id} item xs={12} sm={4} >
+                        <Grid key={post._id} item xs={12} sm={4}>
 
                             <Posts  post={post} setCurrentId={setCurrentId} />
-                           
+                        
                         </Grid>
-                       
+
                     ))}
 
             </Grid>
-            
         )
 
         
