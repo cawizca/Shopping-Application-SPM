@@ -11,6 +11,8 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import RiderRequest from "./RiderRequest";
+import notificationCount from "./NotificationCount";
+import NotificationCount from "./NotificationCount";
 
 
 const StyledTableCell = withStyles((theme) => ({
@@ -66,6 +68,8 @@ export default function OrderTable(){
 
     return(
         <div>
+
+            <NotificationCount usertype='admin'/>
             <div>
                 <br/>
                 <TableContainer  component={Paper} >
@@ -73,7 +77,6 @@ export default function OrderTable(){
                         <TableHead>
                             <TableRow>
                                 <StyledTableCell>Order ID</StyledTableCell>
-                                <StyledTableCell>Customer ID</StyledTableCell>
                                 <StyledTableCell>Order Date</StyledTableCell>
                                 <StyledTableCell>Order Request</StyledTableCell>
                                 <StyledTableCell>Deliverer</StyledTableCell>
@@ -89,7 +92,7 @@ export default function OrderTable(){
 
                                     <TableRow key={orderList._id}>
                                         <TableCell style={{backgroundColor:orderList.request=='-'? '#f65a5e': ''}}>{orderList.orderId}</TableCell>
-                                        <TableCell style={{backgroundColor:orderList.request=='-'? '#f65a5e': ''}}>{orderList.customerID}</TableCell>
+
                                         <TableCell style={{backgroundColor:orderList.request=='-'? '#f65a5e': ''}}>{orderList.orderDate}</TableCell>
                                         <TableCell style={{backgroundColor:orderList.request=='-'? '#f65a5e': '' ,color:orderList.request=='Declined'? '#f50a0a': ''}} >{orderList.request}</TableCell>
                                         <TableCell style={{backgroundColor:orderList.request=='-'? '#f65a5e': ''}}>

@@ -8,6 +8,8 @@ module.exports =function (){
     router.get('/getOne/:id',controller.getMyOrders)
     router.get('/rider/:id',controller.getOne)
     router.put('/update/:id',controller.updateOrder)
+    router.get('/count',controller.getCount)
+    router.get('/count2/:id',controller.getCount2)
 
     return router;
 }
