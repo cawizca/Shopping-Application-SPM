@@ -12,6 +12,7 @@ import {TextField} from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import ViewOrder from "../../../Admin/OrderManagement/OrderTable/ViewOrder";
 import ComplitionForm from "./ComplitionForm";
+import NotificationCount from "../../../Admin/OrderManagement/OrderTable/NotificationCount";
 
 const buttonStyle = {
     backgroundColor: "#d5d5ce",
@@ -45,6 +46,7 @@ export default function RequestTable() {
 
 
     const [riderList, setRiderList] = useState([]);
+    const [id, setId] = useState([]);
 
     useEffect(() => {
 
@@ -64,7 +66,7 @@ export default function RequestTable() {
                 } else {
 
                     getMyOrderList(response.data.user.riders)
-
+                    setId(response.data.user.riders)
 
                 }
 
@@ -121,6 +123,7 @@ export default function RequestTable() {
     // Kavishka pushed
     return (
         <div style={{zIndex: "-99"}}>
+            <NotificationCount usertype='rider'  id={id}/>
             <div>
 
                 <TableContainer>
@@ -144,10 +147,10 @@ export default function RequestTable() {
                                 {
                                     riderList.map(riderList => (
                                         <TableRow key={riderList._id}>
-                                            <TableCell>{riderList.orderId}</TableCell>
-                                            <TableCell>{riderList.orderDate}</TableCell>
-                                            <TableCell>{riderList.request}</TableCell>
-                                            <TableCell>
+                                            <TableCell style={{backgroundColor:riderList.request=='pending'? '#d7c5c5': ''}}>{riderList.orderId}</TableCell>
+                                            <TableCell style={{backgroundColor:riderList.request=='pending'? '#d7c5c5': ''}}>{riderList.orderDate}</TableCell>
+                                            <TableCell style={{backgroundColor:riderList.request=='pending'? '#d7c5c5': ''}}>{riderList.request}</TableCell>
+                                            <TableCell style={{backgroundColor:riderList.request=='pending'? '#d7c5c5': ''}}>
                                                 <Button
                                                     style={{fontSize: '10px',}}
                                                     onClick={() => {
@@ -158,7 +161,7 @@ export default function RequestTable() {
                                                 >Accepted
                                                 </Button>
                                             </TableCell>
-                                            <TableCell>
+                                            <TableCell style={{backgroundColor:riderList.request=='pending'? '#d7c5c5': ''}}>
                                                 <Button
                                                     style={{fontSize: '10px'}}
                                                     onClick={() => {
@@ -170,8 +173,8 @@ export default function RequestTable() {
                                                 >Declined
                                                 </Button>
                                             </TableCell>
-                                            <TableCell><ViewOrder/></TableCell>
-                                            <TableCell><ComplitionForm/></TableCell>
+                                            <TableCell style={{backgroundColor:riderList.request=='pending'? '#d7c5c5': ''}}><ViewOrder/></TableCell>
+                                            <TableCell style={{backgroundColor:riderList.request=='pending'? '#d7c5c5': ''}}><ComplitionForm/></TableCell>
 
 
                                         </TableRow>
