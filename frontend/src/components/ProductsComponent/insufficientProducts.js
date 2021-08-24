@@ -29,6 +29,8 @@ const Inssufficient =() =>{
 
                 <AdminNavbar />
 
+                <div style={{marginLeft:'100px'}}>
+
                     <AppBar className ={classes.appBar} position ="static" >
                         <Typography className={classes.heading} variant ="h2" align = "center"> Insufficient Products </Typography>
                     </AppBar>
@@ -55,7 +57,7 @@ const Inssufficient =() =>{
 
                 </Grow>
 
-
+                </div>
             </Container>
             </div>
             
