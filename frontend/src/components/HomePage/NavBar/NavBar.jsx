@@ -46,7 +46,7 @@ function NavBar(props) {
                             <Nav.Link href="/ShoppingAll" style={linkStyle} className="mx-3"  >SHOP</Nav.Link>
                         )}
                         {(props.getUserType === "Customer"  || props.getUserType === "admin" || props.getUserType === "") && (
-                        <Nav.Link href="/wishlist" style={linkStyle} className="mx-3">ABOUT</Nav.Link>
+                        <Nav.Link href="#" style={linkStyle} className="mx-3">ABOUT</Nav.Link>
                         )}
                         {(props.getUserType === "Customer"  || props.getUserType === "admin" || props.getUserType === "") && (
                         <Nav.Link href="/admin" style={linkStyle} className="mx-3">CONTACT</Nav.Link>
