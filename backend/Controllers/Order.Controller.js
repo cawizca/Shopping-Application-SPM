@@ -36,7 +36,7 @@ const createOrder = async (req, res) => {
 
 const getAllOrders = async (req, res) => {
     try {
-        const orders = await OrderModel.find().populate('riders', 'riderName')
+        const orders = await OrderModel.find()
         const sortedData = orders.sort(
             (a, b) => b.createdAt - a.createdAt
         )
@@ -89,7 +89,7 @@ const updateOrder = async (req, res) => {
 
 const getCount = async (req, res) => {
     try {
-        console.log(req.body)
+
         const count = await OrderModel.countDocuments({
             "request": "-"
         })
@@ -105,10 +105,11 @@ const getCount = async (req, res) => {
 const getCount2 = async (req, res) => {
     try {
         const id = req.params.id
-        console.log(req.body)
-        const count = await OrderModel.countDocuments({
+
+        const count = await OrderModel.count({
+
+            "request": "pending",
             "riders":id,
-            "request": "pending"
         })
 
         res.send(count.toString())

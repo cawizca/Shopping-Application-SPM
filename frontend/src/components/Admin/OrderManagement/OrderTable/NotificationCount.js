@@ -41,18 +41,24 @@ export default function NotificationCount(props){
             getCount()
 
 
+            if(props.id!=null){
+                function getCount2() {
+                    axios.get(`http://localhost:8070/order/count2/${props.id}`)
+                        .then((response) => {
+                            setCount2(response.data)
+                        })
+                        .catch((error) => {
 
-            function getCount2() {
-                axios.get(`http://localhost:8070/order/count2/${props.id}`)
-                    .then((response) => {
-                        setCount2(response.data)
-                    })
-                    .catch((error) => {
+                        })
+                }
 
-                    })
+
+
+                 getCount2()
             }
 
-            getCount2()
+
+
 
 
 

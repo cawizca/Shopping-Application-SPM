@@ -1,9 +1,9 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import axios from "axios";
 
 export default function RiderRequest(props) {
 
-    const [uname, setUname] = React.useState('');
+    const [uname, setUname] = useState('');
 
     const id = props.id
     useEffect(() => {
