@@ -8,6 +8,7 @@ import {useDispatch} from 'react-redux';
 import {getProduct} from '../../actions/productAction'
 import AdminNavbar from "../Admin/AdminNavigation"
 import NavBar from "../HomePage/NavBar/NavBar";
+import productPage from '../../images/girl.png'
 
 
 const ManageProducts =() =>{
@@ -26,7 +27,7 @@ const ManageProducts =() =>{
     return (
 
         <div style={{marginLeft:'240px'}}>
-           
+
        <AdminNavbar /> 
             <Container maxwidth ='lg'>
                 
@@ -73,7 +74,7 @@ const ManageProducts =() =>{
 
 
                                 <Grid item xs ={12} sm ={4} >
-                                
+
 
                                     <EventForm  currentId={currentId}  />
                                 </Grid>
@@ -85,7 +86,7 @@ const ManageProducts =() =>{
 
 
             </Container>
-
+            <img src={productPage} className="product-background"/>
            </div>
     );
 }

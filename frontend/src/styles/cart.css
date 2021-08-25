@@ -117,3 +117,13 @@
 .receipt{
     margin-top: 20% !important;
 }
+
+.cart-background-right{
+    position:absolute;
+    bottom: 0%;
+    right: 0%;
+    opacity: 0.4;
+    z-index: -1;
+    height: 80%;
+    width: auto;
+}

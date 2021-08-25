@@ -73,6 +73,9 @@ function AdminNavbar(){
                     classes={{ paper: classes.drawerPaper }}
                 >
                     <List>
+                        <div style={{textAlign:"center", marginBottom:"5%"}}>
+                            <Typography style={{color:"white", fontSize:"30px"}}> Admin</Typography>
+                        </div>
                         <Link to="/rider" className={classes.link}>
                             <ListItem button onClick={()=>navigateRidermanagement()}>
                                 <ListItemIcon>
@@ -101,9 +104,9 @@ function AdminNavbar(){
                         <Link to="/customer" className={classes.link}>
                             <ListItem button onClick={()=>navigateCustomers()}>
                                 <ListItemIcon>
-                                    <CustomerIcon />
+                                    <CustomerIcon style={{color:"white"}} />
                                 </ListItemIcon>
-                                <ListItemText primary={"Customers"} />
+                                <ListItemText primary={"Customers"} style={{color:"white"}} />
                             </ListItem>
                         </Link>
 

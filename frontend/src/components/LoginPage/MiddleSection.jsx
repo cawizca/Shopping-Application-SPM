@@ -91,7 +91,10 @@ function MiddleSection() {
                 if (response.data.usertype == "Seller") {
                     history.push("/product");
                     window.location.reload();
-                } else {
+                } else if (response.data.usertype == "rider") {
+                    window.location.assign("/requests");
+                }
+            else {
                     window.location.assign("/");
                 }
             }

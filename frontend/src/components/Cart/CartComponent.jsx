@@ -1,7 +1,8 @@
 import NavBar from "../HomePage/NavBar/NavBar";
 import ItemList from "./ItemSection/ItemList";
 import "../../styles/cart.css";
-import CartBackground from "../../images/cartBackground.png"
+import CartBackground from "../../images/cartBackground.png";
+import CartBackgroundRight from "../../images/apples.png";
 import PriceList from "./PriceSection/PriceList";
 import {useEffect, useState} from "react";
 import axios from "axios";
@@ -21,6 +22,7 @@ function CartComponent() {
                 </div>
             </div>
             <img src={CartBackground} className="cart-background"/>
+            <img src={CartBackgroundRight} className="cart-background-right"/>
         </div>
     );
 }

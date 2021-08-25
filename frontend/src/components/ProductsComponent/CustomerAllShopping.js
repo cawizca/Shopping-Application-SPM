@@ -9,7 +9,8 @@ import {getProduct} from '../../actions/productAction'
 import NavBar from '../HomePage/NavBar/NavBar'
 import ProductNavigation from './SideNavigations/customerNavigation'
 import axios from "axios";
-
+import WishlistBackground from "../../images/wishlistBackground.png";
+import productPage from '../../images/girl.png'
 
 const ShoppingProducts =() =>{
 
@@ -66,7 +67,7 @@ const ShoppingProducts =() =>{
                 </div>
             
             </Container>
-           
+            <img src={productPage} className="product-background"/>
            </div>
 
             

@@ -34,3 +34,12 @@ opacity: 0.9;
 
 
 }
+
+.product-background{
+    position:absolute;
+    bottom: 0%;
+    right: 40%;
+    opacity: 0.4;
+    z-index: -1;
+    width: auto;
+}

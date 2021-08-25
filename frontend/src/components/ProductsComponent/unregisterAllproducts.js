@@ -9,6 +9,7 @@ import {getProduct} from '../../actions/productAction'
 import NavBar from '../HomePage/NavBar/NavBar'
 import ProductNavigation from './SideNavigations/unregistercustomerNavigation'
 import axios from "axios";
+import productPage from '../../images/girl.png'
 
 
 const UnRegisterShoppingProducts =() =>{
@@ -49,7 +50,7 @@ const UnRegisterShoppingProducts =() =>{
     return (
         
         <div>
-            
+
 
             
 
@@ -92,6 +93,7 @@ const UnRegisterShoppingProducts =() =>{
         </div>
 
             </Container>
+            <img src={productPage} className="product-background"/>
             </div>
             
            
