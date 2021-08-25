@@ -90,6 +90,7 @@
 
 .wishlist-button .red-square{
     align-items: center;
+    z-index: 99;
 }
 
 .wishlist-item-section{

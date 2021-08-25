@@ -9,7 +9,10 @@ export default function DeliveryRequest(){
             <RiderNavigation/>
             <div className="margin-adjust" >
                 <h1 className="page-title">Order Requests</h1>
-                <RequestTable/>
+                <div style={{marginTop:"5%"}}>
+                    <RequestTable/>
+                </div>
+
 
             </div>
 

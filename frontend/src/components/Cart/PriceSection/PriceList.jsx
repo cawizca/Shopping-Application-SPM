@@ -39,7 +39,7 @@ export default function PriceList() {
     };
 
     return(
-        <div>
+        <div style={{paddingLeft:"15%"}}>
             <div>
                 <div className="row receipt">
                     <div className="col-lg-6"></div>

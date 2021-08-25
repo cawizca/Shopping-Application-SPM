@@ -29,5 +29,13 @@ router.route("/").get((req,res)=>{
     })
 });
 
+router.route("/:id").delete((req,res)=>{
+    Wishlist.findByIdAndRemove(req.params.id).then(()=>{
+        res.json("Successfully deleted.")
+    }).catch((err)=>{
+        console.log(err);
+    })
+})
+
 
 module.exports = router;

@@ -5,23 +5,23 @@ import { useHistory } from "react-router-dom";
 import { Col, Container, Row } from "react-bootstrap";
 import Button from "@material-ui/core/Button";
 import TextField from '@material-ui/core/TextField';
-
+import logo from '../../images/largeLogo.png';
+import {Typography} from "@material-ui/core";
 
 const buttonStyle = {
-    backgroundColor: "#f7312a",
+    backgroundColor: "#FA334E",
     color: "#fafafa",
     fontWeight: 700,
-    fontSize: "18px",
+    width: "100px",
+    height: "40px",
+    textTransform: "capitalize",
     fontFamily: 'Montserrat',
-    height: "50px",
-    width: "150px",
-    borderRadius: "8px",
+    borderRadius: "5px",
     zIndex: "99",
     marginTop: "5%"
 }
-
 const inputBoxStyle = {
-    width: "500px",
+    width: "400px",
     marginTop: "3%"
 }
 
@@ -115,8 +115,52 @@ function MiddleSection() {
 
 
     return (
-        <div>
-            <Container fluid>
+            <div style={{display:"flex", justifyContent:"center", alignItems:"center", marginTop:"5%"}}>
+                <div className="row input-form-frame">
+                        <div className="col-lg-6" style={{padding:"10% 5% 0 0"}}>
+                            <img src={logo} style={{width:"400px", height:"auto"}} alt=""/>
+                        </div>
+                        <div className="col-lg-6">
+                            <form>
+                            <label style={{ marginLeft: "2%", color: "white", marginTop: "3%" }}>User ID : {userID}</label>
+                            <div className="form-group" style={{marginTop:"5%"}}>
+                                <Typography className="form-labels">Username</Typography>
+                                <TextField variant="outlined" value={username} fullWidth size="small" style={inputBoxStyle} type="text" className="form-control" id="username"
+                                           onChange={(event) => {
+                                               setName(event.target.value)
+                                           }} />
+                                <div className="form-group" style={{marginTop:"5%"}}>
+                                    <Typography className="form-labels">Email</Typography>
+                                    <TextField variant="outlined" value={email} disabled={true} fullWidth size="small" style={inputBoxStyle} type="text" className="form-control" id="age"
+                                               onChange={(event) => {
+                                                   setEmail(event.target.value)
+                                               }} />
+                                </div>
+                                <div className="form-group" style={{marginTop:"5%"}}>
+                                    <Typography className="form-labels">Enter new Password</Typography>
+                                    <TextField variant="outlined" fullWidth size="small" style={inputBoxStyle} type="text" className="form-control" id="age"
+                                               onChange={(event) => {
+                                                   setPassword(event.target.value)
+                                               }} />
+                                </div>
+                                <div className="form-group" style={{marginTop:"5%"}}>
+                                    <Typography className="form-labels">Confirm new Password</Typography>
+                                    <TextField variant="outlined" fullWidth size="small" style={inputBoxStyle} type="text" className="form-control" id="age"
+                                               onChange={(event) => {
+                                                   setConPassword(event.target.value)
+                                               }} />
+                                </div>
+                                <div style={{textAlign:"right", marginTop:"5%"}}>
+                                <Button style={buttonStyle} type="submit" className="btn btn-primary" onClick={updateProfile}>Submit</Button>
+                                </div>
+
+                            </div>
+                            </form>
+
+                    </div>
+                </div>
+
+            {/*<Container fluid>
                 <Row>
                     <Col lg={5} sm={12} style={{ backgroundColor: "#ECE6F2", paddingTop: "5%" }}>
 
@@ -167,6 +211,7 @@ function MiddleSection() {
                     </Col>
                 </Row>
             </Container>
+            */}
 
         </div>
 
