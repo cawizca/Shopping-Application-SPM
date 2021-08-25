@@ -38,7 +38,9 @@ app.post("/register", (req,res) =>{
       }).catch((err) =>{
           res.send({Error:"user details missing"})
       })}
-    }).catch()  
+    }).catch((error)=>{
+      res.send(error.message)
+    })  
     })
   })
 
