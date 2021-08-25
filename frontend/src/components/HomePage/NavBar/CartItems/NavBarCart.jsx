@@ -36,13 +36,37 @@ function NavBarCart(props) {
     const [anchorEl, setAnchorEl] = useState(null);
     const [products, setProducts] = useState([]);
     const [itemCount, setItemCount] = useState();
-
+    const [idr, setId] = useState([]);
     useEffect(() => {
         axios.get('http://localhost:8070/cart/').then((res) => {
             setProducts(res.data);
             setItemCount(res.data.length);
         });
         console.log(props.userId)
+
+
+        const access_token = localStorage.getItem('token')
+        console.log(access_token)
+        let config = {
+            headers: {
+                'Authorization': 'Bearer ' + access_token
+            }
+        }
+        axios.get('http://localhost:8070/user/post',
+            config)
+            .then((response) => {
+                if (response.data.message) {
+                    alert(response.data.message)
+                } else {
+
+                    setId(response.data.user.riders)
+
+                }
+
+            })
+            .catch()
+
+
     })
 
 
@@ -74,7 +98,13 @@ function NavBarCart(props) {
 
                 {(props.userType === "rider") && (
                     <div className="mx-3">
-                        <NotificationCount usertype="rider" />
+                        <NotificationCount usertype="rider" id={idr} />
+                    </div>
+                )}
+
+                {(props.userType === "admin") && (
+                    <div className="mx-3">
+                        <NotificationCount usertype="admin"  />
                     </div>
                 )}
 
