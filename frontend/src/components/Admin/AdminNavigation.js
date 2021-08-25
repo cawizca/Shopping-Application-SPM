@@ -39,12 +39,10 @@ function AdminNavbar(){
         history.push("/orders")
     }
 
-       const navigateDeliveredOrders=()=>{
+    const navigateDeliveredOrders=()=>{
         history.push("/complete")
     }
-    const navigateOrdersRequests=()=>{
-        history.push("/requests")
-    }
+
     const navigateCustomers=()=>{
         history.push("/customer")
     }
@@ -107,6 +105,15 @@ function AdminNavbar(){
                             </ListItem>
                         </Link>
 
+
+                        <Link to="/complete" className={classes.link}>
+                            <ListItem button onClick={()=>navigateDeliveredOrders()}>
+                                <ListItemIcon>
+                                    <CustomerIcon style={{color:"white"}} />
+                                </ListItemIcon>
+                                <ListItemText primary={"Delivered Orders"} style={{color:"white"}} />
+                            </ListItem>
+                        </Link>
                     </List>
                 </Drawer>
 
