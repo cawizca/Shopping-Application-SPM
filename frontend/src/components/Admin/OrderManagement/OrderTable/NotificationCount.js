@@ -3,7 +3,9 @@ import { makeStyles } from '@material-ui/core/styles';
 import Badge from '@material-ui/core/Badge';
 import MailIcon from '@material-ui/icons/Mail';
 
+
 import axios from "axios";
+import {useHistory} from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -19,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function NotificationCount(props){
-
+    const history = useHistory()
     const classes = useStyles();
     const [count, setCount] = useState(1);
     const [count2, setCount2] = useState(1);
@@ -39,32 +41,47 @@ export default function NotificationCount(props){
             getCount()
 
 
+            if(props.id!=null){
+                function getCount2() {
+                    axios.get(`http://localhost:8070/order/count2/${props.id}`)
+                        .then((response) => {
+                            setCount2(response.data)
+                        })
+                        .catch((error) => {
 
-            function getCount2() {
-                axios.get(`http://localhost:8070/order/count2/${props.id}`)
-                    .then((response) => {
-                        setCount2(response.data)
-                    })
-                    .catch((error) => {
+                        })
+                }
 
-                    })
+
+
+                 getCount2()
             }
 
-            getCount2()
+
+
 
 
 
         })
 
 
+
+    function navigateRider(){
+            history.push('/requests')
+    }
+
+    function navigateAdmin(){
+        history.push('/orders')
+    }
+
     return(
         <div>
 
-            <Badge color="secondary" badgeContent={count} hidden={props.usertype!='admin'}>
+            <Badge color="secondary" badgeContent={count} hidden={props.usertype!='admin'} onClick={navigateAdmin}>
                 <MailIcon style={{color:'white'}}/>
-            </Badge>
+            </Badge >
 
-            <Badge color="secondary" badgeContent={count2} hidden={props.usertype!='rider'}>
+            <Badge color="secondary" badgeContent={count2} hidden={props.usertype!='rider'} onClick={navigateRider}>
                 <MailIcon style={{color:'white'}}/>
 
             </Badge>

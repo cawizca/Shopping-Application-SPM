@@ -123,7 +123,7 @@ export default function RequestTable() {
     // Kavishka pushed
     return (
         <div style={{zIndex: "-99"}}>
-            <NotificationCount usertype='rider'  id={id}/>
+
             <div>
 
                 <TableContainer>

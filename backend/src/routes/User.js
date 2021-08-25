@@ -159,7 +159,7 @@ app.get("/getOne/:id",(req, res)=>{
     User.findOne({riders:id}).populate('riders', 'riderName')
         .then((data)=>{
         res.send(data)
-        console.log(data)
+
     }).catch((error)=>{
         res.status(500).send(error.message)
     })
