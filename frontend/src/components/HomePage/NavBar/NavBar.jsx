@@ -49,7 +49,7 @@ function NavBar(props) {
                         <Nav.Link href="#" style={linkStyle} className="mx-3">ABOUT</Nav.Link>
                         )}
                         {(props.getUserType === "Customer"  || props.getUserType === "admin" || props.getUserType === "") && (
-                        <Nav.Link href="/admin" style={linkStyle} className="mx-3">CONTACT</Nav.Link>
+                        <Nav.Link href="#" style={linkStyle} className="mx-3">CONTACT</Nav.Link>
                         )}
 
 

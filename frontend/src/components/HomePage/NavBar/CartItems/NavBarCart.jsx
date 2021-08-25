@@ -83,7 +83,7 @@ function NavBarCart(props) {
                     <NavUser usertype ={props.userType}/>
                 </div>
 
-                {(props.userType === "Customer" || props.userType === "admin") && (
+                {(props.userType === "Customer") && (
                 <div className="mx-3">
                     <Badge badgeContent={itemCount} color="secondary" variant="contained" onClick={handleClick} >
                         <UilShoppingCartAlt />
