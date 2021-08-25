@@ -7,6 +7,8 @@ import Button from "@material-ui/core/Button";
 import TextField from '@material-ui/core/TextField';
 import logo from '../../images/largeLogo.png';
 import {Typography} from "@material-ui/core";
+import { toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css';
 
 const buttonStyle = {
     backgroundColor: "#FA334E",
@@ -45,6 +47,7 @@ const pStyle = {
     fontWeight: "400"
 }
 
+toast.configure()
 
 function MiddleSection() {
 
@@ -92,23 +95,22 @@ function MiddleSection() {
             username,
             password
         }
-       if (password != cpassword) {
-            alert("Password dosent match")
+        if(password == "" || cpassword == ""){
+            toast.warn("passwrod cannot be empty",{position: toast.POSITION.TOP_CENTER , autoClose:2000})
+        }else if (password != cpassword) {
+            toast.warn("Password dosent match",{position: toast.POSITION.TOP_CENTER , autoClose:2000})
         }
         else {
             axios.put("http://localhost:8070/user/profileUpdate", newUser).then((response) => {
-                console.log(newUser)
                 if (response.data.Error) {
-                    alert("Error")
+                    toast.warn('Error',{position: toast.POSITION.TOP_CENTER , autoClose:2000})
                 } else {
-                    alert("profile Details updated succesfully")
-                    alert("Login again")
-                    document.getElementById("myForm").reset();
+                    toast.success("profile Details updated succesfully. Login again",{position: toast.POSITION.TOP_CENTER , autoClose:2000})
                     localStorage.removeItem('token')
-                    history.push("/signin")
+                    window.location.assign('/signin')
                 }
             }).catch((err) => {
-                alert(err.message)
+                toast.warn(err.message,{position: toast.POSITION.TOP_CENTER , autoClose:2000})
             })
         }
     }

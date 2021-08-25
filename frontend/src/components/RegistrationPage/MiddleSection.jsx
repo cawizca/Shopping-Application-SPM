@@ -83,32 +83,32 @@ function MiddleSection() {
         const newUser = {
             username,
             email,
-
             password,
             userType
         }
-        if (check != "true") {
-            
+        
+        if(username == ""){
+            toast.warn('Username is empty',{position: toast.POSITION.TOP_CENTER , autoClose:2000})
+        }else if(email == ""){
+            toast.warn('Email is empty',{position: toast.POSITION.TOP_CENTER , autoClose:2000})
+        }else if(password == ""){
+            toast.warn('Password is empty',{position: toast.POSITION.TOP_CENTER , autoClose:2000})
+        }else if(cpassword == ""){
+            toast.warn('Confirm password is empty',{position: toast.POSITION.TOP_CENTER , autoClose:2000})
+        }else if (check != "true") {
             toast.warn('Accept terms and conditions',{position: toast.POSITION.TOP_CENTER , autoClose:2000})
-        } else if(password != cpassword){
-            
+        }else if(password != cpassword){
             toast.warn('Password dosent match',{position: toast.POSITION.TOP_CENTER , autoClose:2000})
-        }
-        else {
+        }else {
             axios.post("http://localhost:8070/user/register", newUser).then((response) => {
-                console.log(newUser)
                 if (response.data.Error) {
-                    
                     toast.error(response.data.Error,{position: toast.POSITION.TOP_CENTER , autoClose:2000})
                     document.getElementById("myForm").reset();
-                } else {
-                    
+                }else{
                     toast.success(response.data.message,{position: toast.POSITION.TOP_CENTER , autoClose:2000})
-                    document.getElementById("myForm").reset();
-                    history.push("/signin")
+                    window.location.assign("/signin")
                 }
             }).catch((err) => {
-                
                 toast.error(err.message,{position: toast.POSITION.TOP_CENTER , autoClose:2000})
             })
         }
@@ -134,28 +134,28 @@ function MiddleSection() {
                                 </p>
                                 <div className="form-group">
                                     <Typography className="form-labels">Username</Typography>
-                                    <TextField variant="outlined" fullWidth size="small" style={inputBoxStyle} type="text" className="form-control" id="username"
+                                    <TextField required variant="outlined" fullWidth size="small" style={inputBoxStyle} type="text" className="form-control" id="username"
                                                onChange={(event) => {
                                                    setName(event.target.value)
                                                }} />
                                 </div>
                                 <div className="form-group" style={{marginTop:"5%"}}>
                                     <Typography className="form-labels">Email</Typography>
-                                    <TextField variant="outlined" fullWidth size="small" style={inputBoxStyle} type="text" className="form-control" id="age"
+                                    <TextField required variant="outlined" fullWidth size="small" style={inputBoxStyle} type="text" className="form-control" id="age"
                                                onChange={(event) => {
                                                    setEmail(event.target.value)
                                                }} />
                                 </div>
                                 <div className="form-group" style={{marginTop:"5%"}}>
                                     <Typography className="form-labels">Password</Typography>
-                                    <TextField variant="outlined" fullWidth size="small" style={inputBoxStyle} type="text" className="form-control" id="age"
+                                    <TextField required variant="outlined" fullWidth size="small" style={inputBoxStyle} type="text" className="form-control" id="age"
                                                onChange={(event) => {
                                                    setPassword(event.target.value)
                                                }} />
                                 </div>
                                 <div className="form-group" style={{marginTop:"5%"}}>
                                     <Typography className="form-labels">Confirm Password</Typography>
-                                    <TextField variant="outlined" fullWidth size="small" style={inputBoxStyle} type="text" className="form-control" id="age"
+                                    <TextField required variant="outlined" fullWidth size="small" style={inputBoxStyle} type="text" className="form-control" id="age"
                                                onChange={(event) => {
                                                    setConPassword(event.target.value)
                                                }} />

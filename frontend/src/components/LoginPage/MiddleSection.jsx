@@ -10,6 +10,7 @@ import loginBackground from '../../images/LoginBackground.jpg';
 import {Typography} from "@material-ui/core";
 import {Label} from "@material-ui/icons";
 
+
 const buttonStyle = {
     backgroundColor: "#FA334E",
     color: "#fafafa",
@@ -82,25 +83,33 @@ function MiddleSection() {
             password
         }
 
-        axios.post("http://localhost:8070/user/login", oldUser).then((response) => {
-            if (response.data.message) {
-                toast.error(response.data.message, { position: toast.POSITION.TOP_CENTER, autoClose: 3000 })
-            } else {
-                toast.success('Login Success!', { position: toast.POSITION.TOP_CENTER, autoClose: 1000 })
-                localStorage.setItem("token", response.data.token)
-                if (response.data.usertype == "Seller") {
-                    history.push("/product");
-                    window.location.reload();
-                } else if (response.data.usertype == "rider") {
-                    window.location.assign("/requests");
+        if(email == ""){
+            toast.error("Email is empty", { position: toast.POSITION.TOP_CENTER, autoClose: 3000 })
+        }else if(password == ""){
+            toast.error("Password is empty", { position: toast.POSITION.TOP_CENTER, autoClose: 3000 })
+        }else{
+            axios.post("http://localhost:8070/user/login", oldUser).then((response) => {
+                if (response.data.message) {
+                    toast.error(response.data.message, { position: toast.POSITION.TOP_CENTER, autoClose: 3000 })
+                } else {
+                    toast.success('Login Success!', { position: toast.POSITION.TOP_CENTER, autoClose: 1000 })
+                    localStorage.setItem("token", response.data.token)
+                    if (response.data.usertype == "Seller") {
+                        history.push("/product");
+                        window.location.reload();
+                    } else if (response.data.usertype == "rider") {
+                        window.location.assign("/requests");
+                    }
+                else {
+                        window.location.assign("/");
+                    }
                 }
-            else {
-                    window.location.assign("/");
-                }
-            }
-        }).catch((err) => {
-            alert(err)
-        })
+            }).catch((err) => {
+                alert(err)
+            })
+
+        }
+
     }
 
     return (
@@ -112,7 +121,7 @@ function MiddleSection() {
                 </div>
                 <div className="col-lg-6">
 
-                    <div style={{display:"flex", margin:"5% 0 5%"}}>
+                    <div style={{display:"flex"}}>
                         <div style={{flex:"1"}}></div>
                         <div style={{flex:"2"}}>
 
@@ -124,7 +133,7 @@ function MiddleSection() {
                         </p>
                         <div className="form-group">
                             <Typography className="form-labels">Email</Typography>
-                            <TextField variant="outlined" fullWidth size="small" style={inputBoxStyle} type="text"  id="age" className="form-control" placeholder="Insert your email address"
+                            <TextField variant="outlined" fullWidth size="small" style={inputBoxStyle} type="email"  id="age" className="form-control" placeholder="Insert your email address"
                                        onChange={(event) => {
                                            setEmail(event.target.value)
                                        }} />
