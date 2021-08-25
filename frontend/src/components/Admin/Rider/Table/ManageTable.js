@@ -21,6 +21,7 @@ const StyledTableCell = withStyles((theme) => ({
     body: {
         fontSize: 14,
         color: theme.palette.common.white,
+
     },
 }))(TableCell);
 
@@ -31,6 +32,7 @@ const useStyles = makeStyles({
         minWidth: 650,
         backgroundColor: 'darkgray',
         color:'#ffffff',
+
     },
 });
 
@@ -68,7 +70,7 @@ export default function ManageTable(){
             <Form/>
             <br/>
                 <TableContainer  component={Paper} >
-                    <Table className={classes.table} aria-label="simple table">
+                    <Table className={classes.table} aria-label="simple table" >
                         <TableHead>
                             <TableRow>
                                 <StyledTableCell>ID</StyledTableCell>
@@ -82,7 +84,7 @@ export default function ManageTable(){
                                 <StyledTableCell>Login Profile</StyledTableCell>
                             </TableRow>
                         </TableHead>
-                        <TableBody>
+                        <TableBody >
                             {
                                 riderList.map(riderList=>(
                                     <TableRow key={riderList._id}>
