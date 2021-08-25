@@ -5,7 +5,10 @@ import { UilPlus } from '@iconscout/react-unicons';
 import { UilMinus } from '@iconscout/react-unicons';
 import { UilTimes } from '@iconscout/react-unicons';
 import axios from "axios";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
+AOS.init();
 
 
 export default function ItemCard(props) {
@@ -33,7 +36,7 @@ export default function ItemCard(props) {
 
     return (
         <div>
-            <div className="item-card">
+            <div className="item-card" data-aos="zoom-in" data-aos-duration="800">
                 <div className="row">
                     <div className="col-lg-4">
                         <div className="red-square" onClick={deleteProduct}><UilTimes /></div>

@@ -19,43 +19,17 @@ const ShoppingProducts =() =>{
         const dispatch =useDispatch();
         useEffect(()=>{
 
-            const getusertype = async () => {
-                const access_token = localStorage.getItem('token')
-                let config = {
-                    headers: {
-                        'Authorization': 'Bearer ' + access_token
-                    }
-                }
-                axios.get('http://localhost:8070/user/post', config).then((response) => {
-                    if (response.data.message) {
-                        alert(response.data.message)
-                    } else {
-                        setUserType(response.data.user.usertype)
-                    }
-                })
-                    .catch()
-            };
-            getusertype();
-            
-            dispatch(getProduct());  
-            
+            dispatch(getProduct());
+
 
         },[currentId,dispatch]);
-
-
-    const [userType, setUserType] = useState('');
 
 
     return (
         
         <div>
-            <NavBar getUserType={userType} />
-
 
             <Container maxwidth ='lg' style={{zIndex:"-99"}}>
-           
-                <ProductNavigation style={{zIndex:"-99"}} />
-
 
 
                 <ProductNavigation />

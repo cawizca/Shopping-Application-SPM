@@ -6,7 +6,6 @@ import NavBar from "../HomePage/NavBar/NavBar"
 function RegistrationPagecomponent(){
 
     return(<div>
-        <NavBar/>
         <MiddleSection/>
     </div>);
 }

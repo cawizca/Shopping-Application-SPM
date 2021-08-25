@@ -2,7 +2,6 @@ import ItemCard from "./ItemListSub/ItemCard";
 import Button from '@material-ui/core/Button';
 import {useEffect, useState} from "react";
 import axios from "axios";
-
 const buttonStyle = {
     color: "#fff",
     backgroundColor: "#FA334E",
@@ -45,10 +44,11 @@ export default function ItemList(){
                     <div className="item-list">
                         {products.map((product)=>{
                             return(
-                                <ItemCard
-                                    id = {product._id}
-                                    name = {product.name}
+                                    <ItemCard
+                                        id = {product._id}
+                                        name = {product.name}
                                     />
+
                             );
                         })}
                     </div>

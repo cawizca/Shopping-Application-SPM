@@ -7,29 +7,28 @@ import Button from "@material-ui/core/Button";
 import TextField from '@material-ui/core/TextField';
 import {toast} from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import {Typography} from "@material-ui/core";
 
 const buttonStyle = {
-    backgroundColor: "#f7312a",
+    backgroundColor: "#FA334E",
     color: "#fafafa",
     fontWeight: 700,
-    fontSize: "18px",
+    width: "100px",
+    height: "40px",
+    textTransform: "capitalize",
     fontFamily: 'Montserrat',
-    height: "50px",
-    width: "500px",
-    borderRadius: "8px",
+    borderRadius: "5px",
     zIndex: "99",
     marginTop: "5%"
 }
 
 const buttonSignUp = {
-    color: "#5E4FA2",
+    color: "#fafafa",
     fontWeight: 700,
     fontSize: "18px",
     fontFamily: 'Montserrat',
-    height: "50px",
-    width: "500px",
     borderRadius: "8px",
-    border: "3px solid #5E4FA2",
+    border: "3px solid #FA334E",
 }
 
 const inputBoxStyle = {
@@ -44,17 +43,24 @@ const hrStyle = {
     opacity: "23%"
 }
 
+const imgStyle = {
+    margin: "8% 25% 5%",
+    width: "50%",
+    height: "auto"
+}
+
 const h1Style = {
-    color: "#5E4FA2",
+    color: "#f7312a",
     fontSize: "45px",
     fontWeight: "600",
     fontFamily: "Montserrat"
 }
 
-const pStyle = {
-    color: "#5E4FA2",
-    fontSize: "25px",
-    fontWeight: "400"
+const loginPathImg = {
+    position: "absolute",
+    width: "14%",
+    height: "auto",
+    fontFamily: "Montserrat sans-serif"
 }
 
 toast.configure()
@@ -111,7 +117,73 @@ function MiddleSection() {
 
     return (
         <div>
-            <Container fluid>
+
+            <div className="row">
+                <div className="col-lg-6 reg-background">
+
+                </div>
+                <div className="col-lg-6">
+
+                    <div style={{display:"flex"}}>
+                        <div style={{flex:"1"}}></div>
+                        <div style={{flex:"2"}}>
+                            <form style={{marginTop:"10%"}} className="input-form">
+                                <p className="formPStyle" style={{fontSize:"45px"}} >
+                                    Create your Account
+                                    <hr width="300px" style={{color:"#FA334E", height:"5px", opacity:"1"}}/>
+                                </p>
+                                <div className="form-group">
+                                    <Typography className="form-labels">Username</Typography>
+                                    <TextField variant="outlined" fullWidth size="small" style={inputBoxStyle} type="text" className="form-control" id="username"
+                                               onChange={(event) => {
+                                                   setName(event.target.value)
+                                               }} />
+                                </div>
+                                <div className="form-group" style={{marginTop:"5%"}}>
+                                    <Typography className="form-labels">Email</Typography>
+                                    <TextField variant="outlined" fullWidth size="small" style={inputBoxStyle} type="text" className="form-control" id="age"
+                                               onChange={(event) => {
+                                                   setEmail(event.target.value)
+                                               }} />
+                                </div>
+                                <div className="form-group" style={{marginTop:"5%"}}>
+                                    <Typography className="form-labels">Password</Typography>
+                                    <TextField variant="outlined" fullWidth size="small" style={inputBoxStyle} type="text" className="form-control" id="age"
+                                               onChange={(event) => {
+                                                   setPassword(event.target.value)
+                                               }} />
+                                </div>
+                                <div className="form-group" style={{marginTop:"5%"}}>
+                                    <Typography className="form-labels">Confirm Password</Typography>
+                                    <TextField variant="outlined" fullWidth size="small" style={inputBoxStyle} type="text" className="form-control" id="age"
+                                               onChange={(event) => {
+                                                   setConPassword(event.target.value)
+                                               }} />
+                                </div>
+
+                                <div className="form-group" style={{textAlign:"left", marginTop:"5%"}}>
+                                    <input type="checkbox" value="true" id="flexCheckDefault" onChange={(event) => {
+                                        setCheck(event.target.value)
+                                    }} />
+                                    <label style={{ marginLeft: "2%" , color: "white" , marginTop: "3%"} }>
+                                        I agreed terms and conditions.
+                                    </label>
+                                    <br />
+                                </div>
+
+                                <div style={{textAlign:"right", marginTop:"5%"}}>
+                                    <Button  style={buttonStyle} type="submit" onClick={register}>Sign In</Button>
+                                </div>
+                                <br />
+                            </form>
+                        </div>
+                        <div style={{flex:"1"}}></div>
+                    </div>
+                </div>
+            </div>
+
+
+            {/*<Container fluid>
                 <Row>
                     <Col lg={5} sm={12} style={{ backgroundColor: "#ECE6F2", paddingTop: "5%" }}>
                         
@@ -169,7 +241,7 @@ function MiddleSection() {
                     </Col>
                 </Row>
             </Container>
-
+*/}
         </div>
 
     )

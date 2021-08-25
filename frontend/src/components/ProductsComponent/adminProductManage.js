@@ -25,11 +25,10 @@ const ManageProducts =() =>{
 
     return (
 
-        <div style={{marginLeft:'240px'}}>
+        <div>
             <NavBar />
        <AdminNavbar /> 
-       <div style={{marginTop:'13px'}}>
-            <Container maxwidth ='lg' >
+            <Container maxwidth ='lg'>
                 
 
                 <AppBar className ={classes.appBar} position ="static" color ='inherit'>
@@ -44,7 +43,7 @@ const ManageProducts =() =>{
                         <div className='row'> 
                             <div className = 'col-lg-6' style={{textAlign:'left'}} >
 
-                            <Button style={{color:'green',background:'white',marginRight:"-10%",width:'fit-content'}} href='/insufficient'>
+                            <Button style={{color:'green',background:'white',marginRight:"-10%",width:'fit-content'}}>
                                 Insufficient products
 
                             </Button>
@@ -52,7 +51,7 @@ const ManageProducts =() =>{
                             </div>
 
                     <div  className = 'col-lg-6' style={{textAlign:'right'}}>
-                        <TextField   style={{color:'white',background:'white',width:'350px'}}
+                        <TextField   style={{color:'white',background:'white',width:'300px'}}
                     id="outlined-basic"
                     label="Search"
                     variant="outlined"
@@ -72,7 +71,7 @@ const ManageProducts =() =>{
                                 <EventPosts setCurrentId ={setCurrentId}   />     
                             </Grid >
 
-                                <Grid item xs ={12} sm ={4}    >
+                                <Grid item xs ={12} sm ={4}   style={{marginRight:'-28%'}} >
                                     <EventForm  currentId={currentId}  />
                                 </Grid>
 
@@ -83,7 +82,6 @@ const ManageProducts =() =>{
 
 
             </Container>
-            </div>
 
            </div>
     );

@@ -80,7 +80,7 @@ export default function WishlistForm(){
                 <TextField id="standard-basic" value={wishlist.wishlistDescription} name="wishlistDescription" onChange={addToWishlist} placeholder="Description" color="secondary" fullWidth/>
             </div>
             <div className="wishlist-text" style={{display:"flex"}}>
-                <div style={{flex:"7"}}>
+                <div style={{flex:"15"}}>
 
                     <InputLabel id="demo-simple-select-label" style={{textAlign:"left"}}>Category</InputLabel>
                         <Select
@@ -105,7 +105,7 @@ export default function WishlistForm(){
                 </div>
 
                 <div style={{flex:"2"}}>
-                    <Button variant="contained" style={{backgroundColor:"#FA334E", color:"#fff", width:"5px !important"}} onClick={getCategory}><UilSearch size="20"/></Button>
+                    <div style={{backgroundColor:"#FA334E", color:"#fff", width:"45px", height:"45px", borderRadius:"9px", cursor:"pointer" }} onClick={getCategory}><UilSearch size="28" style={{position:"relative", top:"20%", right:"3%"}} /></div>
                 </div>
 
             </div>
