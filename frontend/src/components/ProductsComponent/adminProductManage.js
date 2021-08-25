@@ -25,8 +25,8 @@ const ManageProducts =() =>{
 
     return (
 
-        <div>
-            <NavBar />
+        <div style={{marginLeft:'240px'}}>
+           
        <AdminNavbar /> 
             <Container maxwidth ='lg'>
                 

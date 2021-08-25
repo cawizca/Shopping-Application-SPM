@@ -49,7 +49,7 @@ const UnRegisterShoppingProducts =() =>{
     return (
         
         <div>
-            <NavBar getUserType={userType} />
+            
 
             
 
