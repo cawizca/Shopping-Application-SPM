@@ -15,9 +15,6 @@ import {
 import HomeIcon from "@material-ui/icons/Home";
 import InfoIcon from '@material-ui/icons/Info';
 import CustomerIcon from '@material-ui/icons/Group';
-import Rider from "./Rider/Rider";
-import NavBar from "../HomePage/NavBar/NavBar";
-import ManageOrder from "./Rider/ManageOrder";
 import { useHistory } from "react-router";
 
 const useStyles = makeStyles((theme) => ({
