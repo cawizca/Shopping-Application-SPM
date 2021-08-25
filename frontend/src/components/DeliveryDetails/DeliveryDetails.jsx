@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import DeliveryDetailsForm from './DeliveryDetailsForm';
-import NavBar from "../../components/HomePage/NavBar/NavBar"
-
+import CartBackground from "../../images/cartBackground.png";
 
 function DeliveryDetails(){
 
-    return(<div>
-        <NavBar/>
+    return(
+        <div>
+        <div style={{display:"flex", alignItems:"center", justifyContent:"center"}}>
         <DeliveryDetailsForm/>
+        </div>
+        <img src={CartBackground} className="cart-background"/>
     </div>);
 }
 

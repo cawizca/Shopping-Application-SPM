@@ -35,7 +35,7 @@ export default function DeliveryDetailsForm(){
         <div style={{display:"flex"}}>
             <div style={{justifyContent:"center" , alignItems:"center"}}>
         <div className="delivery-form">
-            <h4>Add Delivery Details</h4>
+            <h4 style={{color:"white", fontSize:"40px"}}>Delivery Details</h4>
             <div className="delivery-text">
                 <TextField placeholder="Name"  name="wishlistName"  color="secondary" fullWidth/>
             </div>

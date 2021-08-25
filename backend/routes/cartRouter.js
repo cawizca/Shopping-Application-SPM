@@ -7,6 +7,7 @@ router.route("/").post((req,res)=>{
    const price = req.body.price;
    const category = req.body.category;
    const status = req.body.status;
+   const image = req.body.image;
    const measuringUnit = req.body.measuringUnit;
    const availableQuantity = req.body.availableQuantity;
    const minimumQuantity = req.body.minimumQuantity;
@@ -15,6 +16,7 @@ router.route("/").post((req,res)=>{
       productID,
       name,
       price,
+      image,
       category,
       status,
       measuringUnit,

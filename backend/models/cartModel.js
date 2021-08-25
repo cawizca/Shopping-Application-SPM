@@ -20,6 +20,9 @@ const CartSchema = new Schema({
     status : {
         type : String
     },
+    image : {
+        type : String
+    },
     measuringUnit : {
         type : String
     },

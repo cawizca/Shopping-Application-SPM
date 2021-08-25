@@ -47,6 +47,9 @@ export default function ItemList(){
                                     <ItemCard
                                         id = {product._id}
                                         name = {product.name}
+                                        category = {product.category}
+                                        price = {product.price}
+                                        image = {product.image}
                                     />
 
                             );
