@@ -35,26 +35,6 @@ function RiderNavigation(){
 
     const [userType, setUserType] = useState('');
 
-    useEffect(()=>{
-        const getusertype = async () => {
-            const access_token = localStorage.getItem('token')
-            let config = {
-                headers: {
-                    'Authorization': 'Bearer ' + access_token
-                }
-            }
-            axios.get('http://localhost:8070/user/post', config).then((response) => {
-                if (response.data.message) {
-                    alert(response.data.message)
-                } else {
-                    setUserType(response.data.user.usertype)
-                }
-            })
-                .catch()
-        };
-        getusertype();
-    });
-
     const navigateOrdersRequests=()=>{
         history.push("/requests")
     }
@@ -63,13 +43,10 @@ function RiderNavigation(){
         history.push("/rider-items")
     }
 
-
-
-
     return (
 
         <Router>
-            <NavBar getUserType={userType}/>
+
             <div style={{ display: 'flex' }}>
                 <Drawer
                     style={{ width: '240px' }}

@@ -5,17 +5,20 @@ import axios from "axios"
 import { useHistory } from "react-router-dom";
 import TextField from '@material-ui/core/TextField';
 import { toast } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
+import 'react-toastify/dist/ReactToastify.css';
+import loginBackground from '../../images/LoginBackground.jpg';
+import {Typography} from "@material-ui/core";
+import {Label} from "@material-ui/icons";
 
 const buttonStyle = {
-    backgroundColor: "#f7312a",
+    backgroundColor: "#FA334E",
     color: "#fafafa",
     fontWeight: 700,
-    fontSize: "18px",
+    width: "100px",
+    height: "40px",
+    textTransform: "capitalize",
     fontFamily: 'Montserrat',
-    height: "50px",
-    width: "500px",
-    borderRadius: "8px",
+    borderRadius: "5px",
     zIndex: "99",
     marginTop: "5%"
 }
@@ -25,10 +28,8 @@ const buttonSignUp = {
     fontWeight: 700,
     fontSize: "18px",
     fontFamily: 'Montserrat',
-    height: "50px",
-    width: "500px",
     borderRadius: "8px",
-    border: "3px solid #f7312a",
+    border: "3px solid #FA334E",
 }
 
 const inputBoxStyle = {
@@ -54,12 +55,6 @@ const h1Style = {
     fontSize: "45px",
     fontWeight: "600",
     fontFamily: "Montserrat"
-}
-
-const pStyle = {
-    color: "#5E4FA2",
-    fontSize: "25px",
-    fontWeight: "400"
 }
 
 const loginPathImg = {
@@ -94,9 +89,10 @@ function MiddleSection() {
                 toast.success('Login Success!', { position: toast.POSITION.TOP_CENTER, autoClose: 1000 })
                 localStorage.setItem("token", response.data.token)
                 if (response.data.usertype == "Seller") {
-                    history.push("/product")
+                    history.push("/product");
+                    window.location.reload();
                 } else {
-                    history.push("/")
+                    window.location.assign("/");
                 }
             }
         }).catch((err) => {
@@ -106,7 +102,55 @@ function MiddleSection() {
 
     return (
         <div>
-            <Container fluid>
+
+            <div className="row ">
+                <div className="col-lg-6 preview-image">
+
+                </div>
+                <div className="col-lg-6">
+
+                    <div style={{display:"flex", margin:"5% 0 5%"}}>
+                        <div style={{flex:"1"}}></div>
+                        <div style={{flex:"2"}}>
+
+                    <form style={{marginTop:"15%"}} className="input-form">
+                        <p className="formPStyle" >
+                            Welcome back
+                            <hr width="200px" style={{color:"#FA334E", height:"5px", opacity:"1"}}/>
+
+                        </p>
+                        <div className="form-group">
+                            <Typography className="form-labels">Email</Typography>
+                            <TextField variant="outlined" fullWidth size="small" style={inputBoxStyle} type="text"  id="age" className="form-control" placeholder="Insert your email address"
+                                       onChange={(event) => {
+                                           setEmail(event.target.value)
+                                       }} />
+                        </div>
+                        <div className="form-group" style={{marginTop:"5%"}}>
+                            <Typography className="form-labels">Password</Typography>
+                            <TextField variant="outlined" fullWidth size="small" style={inputBoxStyle} type="password" className="form-control" id="age" placeholder="Insert your password"
+                                       onChange={(event) => {
+                                           setPassword(event.target.value)
+                                       }} />
+                        </div>
+
+                        <div style={{textAlign:"right", marginTop:"5%"}}>
+                            <Button onClick={login} style={buttonStyle} type="submit">Sign In</Button>
+                        </div>
+                        <div style={{marginTop:"15%"}}>
+                            <p style={{color:"#fff", fontWeight:"300"}}>Don't you have an account? <a style={{textDecoration:"none", color:"#fff", fontWeight:"600", marginLeft:"2%"}} href="/signup">Sign Up</a></p>
+                        </div>
+                    </form>
+
+
+
+                        </div>
+                        <div style={{flex:"1"}}></div>
+                    </div>
+                </div>
+            </div>
+
+            {/*<Container fluid>
 
                 <Row>
                     <Col lg={6} sm={12} style={{ backgroundColor: "#ECE6F2", paddingTop: "5%" }}>
@@ -154,7 +198,7 @@ function MiddleSection() {
                     </Col>
 
                 </Row>
-            </Container>
+            </Container>*/}
         </div>);
 }
 

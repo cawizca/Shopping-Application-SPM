@@ -74,7 +74,11 @@ export default function NavUser() {
                         My Orders
                     </div>
                 </Button>
-                <Button component={Link} to="/cart" className={classes.typography} style={{color:"white", textTransform:"capitalize", display: "flex"}} fullWidth>
+                <Button onClick={()=>{
+                    localStorage.removeItem('token');
+                    window.location.assign("/");
+
+                }} className={classes.typography} style={{color:"white", textTransform:"capitalize", display: "flex"}} fullWidth>
                     <div style={{flex: "1"}}><UilSignout /></div>
                     <div style={{flex: "2"}}>
                         Logout
