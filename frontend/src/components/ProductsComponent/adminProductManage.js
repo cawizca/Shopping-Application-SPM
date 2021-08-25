@@ -72,7 +72,7 @@ const ManageProducts =() =>{
                                 <EventPosts setCurrentId ={setCurrentId}   />     
                             </Grid >
 
-                                <Grid item xs ={12} sm ={4}    >
+                                <Grid item xs ={12} sm ={4} >
                                     <EventForm  currentId={currentId}  />
                                 </Grid>
 
