@@ -33,32 +33,41 @@ function NavBar(props) {
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="mx-auto">
+                        {(props.getUserType === "Customer" || props.getUserType === "admin" || props.getUserType === "") && (
                         <Nav.Link href="/" style={linkStyle} className="mx-3">HOME</Nav.Link>
+                        )}
+                        {(props.getUserType === "") && (
                         <Nav.Link href="/unregisterAll" style={linkStyle} className="mx-3">SHOP</Nav.Link>
+                        )}
+                        {(props.getUserType === "admin") && (
+                            <Nav.Link href="/productManage" style={linkStyle} className="mx-3">MANAGE</Nav.Link>
+                        )}
+                        {(props.getUserType === "Customer") && (
+                            <Nav.Link href="/ShoppingAll" style={linkStyle} className="mx-3"  >SHOP</Nav.Link>
+                        )}
+                        {(props.getUserType === "Customer"  || props.getUserType === "admin" || props.getUserType === "") && (
                         <Nav.Link href="/wishlist" style={linkStyle} className="mx-3">ABOUT</Nav.Link>
+                        )}
+                        {(props.getUserType === "Customer"  || props.getUserType === "admin" || props.getUserType === "") && (
                         <Nav.Link href="/admin" style={linkStyle} className="mx-3">CONTACT</Nav.Link>
-                        <Nav.Link href="/productManage" style={linkStyle} className="mx-3">Admin product manage</Nav.Link>
-                        <Nav.Link href="/requests" style={linkStyle} className="mx-3"  hidden={props.getUserType!='rider'}>Rider Login</Nav.Link>
-                        <Nav.Link href="/ShoppingAll" style={linkStyle} className="mx-3"  >register user products</Nav.Link>
+                        )}
 
-
-                        
 
                     </Nav>
                     <Nav>
-                        {(props.getUserType === "Customer" || props.getUserType === "Admin" || props.getUserType === "rider"  ) ? (
+                        {(props.getUserType === "Customer" || props.getUserType === "rider" || props.getUserType === "admin"  ) ? (
                             <Form>
                                 <Nav className="mx-auto">
                                     <Nav.Link style={linkStyle} className="mx-2" >
-                                        <NavBarCart />
+                                        <NavBarCart userType={props.getUserType} userId={props.userId}/>
                                     </Nav.Link>
 
                                 </Nav>
                             </Form>
                         ) : (
                             <Form>
-                                <Button className="mx-3" variant="contained" style={buttonStyle} href="/signin">SIGN IN</Button>
-                                <Button className="mx-3" variant="contained" style={buttonStyle} href="/signup">SIGN UP</Button>
+                                <Button className="mx-3" variant="contained" style={buttonStyle} href="/signin">Sign In</Button>
+                                <Button className="mx-3" variant="contained" style={buttonStyle} href="/signup">Sign Up</Button>
                             </Form>
                         )}
                     </Nav>

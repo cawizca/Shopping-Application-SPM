@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function NavUser() {
+export default function NavUser(props) {
 
     const classes = useStyles();
     const [anchorEl, setAnchorEl] = useState(null);
@@ -62,18 +62,23 @@ export default function NavUser() {
                     <div style={{flex: "2"}}>
                         Profile
                     </div> </Button>
+
+                {(props.usertype === "Customer" || props.usertype === "admin") && (
                 <Button component={Link} to="/wishlist" className={classes.typography} style={{color:"white", textTransform:"capitalize", display: "flex"}} fullWidth>
                     <div style={{flex: "1"}}><UilFavorite /></div>
                     <div style={{flex: "2"}}>
                         Wishlist
                     </div>
                 </Button>
+                )}
+                {(props.usertype === "Customer" || props.usertype === "admin") && (
                 <Button component={Link} to="/myorder" className={classes.typography} style={{color:"white", textTransform:"capitalize", display: "flex"}} fullWidth>
                     <div style={{flex: "1"}}><UilFavorite /></div>
                     <div style={{flex: "2"}}>
                         My Orders
                     </div>
                 </Button>
+                )}
                 <Button onClick={()=>{
                     localStorage.removeItem('token');
                     window.location.assign("/");

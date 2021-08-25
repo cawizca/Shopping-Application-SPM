@@ -18,6 +18,7 @@ import {faBell} from "@fortawesome/free-regular-svg-icons";
 import NavBarNotifications from "../Notifications/NavBarNotifications";
 import NavUser from "../NavUser";
 import NavCartCard from "./NavCartCard";
+import NotificationCount from "../../../Admin/OrderManagement/OrderTable/NotificationCount";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -29,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
 
 FontAwesomeIcon.propTypes = {icon: PropTypes.arrayOf(PropTypes.string)};
 
-function NavBarCart() {
+function NavBarCart(props) {
 
     const classes = useStyles();
     const [anchorEl, setAnchorEl] = useState(null);
@@ -41,6 +42,7 @@ function NavBarCart() {
             setProducts(res.data);
             setItemCount(res.data.length);
         });
+        console.log(props.userId)
     })
 
 
@@ -64,19 +66,30 @@ function NavBarCart() {
                     <UilSearch />
                 </div>
 
+                {(props.userType === "Customer" || props.userType === "admin") && (
                 <div className="mx-3">
                     <NavBarNotifications />
                 </div>
+                )}
+
+                {(props.userType === "rider") && (
+                    <div className="mx-3">
+                        <NotificationCount usertype="rider" />
+                    </div>
+                )}
+
 
                 <div className="mx-3">
-                    <NavUser />
+                    <NavUser usertype ={props.userType}/>
                 </div>
 
+                {(props.userType === "Customer" || props.userType === "admin") && (
                 <div className="mx-3">
                     <Badge badgeContent={itemCount} color="secondary" variant="contained" onClick={handleClick} >
                         <UilShoppingCartAlt />
                     </Badge>
                 </div>
+                )}
 
             </div>
 

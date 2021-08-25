@@ -34,6 +34,7 @@ import axios from "axios";
 
 function App() {
     const [userType, setUserType] = useState('');
+    const [id, setId] = useState([]);
 
     useEffect(()=>{
         const getusertype = async () => {
@@ -47,19 +48,21 @@ function App() {
                 if (response.data.message) {
                     alert(response.data.message)
                 } else {
-                    setUserType(response.data.user.usertype)
+                    setUserType(response.data.user.usertype);
+                    setId(response.data.user.riders)
                 }
             })
                 .catch()
         };
         getusertype();
+
     });
 
   return (
     <div>
 
       <Router>
-          <NavBar getUserType={userType}/>
+          <NavBar getUserType={userType} userId={{id}}/>
 
           <Route path="/" exact component={Homepage}/>
           <Route path="/cart" exact component={CartComponent}/>

@@ -55,6 +55,9 @@ function RiderNavigation(){
                     open={true}
                     classes={{ paper: classes.drawerPaper }}
                 >
+                    <div style={{textAlign:"center", marginBottom:"5%"}}>
+                        <Typography style={{color:"white", fontSize:"30px"}}> Rider</Typography>
+                    </div>
                     <List>
                         <Link to="/requests" className={classes.link}>
                             <ListItem button onClick={()=>navigateOrdersRequests()}>
