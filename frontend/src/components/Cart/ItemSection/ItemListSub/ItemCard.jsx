@@ -40,13 +40,13 @@ export default function ItemCard(props) {
                 <div className="row">
                     <div className="col-lg-4">
                         <div className="red-square" onClick={deleteProduct}><UilTimes /></div>
-                        <img src={tomato} className="cart-image" />
+                        <img src={props.image} className="cart-image" />
                     </div>
                     <div className="col-lg-6 cart-details">
                         <div style={{paddingLeft:"28%"}}>
                             <span className="cart-title">{props.name}</span> <br />
-                            <span className="cart-desc">Tomato</span> <br />
-                            <div className="price">Rs. {100 * count}.00</div>
+                            <span className="cart-desc">{props.category}</span> <br />
+                            <div className="price">Rs. {props.price * count}.00</div>
                         </div>
                     </div>
                     <div className="col-lg-2">

@@ -23,7 +23,7 @@ const loginStyle = {
 
 const loginButton = {
     margin: '5% 2.5% 5%',
-    backgroundColor: '#5E4FA2',
+    backgroundColor: '#FA334E',
     width: "100px",
     fontFamily: 'Poppins'
 }

@@ -83,6 +83,7 @@ const ProductCard = ({post,setCurrentId})=>{
                          price:post.price,
                          category:post.category,
                         status:post.status,
+                        image: post.selectedfile,
                         measuringUnit:post.mesuringUnit,
                         availableQuantity:post.availableQty,
                         minimumQuantity:post.minimumQty

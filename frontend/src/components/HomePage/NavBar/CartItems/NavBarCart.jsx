@@ -147,6 +147,9 @@ function NavBarCart(props) {
                             <div className="notification-list">
                                 <NavCartCard
                                     name = {product.name}
+                                    category = {product.category}
+                                    price = {product.price}
+                                    image = {product.image}
                                 />
                             </div>
                         )

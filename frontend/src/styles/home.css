@@ -139,6 +139,10 @@
     margin-left: 5%;
 }
 
+.notification-card-icon img{
+    border-radius: 4px;
+}
+
 .notification-card-text{
     margin-top: 5%;
     flex: 3;
