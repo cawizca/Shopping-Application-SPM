@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from  'react';
 import Styles from './styles';
-import {TextField,Button,Typography,Paper} from '@material-ui/core';
+import {TextField,Button,Typography,Paper, FormHelperText} from '@material-ui/core';
 import FileBase from 'react-file-base64';
 import {useDispatch,useSelector} from 'react-redux';
 import {postProduct,patchProduct} from '../../../../actions/productAction'
@@ -9,7 +9,7 @@ const ProductForm = ({currentId})=>{
     const classes = Styles();
     const dispatch = useDispatch();
 
-
+    const [helperText, setHelperText] = useState('');
     const [productData,setProductdata] = useState({
 
         product:"",
@@ -32,12 +32,39 @@ useEffect(()=>{
 },[product])
 
 const handleSubmit = (e) =>{
-    if(currentId){
-        dispatch(patchProduct(currentId,productData))
+
+    e.preventDefault();
+
+    if(productData.product=="" && productData.price == "" && productData.category == "" && productData.availableQty == "" && productData.minimumQty == "" && productData.mesuringUnit=="" ){
+        setHelperText('Fill all the text Fields')
+    }
+
+   else if(productData.product == ""){
+    setHelperText('Enter Product Name')
+
+   }
+
+   else if(productData.price == ""){
+    setHelperText('Enter Product price')
+
+   }
+
+   else if(productData.availableQty == ""){
+    setHelperText('Enter Product available Quantity')
+
+   }
+
+   else if(productData.minimumQty == ""){
+    setHelperText('Enter Product minimum Quantity')
+
+   }
+
+    else if(currentId){
+        dispatch(patchProduct(currentId,productData),window.location.reload(false))
         clear();
     }
     else {
-        dispatch(postProduct(productData))
+        dispatch(postProduct(productData),window.location.reload(false))
         clear();
     }
     
@@ -60,7 +87,9 @@ const clear=()=>{
 }
 
 return(
+      
     <Paper className={classes.paper}>
+        
     <form autoComplete="off" noValidate className={`${classes.root} ${classes.form}`} onSubmit={handleSubmit}>
     <Typography variant="h6">{currentId ? 'Edit' :'Add'} a Product </Typography>
         <TextField name ='product' 
@@ -78,7 +107,11 @@ return(
         type='number'
         fullWidth
         value={productData.price}
-        onChange={(e) =>setProductdata({...productData, price : e.target.value })}
+        onChange={(e) =>{
+            setHelperText(' ');
+            setProductdata({...productData, price : e.target.value })
+    
+    }}
         />
 
         <TextField name ='availableQty' 
@@ -87,7 +120,9 @@ return(
         type = "number"
         fullWidth
         value={productData.availableQty}
-        onChange={(e) =>setProductdata({...productData, availableQty : e.target.value})}
+        onChange={(e) =>{
+            setHelperText(' ');
+            setProductdata({...productData, availableQty : e.target.value})}}
         />
 
         
@@ -97,7 +132,11 @@ return(
         type="number"
         fullWidth
         value={productData.minimumQty}
-        onChange={(e) =>setProductdata({...productData, minimumQty : e.target.value })}
+        onChange={(e) =>{
+            setHelperText(' ');
+            setProductdata({...productData, minimumQty : e.target.value })}
+        
+    }
         /> }
 
 
@@ -109,7 +148,11 @@ variant="outlined"
 label="Category"
 fullWidth
 value={productData.category}
-onChange={(e) =>setProductdata({...productData, category : e.target.value })}
+onChange={(e) =>{
+    setHelperText(' ');
+    setProductdata({...productData, category : e.target.value })
+
+}}
 
 >
  <option selected>Select from categories</option>
@@ -153,6 +196,10 @@ onChange={(e) =>setProductdata({...productData, mesuringUnit : e.target.value })
             
             />
 
+<div>
+<FormHelperText style={{color: "red"}}>{helperText}</FormHelperText>
+</div>
+
             <Button className={classes.buttonSubmit} variant="contained" type="submit" color="primary" size ="large" fullWidth>
               SUBMIT  </Button>
 
@@ -160,8 +207,9 @@ onChange={(e) =>setProductdata({...productData, mesuringUnit : e.target.value })
               Clear  </Button>
         
         </div>
+        
     </form>
-    
+   
 </Paper>
 
 
