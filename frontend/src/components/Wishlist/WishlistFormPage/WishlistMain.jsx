@@ -23,12 +23,12 @@ export default function WishlistMain(){
                     <WishlistForm />
                 </div>
                 <div className="col-lg-6 card-section" data-aos="fade-left" data-aos-duration="1000">
-                    <WishlistCard />
                     {list.map((item)=>{
                         return(
                             <WishlistCard
                                 id = {item._id}
                                 name = {item.wishlistName}
+                                despriction = {item.wishlistDescription}
                                 qty = {item.wishlistProducts.length}
                             />
                         )

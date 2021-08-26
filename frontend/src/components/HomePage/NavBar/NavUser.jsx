@@ -6,6 +6,7 @@ import {Link} from "react-router-dom";
 import Popover from "@material-ui/core/Popover";
 import { UilFavorite } from '@iconscout/react-unicons';
 import { UilSignout } from '@iconscout/react-unicons';
+import { UilShoppingBag } from '@iconscout/react-unicons'
 
 const useStyles = makeStyles((theme) => ({
     typography: {
@@ -73,7 +74,7 @@ export default function NavUser(props) {
                 )}
                 {(props.usertype === "Customer" || props.usertype === "admin") && (
                 <Button component={Link} to="/myorder" className={classes.typography} style={{color:"white", textTransform:"capitalize", display: "flex"}} fullWidth>
-                    <div style={{flex: "1"}}><UilFavorite /></div>
+                    <div style={{flex: "1"}}><UilShoppingBag /></div>
                     <div style={{flex: "2"}}>
                         My Orders
                     </div>
@@ -83,7 +84,7 @@ export default function NavUser(props) {
                     localStorage.removeItem('token');
                     window.location.assign("/");
 
-                }} className={classes.typography} style={{color:"white", textTransform:"capitalize", display: "flex"}} fullWidth>
+                }} className={classes.typography} style={{color:"white", textTransform:"capitalize", display: "flex", backgroundColor:"#FA334E"}} fullWidth>
                     <div style={{flex: "1"}}><UilSignout /></div>
                     <div style={{flex: "2"}}>
                         Logout

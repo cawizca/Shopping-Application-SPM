@@ -6,8 +6,8 @@ export default function WishlistCard(props){
 
     function deleteItem(){
 
-        axios.delete(`http://localhost:8070/wishlist/${props.id}`).then(()=>{
-            alert('Successfully deleted.');
+        axios.delete(`http://localhost:8070/wishlist/${props.id}`).then((product)=>{
+            console.log('Successfully deleted.');
             window.location.reload();
         }).catch((err)=>{
             console.log(err);
@@ -23,7 +23,7 @@ export default function WishlistCard(props){
             <div className="wishlist-card">
                 <div className="card-title" onClick={selectedCard}>
                     <h5>{props.name}</h5>
-                    <span>There are my favourite biscuits which I need to buy later </span>
+                    <span>{props.despriction} </span>
                     <div>Quantity - {props.qty} </div>
                 </div>
                 <div className="card-buttons">
