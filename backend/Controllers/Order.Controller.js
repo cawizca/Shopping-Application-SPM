@@ -106,7 +106,7 @@ const getCount2 = async (req, res) => {
     try {
         const id = req.params.id
 
-        const count = await OrderModel.count({
+        const count = await OrderModel.countDocuments({
 
             "request": "pending",
             "riders":id,

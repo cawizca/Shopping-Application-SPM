@@ -69,7 +69,7 @@ export default function OrderTable(){
     return(
         <div>
 
-            <NotificationCount usertype='admin'/>
+
             <div>
                 <br/>
                 <TableContainer  component={Paper} >

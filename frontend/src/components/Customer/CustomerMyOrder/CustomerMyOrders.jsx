@@ -8,7 +8,6 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import NavBar from "../../HomePage/NavBar/NavBar";
 
 
 const StyledTableCell = withStyles((theme) => ({
@@ -39,7 +38,7 @@ export default function CustomerMyOrders(){
 
     return(
         <div>
-            <NavBar/>
+
             <h4 style={{color:"#fff"}}>My Orders</h4>
             <br/>
                 <TableContainer  component={Paper} >
