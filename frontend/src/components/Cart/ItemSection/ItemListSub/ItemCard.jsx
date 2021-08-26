@@ -1,6 +1,4 @@
 import { useState } from "react";
-import { Button } from "@material-ui/core"
-import tomato from "../../../../images/tomato.png";
 import { UilPlus } from '@iconscout/react-unicons';
 import { UilMinus } from '@iconscout/react-unicons';
 import { UilTimes } from '@iconscout/react-unicons';
