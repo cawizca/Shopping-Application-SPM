@@ -1,7 +1,7 @@
 import React from "react";
 import AdminNavigation from "../AdminNavigation";
 import OrderTable from "./OrderTable/OrderTable";
-
+import RiderBackground from '../../../images/riderBackfround.png'
 export default function ManageOrders(){
     return(
         <div>
@@ -12,7 +12,7 @@ export default function ManageOrders(){
                 <OrderTable/>
 
             </div>
-
+            <img src={RiderBackground} className="cart-background-right"/>
         </div>
     )
 }

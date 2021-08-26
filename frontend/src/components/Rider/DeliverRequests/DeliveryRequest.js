@@ -2,6 +2,7 @@ import React from "react";
 import RequestTable from "./Table/RequestTable";
 import RiderNavigation from "../RiderNavigation";
 import '../../../styles/admin.css'
+import RiderBackground from "../../../images/riderBackfround.png";
 
 export default function DeliveryRequest(){
     return(
@@ -15,7 +16,7 @@ export default function DeliveryRequest(){
 
 
             </div>
-
+            <img src={RiderBackground} className="cart-background-right"/>
         </div>
     )
 }

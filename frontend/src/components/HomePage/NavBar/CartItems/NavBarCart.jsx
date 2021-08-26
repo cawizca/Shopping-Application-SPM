@@ -37,6 +37,7 @@ function NavBarCart(props) {
     const [products, setProducts] = useState([]);
     const [itemCount, setItemCount] = useState();
     const [idr, setId] = useState([]);
+
     useEffect(() => {
         axios.get('http://localhost:8070/cart/').then((res) => {
             setProducts(res.data);
@@ -67,7 +68,7 @@ function NavBarCart(props) {
             .catch()
 
 
-    })
+    }, [])
 
 
     const handleClick = (event) => {
