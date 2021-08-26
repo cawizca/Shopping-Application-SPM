@@ -2,6 +2,7 @@ import React from "react";
 import "../../../styles/rider.css";
 import ManageTable from "./Table/ManageTable";
 import AdminNavigation from "../AdminNavigation";
+import RiderBackground from '../../../images/riderBackfround.png'
 function Rider(){
 
     return (
@@ -13,7 +14,7 @@ function Rider(){
 
                 <ManageTable/>
             </div>
-
+            <img src={RiderBackground} className="cart-background-right"/>
         </div>
     )
 
