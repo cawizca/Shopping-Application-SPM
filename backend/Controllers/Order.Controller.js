@@ -3,6 +3,7 @@ const OrderModel = require('../models/OrderModel.js')
 
 const createOrder = async (req, res) => {
 
+    //find last order id
     await OrderModel.find().sort({_id: -1}).limit(1)
         .then((data) => {
             let value = '';

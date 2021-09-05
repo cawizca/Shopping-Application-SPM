@@ -46,7 +46,7 @@ export default function RequestTable() {
 
 
     const [riderList, setRiderList] = useState([]);
-    const [id, setId] = useState([]);
+    const [id, setId] = useState();
 
     useEffect(() => {
 
@@ -157,7 +157,7 @@ export default function RequestTable() {
                                                         accept(riderList._id)
                                                     }}
                                                     variant="contained" color="secondary"
-                                                    disabled={riderList.request == 'Accepted' }
+                                                    disabled={riderList.request == 'Accepted' ||riderList.request == 'Completed'}
                                                 >Accepted
                                                 </Button>
                                             </TableCell>
@@ -169,12 +169,23 @@ export default function RequestTable() {
                                                     }}
                                                     variant="contained"
                                                     color="primary"
-                                                    disabled={riderList.request == 'Accepted' || riderList.request == 'Declined'}
+                                                    disabled={riderList.request == 'Accepted' || riderList.request == 'Declined'||riderList.request == 'Completed'}
                                                 >Declined
                                                 </Button>
                                             </TableCell>
                                             <TableCell style={{backgroundColor:riderList.request=='pending'? '#d7c5c5': ''}}><ViewOrder/></TableCell>
-                                            <TableCell style={{backgroundColor:riderList.request=='pending'? '#d7c5c5': ''}}><ComplitionForm/></TableCell>
+                                            <TableCell style={{backgroundColor:riderList.request=='pending'? '#d7c5c5': ''}}>
+                                                <ComplitionForm
+
+                                                    orderId={riderList._id}
+                                                    riderId={id}
+                                                    state={riderList.request}
+                                                    order={riderList.orderId}
+
+
+                                                />
+
+                                            </TableCell>
 
 
                                         </TableRow>
