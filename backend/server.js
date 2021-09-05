@@ -46,6 +46,10 @@ app.use('/rider',RiderAPI())
 const OrderAPI = require('./API/Order.Api.js')
 app.use('/order',OrderAPI())
 
+const CompleteOrderAPI = require('./API/completeOrder.Api')
+app.use('/complete',CompleteOrderAPI())
+
+
 const WishlistItems = require("./routes/wishlistRouter");
 app.use('/wishlist',WishlistItems);
 

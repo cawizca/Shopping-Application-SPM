@@ -42,24 +42,46 @@ export default function MyDeleveredTable(){
     const classes = useStyles();
 
 
-    const [riderList,setRiderList] = useState([]);
+    const [completeList, setCompleteList] = useState([]);
+    const [id, setId] = useState();
 
-    useEffect(()=>{
+    useEffect(() => {
 
-        function getRiderList() {
-            axios.get("http://localhost:8070/rider/getAllRiders")
+
+        const access_token = localStorage.getItem('token')
+        console.log(access_token)
+        let config = {
+            headers: {
+                'Authorization': 'Bearer ' + access_token
+            }
+        }
+        axios.get('http://localhost:8070/user/post',
+            config)
+            .then((response) => {
+                if (response.data.message) {
+                    alert(response.data.message)
+                } else {
+
+                    getMyCompleteList(response.data.user.riders)
+                    setId(response.data.user.riders)
+
+                }
+
+            })
+            .catch()
+
+
+        function getMyCompleteList(userid) {
+            axios.get(`http://localhost:8070/complete//all-orders/${userid}`)
                 .then((response) => {
-                    setRiderList(response.data.data)
+                    setCompleteList(response.data)
                     console.log(response.data.data)
                 })
                 .catch((error) => {
                     alert(error)
                 })
-
         }
-
-        getRiderList()
-    },[])
+    }, [])
 
     return(
         <div>
@@ -70,7 +92,6 @@ export default function MyDeleveredTable(){
                             <TableRow>
                                 <StyledTableCell>Order ID</StyledTableCell>
                                 <StyledTableCell>Rider ID</StyledTableCell>
-                                <StyledTableCell>Location</StyledTableCell>
                                 <StyledTableCell>Delivery Date</StyledTableCell>
                                 <StyledTableCell>Time Released</StyledTableCell>
                                 <StyledTableCell>Time Received</StyledTableCell>
@@ -80,14 +101,13 @@ export default function MyDeleveredTable(){
                         </TableHead>
                         <TableBody>
                             {
-                                riderList.map(riderList=>(
-                                    <TableRow key={riderList._id}>
-                                        <TableCell>ORD012</TableCell>
+                                completeList.map(completeList=>(
+                                    <TableRow key={completeList._id}>
+                                        <TableCell>{completeList.orderId}</TableCell>
                                         <TableCell>RID001</TableCell>
-                                        <TableCell>11/5/C Malabe</TableCell>
-                                        <TableCell>15/08/2021</TableCell>
-                                        <TableCell>8.00AM</TableCell>
-                                        <TableCell>3.30PM</TableCell>
+                                        <TableCell>{completeList.DeliveryDate}</TableCell>
+                                        <TableCell>{completeList.TimeReleased}</TableCell>
+                                        <TableCell>{completeList.TimeReceived}</TableCell>
                                         <TableCell><ViewOrder/></TableCell>
 
 

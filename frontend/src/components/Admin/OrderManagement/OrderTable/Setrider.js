@@ -142,7 +142,7 @@ export default function Setrider(props){
 
     return(
         <div>
-            <Button disabled={props.state=='pending' || props.state=='Accepted'} variant="contained" color="secondary" onClick={handleClickOpen}>
+            <Button disabled={props.state=='pending' || props.state=='Accepted'|| props.state=='Completed'} variant="contained" color="secondary" onClick={handleClickOpen}>
                 SET
             </Button>
             <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}>

@@ -5,23 +5,15 @@ import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import MuiDialogTitle from '@material-ui/core/DialogTitle';
 import MuiDialogContent from '@material-ui/core/DialogContent';
-import MuiDialogActions from '@material-ui/core/DialogActions';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import Typography from '@material-ui/core/Typography';
-import FormControl from '@material-ui/core/FormControl';
 import TextField from '@material-ui/core/TextField';
 import {makeStyles} from '@material-ui/core/styles';
-import MenuItem from '@material-ui/core/MenuItem';
-import {Label} from "@material-ui/icons";
+
 import '../../../../styles/orderinfo.css'
-import TableContainer from "@material-ui/core/TableContainer";
-import Table from "@material-ui/core/Table";
-import TableHead from "@material-ui/core/TableHead";
-import TableRow from "@material-ui/core/TableRow";
-import TableBody from "@material-ui/core/TableBody";
 import TableCell from '@material-ui/core/TableCell';
-import Paper from '@material-ui/core/Paper';
+
 
 const StyledTableCell = withStyles((theme) => ({
     head: {
@@ -74,14 +66,8 @@ const DialogContent = withStyles((theme) => ({
     },
 }))(MuiDialogContent);
 
-const DialogActions = withStyles((theme) => ({
-    root: {
-        margin: 0,
-        padding: theme.spacing(1),
-    },
-}))(MuiDialogActions);
 
-export default function ComplitionForm() {
+export default function ComplitionForm(props) {
 
     const [open, setOpen] = React.useState(false);
 
@@ -92,56 +78,69 @@ export default function ComplitionForm() {
         setOpen(false);
     };
 
+    const [DeliveryDate, setDeliveryDate] = useState();
+    const [TimeRelease, setTimeRelease] = useState();
+    const [TimeReceived, setTimeReceived] = useState();
 
-    const useStyles = makeStyles((theme) => ({
-        root: {
-            display: 'flex',
-            flexWrap: 'wrap',
-        },
-        textField: {
-            marginLeft: theme.spacing(1),
-            marginRight: theme.spacing(1),
-            width: '25ch',
+    function changeRequest(id) {
+        const stateChanged = {
+            request: "Completed",
+        }
+        axios.put(`http://localhost:8070/order/update/${id}`, stateChanged)
+            .then((res) => {
+                alert("updated")
+                window.location.reload(true)
+            })
+            .catch(error => {
+                alert(error)
+            })
+    }
 
-        },
-    }));
 
-    const classes = useStyles();
+    function onSubmit(e){
+        e.preventDefault();
 
-    const types = [
-        {
-            value: 'Van',
-            label: 'Van',
-        },
-        {
-            value: 'Three Wheel',
-            label: 'Three Wheel',
-        },
-        {
-            value: 'Lorry',
-            label: 'Lorry',
+        const orderObject={
+            DeliveryDate : DeliveryDate,
+            TimeReleased :TimeRelease,
+            TimeReceived : TimeReceived,
+            orders:   props.orderId,
+            riders:props.riderId,
+            orderId:props.order
         }
 
+        axios.post("http://localhost:8070/complete/create/",orderObject)
+            .then((res) => {
+                alert("inserted")
+                changeRequest(props.orderId)
+            })
+            .catch(error => {
+                alert(error)
+            })
 
-    ];
+    }
+
+
 
 
     return (
-        <div >
-            <Button style={buttonStyle} onClick={handleClickOpen}>
-               Mark As Complete
+        <div>
+            <Button    variant="contained"
+                       color="primary" onClick={handleClickOpen}  disabled={props.state=="Completed" ||props.state=="pending" || props.state=="Declined"}>
+                Mark As Complete
             </Button>
-            <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open} className='completion-info'>
+            <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}
+                    className='completion-info'>
                 <DialogTitle id="customized-dialog-title" onClose={handleClose} className="form-background">
                     Order Info
                 </DialogTitle>
-                <form>
-                    <DialogContent dividers className="form-background" >
+                <form onSubmit={onSubmit}>
+                    <DialogContent dividers className="form-background">
 
                         <div className="input-set">
                             <div>
                                 <label>Order ID</label>
-                                <label style={{marginRight:'95px'}}> - ORD845545415</label>
+                                <label style={{marginRight: '95px'}}> - ORD845545415</label>
 
                             </div>
 
@@ -162,29 +161,37 @@ export default function ComplitionForm() {
 
                         </div>
 
-                        <div className="completion-form" style={{marginTop:'-60px'}}>
+                        <div className="completion-form" style={{marginTop: '-60px'}}>
 
 
                             <div className="completion-text">
                                 <label>Delivery date : </label>
-                                <TextField type ='date' placeholder="Name" color="secondary" fullWidth/>
+                                <TextField type='date' name="date" color="secondary" fullWidth
+                                           onChange={(event) => {
+                                               setDeliveryDate(event.target.value);
+                                           }}/>
                             </div>
                             <div className="completion-text">
                                 <label>Time Released: </label>
-                                <TextField type='time' id="standard-basic" placeholder="Description" color="secondary" fullWidth/>
+                                <TextField type='time' id="standard-basic" placeholder="Description" color="secondary"
+                                           fullWidth
+                                           onChange={(event) => {
+                                               setTimeRelease(event.target.value);
+                                           }}/>
                             </div>
                             <div className="completion-text">
                                 <label>Time Received : </label>
-                                <TextField type='time' placeholder="Category" color="secondary" fullWidth/>
+                                <TextField type='time' placeholder="Category" color="secondary" fullWidth
+                                           onChange={(event) => {
+                                               setTimeReceived(event.target.value);
+                                           }}
+                                />
                             </div>
 
                             <div className="completion-button">
-                                <Button className="contactButton">Send</Button>
+                                <Button type="submit" className="contactButton">Send</Button>
                             </div>
                         </div>
-
-
-
 
 
                     </DialogContent>
