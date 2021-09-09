@@ -5,7 +5,10 @@ import { UilSearch } from '@iconscout/react-unicons'
 import FormControl from "@material-ui/core/FormControl";
 import {InputLabel, MenuItem, Select} from "@material-ui/core";
 import {makeStyles} from "@material-ui/core/styles";
-import {useState} from "react";
+import {useEffect, useState} from "react";
+import axios from "axios";
+import PrintInvoice from "./PrintInvoice";
+import SearchIcon from "./SearchIcon";
 
 const useStyles = makeStyles((theme) => ({
     formControl: {
@@ -28,15 +31,40 @@ const buttonStyle = {
     textTransform: 'capitalize'
 }
 
-
 export default function PriceList() {
 
     const classes = useStyles();
-    const [age, setAge] = useState('');
+    const [price, setPrice] = useState(0);
+    const [total, setTotal]= useState(0);
+    const [discount, setDiscount] = useState({});
+    const [coupon, setCoupon] = useState('');
 
     const handleChange = (event) => {
-        setAge(event.target.value);
+        const price = Number(event.target.value);
+        setPrice(price);
     };
+
+    useEffect(()=>{
+        axios.get('http://localhost:8070/cart/total').then((total)=>{
+            setTotal(total.data)
+        })
+    });
+
+    function chnageDiscount(event){
+        setCoupon(event.target.value)
+    }
+
+    function getDiscount() {
+        console.log(coupon)
+        axios.get(`http://localhost:8070/coupon/${coupon}`).then((res)=>{
+            setDiscount(res.data);
+        });
+    }
+
+    const totDiscount = parseFloat(Number(discount.discount)/100.00 * Number(total.total).toFixed(2))>0?parseFloat(Number(discount.discount)/100.00 * Number(total.total)).toFixed(2):Math.floor(Number(0.00)).toFixed(2);
+    const cartTotal = Number(Math.round(Number(total.total)).toFixed(2))>0?parseFloat(Number(Math.round(Number(total.total)))).toFixed(2):Math.floor(Number(0.00)).toFixed(2);
+    const deliveryFee = Number(Math.round(price).toFixed(2))>0?Number(Math.round(price)).toFixed(2):Math.floor(Number(0.00)).toFixed(2);
+    const totalFee = totDiscount>0? (parseFloat(cartTotal+deliveryFee).toFixed(2))-totDiscount:parseFloat(cartTotal+deliveryFee).toFixed(2);
 
     return(
         <div style={{paddingLeft:"15%"}}>
@@ -44,10 +72,15 @@ export default function PriceList() {
                 <div className="row receipt">
                     <div className="col-lg-6"></div>
                     <div className="col-lg-4">
-                        <Button style={buttonStyle}>Invoice <UilImport /></Button>
+                        <PrintInvoice
+                            totDiscount = {totDiscount}
+                            cartTotal = {cartTotal}
+                            deliveryFee = {deliveryFee}
+                            totalFee = {totalFee}
+                        />
                     </div>
                     <div className="col-lg-2">
-                        <UilSearch color="#B7B6B6"/>
+                        <SearchIcon />
                     </div>
                 </div>
             </div>
@@ -57,15 +90,18 @@ export default function PriceList() {
                             Total
                         </div>
                         <div className="col-lg-6" style={{textAlign: "right"}}>
-                            Rs. 1360.00
+                            Rs. {cartTotal}
                         </div>
                 </div>
                 <div className="row price-items">
                     <div className="col-lg-6">
                         Coupon Code
                     </div>
-                    <div className="col-lg-6" style={{textAlign: "right"}}>
-                        <TextField placeholder="Coupon"/>
+                    <div className="col-lg-6" style={{textAlign: "right", display:"flex"}}>
+                        <TextField placeholder="Coupon" value={coupon} onChange={chnageDiscount} />
+                        <div style={{flex:1}}>
+                            <Button onClick={getDiscount}>+</Button>
+                        </div>
                     </div>
                 </div>
                 <div className="row price-items">
@@ -73,7 +109,7 @@ export default function PriceList() {
                         Discount
                     </div>
                     <div className="col-lg-6" style={{textAlign: "right"}}>
-                        Rs. 136.00
+                        Rs. {totDiscount}
                     </div>
                 </div>
                 <div className="row price-items">
@@ -85,12 +121,12 @@ export default function PriceList() {
                             <Select
                                 labelId="demo-simple-select-label"
                                 id="demo-simple-select"
-                                value={age}
+                                value={price}
                                 onChange={handleChange}
                             >
-                                <MenuItem value={"Kegalle"}>Kegalle</MenuItem>
-                                <MenuItem value={"Kandy"}>Kandy</MenuItem>
-                                <MenuItem value={"Gampaha"}>Gampaha</MenuItem>
+                                <MenuItem value={"100"}>Kegalle</MenuItem>
+                                <MenuItem value={"200"}>Kandy</MenuItem>
+                                <MenuItem value={"300"}>Gampaha</MenuItem>
                             </Select>
                         </FormControl>
                     </div>
@@ -100,7 +136,7 @@ export default function PriceList() {
                         Delivery Charge
                     </div>
                     <div className="col-lg-6" style={{textAlign: "right"}}>
-                        Rs. 300.00
+                        Rs. {deliveryFee}
                     </div>
                 </div>
                 <div className="row price-items total-fee">
@@ -108,7 +144,7 @@ export default function PriceList() {
                         Total Fee
                     </div>
                     <div className="col-lg-6" style={{textAlign: "right"}}>
-                        <span className="price-tag">Rs. 1524.00</span>
+                        <span className="price-tag">Rs. {totalFee}</span>
                     </div>
                 </div>
             </div>

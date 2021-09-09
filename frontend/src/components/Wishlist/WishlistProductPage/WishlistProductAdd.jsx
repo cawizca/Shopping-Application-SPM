@@ -29,7 +29,7 @@ const buttonStyle = {
     textTransform: 'capitalize'
 }
 
-export default function WishlistForm(){
+export default function WishlistProductAdd(){
 
     const classes = useStyles();
     const [type, setType] = useState('');
@@ -62,7 +62,6 @@ export default function WishlistForm(){
     }
 
     function getCategory(){
-        console.log(type)
         axios.get(`http://localhost:8070/product/${type}`).then((products)=>{
             setProducts(products.data.category);
 
@@ -71,15 +70,9 @@ export default function WishlistForm(){
 
 
     return(
-        <div className="wishlist-form">
-            <h4>Try to make a list for future purchases.</h4>
+        <div className="wishlist-form" style={{height:"fit-content", marginTop:"0"}}>
+            <h4 style={{fontSize:"35px"}}>Collect new products</h4>
 
-            <div className="wishlist-text">
-                <TextField placeholder="Name" value={wishlist.wishlistName} name="wishlistName" onChange={addToWishlist} color="secondary" fullWidth/>
-            </div>
-            <div className="wishlist-text">
-                <TextField id="standard-basic" value={wishlist.wishlistDescription} name="wishlistDescription" onChange={addToWishlist} placeholder="Description" color="secondary" fullWidth/>
-            </div>
             <div className="wishlist-text" style={{display:"flex"}}>
                 <div style={{flex:"15"}}>
 
@@ -135,7 +128,7 @@ export default function WishlistForm(){
             </div>
 
             <div className="wishlist-button">
-                <Button onClick={sendDetails} style={buttonStyle}>Create</Button>
+                <Button onClick={sendDetails} style={buttonStyle}>Collect</Button>
             </div>
         </div>
     );

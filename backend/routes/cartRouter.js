@@ -56,4 +56,23 @@ router.route("/").delete((req, res)=>{
    })
 });
 
+router.route("/total").get(async(req,res)=>{
+   let total = 0;
+   const items = await Item.find();
+   items.map((item)=>{
+      total = total+item.price
+   });
+   res.send({total:total});
+});
+
+/*
+router.route("/total").get(async(req,res)=>{
+   let total = 0;
+   const items = await Item.find();
+   items.map((item)=>{
+      total = total+item.price
+   });
+   res.send({total:"Rs. "+total+".00"});
+});
+*/
 module.exports = router;
