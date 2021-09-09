@@ -128,3 +128,50 @@
     height: 80%;
     width: auto;
 }
+
+.search-box{
+    display: flex;
+    transform: translate(-50%, -50%);
+    background: #252F52;
+    height: 40px;
+    border-radius: 40px;
+    padding: 10px;
+    position: relative;
+    top: 35%;
+}
+
+.search-box:hover > .search-txt {
+    width: 240px;
+    padding: 0 6px;
+}
+
+.search-box:hover > .search-button {
+    background: #252F52;
+    color: white;
+}
+
+.search-button {
+    border-radius: 50%;
+    background: #252F52;
+    transition: 0.4s;
+    color: #252F52;
+    cursor: pointer;
+}
+
+.search-button > UilSearch {
+    font-size: 30px;
+}
+
+.search-txt {
+    border: none;
+    background: none;
+    outline: none;
+    float: left;
+    padding: 0;
+    color: white;
+    font-size: 16px;
+    transition: 0.4s;
+    line-height: 40px;
+    width: 0px;
+    font-weight: 500;
+}

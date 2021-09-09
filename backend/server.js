@@ -38,8 +38,6 @@ app.route('/').get((req,res)=>{
     res.send('SLIIT SPM');
 })
 
-
-
 const RiderAPI = require('./API/Rider.Api.js')
 app.use('/rider',RiderAPI())
 
@@ -57,6 +55,9 @@ app.use('/product',productRouter)
 
 const CartItems = require("./routes/cartRouter");
 app.use("/cart",CartItems);
+
+const Coupons = require('./routes/couponRoute');
+app.use('/coupon',Coupons);
 
 app.listen(PORT,()=>{
     console.log(`Server is up and running on port ${PORT}`);

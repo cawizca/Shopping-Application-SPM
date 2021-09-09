@@ -62,6 +62,9 @@ export default function WishListTable(){
     return(
         <div >
             <div className="container" style={{marginTop:"5%"}}>
+                <div className="wishlist-title" style={{marginBottom:"5%"}}>
+                    Chocolate List report.
+                </div>
                 <TableContainer >
                     <Table aria-label="simple table" className="table-rows-style">
                         <TableHead>

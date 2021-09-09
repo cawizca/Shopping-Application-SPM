@@ -66,9 +66,7 @@ function NavBarCart(props) {
 
             })
             .catch()
-
-
-    }, [])
+    })
 
 
     const handleClick = (event) => {

@@ -7,6 +7,7 @@ import {Dialog, DialogContent, DialogTitle} from "@material-ui/core";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import {useState} from "react";
 import WishlistForm from "../WishlistFormPage/WishlistForm";
+import WishlistProductAdd from "./WishlistProductAdd";
 
 export default function WishlistProductSection(){
 
@@ -70,11 +71,11 @@ export default function WishlistProductSection(){
 
 
                     <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title"  PaperProps={{
-                        style: {backgroundColor: "#50587F", height:"fit-content"},
+                        style: {backgroundColor: "#50587F", height:"fit-content", borderRadius:"11px"},
                     }}>
                         <DialogContent>
                             <DialogContentText>
-                                <WishlistForm />
+                                <WishlistProductAdd />
                             </DialogContentText>
                         </DialogContent>
                     </Dialog>
