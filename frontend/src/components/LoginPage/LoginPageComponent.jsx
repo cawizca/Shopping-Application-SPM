@@ -6,7 +6,7 @@ import '../../styles/log-register.css'
 
 function LoginPageComponent(){
 
-
+//Login Component
     return(<div>
         <MiddleSection />
     </div>);
