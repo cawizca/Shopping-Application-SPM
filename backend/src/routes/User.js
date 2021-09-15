@@ -67,12 +67,25 @@ app.post("/login", async(req,res) =>{
 
     app.get("/getAllCustomers",(req, res)=>{
 
-      User.find({}).then((data)=>{
-        res.status(200).send(data)
-        console.log(data)
-      }).catch((error)=>{
-        res.status(500).send(error.message)
-      })
+      console.log(req.headers["data"])
+      var search = req.headers["data"]
+
+      if(req.headers["data"] == ""){
+        User.find({}).then((data)=>{
+          res.status(200).send(data)
+         
+        }).catch((error)=>{
+          res.status(500).send(error.message)
+        })
+        return
+      }else{
+        User.find({email:{ $regex: search }}).then((data)=>{
+          res.status(200).send(data)
+         
+        }).catch((error)=>{
+          res.status(500).send(error.message)
+        })
+      }
 
     })
 
@@ -107,16 +120,6 @@ app.post("/login", async(req,res) =>{
      
       })
     })
-
-
-
-
-
-
-
-
-
-
 
 
 
