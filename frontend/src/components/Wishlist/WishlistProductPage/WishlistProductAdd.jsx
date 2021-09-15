@@ -62,7 +62,7 @@ export default function WishlistProductAdd(){
     }
 
     function getCategory(){
-        axios.get(`http://localhost:8070/product/${type}`).then((products)=>{
+        axios.get(`http://localhost:8070/product/anitem/${type}`).then((products)=>{
             setProducts(products.data.category);
 
         });

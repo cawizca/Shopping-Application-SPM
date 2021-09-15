@@ -29,6 +29,14 @@ export default function ItemList(){
         });
     });
 
+    function deleteProduct(productId) {
+        axios.delete(`http://localhost:8070/cart/${productId}`).then((product)=>{
+            console.log("Product deleted");
+        }).catch((err)=>{
+            console.log(err);
+        })
+    }
+
     return(
         <div>
             <div className="row top-section">
@@ -50,6 +58,13 @@ export default function ItemList(){
                                         category = {product.category}
                                         price = {product.price}
                                         image = {product.image}
+                                        deleteProduct = {()=>{
+                                            axios.delete(`http://localhost:8070/cart/${product._id}`).then((product)=>{
+                                                console.log("Product deleted");
+                                            }).catch((err)=>{
+                                                console.log(err);
+                                            })
+                                        }}
                                     />
 
                             );

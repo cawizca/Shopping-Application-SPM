@@ -14,14 +14,14 @@ export default function WishlistCard(props){
         })
     }
 
-    function selectedCard(){
-        window.location = "/wishlist-product";
+    function selectedCard(id){
+        window.location = `/wishlist/${id}`;
     }
 
     return(
         <div>
             <div className="wishlist-card">
-                <div className="card-title" onClick={selectedCard}>
+                <div className="card-title" onClick={() => { selectedCard(props.id) }}>
                     <h5>{props.name}</h5>
                     <span>{props.despriction} </span>
                     <div>Quantity - {props.qty} </div>
