@@ -64,7 +64,7 @@ export default function PriceList() {
     const totDiscount = parseFloat(Number(discount.discount)/100.00 * Number(total.total).toFixed(2))>0?parseFloat(Number(discount.discount)/100.00 * Number(total.total)).toFixed(2):Math.floor(Number(0.00)).toFixed(2);
     const cartTotal = Number(Math.round(Number(total.total)).toFixed(2))>0?parseFloat(Number(Math.round(Number(total.total)))).toFixed(2):Math.floor(Number(0.00)).toFixed(2);
     const deliveryFee = Number(Math.round(price).toFixed(2))>0?Number(Math.round(price)).toFixed(2):Math.floor(Number(0.00)).toFixed(2);
-    const totalFee = totDiscount>0? (parseFloat(cartTotal+deliveryFee).toFixed(2))-totDiscount:parseFloat(cartTotal+deliveryFee).toFixed(2);
+    const totalFee = totDiscount>0? (parseFloat(Number(cartTotal)+Number(deliveryFee)).toFixed(2))-totDiscount:parseFloat(Number(cartTotal)+Number(deliveryFee)).toFixed(2);
 
     return(
         <div style={{paddingLeft:"15%"}}>

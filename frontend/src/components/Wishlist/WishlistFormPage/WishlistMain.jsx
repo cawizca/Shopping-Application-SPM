@@ -12,9 +12,12 @@ export default function WishlistMain(){
 
     useEffect(()=>{
         axios.get('http://localhost:8070/wishlist/').then(res=>{
+            console.log(res.data)
             setList(res.data);
         })
     },[]);
+
+
 
     return(
         <div>
@@ -25,12 +28,14 @@ export default function WishlistMain(){
                 <div className="col-lg-6 card-section" data-aos="fade-left" data-aos-duration="1000">
                     {list.map((item)=>{
                         return(
+                            <div>
                             <WishlistCard
                                 id = {item._id}
                                 name = {item.wishlistName}
                                 despriction = {item.wishlistDescription}
                                 qty = {item.wishlistProducts.length}
                             />
+                            </div>
                         )
                     })}
                 </div>

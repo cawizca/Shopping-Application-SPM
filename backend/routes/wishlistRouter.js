@@ -37,7 +37,51 @@ router.route("/:id").delete((req,res)=>{
     }).catch((err)=>{
         console.log(err);
     })
-})
+});
 
+router.route("/:id").get((req,res)=>{
+
+    const id = req.params.id;
+
+    Wishlist.findById(id).then((item)=>{
+        res.json(item);
+    }).catch((err)=>{
+        console.log(err);
+    })
+});
+
+
+router.route("/:id/delete/:item").delete((req,res)=>{
+
+    const id = req.params.id;
+    const item = req.params.item;
+
+    Wishlist.updateOne({
+        _id: id,
+    },
+        {
+            "$pull": {
+                wishlistProducts: {_id : item}
+            }
+        }
+        ).then((item)=>{
+        res.json(item);
+    }).catch((err)=>{
+        console.log(err);
+    });
+});
+
+/*
+    Wishlist.find({
+        _id: id,
+        wishlistProducts: {
+            _id: item
+        }
+    }).then((item)=>{
+        res.json(item);
+    }).catch((err)=>{
+        console.log(err);
+    });
+ */
 
 module.exports = router;

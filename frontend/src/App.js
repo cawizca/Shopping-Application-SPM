@@ -84,7 +84,7 @@ function App() {
           <Route path="/wishlist" exact component={WishlistComponent} />
           <Route path="/productManage" exact component={ManageProducts} />
           <Route path="/ShoppingAll" exact component={ShoppingProducts} />
-          <Route path="/wishlist-product" exact component={WishlistProductMain} />
+          <Route path="/wishlist/:id" exact component={WishlistProductMain} />
           <Route path="/customer" exact component={Customer} />
           <Route path="/deliverydetails" exact component={DeliveryDetails} />
           <Route path="/myorder" exact component={CustomerMyOrders} />

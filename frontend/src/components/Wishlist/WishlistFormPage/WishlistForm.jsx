@@ -63,7 +63,8 @@ export default function WishlistForm(){
 
     function getCategory(){
         console.log(type)
-        axios.get(`http://localhost:8070/product/${type}`).then((products)=>{
+        axios.get(`http://localhost:8070/product/anitem/${type}`).then((products)=>{
+            console.log(products.data.category);
             setProducts(products.data.category);
 
         });
@@ -125,7 +126,7 @@ export default function WishlistForm(){
                     {products && !!products.length && products.map((item)=>{
 
                         return(
-                            <MenuItem value={item.product}>{item.product}</MenuItem>
+                            <MenuItem value={item}>{item.product}</MenuItem>
                         )
 
 

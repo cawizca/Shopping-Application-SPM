@@ -11,7 +11,49 @@ const WishlistSchema = new Schema({
     },
 
     wishlistProducts: [{
-        type: String
+        product:{
+            type:String,
+            required:true
+        
+        },
+    
+        price:{
+            type:Number,
+            required:true
+        },
+    
+        category:{
+            type:String,
+            required:true
+        },
+    
+        availableQty:{
+            type:Number,
+            required:true
+        },
+    
+        minimumQty:{
+            type:Number,
+            required:true
+        },
+    
+        selectedfile:{
+            type:String,
+            default:null
+    
+    
+        },
+    
+        mesuringUnit:{
+            type:String,
+            required:true
+    
+        },
+    
+        status:{
+            type:String,
+            default:'available'
+        }
     }]
 });
 

@@ -73,12 +73,13 @@ router.route("/delete/:id").delete(async(req,res)=>{
 });
 
 
-router.route("/:category").get((req,res)=>{
+router.route("/anitem/:category").get((req,res)=>{
     Products.find({
         category: req.params.category,
     }).then((items)=>{
         res.send({category: items});
     })
 });
+
 
 module.exports=router;
