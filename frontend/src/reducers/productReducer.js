@@ -11,8 +11,15 @@ export default(productReducer = [],action)=>{
 
         case 'DELETE' :
             return productReducer.filter((product)=>product._id !== action.payload._id );
-        
+            case 'FETCH_SEARCH' :
+                return action.payload;
+
+                case 'FEATCH_INSUFF' :
+            return action.payload;
+
         default:
             return productReducer;    
     }
 }
+
+

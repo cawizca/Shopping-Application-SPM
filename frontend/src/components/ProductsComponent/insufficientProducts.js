@@ -2,22 +2,36 @@ import React,{useState,useEffect} from 'react';
 import {Container,AppBar,Typography,Grow,Grid,TextField,Button} from '@material-ui/core';
 import InsufficientProductTable from './productTables/insufficientTable'
 import Styles from './styles';
-import {useDispatch} from 'react-redux';
+import {useDispatch,useSelector} from 'react-redux';
 import NavBar from '../HomePage/NavBar/NavBar'
 import AdminNavbar from "../Admin/AdminNavigation"
 import ProductNavigation from './SideNavigations/customerNavigation'
 import axios from "axios";
+import {getInsuffProduct} from '../../actions/productAction'
+import jsPDF from 'jspdf'
+
+
 
 
 const Inssufficient =() =>{
 
     const classes = Styles();
+    const dispatch = useDispatch();
+    
+
+    useEffect(()=>{
+        dispatch(getInsuffProduct());
+        
+
+    },[dispatch]);
+
+  
 
 
     return (
         
         <div>
-            <NavBar />
+            
 
 
 
@@ -38,14 +52,7 @@ const Inssufficient =() =>{
 
 
                     <Container >
-                        <div style={{marginLeft:"900px"}}>
-                        <Button  style={{color:'green',background:'white',marginRight:"-10%",width:'300px'}}>
-
-                                Download list
-
-                            </Button>
-
-                            </div>
+                        
 
                         <Grid container justify ="space-between" alignItems="stretch" spacing ={3} >
 

@@ -87,6 +87,7 @@ const ProductCard = ({post,setCurrentId})=>{
                         measuringUnit:post.mesuringUnit,
                         availableQuantity:post.availableQty,
                         minimumQuantity:post.minimumQty
+                        
                     }
 
 
