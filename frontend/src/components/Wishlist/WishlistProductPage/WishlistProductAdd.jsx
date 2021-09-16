@@ -29,14 +29,14 @@ const buttonStyle = {
     textTransform: 'capitalize'
 }
 
-export default function WishlistProductAdd(){
+export default function WishlistProductAdd(props){
+
+    const id = props.id;
 
     const classes = useStyles();
     const [type, setType] = useState('');
     const [products, setProducts] = useState([]);
     const [wishlist, setWishlist] = useState({
-        wishlistName: "",
-        wishlistDescription: "",
         wishlistProducts: []
     });
 
@@ -54,7 +54,7 @@ export default function WishlistProductAdd(){
     };
 
     function sendDetails(){
-        axios.post('http://localhost:8070/wishlist/',wishlist).then(()=>{
+        axios.put(`http://localhost:8070/wishlist/${id}/add`,wishlist).then(()=>{
             window.location.reload();
         }).catch((err)=>{
             console.log(err)
@@ -118,7 +118,7 @@ export default function WishlistProductAdd(){
                     {products && !!products.length && products.map((item)=>{
 
                         return(
-                            <MenuItem value={item.product}>{item.product}</MenuItem>
+                            <MenuItem value={item}>{item.product}</MenuItem>
                         )
 
 
