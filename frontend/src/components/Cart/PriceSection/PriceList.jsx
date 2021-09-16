@@ -9,6 +9,7 @@ import {useEffect, useState} from "react";
 import axios from "axios";
 import PrintInvoice from "./PrintInvoice";
 import SearchIcon from "./SearchIcon";
+import {useHistory} from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
     formControl: {
@@ -32,6 +33,8 @@ const buttonStyle = {
 }
 
 export default function PriceList() {
+
+    const history = useHistory();
 
     const classes = useStyles();
     const [price, setPrice] = useState(0);
@@ -64,7 +67,11 @@ export default function PriceList() {
     const totDiscount = parseFloat(Number(discount.discount)/100.00 * Number(total.total).toFixed(2))>0?parseFloat(Number(discount.discount)/100.00 * Number(total.total)).toFixed(2):Math.floor(Number(0.00)).toFixed(2);
     const cartTotal = Number(Math.round(Number(total.total)).toFixed(2))>0?parseFloat(Number(Math.round(Number(total.total)))).toFixed(2):Math.floor(Number(0.00)).toFixed(2);
     const deliveryFee = Number(Math.round(price).toFixed(2))>0?Number(Math.round(price)).toFixed(2):Math.floor(Number(0.00)).toFixed(2);
-    const totalFee = totDiscount>0? (parseFloat(Number(cartTotal)+Number(deliveryFee)).toFixed(2))-totDiscount:parseFloat(Number(cartTotal)+Number(deliveryFee)).toFixed(2);
+    const totalFee = totDiscount>0? (parseFloat(Number(cartTotal)+Number(deliveryFee)-totDiscount)).toFixed(2):parseFloat(Number(cartTotal)+Number(deliveryFee)).toFixed(2);
+
+    function clickPlay(){
+        history.push("/deliverydetails",{totDiscount: totDiscount, cartTotal: cartTotal, deliveryFee: deliveryFee, totalFee: totalFee});
+    }
 
     return(
         <div style={{paddingLeft:"15%"}}>
@@ -149,7 +156,7 @@ export default function PriceList() {
                 </div>
             </div>
             <div className="pay-button">
-                <Button style={buttonStyle} href='/deliverydetails'>Pay</Button>
+                <Button style={buttonStyle} onClick={clickPlay} >Pay</Button>
             </div>
         </div>
     );

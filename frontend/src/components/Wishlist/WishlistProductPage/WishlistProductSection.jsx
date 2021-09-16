@@ -83,7 +83,7 @@ export default function WishlistProductSection(){
                     }}>
                         <DialogContent>
                             <DialogContentText>
-                                <WishlistProductAdd />
+                                <WishlistProductAdd id={id} />
                             </DialogContentText>
                         </DialogContent>
                     </Dialog>

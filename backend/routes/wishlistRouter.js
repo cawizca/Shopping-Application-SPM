@@ -1,5 +1,3 @@
-
-
 const Wishlist = require('../models/wishlist');
 const router = require('express').Router();
 
@@ -70,6 +68,27 @@ router.route("/:id/delete/:item").delete((req,res)=>{
         console.log(err);
     });
 });
+
+router.route("/:id/add").put((req,res)=>{
+
+    const id = req.params.id;
+
+    Wishlist.updateOne({
+            _id: id,
+        },
+        {
+            "$addToSet": {
+                wishlistProducts: {
+                    $each: req.body.wishlistProducts
+                }
+            }
+        }
+    ).then((item)=>{
+        res.json(item);
+    }).catch((err)=>{
+        console.log(err);
+    });
+})
 
 /*
     Wishlist.find({

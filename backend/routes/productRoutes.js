@@ -72,8 +72,6 @@ router.route("/delete/:id").delete(async(req,res)=>{
     }
 });
 
-
-/*router.route("/:category").get((req,res)=>{
 router.route("/anitem/:category").get((req,res)=>{
     Products.find({
         category: req.params.category,
@@ -81,9 +79,6 @@ router.route("/anitem/:category").get((req,res)=>{
         res.send({category: items});
     })
 });
-*/
-
-
 
 router.route("/search").get((req,res)=>{
 
