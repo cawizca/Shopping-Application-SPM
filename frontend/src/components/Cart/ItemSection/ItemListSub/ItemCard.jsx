@@ -23,21 +23,13 @@ export default function ItemCard(props) {
         setCount(count - 1);
     }
 
-    function deleteProduct() {
-        axios.delete(`http://localhost:8070/cart/${productId}`).then((product)=>{
-            console.log("Product deleted");
-        }).catch((err)=>{
-            console.log(err);
-        })
-    }
-
 
     return (
         <div>
             <div className="item-card" data-aos="zoom-in" data-aos-duration="800">
                 <div className="row">
                     <div className="col-lg-4">
-                        <div className="red-square" onClick={deleteProduct}><UilTimes /></div>
+                        <div className="red-square" onClick={props.deleteProduct}><UilTimes /></div>
                         <img src={props.image} className="cart-image" />
                     </div>
                     <div className="col-lg-6 cart-details">
