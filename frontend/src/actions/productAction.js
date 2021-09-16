@@ -41,3 +41,30 @@ export const deleteproduct = (id)=> async(dispatch)=>{
         console.log(error);
     }
 }
+
+export const searchproduct = (id)=>async(dispatch)=>{
+
+    try{
+        const{data} = await api.adminSearch(id);
+        dispatch({type:'FETCH_SEARCH',payload:data})
+        console.log(id)
+    }catch(error){
+        console.log(error)
+    }
+}
+
+
+export const getInsuffProduct = ()=> async(dispatch)=>{
+    try{
+        const {data} = await api.insuffProduct();
+
+        dispatch({type:'FEATCH_INSUFF',payload:data});
+
+    }catch(error){
+        console.log(error);
+    }
+} 
+
+
+
+

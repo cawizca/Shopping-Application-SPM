@@ -5,7 +5,7 @@ import EventPosts from '../ProductsComponent/products/customerAlllProducts';
 
 import Styles from './styles';
 import {useDispatch} from 'react-redux';
-import {getProduct} from '../../actions/productAction'
+import {getProduct,searchproduct} from '../../actions/productAction'
 import NavBar from '../HomePage/NavBar/NavBar'
 import ProductNavigation from './SideNavigations/customerNavigation'
 import axios from "axios";
@@ -14,17 +14,25 @@ import productPage from '../../images/girl.png'
 
 const ShoppingProducts =() =>{
 
-       
-        const [currentId,setCurrentId] = useState(null);
-        const classes = Styles();
-        const dispatch =useDispatch();
-        useEffect(()=>{
+    const [currentId,setCurrentId] = useState(null);
+    const [searchTerm, setSearchTerm] = useState(null);
 
-            dispatch(getProduct());
+    const classes = Styles();
+    const dispatch =useDispatch();
+    useEffect(()=>{
 
+        if(searchTerm){
+            dispatch(searchproduct(searchTerm));   
+        }
+        else{
+        dispatch(getProduct());  
+        }
 
-        },[currentId,dispatch]);
+        console.log(searchTerm)
 
+    },[currentId,searchTerm,dispatch]);
+
+   
 
     return (
         
@@ -48,7 +56,9 @@ const ShoppingProducts =() =>{
                     id="outlined-basic"
                     label="Search"
                     variant="outlined"
+                    value={searchTerm}
                     size = "small"
+                    onChange={(e) => { setSearchTerm(e.target.value) }}
 
                 />
 

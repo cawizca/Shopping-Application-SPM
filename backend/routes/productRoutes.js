@@ -73,12 +73,47 @@ router.route("/delete/:id").delete(async(req,res)=>{
 });
 
 
-router.route("/:category").get((req,res)=>{
+/*router.route("/:category").get((req,res)=>{
     Products.find({
         category: req.params.category,
     }).then((items)=>{
         res.send({category: items});
     })
 });
+*/
+
+
+
+router.route("/search").get((req,res)=>{
+
+    let prouctName = req.query.id;
+
+    console.log(prouctName);
+
+    Products.find({product:{ $regex: '.*' + prouctName + '.*',$options: 'i' }}).limit(5)
+    .then((product)=>{
+            
+        res.json(product)
+    }) 
+    .catch(error=>{
+        res.status(500).send(error);
+    })
+})
+
+
+
+router.route("/readInsuff").get(async(req,res)=>{
+    await Products.find({$expr:{$gt:["$minimumQty","$availableQty"]}})
+    .then((product)=>{
+            
+        res.json(product)
+    }) 
+    .catch(error=>{
+        res.status(500).send(error.message);
+    })
+})
+
+
 
 module.exports=router;
+

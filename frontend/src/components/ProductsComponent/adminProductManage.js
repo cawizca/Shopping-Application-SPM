@@ -5,7 +5,7 @@ import EventPosts from '../ProductsComponent/products/AdminAllProducts';
 import EventForm from '../ProductsComponent/products/form/productManageForm';
 import Styles from './styles';
 import {useDispatch} from 'react-redux';
-import {getProduct} from '../../actions/productAction'
+import {getProduct,searchproduct} from '../../actions/productAction'
 import AdminNavbar from "../Admin/AdminNavigation"
 import NavBar from "../HomePage/NavBar/NavBar";
 import productPage from '../../images/girl.png'
@@ -15,14 +15,24 @@ const ManageProducts =() =>{
 
        
         const [currentId,setCurrentId] = useState(null);
+        const [searchTerm, setSearchTerm] = useState(null);
+
         const classes = Styles();
         const dispatch =useDispatch();
         useEffect(()=>{
-            
-            dispatch(getProduct());  
-            
 
-        },[currentId,dispatch]);
+            if(searchTerm){
+                dispatch(searchproduct(searchTerm));   
+            }
+            else{
+            dispatch(getProduct());  
+            }
+
+            console.log(searchTerm)
+
+        },[currentId,searchTerm,dispatch]);
+
+       
 
     return (
 
@@ -44,7 +54,7 @@ const ManageProducts =() =>{
                         <div className='row'> 
                             <div className = 'col-lg-6' style={{textAlign:'left'}} >
 
-                            <Button style={{color:'green',background:'white',marginRight:"-10%",width:'fit-content'}}>
+                            <Button style={{color:'green',background:'white',marginRight:"-10%",width:'fit-content'}} href = '/insufficient'>
                                 Insufficient products
 
                             </Button>
@@ -56,7 +66,9 @@ const ManageProducts =() =>{
                     id="outlined-basic"
                     label="Search"
                     variant="outlined"
+                    value={searchTerm}
                     size = "small"
+                    onChange={(e) => { setSearchTerm(e.target.value) }}
 
                 />
 
