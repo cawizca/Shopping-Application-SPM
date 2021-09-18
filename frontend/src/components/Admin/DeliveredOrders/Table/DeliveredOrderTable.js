@@ -78,8 +78,8 @@ export default function DeliveredOrderTable() {
                     </div>
 
                     <div className="col" style={{marginLeft: "320px"}}>
-                        <lable style={{color: 'red', paddingRight: "10px"}}>Search By Date</lable>
-                        <TextField type='date' style={{backgroundColor: 'white'}}
+                        <lable style={{color: 'whitesmoke', paddingRight: "10px"}}>Search By Date</lable>
+                        <TextField type='date' style={{backgroundColor: 'white',borderRadius:"6px"}}
                                    onChange={(event) => {
                                        setSearch(event.target.value)
                                    }}
