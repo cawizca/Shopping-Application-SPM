@@ -59,7 +59,7 @@ export default function PdfReport(props) {
         axios.get(`http://localhost:8070/complete/by-date/${date}`)
             .then((response) => {
                 setCompleteList(response.data)
-                console.log(response.data)
+                //console.log(response.data)
             })
             .catch((error) => {
                 alert(error)
@@ -69,7 +69,7 @@ export default function PdfReport(props) {
     })
 
 
-    console.log(completeList);
+    //console.log(completeList);
 
 
     const downloadPDF = () => {

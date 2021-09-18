@@ -111,24 +111,24 @@ export default function OrderTable(){
 
 
                                     <TableRow key={orderList._id}>
-                                        <TableCell style={{backgroundColor:orderList.request=='-'? '#f65a5e': '',fontWeight:"bold"}}>{orderList.orderId}</TableCell>
+                                        <TableCell style={{backgroundColor:orderList.request=='-'? '#d7c5c5': '',fontWeight:"bold"}}>{orderList.orderId}</TableCell>
 
-                                        <TableCell style={{backgroundColor:orderList.request=='-'? '#f65a5e': '',fontWeight:"bold"}}>{orderList.orderDate}</TableCell>
-                                        <TableCell style={{backgroundColor:orderList.request=='-'? '#f65a5e': '',fontWeight:"bold" ,color:orderList.request=='Declined'? '#f50a0a': ''}} >{orderList.request}</TableCell>
-                                        <TableCell style={{backgroundColor:orderList.request=='-'? '#f65a5e': '',fontWeight:"bold"}}>
+                                        <TableCell style={{backgroundColor:orderList.request=='-'? '#d7c5c5': '',fontWeight:"bold"}}>{orderList.orderDate}</TableCell>
+                                        <TableCell style={{backgroundColor:orderList.request=='-'? '#d7c5c5': '',fontWeight:"bold" ,color:orderList.request=='Declined'? '#f50a0a': ''}} >{orderList.request}</TableCell>
+                                        <TableCell style={{backgroundColor:orderList.request=='-'? '#d7c5c5': '',fontWeight:"bold"}}>
                                             <RiderRequest
                                                 id={orderList._id}
                                             />
 
                                             </TableCell>
 
-                                        <TableCell style={{backgroundColor:orderList.request=='-'? '#f65a5e': ''}}>
+                                        <TableCell style={{backgroundColor:orderList.request=='-'? '#d7c5c5': ''}}>
                                             <Setrider
                                                 id={orderList._id}
                                                 state={orderList.request}
 
                                             /></TableCell>
-                                        <TableCell style={{backgroundColor:orderList.request=='-'? '#f65a5e': ''}}><ViewOrder/></TableCell>
+                                        <TableCell style={{backgroundColor:orderList.request=='-'? '#d7c5c5': ''}}><ViewOrder/></TableCell>
 
                                     </TableRow>
                                 ))

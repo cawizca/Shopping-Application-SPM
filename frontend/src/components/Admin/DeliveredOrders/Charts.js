@@ -74,7 +74,7 @@ export default function (props) {
                                 <CloseIcon/>
                             </IconButton>
                             <Typography variant="h6" className={classes.title}>
-                                Annual Report
+                                Annual Report 2021
                             </Typography>
 
                         </Toolbar>
