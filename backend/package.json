@@ -12,16 +12,22 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@stripe/react-stripe-js": "^1.4.1",
+    "@stripe/stripe-js": "^1.17.1",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
-    "cookie-parser": "^1.4.5",
     "config": "^3.3.6",
+    "cookie-parser": "^1.4.5",
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.13.7",
-    "nodemon": "^2.0.12"
+    "nodemon": "^2.0.12",
+    "stripe": "^8.176.0",
+    "underscore": "^1.13.1",
+    "underscore-contrib": "^0.3.0",
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
     "@fortawesome/free-brands-svg-icons": "^5.15.4"

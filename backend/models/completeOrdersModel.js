@@ -3,7 +3,7 @@ const mongoose = require('mongoose')
 const completeSchema = new mongoose.Schema({
 
     DeliveryDate:{
-        type:Date,
+        type: String,
         required:true,
     },
     TimeReleased:{

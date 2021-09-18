@@ -1,7 +1,6 @@
-
-import React , {useState,useEffect} from "react";
+import React, {useState, useEffect} from "react";
 import axios from "axios";
-import { withStyles,makeStyles } from '@material-ui/core/styles';
+import {withStyles, makeStyles} from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -12,6 +11,11 @@ import Paper from '@material-ui/core/Paper';
 import ViewOrder from "../../OrderManagement/OrderTable/ViewOrder";
 import {TextField} from "@material-ui/core";
 import Button from "@material-ui/core/Button";
+import OrderReport from "../OrderReport";
+import Setrider from "../../OrderManagement/OrderTable/Setrider";
+import RiderRequest from "../../OrderManagement/OrderTable/RiderRequest";
+import PdfReport from "../PdfReport";
+import Charts from "../Charts";
 
 
 const StyledTableCell = withStyles((theme) => ({
@@ -26,25 +30,25 @@ const StyledTableCell = withStyles((theme) => ({
 }))(TableCell);
 
 
-
 const useStyles = makeStyles({
     table: {
         minWidth: 650,
         backgroundColor: 'darkgray',
-        color:'#ffffff',
+        color: '#ffffff',
     },
 });
 
 
-
-export default function DeliveredOrderTable(){
+export default function DeliveredOrderTable() {
 
     const classes = useStyles();
 
 
     const [completeList, setCompleteList] = useState([]);
+    const [search, setSearch] = useState("");
+    const [searchData, setSearchData] = useState([]);
 
-    useEffect(()=>{
+    useEffect(() => {
 
 
         function getCompleteList(userid) {
@@ -59,24 +63,44 @@ export default function DeliveredOrderTable(){
         }
 
         getCompleteList()
-    },[])
+    }, [])
 
-    return(
+    return (
         <div>
+
             <div>
 
-                <Button variant='contained' color="secondary">Download Report</Button>
-                <lable style={{marginLeft:'650px',marginRight:'25px' ,color:'red'}}>Search By Date</lable>
-                <TextField type='date' style={{backgroundColor:'white'}}/>
+                <div className="row" style={{marginLeft: "20px"}}>
+
+
+                    <div className="col" style={{marginLeft: "-70px"}}>
+                        <Charts/>
+                    </div>
+
+                    <div className="col" style={{marginLeft: "320px"}}>
+                        <lable style={{color: 'red', paddingRight: "10px"}}>Search By Date</lable>
+                        <TextField type='date' style={{backgroundColor: 'white'}}
+                                   onChange={(event) => {
+                                       setSearch(event.target.value)
+                                   }}
+                        />
+                    </div>
+                    <div className="col" style={{marginLeft: "-70px"}}>
+                        <PdfReport reportData={search}/>
+                    </div>
+
+
+                </div>
+
 
                 <br/><br/>
-                <TableContainer  component={Paper} >
-                    <Table  className={classes.table} aria-label="simple table">
+                <TableContainer component={Paper}>
+                    <Table className={classes.table} aria-label="simple table">
                         <TableHead>
                             <TableRow>
                                 <StyledTableCell>Order ID</StyledTableCell>
-                                <StyledTableCell>Rider ID</StyledTableCell>
-                                <StyledTableCell>Delivery Date</StyledTableCell>
+                                <StyledTableCell>Rider Name</StyledTableCell>
+                                <StyledTableCell>Date Delivered</StyledTableCell>
                                 <StyledTableCell>Time Released</StyledTableCell>
                                 <StyledTableCell>Time Received</StyledTableCell>
                                 <StyledTableCell>Order Info</StyledTableCell>
@@ -85,16 +109,29 @@ export default function DeliveredOrderTable(){
                         </TableHead>
                         <TableBody>
                             {
-                                completeList.map(completeList=>(
+                                completeList.filter((completeList) => {
+                                    if (search == "") {
+
+                                        return completeList
+
+                                    } else if (completeList.DeliveryDate == search) {
+
+                                        return completeList
+                                    }
+                                }).map(completeList => (
                                     <TableRow key={completeList._id}>
                                         <TableCell>{completeList.orderId}</TableCell>
-                                        <TableCell>RID001</TableCell>
+                                        <TableCell>
+                                            <RiderRequest
+                                                id={completeList.orders}
+                                            />
+
+
+                                        </TableCell>
                                         <TableCell>{completeList.DeliveryDate}</TableCell>
                                         <TableCell>{completeList.TimeReleased}</TableCell>
                                         <TableCell>{completeList.TimeReceived}</TableCell>
                                         <TableCell><ViewOrder/></TableCell>
-
-
 
 
                                     </TableRow>
