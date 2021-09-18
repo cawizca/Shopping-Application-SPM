@@ -13,11 +13,12 @@ import Paper from '@material-ui/core/Paper';
 import RiderRequest from "./RiderRequest";
 import notificationCount from "./NotificationCount";
 import NotificationCount from "./NotificationCount";
+import {TextField} from "@material-ui/core";
 
 
 const StyledTableCell = withStyles((theme) => ({
     head: {
-        backgroundColor: '#5E4FA2',
+        backgroundColor: '#FA334E',
         color: theme.palette.common.white,
     },
     body: {
@@ -44,7 +45,7 @@ export default function OrderTable(){
 
 
     const [orderList,setOrderList] = useState([]);
-
+    const [search, setSearch] = useState("");
     useEffect(()=>{
 
         function getOrderList() {
@@ -69,11 +70,19 @@ export default function OrderTable(){
     return(
         <div>
 
+            <div className="col" style={{marginLeft: "820px"}}>
+                <lable style={{color: 'red', paddingRight: "10px"}}>Search By Date</lable>
+                <TextField type='date' style={{backgroundColor: 'white'}}
+                           onChange={(event) => {
+                               setSearch(event.target.value)
+                           }}
+                />
+            </div>
 
             <div>
                 <br/>
-                <TableContainer  component={Paper} >
-                    <Table  className={classes.table} aria-label="simple table">
+                <TableContainer   >
+                    <Table   className="table-rows-style" aria-label="simple table">
                         <TableHead>
                             <TableRow>
                                 <StyledTableCell>Order ID</StyledTableCell>
@@ -85,17 +94,28 @@ export default function OrderTable(){
 
                             </TableRow>
                         </TableHead>
-                        <TableBody>
+                        <TableBody style={{fontWeight:"bold"}}>
                             {
-                                orderList.map(orderList=>(
+                                orderList.filter((orderList)=>{
+
+                                    if (search == "") {
+
+                                        return orderList
+
+                                    } else if (orderList.orderDate == search) {
+
+                                        return orderList
+                                    }
+
+                                }).map(orderList=>(
 
 
                                     <TableRow key={orderList._id}>
-                                        <TableCell style={{backgroundColor:orderList.request=='-'? '#f65a5e': ''}}>{orderList.orderId}</TableCell>
+                                        <TableCell style={{backgroundColor:orderList.request=='-'? '#f65a5e': '',fontWeight:"bold"}}>{orderList.orderId}</TableCell>
 
-                                        <TableCell style={{backgroundColor:orderList.request=='-'? '#f65a5e': ''}}>{orderList.orderDate}</TableCell>
-                                        <TableCell style={{backgroundColor:orderList.request=='-'? '#f65a5e': '' ,color:orderList.request=='Declined'? '#f50a0a': ''}} >{orderList.request}</TableCell>
-                                        <TableCell style={{backgroundColor:orderList.request=='-'? '#f65a5e': ''}}>
+                                        <TableCell style={{backgroundColor:orderList.request=='-'? '#f65a5e': '',fontWeight:"bold"}}>{orderList.orderDate}</TableCell>
+                                        <TableCell style={{backgroundColor:orderList.request=='-'? '#f65a5e': '',fontWeight:"bold" ,color:orderList.request=='Declined'? '#f50a0a': ''}} >{orderList.request}</TableCell>
+                                        <TableCell style={{backgroundColor:orderList.request=='-'? '#f65a5e': '',fontWeight:"bold"}}>
                                             <RiderRequest
                                                 id={orderList._id}
                                             />

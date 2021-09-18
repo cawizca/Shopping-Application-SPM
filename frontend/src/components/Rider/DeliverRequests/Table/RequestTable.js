@@ -24,10 +24,10 @@ const StyledTableCell = withStyles((theme) => ({
     head: {
         backgroundColor: '#FA334E',
         color: theme.palette.common.white,
+
     },
     body: {
         fontSize: 14,
-        color: theme.palette.common.white,
     },
 }))(TableCell);
 
@@ -36,6 +36,7 @@ const useStyles = makeStyles({
     table: {
         minWidth: 650,
         backgroundColor: "white",
+
     },
 });
 
@@ -130,13 +131,13 @@ export default function RequestTable() {
                     <Table aria-label="simple table" className="table-rows-style">
                         <TableHead>
                             <TableRow>
-                                <StyledTableCell>Order ID</StyledTableCell>
-                                <StyledTableCell>Order Date</StyledTableCell>
-                                <StyledTableCell>Order Request</StyledTableCell>
-                                <StyledTableCell></StyledTableCell>
-                                <StyledTableCell>Action</StyledTableCell>
-                                <StyledTableCell>Order Info</StyledTableCell>
-                                <StyledTableCell>Mark As Complete</StyledTableCell>
+                                <StyledTableCell style={{fontWeight:"bold"}}>Order ID</StyledTableCell>
+                                <StyledTableCell style={{fontWeight:"bold"}}>Order Date</StyledTableCell>
+                                <StyledTableCell style={{fontWeight:"bold"}}>Order Request</StyledTableCell>
+                                <StyledTableCell style={{fontWeight:"bold"}}></StyledTableCell>
+                                <StyledTableCell style={{fontWeight:"bold"}}>Action</StyledTableCell>
+                                <StyledTableCell style={{fontWeight:"bold"}}>Order Info</StyledTableCell>
+                                <StyledTableCell style={{fontWeight:"bold"}}>Mark As Complete</StyledTableCell>
                             </TableRow>
                         </TableHead>
 
@@ -147,10 +148,10 @@ export default function RequestTable() {
                                 {
                                     riderList.map(riderList => (
                                         <TableRow key={riderList._id}>
-                                            <TableCell style={{backgroundColor:riderList.request=='pending'? '#d7c5c5': ''}}>{riderList.orderId}</TableCell>
-                                            <TableCell style={{backgroundColor:riderList.request=='pending'? '#d7c5c5': ''}}>{riderList.orderDate}</TableCell>
-                                            <TableCell style={{backgroundColor:riderList.request=='pending'? '#d7c5c5': ''}}>{riderList.request}</TableCell>
-                                            <TableCell style={{backgroundColor:riderList.request=='pending'? '#d7c5c5': ''}}>
+                                            <TableCell style={{backgroundColor:riderList.request=='pending'? '#d7c5c5': '',fontWeight:"bold"}}>{riderList.orderId}</TableCell>
+                                            <TableCell style={{backgroundColor:riderList.request=='pending'? '#d7c5c5': '',fontWeight:"bold"}}>{riderList.orderDate}</TableCell>
+                                            <TableCell style={{backgroundColor:riderList.request=='pending'? '#d7c5c5': '',fontWeight:"bold"}}>{riderList.request}</TableCell>
+                                            <TableCell style={{backgroundColor:riderList.request=='pending'? '#d7c5c5': '',fontWeight:"bold"}}>
                                                 <Button
                                                     style={{fontSize: '10px',}}
                                                     onClick={() => {
@@ -161,7 +162,7 @@ export default function RequestTable() {
                                                 >Accepted
                                                 </Button>
                                             </TableCell>
-                                            <TableCell style={{backgroundColor:riderList.request=='pending'? '#d7c5c5': ''}}>
+                                            <TableCell style={{backgroundColor:riderList.request=='pending'? '#d7c5c5': '',fontWeight:"bold"}}>
                                                 <Button
                                                     style={{fontSize: '10px'}}
                                                     onClick={() => {
@@ -173,8 +174,8 @@ export default function RequestTable() {
                                                 >Declined
                                                 </Button>
                                             </TableCell>
-                                            <TableCell style={{backgroundColor:riderList.request=='pending'? '#d7c5c5': ''}}><ViewOrder/></TableCell>
-                                            <TableCell style={{backgroundColor:riderList.request=='pending'? '#d7c5c5': ''}}>
+                                            <TableCell style={{backgroundColor:riderList.request=='pending'? '#d7c5c5': '',fontWeight:"bold"}}><ViewOrder/></TableCell>
+                                            <TableCell style={{backgroundColor:riderList.request=='pending'? '#d7c5c5': '',fontWeight:"bold"}}>
                                                 <ComplitionForm
 
                                                     orderId={riderList._id}
