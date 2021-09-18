@@ -15,6 +15,18 @@ import Snackbar from "@material-ui/core/Snackbar";
 import MuiAlert from "@material-ui/lab/Alert";
 
 
+const buttonStyle = {
+    color: "#fff",
+    backgroundColor: "#FA334E",
+    fontFamily: 'Poppins',
+    fontWeight: 400,
+    borderRadius: '6px',
+    width: '100px',
+    boxShadow: '0px 0px 3px #FA334E',
+    textTransform: 'capitalize'
+}
+
+
 const styles = (theme) => ({
     root: {
         margin: 0,
@@ -60,7 +72,7 @@ function Alert(props) {
 }
 
 
-export default function Gateway() {
+export default function Gateway(props) {
 
     const [open, setOpen] = React.useState(false);
     const [helperText, setHelperText] = React.useState('');
@@ -86,8 +98,8 @@ export default function Gateway() {
 
 
     const [product] = useState({
-        name: "Your Order I ready After Payment",
-        price: 64998.67,
+        name: "Your Order is ready After Payment",
+        price: props.total,
         description: "Cool car"
     });
 
@@ -119,6 +131,8 @@ export default function Gateway() {
                 // billingAddress
                 // shippingAddress
             >
+
+                <Button style={buttonStyle} >Pay</Button>
             </StripeCheckout>
 
 

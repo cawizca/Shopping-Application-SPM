@@ -14,7 +14,7 @@ function DeliveryDetails(){
     return(
         <div>
         <div style={{display:"flex", alignItems:"center", justifyContent:"center"}}>
-        <DeliveryDetailsForm/>
+        <DeliveryDetailsForm total = {location.state.totalFee}/>
             <p style={{color:"white", fontSize:"25px"}}>Total fee: Rs.{location.state.totalFee} </p>
         </div>
         <img src={CartBackground} className="cart-background"/>
