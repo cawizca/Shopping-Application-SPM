@@ -81,19 +81,40 @@ export default function OrderTable(){
 
             <div>
                 <br/>
-                <TableContainer   >
-                    <Table   className="table-rows-style" aria-label="simple table">
-                        <TableHead>
-                            <TableRow>
-                                <StyledTableCell>Order ID</StyledTableCell>
-                                <StyledTableCell>Order Date</StyledTableCell>
-                                <StyledTableCell>Order Request</StyledTableCell>
-                                <StyledTableCell>Deliverer</StyledTableCell>
-                                <StyledTableCell>Assign Deliverer</StyledTableCell>
-                                <StyledTableCell>Order Info</StyledTableCell>
 
-                            </TableRow>
-                        </TableHead>
+                <TableContainer>
+                <Table  className="table-rows-style" aria-label="simple table">
+
+                    <TableHead  >
+                        <TableRow >
+                            <StyledTableCell>Order ID</StyledTableCell>
+                            <StyledTableCell>Order Date</StyledTableCell>
+                            <StyledTableCell>Order Request</StyledTableCell>
+                            <StyledTableCell>Deliverer</StyledTableCell>
+                            <StyledTableCell>Assign Deliverer</StyledTableCell>
+                            <StyledTableCell>Order Info</StyledTableCell>
+
+                        </TableRow>
+                    </TableHead>
+
+                </Table>
+
+                </TableContainer>
+                <TableContainer  style={{height:"450px"}} >
+
+
+                    <Table   className="table-rows-style" aria-label="simple table">
+                        {/*<TableHead  >*/}
+                        {/*    <TableRow >*/}
+                        {/*        <StyledTableCell>Order ID</StyledTableCell>*/}
+                        {/*        <StyledTableCell>Order Date</StyledTableCell>*/}
+                        {/*        <StyledTableCell>Order Request</StyledTableCell>*/}
+                        {/*        <StyledTableCell>Deliverer</StyledTableCell>*/}
+                        {/*        <StyledTableCell>Assign Deliverer</StyledTableCell>*/}
+                        {/*        <StyledTableCell>Order Info</StyledTableCell>*/}
+
+                        {/*    </TableRow>*/}
+                        {/*</TableHead>*/}
                         <TableBody style={{fontWeight:"bold"}}>
                             {
                                 orderList.filter((orderList)=>{
@@ -111,7 +132,10 @@ export default function OrderTable(){
 
 
                                     <TableRow key={orderList._id}>
+
+
                                         <TableCell style={{backgroundColor:orderList.request=='-'? '#d7c5c5': '',fontWeight:"bold"}}>{orderList.orderId}</TableCell>
+
 
                                         <TableCell style={{backgroundColor:orderList.request=='-'? '#d7c5c5': '',fontWeight:"bold"}}>{orderList.orderDate}</TableCell>
                                         <TableCell style={{backgroundColor:orderList.request=='-'? '#d7c5c5': '',fontWeight:"bold" ,color:orderList.request=='Declined'? '#f50a0a': ''}} >{orderList.request}</TableCell>
