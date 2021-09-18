@@ -1,281 +1,155 @@
-import {FormControlLabel, FormLabel, Grid, MenuItem, Paper, Radio, RadioGroup, Typography} from "@material-ui/core";
-import TextField from "@material-ui/core/TextField";
-import Button from "@material-ui/core/Button";
-import React from "react";
-import FormControl from "@material-ui/core/FormControl";
-import visa from '../../images/visa.png'
-import master from '../../images/Master.png'
-const paperStyle = {
-    width: "30%",
-    height: "auto",
-    padding: "2.5%",
+import React, {useState} from "react";
+import StripeCheckout from "react-stripe-checkout";
+import axios from "axios";
+import {withStyles} from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
+import Dialog from '@material-ui/core/Dialog';
+import MuiDialogTitle from '@material-ui/core/DialogTitle';
+import MuiDialogContent from '@material-ui/core/DialogContent';
+import MuiDialogActions from '@material-ui/core/DialogActions';
+import IconButton from '@material-ui/core/IconButton';
+import CloseIcon from '@material-ui/icons/Close';
+import Typography from '@material-ui/core/Typography';
+import {FormHelperText} from "@material-ui/core";
+import Snackbar from "@material-ui/core/Snackbar";
+import MuiAlert from "@material-ui/lab/Alert";
 
-    marginTop: "5%",
 
+const styles = (theme) => ({
+    root: {
+        margin: 0,
+        padding: theme.spacing(2),
+    },
+    closeButton: {
+        position: 'absolute',
+        right: theme.spacing(1),
+        top: theme.spacing(1),
+        color: theme.palette.grey[500],
+    },
+});
 
+const DialogTitle = withStyles(styles)((props) => {
+    const {children, classes, onClose, ...other} = props;
+    return (
+        <MuiDialogTitle disableTypography className={classes.root} {...other}>
+            <Typography variant="h6">{children}</Typography>
+            {onClose ? (
+                <IconButton aria-label="close" className={classes.closeButton} onClick={onClose}>
+                    <CloseIcon/>
+                </IconButton>
+            ) : null}
+        </MuiDialogTitle>
+    );
+});
+
+const DialogContent = withStyles((theme) => ({
+    root: {
+        padding: theme.spacing(2),
+    },
+}))(MuiDialogContent);
+
+const DialogActions = withStyles((theme) => ({
+    root: {
+        margin: 0,
+        padding: theme.spacing(1),
+    },
+}))(MuiDialogActions);
+
+function Alert(props) {
+    return <MuiAlert elevation={6} variant="filled" {...props} />;
 }
-const loginStyle = {
-    width: '400px',
-    heigth: 'auto',
-    padding: '5% 10% 0%',
 
-}
-
-const loginButton = {
-    margin: '5% 2.5% 5%',
-    backgroundColor: '#FA334E',
-    width: "100px",
-    fontFamily: 'Poppins'
-}
 
 export default function Gateway() {
 
-    const years = [
-        {
-            value: '2022',
-            label: '2022',
-        },
-        {
-            value: '2023',
-            label: '2023',
-        },
-        {
-            value: '2024',
-            label: '2024',
-        },
-        {
-            value: '2025',
-            label: '2025',
-        },
-        {
-            value: '2026',
-            label: '2026',
-        },
-        {
-            value: '2027',
-            label: '2027',
-        },
-        {
-            value: '2028',
-            label: '2028',
-        },
-        {
-            value: '2029',
-            label: '2029',
-        },
-        {
-            value: '2030',
-            label: '2030',
-        },
-    ];
+    const [open, setOpen] = React.useState(false);
+    const [helperText, setHelperText] = React.useState('');
+    const [url, setUrl] = React.useState('');
 
-    const months = [
-        {
-            value: '01',
-            label: '01',
-        },
-        {
-            value: '02',
-            label: '02',
-        },
-        {
-            value: '03',
-            label: '03',
-        },
-        {
-            value: '04',
-            label: '04',
-        },
-        {
-            value: '05',
-            label: '05',
-        },
-        {
-            value: '06',
-            label: '06',
-        },
-        {
-            value: '07',
-            label: '07',
-        },
-        {
-            value: '08',
-            label: '08',
-        },
-        {
-            value: '09',
-            label: '09',
-        },
-        {
-            value: '10',
-            label: '10',
-        },
-        {
-            value: '11',
-            label: '11',
-        },
-        {
-            value: '12',
-            label: '12',
-        },
-    ];
-
-    const [currency, setCurrency] = React.useState('');
-
-    const yearChange = (event) => {
-        setCurrency(event.target.value);
-
+    const handleClickOpen = () => {
+        setOpen(true);
+    };
+    const handleClose = () => {
+        setOpen(false);
     };
 
-    const [month, setMonth] = React.useState('');
 
-    const monthChange = (event) => {
-        setMonth(event.target.value);
+    const [openSnack, setOpenSnack] = React.useState(false);
+    //snack Bar
+    const handleCloseSnackBar = (event, reason) => {
+        if (reason === 'clickaway') {
+            return;
+        }
 
+        setOpenSnack(false);
     };
+
+
+    const [product] = useState({
+        name: "Your Order I ready After Payment",
+        price: 64998.67,
+        description: "Cool car"
+    });
+
+
+    async function makePayment(token, addresses) {
+        const response = await axios.post(
+            `http://localhost:8070/make/payment`,
+            {token, product}
+        ).then((response) => {
+            console.log(response.data);
+            setUrl(response.data);
+            setOpenSnack(true);
+            handleClickOpen();
+
+
+        }).catch(() => {
+            alert("Payment Failed");
+        })
+    }
+
 
     return (
         <div>
-            <div className="container">
-
-                <Grid container spacing={3} align="center" justify="center" alignItems="center">
-
-
-                        <Grid style={{marginTop:'150px'}}>
-                            <Paper elevation={7} style = {{width:"300px",marginTop:"2%", padding:"2% 0"}}>
-
-
-                                <Typography variant="subtitle1"><strong>Pay Amount : Rs.12000/=</strong> </Typography>
-
-
-                            </Paper>
-                            <FormControl component="fieldset">
+            <StripeCheckout
+                stripeKey="pk_test_51JaknZDzPOTabH3b6kMICCKLkwgOgv01zYr6QZHBhfyhPkXZI3vFADbhj0es2w9cSYg36w8sOLSJ0etGJuIJFl8z00OWwQqwAB"
+                token={makePayment}
+                amount={product.price * 100}
+                name="Enter your card details"
+                // billingAddress
+                // shippingAddress
+            >
+            </StripeCheckout>
 
 
+            <Snackbar open={openSnack} autoHideDuration={6000} onClose={handleCloseSnackBar}>
+                <Alert onClose={handleCloseSnackBar} severity="success">
+                    Payment Successfully!
+                </Alert>
+            </Snackbar>
+            {/*<Button variant="contained" color="primary" onClick={handleClickOpen}>*/}
+            {/*    Update*/}
+            {/*</Button>*/}
+            <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}>
+                <DialogTitle id="customized-dialog-title" onClose={handleClose} className="form-background">
+                    Your payment Receipt
+                </DialogTitle>
+                <DialogContent dividers style={{width: "500px"}}>
 
-                                        <form>
-
-                                            <Grid container spacing={2} align="center" justify="center"
-                                                  alignItems="center">
-
-
-                                                <Paper style={loginStyle} elevation={11} fullWidth>
-                                                    <Grid align="left">
-                                                        <Typography variant="h5" align="center" style={{ marginBottom: "5%", color: "#5E4FA2", fontFamily: 'Poppins', fontWeight: "700" }}>Select your Payment Method</Typography>
-                                                    </Grid>
-
-                                                    <Grid>
-                                                        <FormControl component="fieldset">
-
-                                                            <RadioGroup aria-label="userType" name="gender1" className='d-inline-block'>
-
-                                                                <img src={visa} width="50px"/>
-                                                                <FormControlLabel value="visa" control={<Radio/>}
-                                                                                  label="Visa" onChange={(event) => {
-
-                                                                }}></FormControlLabel>
-
-                                                                <img src={master} width="50px"/>
-                                                                <FormControlLabel value="master" control={<Radio/>}
-                                                                                  label="Master"
-                                                                                  onChange={(event) => {
-
-                                                                                  }}/>
-
-                                                            </RadioGroup>
-                                                        </FormControl>
-                                                    </Grid>
-
-                                                    <br/>
-                                                    <Grid>
-                                                        <TextField id="outlined-basic" label="Card Number"
-                                                                   variant="outlined" color="secondary" size="small"
-                                                                   fullWidth required pattern="[0-9]"
-                                                                   onChange={(event) => {
-
-                                                                   }}/> <br/>
-                                                    </Grid>
-
-                                                    <Grid >
-                                                        <TextField
-                                                            required
-                                                            id="outlined-select-currency"
-                                                            select
-                                                            label="Year"
-                                                            size="small"
-                                                            onChange={yearChange}
-                                                            variant="outlined"
-                                                            style={{marginTop: "10%", width: "100px" ,marginRight:'90px'}}
-                                                        >
-                                                            {years.map((option) => (
-                                                                <MenuItem key={option.value} value={option.value}>
-                                                                    {option.label}
-                                                                </MenuItem>
-                                                            ))}
-                                                        </TextField>
-
-                                                        <TextField
-                                                            required
-                                                            id="outlined-select-currency"
-                                                            select
-                                                            label="Month"
-
-                                                            onChange={monthChange}
-                                                            variant="outlined"
-                                                            size="small"
-                                                            style={{marginTop: "10%", width: "100px"}}
-                                                        >
-                                                            {months.map((option) => (
-                                                                <MenuItem key={option.value} value={option.value}>
-                                                                    {option.label}
-                                                                </MenuItem>
-                                                            ))}
-                                                        </TextField>
-                                                    </Grid>
-
-                                                    <Grid>
-                                                        <TextField id="outlined-basic" label="CVV Number"
-                                                                   variant="outlined"
-                                                                   style={{marginTop: "10%", width: "130px"}}
-                                                                   color="secondary" size="small" fullWidth required
-                                                                   pattern="[0-9]"
-                                                                   onChange={(event) => {
+                    <Button variant="outlined" color="primary" href={url}>
+                        Click Here To Get It
+                    </Button>
+                    <FormHelperText style={{color: "red"}}>{helperText}</FormHelperText>
 
 
-                                                                   }}/> <br/>
-                                                    </Grid>
-                                                    <Grid>
-                                                        <Button type="submit" variant="contained" color="secondary"
-                                                                size="large" style={loginButton}
-                                                                size="small">
-                                                            Pay
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={() => setOpen(false)} color="primary">
+                        Cancel
+                    </Button>
+                </DialogActions>
 
-                                                        </Button>
-
-                                                        <Button variant="contained" color="secondary" size="large"
-                                                                style={loginButton} size="small">
-                                                            Cancel
-                                                        </Button>
-                                                    </Grid>
-                                                </Paper>
-
-                                            </Grid>
-                                        </form>
-
-
-
-
-
-
-                            </FormControl>
-                        </Grid>
-
-
-
-
-
-                </Grid>
-            </div>
+            </Dialog>
         </div>
     )
 }

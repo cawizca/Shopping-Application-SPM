@@ -10,25 +10,21 @@ export default function RiderRequest(props) {
 
         function getUser() {
             axios.get(`http://localhost:8070/order/rider/${props.id}`)
-                .then((response) =>{
+                .then((response) => {
 
-                        if(response.data._id==null){
+                    if (response.data._id == null) {
                         setUname('Not Assigned')
 
-                         }
-                        else{
-                            setUname(response.data.riderName)
-                        }
+                    } else {
+                        setUname(response.data.riderName)
+                    }
                     console.log(response.data.riderName)
-
 
 
                 })
                 .catch((error) => {
 
                 })
-
-
         }
 
         getUser()

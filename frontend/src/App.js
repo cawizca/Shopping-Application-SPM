@@ -32,6 +32,9 @@ import NavBar from "./components/HomePage/NavBar/NavBar";
 import {useEffect, useState} from "react";
 import axios from "axios";
 
+import orderReport from "./components/Admin/DeliveredOrders/OrderReport";
+import Chart from "./components/Admin/DeliveredOrders/Charts";
+
 function App() {
     const [userType, setUserType] = useState('');
     const [id, setId] = useState([]);
@@ -77,6 +80,8 @@ function App() {
           <Route path="/complete" exact component={DeliveredOrders} />
           <Route path="/requests" exact component={DeliveryRequest} />
           <Route path="/rider-items" exact component={MyDeliveredOrders} />
+          <Route path="/repo" exact component={orderReport} />
+          <Route path="/chart" exact component={Chart} />
 
           <Route path="/gateway" exact component={Gateway} />
 
