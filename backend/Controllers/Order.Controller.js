@@ -17,7 +17,7 @@ const createOrder = async (req, res) => {
             const orderData = new OrderModel({
                 "orderId": "ORD" + value4,
                 "customerID": "CUS005",
-                "orderDate": "2021/9/16",
+                "orderDate": "2021-09/18",
                 "request": "-",
             })
 
