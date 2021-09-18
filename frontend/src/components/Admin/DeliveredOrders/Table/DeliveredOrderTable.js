@@ -20,7 +20,7 @@ import Charts from "../Charts";
 
 const StyledTableCell = withStyles((theme) => ({
     head: {
-        backgroundColor: '#5E4FA2',
+        backgroundColor: '#FA334E',
         color: theme.palette.common.white,
     },
     body: {
@@ -94,8 +94,8 @@ export default function DeliveredOrderTable() {
 
 
                 <br/><br/>
-                <TableContainer component={Paper}>
-                    <Table className={classes.table} aria-label="simple table">
+                <TableContainer >
+                    <Table  className="table-rows-style" aria-label="simple table">
                         <TableHead>
                             <TableRow>
                                 <StyledTableCell>Order ID</StyledTableCell>
@@ -119,19 +119,19 @@ export default function DeliveredOrderTable() {
                                         return completeList
                                     }
                                 }).map(completeList => (
-                                    <TableRow key={completeList._id}>
-                                        <TableCell>{completeList.orderId}</TableCell>
-                                        <TableCell>
+                                    <TableRow  key={completeList._id}>
+                                        <TableCell style={{fontWeight:"bold"}}>{completeList.orderId}</TableCell>
+                                        <TableCell style={{fontWeight:"bold"}}>
                                             <RiderRequest
                                                 id={completeList.orders}
                                             />
 
 
-                                        </TableCell>
-                                        <TableCell>{completeList.DeliveryDate}</TableCell>
-                                        <TableCell>{completeList.TimeReleased}</TableCell>
-                                        <TableCell>{completeList.TimeReceived}</TableCell>
-                                        <TableCell><ViewOrder/></TableCell>
+                                        </TableCell >
+                                        <TableCell style={{fontWeight:"bold"}}>{completeList.DeliveryDate}</TableCell>
+                                        <TableCell style={{fontWeight:"bold"}}>{completeList.TimeReleased}</TableCell>
+                                        <TableCell style={{fontWeight:"bold"}}>{completeList.TimeReceived}</TableCell>
+                                        <TableCell style={{fontWeight:"bold"}}><ViewOrder/></TableCell>
 
 
                                     </TableRow>

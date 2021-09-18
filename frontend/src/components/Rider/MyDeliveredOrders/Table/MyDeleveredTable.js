@@ -1,7 +1,6 @@
-
-import React , {useState,useEffect} from "react";
+import React, {useState, useEffect} from "react";
 import axios from "axios";
-import { withStyles,makeStyles } from '@material-ui/core/styles';
+import {withStyles, makeStyles} from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -16,7 +15,7 @@ import ViewOrder from "../../../Admin/OrderManagement/OrderTable/ViewOrder";
 
 const StyledTableCell = withStyles((theme) => ({
     head: {
-        backgroundColor: '#5E4FA2',
+        backgroundColor: '#FA334E',
         color: theme.palette.common.white,
     },
     body: {
@@ -26,18 +25,16 @@ const StyledTableCell = withStyles((theme) => ({
 }))(TableCell);
 
 
-
 const useStyles = makeStyles({
     table: {
         minWidth: 650,
         backgroundColor: 'darkgray',
-        color:'#ffffff',
+        color: '#ffffff',
     },
 });
 
 
-
-export default function MyDeleveredTable(){
+export default function MyDeleveredTable() {
 
     const classes = useStyles();
 
@@ -83,34 +80,30 @@ export default function MyDeleveredTable(){
         }
     }, [])
 
-    return(
+    return (
         <div>
             <div>
-                <TableContainer >
-                    <Table  className={classes.table} aria-label="simple table">
+                <TableContainer>
+                    <Table className="table-rows-style" aria-label="simple table">
                         <TableHead>
                             <TableRow>
-                                <StyledTableCell>Order ID</StyledTableCell>
-                                <StyledTableCell>Rider ID</StyledTableCell>
-                                <StyledTableCell>Delivery Date</StyledTableCell>
-                                <StyledTableCell>Time Released</StyledTableCell>
-                                <StyledTableCell>Time Received</StyledTableCell>
-                                <StyledTableCell>Order Info</StyledTableCell>
+                                <StyledTableCell style={{fontWeight: "bold"}}>Order ID</StyledTableCell>
+                                <StyledTableCell style={{fontWeight: "bold"}}>Delivery Date</StyledTableCell>
+                                <StyledTableCell style={{fontWeight: "bold"}}>Time Released</StyledTableCell>
+                                <StyledTableCell style={{fontWeight: "bold"}}>Time Received</StyledTableCell>
+                                <StyledTableCell style={{fontWeight: "bold"}}>Order Info</StyledTableCell>
 
                             </TableRow>
                         </TableHead>
                         <TableBody>
                             {
-                                completeList.map(completeList=>(
+                                completeList.map(completeList => (
                                     <TableRow key={completeList._id}>
-                                        <TableCell>{completeList.orderId}</TableCell>
-                                        <TableCell>RID001</TableCell>
-                                        <TableCell>{completeList.DeliveryDate}</TableCell>
-                                        <TableCell>{completeList.TimeReleased}</TableCell>
-                                        <TableCell>{completeList.TimeReceived}</TableCell>
-                                        <TableCell><ViewOrder/></TableCell>
-
-
+                                        <TableCell style={{fontWeight: "bold"}}>{completeList.orderId}</TableCell>
+                                        <TableCell style={{fontWeight: "bold"}}>{completeList.DeliveryDate}</TableCell>
+                                        <TableCell style={{fontWeight: "bold"}}>{completeList.TimeReleased}</TableCell>
+                                        <TableCell style={{fontWeight: "bold"}}>{completeList.TimeReceived}</TableCell>
+                                        <TableCell style={{fontWeight: "bold"}}><ViewOrder/></TableCell>
 
 
                                     </TableRow>
