@@ -7,6 +7,7 @@ import React, {useRef, useState} from "react";
 import axios from "axios";
 import { UilSearch } from '@iconscout/react-unicons'
 import "../../styles/delivery.css"
+import Gateway from "../Payment/Gateway";
 
 const useStyles = makeStyles((theme) => ({
     formControl: {
@@ -29,7 +30,7 @@ const buttonStyle = {
     textTransform: 'capitalize'
 }
 
-export default function DeliveryDetailsForm(){
+export default function DeliveryDetailsForm(props){
     const classes = useStyles();
     return(
         <div style={{display:"flex"}}>
@@ -60,8 +61,11 @@ export default function DeliveryDetailsForm(){
             </div>
             </div>
             <div className="delivery-button">
-                <Button style={buttonStyle} href="/gateway">Pay</Button>
+                {/*<Button style={buttonStyle} href="/gateway">Pay</Button>*/}
+                <Gateway total = {props.total}/>
+
             </div>
+
         </div>
         </div>
         </div>
