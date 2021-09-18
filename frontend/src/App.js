@@ -83,7 +83,7 @@ function App() {
           <Route path="/repo" exact component={orderReport} />
           <Route path="/chart" exact component={Chart} />
 
-          <Route path="/gateway" exact component={Gateway} />
+          {/*<Route path="/gateway" exact component={Gateway} />*/}
 
 
           <Route path="/wishlist" exact component={WishlistComponent} />
