@@ -4,20 +4,20 @@ import "../../styles/cart.css";
 import CartBackground from "../../images/cartBackground.png";
 import CartBackgroundRight from "../../images/apples.png";
 import PriceList from "./PriceSection/PriceList";
-import {useEffect, useState} from "react";
-import axios from "axios";
+import {useState} from "react";
 
 function CartComponent() {
 
+    const [searchTerm, setSearchTerm] = useState();
     return (
         <div>
             <div className="container">
                 <div className="row align-items-center justify-content-center">
                     <div className="col-lg-6" style={{borderRight:"1px solid #707070"}}>
-                        <ItemList />
+                        <ItemList searchTerm={searchTerm} />
                     </div>
                     <div className="col-lg-6">
-                        <PriceList />
+                        <PriceList buttonPressed={searchTerm=> setSearchTerm(searchTerm)} />
                     </div>
                 </div>
             </div>

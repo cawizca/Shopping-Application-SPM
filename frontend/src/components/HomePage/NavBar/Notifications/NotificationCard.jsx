@@ -1,6 +1,15 @@
 import NotificationIcon from '../../../../images/NotificationIcon.png';
 import { UilCheck } from '@iconscout/react-unicons';
-export default function NotificationCard() {
+import axios from "axios";
+export default function NotificationCard(props) {
+
+    function deleteNotification(){
+        axios.delete(`http://localhost:8070/notification/${props.id}`).then(()=>{
+            props.closeProp();
+        });
+
+    }
+
     return(
         <div className="notification-card">
 
@@ -8,10 +17,10 @@ export default function NotificationCard() {
                 <img src={NotificationIcon} />
             </div>
             <div className="notification-card-text">
-                <h6>Tomato restocked.</h6>
-                <p>Your favourite food tomato restocked. You can buy it now.</p>
+                <h6>{props.product} restocked.</h6>
+                <p>Your favourite {props.category} {props.product} restocked. You can buy it now.</p>
             </div>
-            <div className="notification-card-button">
+            <div className="notification-card-button" onClick={deleteNotification}>
                 <div className="red-square"><UilCheck style={{position:"relative", top:"5%", left:"5%"}} /></div>
             </div>
 

@@ -4,6 +4,7 @@ import {TextField,Button,Typography,Paper, FormHelperText} from '@material-ui/co
 import FileBase from 'react-file-base64';
 import {useDispatch,useSelector} from 'react-redux';
 import {postProduct,patchProduct} from '../../../../actions/productAction'
+import axios from "axios";
  
 const ProductForm = ({currentId})=>{
     const classes = Styles();
@@ -64,7 +65,7 @@ const handleSubmit = (e) =>{
         clear();
     }
     else {
-        dispatch(postProduct(productData),window.location.reload(false))
+        dispatch(postProduct(productData),window.location.reload(false));
         clear();
     }
     

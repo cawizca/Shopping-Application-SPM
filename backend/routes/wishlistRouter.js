@@ -48,7 +48,6 @@ router.route("/:id").get((req,res)=>{
     })
 });
 
-
 router.route("/:id/delete/:item").delete((req,res)=>{
 
     const id = req.params.id;
@@ -88,19 +87,14 @@ router.route("/:id/add").put((req,res)=>{
     }).catch((err)=>{
         console.log(err);
     });
-})
+});
 
-/*
-    Wishlist.find({
-        _id: id,
-        wishlistProducts: {
-            _id: item
-        }
+router.route("/:id").put((req, res)=>{
+    Wishlist.findByIdAndUpdate(req.params.id,{
+        $set: req.body
     }).then((item)=>{
         res.json(item);
-    }).catch((err)=>{
-        console.log(err);
     });
- */
+});
 
 module.exports = router;

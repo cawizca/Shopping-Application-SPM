@@ -1,11 +1,11 @@
 const mongoose=require('mongoose');
 const Schema = mongoose.Schema;
-const productSchema = new Schema({
-    
+const NotificationSchema = new Schema({
+
     product:{
         type:String,
         required:true
-    
+
     },
 
     price:{
@@ -44,10 +44,16 @@ const productSchema = new Schema({
     status:{
         type:String,
         default:'available'
+    },
+
+    addedDate:{
+        type: Date,
+        default: new Date()
     }
+
 
 })
 
 
-const products = mongoose.model("product",productSchema);
-module.exports=products;
+const Notifications = mongoose.model("Notifications",NotificationSchema);
+module.exports=Notifications;

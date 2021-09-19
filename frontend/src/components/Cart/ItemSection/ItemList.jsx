@@ -13,9 +13,13 @@ const buttonStyle = {
     textTransform: 'capitalize'
 }
 
-export default function ItemList(){
+export default function ItemList(props){
 
     const [products, setProducts] = useState([]);
+
+    const searchTerm = props.searchTerm;
+
+    console.log(searchTerm)
 
     function deleteAll(){
         axios.delete("http://localhost:8070/cart/").then(()=>{
@@ -50,7 +54,14 @@ export default function ItemList(){
             <div className="row">
                 <div className="col-lg-12">
                     <div className="item-list">
-                        {products.map((product)=>{
+                        {products.filter((product)=>{
+                            if(searchTerm==""|| searchTerm==null){
+                                return product;
+                            } else if(product.name == searchTerm || String(product.name).toLowerCase() == searchTerm){
+                                return product;
+                            }
+                        }).map((product)=>{
+                            console.log(product.name)
                             return(
                                     <ItemCard
                                         id = {product._id}

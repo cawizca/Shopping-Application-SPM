@@ -1,14 +1,12 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faBell} from "@fortawesome/free-regular-svg-icons";
-import React, {useState} from "react";
-import {UilShoppingCartAlt} from "@iconscout/react-unicons";
+import React, {useEffect, useState} from "react";
 import Badge from "@material-ui/core/Badge";
-import ItemCard from "../../../Cart/ItemSection/ItemListSub/ItemCard";
-import {Button} from "@material-ui/core";
-import {Link} from "react-router-dom";
 import Popover from "@material-ui/core/Popover";
 import { makeStyles } from '@material-ui/core/styles';
 import NotificationCard from "./NotificationCard";
+import Box from '../../../../images/box.png';
+import axios from "axios";
 
 const useStyles = makeStyles((theme) => ({
     typography: {
@@ -20,8 +18,13 @@ const useStyles = makeStyles((theme) => ({
 export default function NavBarNotifications() {
     const classes = useStyles();
     const [anchorEl, setAnchorEl] = useState(null);
-    //const [products, setProducts] = useState([]);
-    //const [itemCount, setItemCount] = useState();
+    const [notifications, setNotifications] = useState([]);
+
+    useEffect(()=>{
+            axios.get('http://localhost:8070/notification/').then((notification)=>{
+            setNotifications(notification.data);
+        });
+    })
 
 
     const handleClick = (event) => {
@@ -39,9 +42,13 @@ export default function NavBarNotifications() {
     return(
         <div className="icon-set">
             <div className="mx-3">
-                <Badge badgeContent=" " color="secondary" variant="dot" onClick={handleClick}>
-                    <FontAwesomeIcon icon={faBell} size="lg"/>
-                </Badge>
+                {notifications.length>0?
+                    <Badge badgeContent=" " color="secondary" variant="dot" onClick={handleClick}>
+                        <FontAwesomeIcon icon={faBell} size="lg"/>
+                    </Badge>
+                    :
+                    <FontAwesomeIcon icon={faBell} size="lg" onClick={handleClick}/>
+                }
             </div>
 
             <Popover
@@ -66,9 +73,21 @@ export default function NavBarNotifications() {
                 <span className="notification-title">Notifications</span>
 
                 <div className="notification-list">
-                <NotificationCard />
-                <NotificationCard />
-                    <NotificationCard />
+                    {notifications.length>0?notifications.map((notify)=>{
+                        return(
+                            <NotificationCard
+                                id = {notify._id}
+                                product = {notify.product}
+                                category = {notify.category}
+                                closeProp = {handleClose}
+                            />
+                        )
+                    }):
+                        <div style={{textAlign:"center", marginTop:"10%"}}>
+                            <img src={Box} style={{width:"100px", height:"auto"}}/>
+                            <p style={{color: "white", fontSize:"15px", fontWeight:"300", margin:"5% 0%"}}>There are no any new notifications.</p>
+                        </div>
+                    }
                 </div>
 
             </Popover>

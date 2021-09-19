@@ -7,10 +7,6 @@ function DeliveryDetails(){
 
     const location = useLocation();
 
-    useEffect(()=>{
-        console.log(location)
-    },[]);
-
     return(
         <div>
         <div style={{display:"flex", alignItems:"center", justifyContent:"center"}}>

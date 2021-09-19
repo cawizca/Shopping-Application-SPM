@@ -10,6 +10,8 @@ import WishlistForm from "../WishlistFormPage/WishlistForm";
 import WishlistProductAdd from "./WishlistProductAdd";
 import axios from "axios";
 import {useParams} from "react-router-dom/cjs/react-router-dom";
+import SearchIcon from "../../Cart/PriceSection/SearchIcon";
+import {useHistory} from "react-router-dom";
 
 export default function WishlistProductSection(){
 
@@ -17,6 +19,9 @@ export default function WishlistProductSection(){
 
     const [detals, setDetails] = useState([]);
     const [product, setProduct] = useState([]);
+    const [searchTerm, setSerachTerm] = useState();
+
+    console.log(searchTerm);
 
     const {id} = useParams();
 
@@ -35,6 +40,12 @@ export default function WishlistProductSection(){
         setOpen(false);
     };
 
+    const history = useHistory();
+
+    function sendData(){
+        history.push("/wishlist-report",product);
+    }
+
     return(
         <div className="container">
             <div className="wishlist-title-section">
@@ -42,12 +53,10 @@ export default function WishlistProductSection(){
                     {detals.wishlistName}
                 </div>
                 <div className="wishlist-button">
-                    <UilSearch />
+                    <SearchIcon buttonPressed = {searchTerm => setSerachTerm(searchTerm)}/>
                 </div>
                 <div className="wishlist-button">
-                    <div className="red-square" style={{position:"relative", left:"25%"}} onClick={()=>{
-                        window.location="/wishlist-report"
-                    }}>
+                    <div className="red-square" style={{position:"relative", left:"25%"}} onClick={sendData}>
                         <UilImport size={22} style={{position:"relative", right:"10%", top:"4%"}} />
                     </div>
                 </div>
@@ -59,7 +68,13 @@ export default function WishlistProductSection(){
             </div>
             <div className="wishlist-item-section">
 
-                {product.map((item)=>{
+                {product.filter(item=>{
+                    if(searchTerm==""|| searchTerm== null){
+                        return item;
+                    }else if(item.product== searchTerm || String(item.product).toLowerCase()== searchTerm){
+                        return item
+                    }
+                }).map((item)=>{
                     return(
                         <ItemCard
                             name = {item.product}

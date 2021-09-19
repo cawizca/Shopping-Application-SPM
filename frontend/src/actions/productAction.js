@@ -1,4 +1,5 @@
 import * as api from '../api/productApi';
+import axios from "axios";
 
 export const getProduct = ()=> async(dispatch)=>{
     try{
@@ -15,8 +16,10 @@ export const getProduct = ()=> async(dispatch)=>{
 export const postProduct = (product)=>async(dispatch)=>{
 
     try{
+
         const {data} = await api.createProduct(product)
         dispatch({type:'CREATE',payload:data});
+
     }catch(error){
         console.log(error);
     }
