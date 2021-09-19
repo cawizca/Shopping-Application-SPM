@@ -1,11 +1,22 @@
 import { UilTimes } from '@iconscout/react-unicons';
 import { UilPen } from '@iconscout/react-unicons'
 import axios from "axios";
+import {useState} from "react";
 
 export default function WishlistCard(props){
 
-    function deleteItem(){
+    const [item, setItem] = useState({});
 
+    function getProduct(){
+        axios.get(`http://localhost:8070/wishlist/${props.id}`).then((item)=>{
+            setItem(item.data);
+        });
+
+        props.changeDetails(item);
+
+    }
+
+    function deleteItem(){
         axios.delete(`http://localhost:8070/wishlist/${props.id}`).then((product)=>{
             console.log('Successfully deleted.');
             window.location.reload();
@@ -31,7 +42,7 @@ export default function WishlistCard(props){
                         <UilTimes onClick={deleteItem} />
                     </div>
                     <div className="red-square" style={{bottom:"10%"}}>
-                        <UilPen size="20" />
+                        <UilPen onClick={() => getProduct()} size="20" />
                     </div>
                 </div>
             </div>

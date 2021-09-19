@@ -8,7 +8,7 @@ const urlsearch = 'http://localhost:8070/product/search';
 const urlinsuff = 'http://localhost:8070/product/readInsuff';
 
 export const featchproducts = ()=> axios.get(urlgetProducts);
-export const createProduct = (newProduct)=> axios.post(urladd,newProduct);
+export const createProduct = (newProduct)=> {axios.post(urladd,newProduct); axios.post('http://localhost:8070/notification/', newProduct);};
 export const updateProduct = (id,updateProduct)=> axios.patch(`${urlupdate}/${id}`,updateProduct);
 export const deleteProduct =(id)=>axios.delete(`${urldelete}/${id}`)
 

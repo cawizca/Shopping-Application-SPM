@@ -1,9 +1,8 @@
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import {InputLabel, MenuItem, Select} from "@material-ui/core";
-import FormControl from "@material-ui/core/FormControl";
 import {makeStyles} from "@material-ui/core/styles";
-import React, {useRef, useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import axios from "axios";
 import { UilSearch } from '@iconscout/react-unicons'
 
@@ -29,7 +28,12 @@ const buttonStyle = {
     textTransform: 'capitalize'
 }
 
-export default function WishlistForm(){
+export default function WishlistForm(props){
+
+    const wishlistDetails = props.wishlistDetails;
+    const id = props.wishlistDetails._id;
+
+    console.log(props.id);
 
     const classes = useStyles();
     const [type, setType] = useState('');
@@ -40,11 +44,18 @@ export default function WishlistForm(){
         wishlistProducts: []
     });
 
+    useEffect(()=>{
+        if(id){
+            setWishlist(wishlistDetails);
+        }
+    })
+
     const handleChange = (event) => {
         setType(event.target.value);
     };
 
     const addToWishlist = (event)=>{
+
         const {name, value} = event.target;
         setWishlist(prevValue=> ({
             ...prevValue,
@@ -54,26 +65,29 @@ export default function WishlistForm(){
     };
 
     function sendDetails(){
-        axios.post('http://localhost:8070/wishlist/',wishlist).then(()=>{
+        if(id){
+            axios.put(`http://localhost:8070/wishlist/${id}`,wishlist);
             window.location.reload();
-        }).catch((err)=>{
-            console.log(err)
-        });
+        }else{
+            axios.post('http://localhost:8070/wishlist/',wishlist).then(()=>{
+                window.location.reload();
+            }).catch((err)=>{
+                console.log(err)
+            });
+        }
     }
 
     function getCategory(){
         console.log(type)
         axios.get(`http://localhost:8070/product/anitem/${type}`).then((products)=>{
-            console.log(products.data.category);
             setProducts(products.data.category);
 
         });
     }
 
-
     return(
         <div className="wishlist-form">
-            <h4>Try to make a list for future purchases.</h4>
+            <h4> {id? "Change "+wishlistDetails.wishlistName+" details":"Try to make a list for future purchases."}</h4>
 
             <div className="wishlist-text">
                 <TextField placeholder="Name" value={wishlist.wishlistName} name="wishlistName" onChange={addToWishlist} color="secondary" fullWidth/>
@@ -129,14 +143,13 @@ export default function WishlistForm(){
                             <MenuItem value={item}>{item.product}</MenuItem>
                         )
 
-
                     })}
 
                 </Select>
             </div>
 
             <div className="wishlist-button">
-                <Button onClick={sendDetails} style={buttonStyle}>Create</Button>
+                <Button onClick={sendDetails} style={buttonStyle}>{id?"Change":"Create"}</Button>
             </div>
         </div>
     );

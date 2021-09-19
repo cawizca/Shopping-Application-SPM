@@ -32,7 +32,7 @@ const buttonStyle = {
     textTransform: 'capitalize'
 }
 
-export default function PriceList() {
+export default function PriceList(props) {
 
     const history = useHistory();
 
@@ -41,6 +41,9 @@ export default function PriceList() {
     const [total, setTotal]= useState(0);
     const [discount, setDiscount] = useState({});
     const [coupon, setCoupon] = useState('');
+    const [searchTerm, setSearchTerm] = useState();
+
+    props.buttonPressed(searchTerm)
 
     const handleChange = (event) => {
         const price = Number(event.target.value);
@@ -87,7 +90,7 @@ export default function PriceList() {
                         />
                     </div>
                     <div className="col-lg-2">
-                        <SearchIcon />
+                        <SearchIcon buttonPressed={searchTerm=>{setSearchTerm(searchTerm)}} />
                     </div>
                 </div>
             </div>

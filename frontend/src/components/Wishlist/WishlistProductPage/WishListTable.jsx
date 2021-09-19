@@ -9,6 +9,10 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import RiderBackground from "../../../images/riderBackfround.png";
+import {useLocation} from "react-router-dom";
+import Button from "@material-ui/core/Button";
+import jsPDF from "jspdf";
+import autoTable from "jspdf-autotable";
 
 
 
@@ -23,6 +27,18 @@ const StyledTableCell = withStyles((theme) => ({
     },
 }))(TableCell);
 
+const buttonStyle = {
+    color: "#fff",
+    backgroundColor: "#FA334E",
+    fontFamily: 'Poppins',
+    fontWeight: 400,
+    borderRadius: '6px',
+    width: '200px',
+    height: '50px',
+    boxShadow: '0px 0px 3px #FA334E',
+    textTransform: 'capitalize'
+}
+
 
 
 const useStyles = makeStyles({
@@ -33,9 +49,15 @@ const useStyles = makeStyles({
     },
 });
 
+function downloadReport(){
+    const doc = new jsPDF()
+    autoTable(doc, { html: '#report-table' })
+    doc.save('table.pdf')
+}
 
 
-export default function WishListTable(){
+
+export default function WishListTable(props){
 
     const classes = useStyles();
 
@@ -57,16 +79,21 @@ export default function WishListTable(){
         }
 
         getRiderList()
-    },[])
+    },[]);
+
+    const location = useLocation();
+    const product = location.state;
+
+    let count = 0;
 
     return(
         <div >
             <div className="container" style={{marginTop:"5%"}}>
                 <div className="wishlist-title" style={{marginBottom:"5%"}}>
-                    Chocolate List report.
+                    <Button onClick={downloadReport} style={buttonStyle}> Generate report </Button>
                 </div>
                 <TableContainer >
-                    <Table aria-label="simple table" className="table-rows-style">
+                    <Table aria-label="simple table" className="table-rows-style" id="report-table">
                         <TableHead>
                             <TableRow>
                                 <StyledTableCell>Item ID</StyledTableCell>
@@ -77,41 +104,18 @@ export default function WishListTable(){
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                            <TableRow>
-                                <TableCell style={{backgroundColor:riderList.request=='pending'? '#d7c5c5': ''}}>ITEM1234568</TableCell>
-                                <TableCell>Tomato</TableCell>
-                                <TableCell>Vegetables</TableCell>
-                                <TableCell>Rs.100.00</TableCell>
-                                <TableCell>100</TableCell>
-                            </TableRow>
-                            <TableRow>
-                                <TableCell>ITEM1234568</TableCell>
-                                <TableCell>Tomato</TableCell>
-                                <TableCell>Vegetables</TableCell>
-                                <TableCell>Rs.100.00</TableCell>
-                                <TableCell>100</TableCell>
-                            </TableRow>
-                            <TableRow>
-                                <TableCell>ITEM1234568</TableCell>
-                                <TableCell>Tomato</TableCell>
-                                <TableCell>Vegetables</TableCell>
-                                <TableCell>Rs.100.00</TableCell>
-                                <TableCell>100</TableCell>
-                            </TableRow>
-                            <TableRow>
-                                <TableCell>ITEM1234568</TableCell>
-                                <TableCell>Tomato</TableCell>
-                                <TableCell>Vegetables</TableCell>
-                                <TableCell>Rs.100.00</TableCell>
-                                <TableCell>100</TableCell>
-                            </TableRow>
-                            <TableRow>
-                                <TableCell>ITEM1234568</TableCell>
-                                <TableCell>Tomato</TableCell>
-                                <TableCell>Vegetables</TableCell>
-                                <TableCell>Rs.100.00</TableCell>
-                                <TableCell>100</TableCell>
-                            </TableRow>
+                            {product.map(item=>{
+                                count++;
+                                return(
+                                    <TableRow>
+                                        <TableCell style={{backgroundColor:riderList.request=='pending'? '#d7c5c5': ''}}>ITEM{count}</TableCell>
+                                        <TableCell>{item.product}</TableCell>
+                                        <TableCell>{item.category}</TableCell>
+                                        <TableCell>{item.price}</TableCell>
+                                        <TableCell>100</TableCell>
+                                    </TableRow>
+                                )
+                            })}
                         </TableBody>
                     </Table>
                 </TableContainer>
