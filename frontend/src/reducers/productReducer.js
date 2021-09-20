@@ -17,6 +17,9 @@ export default(productReducer = [],action)=>{
                 case 'FEATCH_INSUFF' :
             return action.payload;
 
+            case 'FETCH_CATAGORY' :
+                return action.payload;
+
         default:
             return productReducer;    
     }

@@ -19,12 +19,13 @@ export default function NavBarNotifications() {
     const classes = useStyles();
     const [anchorEl, setAnchorEl] = useState(null);
     const [notifications, setNotifications] = useState([]);
+    
 
     useEffect(()=>{
-            axios.get('http://localhost:8070/notification/').then((notification)=>{
+         axios.get('http://localhost:8070/notification/').then((notification)=>{
             setNotifications(notification.data);
         });
-    })
+    },[notifications])
 
 
     const handleClick = (event) => {
