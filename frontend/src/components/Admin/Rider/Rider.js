@@ -10,7 +10,7 @@ function Rider(){
         <div style={{zIndex:"-99"}}>
             <AdminNavigation/>
             <div className="margin-adjust" >
-                <h1 className="page-title">Rider Management Dashboard</h1>
+                <h1 className="page-title">Rider Management</h1>
 
                 <ManageTable/>
             </div>

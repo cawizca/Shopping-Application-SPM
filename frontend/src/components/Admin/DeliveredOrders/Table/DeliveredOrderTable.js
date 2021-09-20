@@ -77,7 +77,7 @@ export default function DeliveredOrderTable() {
                         <Charts/>
                     </div>
 
-                    <div className="col" style={{marginLeft: "320px"}}>
+                    <div className="col" style={{marginLeft: "300px"}}>
                         <lable style={{color: 'whitesmoke', paddingRight: "10px"}}>Search By Date</lable>
                         <TextField type='date' style={{backgroundColor: 'white',borderRadius:"6px"}}
                                    onChange={(event) => {
