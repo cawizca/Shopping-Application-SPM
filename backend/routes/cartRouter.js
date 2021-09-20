@@ -58,12 +58,15 @@ router.route("/").delete((req, res)=>{
 
 router.route("/total").get(async(req,res)=>{
    let total = 0;
+   let itemID = []
    const items = await Item.find();
    items.map((item)=>{
       total = total+item.price
+      itemID.push(item._id)
    });
-   res.send({total:total});
+   res.send({total:total,itemIDs : itemID});
 });
+
 
 /*
 router.route("/total").get(async(req,res)=>{
