@@ -31,6 +31,9 @@ const CartSchema = new Schema({
     },
     minimumQuantity : {
         type : Number
+    },
+    productCount :{
+        type: Number
     }
 });
 

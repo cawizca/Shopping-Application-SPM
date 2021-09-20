@@ -19,8 +19,6 @@ export default function ItemList(props){
 
     const searchTerm = props.searchTerm;
 
-    console.log(searchTerm)
-
     function deleteAll(){
         axios.delete("http://localhost:8070/cart/").then(()=>{
             alert("Deleted successfully.")
@@ -61,7 +59,6 @@ export default function ItemList(props){
                                 return product;
                             }
                         }).map((product)=>{
-                            console.log(product.name)
                             return(
                                     <ItemCard
                                         id = {product._id}

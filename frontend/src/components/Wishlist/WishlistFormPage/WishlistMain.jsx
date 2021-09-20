@@ -4,7 +4,6 @@ import {useEffect, useState} from "react";
 import axios from "axios";
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import {useLocation} from "react-router-dom";
 
 AOS.init();
 
@@ -28,11 +27,6 @@ export default function WishlistMain(){
                     <WishlistForm
                         wishlistDetails = {product}
                     />
-                    {/* <WishlistForm
-                        id = {product._id}
-                        wishlistName = {product.wishlistName}
-                        wishlistDescription = {product.wishlistDescription}
-                    />*/}
                 </div>
                 <div className="col-lg-6 card-section" data-aos="fade-left" data-aos-duration="1000">
                     {list.map((item)=>{

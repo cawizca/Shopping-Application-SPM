@@ -68,14 +68,14 @@ router.route("/total").get(async(req,res)=>{
 });
 
 
-/*
-router.route("/total").get(async(req,res)=>{
-   let total = 0;
-   const items = await Item.find();
-   items.map((item)=>{
-      total = total+item.price
-   });
-   res.send({total:"Rs. "+total+".00"});
+router.route("/:id").put((req,res)=>{
+   Item.findByIdAndUpdate(req.params.id,{
+      productCount: req.body.count
+   }).then(()=>{
+      res.send("Success")
+   }).catch((err)=>{
+      console.log(err);
+   })
 });
-*/
+
 module.exports = router;
