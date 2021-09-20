@@ -52,7 +52,7 @@ export default function WishlistProductSection(){
                 <div className="wishlist-title">
                     {detals.wishlistName}
                 </div>
-                <div className="wishlist-button">
+                <div className="wishlist-button" >
                     <SearchIcon buttonPressed = {searchTerm => setSerachTerm(searchTerm)}/>
                 </div>
                 <div className="wishlist-button">
