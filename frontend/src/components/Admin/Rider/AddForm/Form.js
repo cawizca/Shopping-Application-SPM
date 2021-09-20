@@ -246,7 +246,7 @@ export default function Form() {
 
                             <div className="completion-text">
                                 <TextField
-                                    inputProps={{pattern: "[vV0-9 ]{1,12}"}}
+                                    inputProps={{pattern: "[0-9vV ]{1,12}"}}
                                     color="secondary"
                                     type='text'
                                     label="Rider NIC"

@@ -46,7 +46,7 @@ const getAllCompletes = async (req, res) => {
 const getById = async (req, res) => {
     try {
         const date = req.params.id
-        console.log(date)
+       // console.log(date)
 
         if(date=='p'){
             const orders = await CompleteOrderModel.find({}).populate('riders', 'riderName')
@@ -82,11 +82,11 @@ const getCountByMonth = async (req, res) => {
         let monthWord = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
 
         const all = _.zip(month, monthWord, index)
-
+      const year=  new Date().getFullYear()
 
         _.each(all, async function (element, index, list) {
 
-            const count = await CompleteOrderModel.countDocuments({DeliveryDate: {$regex: ".*" + '2021-' + element[0] + ".*"}})
+            const count = await CompleteOrderModel.countDocuments({DeliveryDate: {$regex: ".*" + year+'-' + element[0] + ".*"}})
            // console.log(count)
             let monthData = {
                 label: element[1],
