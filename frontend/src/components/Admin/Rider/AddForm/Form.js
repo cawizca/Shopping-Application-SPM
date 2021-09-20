@@ -92,20 +92,6 @@ export default function Form() {
         setOpenSnack(false);
     };
 
-    const useStyles = makeStyles((theme) => ({
-        root: {
-            display: 'flex',
-            flexWrap: 'wrap',
-        },
-        textField: {
-            marginLeft: theme.spacing(1),
-            marginRight: theme.spacing(1),
-            width: '25ch',
-
-        },
-    }));
-
-    const classes = useStyles();
 
     const types = [
         {
@@ -169,25 +155,35 @@ export default function Form() {
     const handleSubmit = (event) => {
         event.preventDefault();
 
-        if (riderName == '' && nic == '' && phone == ''&& type == ''&& number == '') {
-            setHelperText('please fill all the fields');
+        if (riderName == '' && nic == '' && phone == ''&& type == ''&& number == '' ) {
+            setHelperText('Please fill all the fields');
 
         } else if (riderName == '') {
-            setHelperText('please Enter Rider Name');
+            setHelperText('Please Enter Rider Name');
 
-        } else if (nic == '') {
-            setHelperText('please Enter NIC Number');
+        }
+        else if (email == '') {
+            setHelperText('Please Enter Email');
+
+        }else if (nic == '') {
+            setHelperText('Please Enter NIC Number');
 
         }  else if (phone == '') {
-            setHelperText('please Enter Mobile Number');
+            setHelperText('Please Enter Mobile Number');
 
         } else if (number == '') {
-            setHelperText('please Enter Vehicle Number');
+            setHelperText('Please Enter Vehicle Number');
 
         } else if (type == '') {
             setHelperText('please Select Vehicle Type');
 
-        }else {
+        }
+        else if (phone.length<10 || phone.length>10) {
+            setHelperText('please Enter Valid Phone Number');
+
+        }
+
+        else {
             onSubmit(event)
         }
     };
@@ -209,6 +205,7 @@ export default function Form() {
             <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}>
                 <DialogTitle id="customized-dialog-title" onClose={handleClose} >
                      New Rider
+                    <FormHelperText style={{color: "red"}}>{helperText}</FormHelperText>
                 </DialogTitle>
                 <form onSubmit={handleSubmit}>
                     <DialogContent dividers>
@@ -246,7 +243,7 @@ export default function Form() {
 
                             <div className="completion-text">
                                 <TextField
-                                    inputProps={{pattern: "[0-9vV ]{1,12}"}}
+                                    inputProps={{pattern: "[0-9vV ]{1,10}"}}
                                     color="secondary"
                                     type='text'
                                     label="Rider NIC"
@@ -262,7 +259,7 @@ export default function Form() {
                             <div className="completion-text">
                                 <TextField
                                     color="secondary"
-                                    inputProps={{pattern: "[0-9]{1,10}"}}
+                                    inputProps={{pattern: "[0-9]{1,20}"}}
                                     type='text'
                                     label="Rider Phone"
                                     placeholder="0717845412"
@@ -313,7 +310,7 @@ export default function Form() {
                                 </TextField>
                             </div>
 
-                            <FormHelperText style={{color: "red"}}>{helperText}</FormHelperText>
+
 
                         </div>
 

@@ -60,6 +60,7 @@ const DialogActions = withStyles((theme) => ({
 function Alert(props) {
     return <MuiAlert elevation={6} variant="filled" {...props} />;
 }
+
 export default function (props) {
     const [open, setOpen] = React.useState(false);
     const [helperText, setHelperText] = React.useState('');
@@ -105,8 +106,6 @@ export default function (props) {
     ];
 
 
-
-
     const [openSnack, setOpenSnack] = React.useState(false);
     //snack Bar
     const handleCloseSnackBar = (event, reason) => {
@@ -131,7 +130,7 @@ export default function (props) {
         phone: phone,
         type: type,
         number: number,
-        email:email
+        email: email
     });
 
     function handleChange(event) {
@@ -146,8 +145,6 @@ export default function (props) {
     }
 
 
-
-
     function onSubmit(e) {
 
 
@@ -157,7 +154,7 @@ export default function (props) {
             riderPhone: data.phone,
             vehicleType: data.type,
             vehicleNumber: data.number,
-            email:data.email
+            email: data.email
         }
 
         axios.put(`http://localhost:8070/rider/update/${props.id}`, RiderObject)
@@ -178,29 +175,34 @@ export default function (props) {
     const handleSubmit = (event) => {
         event.preventDefault();
 
-        if (data.riderName == '' && data.nic == '' && data.phone == ''&& data.type == ''&& data.number == '') {
-            setHelperText('please fill all the fields');
+        if (riderName == '' && nic == '' && phone == '' && type == '' && number == '') {
+            setHelperText('Please fill all the fields');
 
-        } else if (data.riderName == '') {
-            setHelperText('please Enter Rider Name');
+        } else if (riderName == '') {
+            setHelperText('Please Enter Rider Name');
 
-        } else if (data.nic == '') {
-            setHelperText('please Enter NIC Number');
+        } else if (email == '') {
+            setHelperText('Please Enter Email');
 
-        }  else if (data.phone == '') {
-            setHelperText('please Enter Mobile Number');
+        } else if (nic == '') {
+            setHelperText('Please Enter NIC Number');
 
-        } else if (data.number == '') {
-            setHelperText('please Enter Vehicle Number');
+        } else if (phone == '') {
+            setHelperText('Please Enter Mobile Number');
 
-        } else if (data.type == '') {
+        } else if (number == '') {
+            setHelperText('Please Enter Vehicle Number');
+
+        } else if (type == '') {
             setHelperText('please Select Vehicle Type');
 
-        }else {
+        } else if (phone.length < 10 || phone.length > 10) {
+            setHelperText('please Enter Valid Phone Number');
+
+        } else {
             onSubmit(event)
         }
     };
-
 
 
     return (
@@ -217,6 +219,7 @@ export default function (props) {
             <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}>
                 <DialogTitle id="customized-dialog-title" onClose={handleClose} className="form-background">
                     Update Rider
+                    <FormHelperText style={{color: "red"}}>{helperText}</FormHelperText>
                 </DialogTitle>
                 <form onSubmit={handleSubmit}>
                     <DialogContent dividers className="form-background">
@@ -252,7 +255,7 @@ export default function (props) {
                             <div className="completion-text">
                                 <TextField
                                     name="nic"
-                                    inputProps={{pattern: "[vV0-9 ]{1,12}"}}
+                                    inputProps={{pattern: "[vV0-9 ]{1,10}"}}
                                     color="secondary"
                                     type='text'
                                     label="Rider NIC"
@@ -267,7 +270,7 @@ export default function (props) {
                                 <TextField
                                     name="phone"
                                     color="secondary"
-                                    inputProps={{pattern: "[0-9]{1,10}"}}
+                                    inputProps={{pattern: "[0-9]{1,20}"}}
                                     type='text'
                                     label="Rider Phone"
                                     placeholder="0717845412"
@@ -315,7 +318,7 @@ export default function (props) {
                                 </TextField>
                             </div>
 
-                            <FormHelperText style={{color: "red"}}>{helperText}</FormHelperText>
+
 
                         </div>
 
