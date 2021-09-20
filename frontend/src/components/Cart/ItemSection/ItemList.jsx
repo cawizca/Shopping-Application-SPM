@@ -29,7 +29,7 @@ export default function ItemList(props){
         axios.get('http://localhost:8070/cart/').then((res) => {
             setProducts(res.data);
         });
-    },[]);
+    },[products]);
 
     function deleteProduct(productId) {
         axios.delete(`http://localhost:8070/cart/${productId}`).then((product)=>{

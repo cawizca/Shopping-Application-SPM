@@ -6,7 +6,7 @@ const urlupdate = 'http://localhost:8070/product/update';
 const urldelete = 'http://localhost:8070/product/delete';
 const urlsearch = 'http://localhost:8070/product/search';
 const urlinsuff = 'http://localhost:8070/product/readInsuff';
-
+const urlcategory = 'http://localhost:8070/product/categoryProduct';
 export const featchproducts = ()=> axios.get(urlgetProducts);
 export const createProduct = (newProduct)=> {axios.post(urladd,newProduct); axios.post('http://localhost:8070/notification/', newProduct);};
 export const updateProduct = (id,updateProduct)=> axios.patch(`${urlupdate}/${id}`,updateProduct);
@@ -15,3 +15,5 @@ export const deleteProduct =(id)=>axios.delete(`${urldelete}/${id}`)
 export const adminSearch =(_ID)=>axios.get(urlsearch,{params:{id:_ID}});
 
 export const insuffProduct = ()=> axios.get(urlinsuff);
+
+export const customerCategory =(_ID)=>axios.get(urlcategory,{params:{id:_ID}});

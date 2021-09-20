@@ -68,6 +68,15 @@ export const getInsuffProduct = ()=> async(dispatch)=>{
     }
 } 
 
+export const  getProductCategory = (id)=>async(dispatch)=>{
 
+    try{
+        const{data} = await api.customerCategory(id);
+        dispatch({type:'FETCH_CATAGORY',payload:data})
+        console.log(id)
+    }catch(error){
+        console.log(error)
+    }
+}
 
 

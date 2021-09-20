@@ -96,6 +96,22 @@ router.route("/search").get((req,res)=>{
     })
 })
 
+router.route("/categoryProduct").get((req,res)=>{
+
+    let prouctCategory = req.query.id;
+
+    console.log(prouctCategory);
+
+    Products.find({category:prouctCategory})
+    .then((product)=>{
+            
+        res.json(product)
+    }) 
+    .catch(error=>{
+        res.status(500).send(error);
+    })
+})
+
 
 
 router.route("/readInsuff").get(async(req,res)=>{

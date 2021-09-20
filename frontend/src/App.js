@@ -29,8 +29,10 @@ import DeliveryDetails from "./components/DeliveryDetails/DeliveryDetails";
 import CustomerMyOrders from "./components/Customer/CustomerMyOrder/CustomerMyOrders";
 import UnRegisterShoppingProducts from './components/ProductsComponent/unregisterAllproducts';
 import NavBar from "./components/HomePage/NavBar/NavBar";
+
 import {useEffect, useState} from "react";
 import axios from "axios";
+import CategoryProduct from "./components/ProductsComponent/categoryProduct"
 
 import orderReport from "./components/Admin/DeliveredOrders/OrderReport";
 import Chart from "./components/Admin/DeliveredOrders/Charts";
@@ -98,6 +100,8 @@ function App() {
 
           <Route path="/insufficient" exact component={Inssufficient} />
           <Route path="/unregisterAll" exact component={UnRegisterShoppingProducts} />
+
+          <Route path="/categoryProduct" exact component={CategoryProduct} />
 
       </Router>
     </div>
