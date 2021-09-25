@@ -30,7 +30,7 @@ export default function WishlistProductSection(){
            setDetails(res.data);
            setProduct(res.data.wishlistProducts)
        })
-    },[]);
+    },[detals,product]);
 
     const handleClickOpen = () => {
         setOpen(true);
