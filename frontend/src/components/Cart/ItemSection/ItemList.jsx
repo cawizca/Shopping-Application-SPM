@@ -16,6 +16,9 @@ const buttonStyle = {
 export default function ItemList(props){
 
     const [products, setProducts] = useState([]);
+    const [productCount,setProductCount] = useState();
+
+
 
     const searchTerm = props.searchTerm;
 
@@ -29,7 +32,9 @@ export default function ItemList(props){
         axios.get('http://localhost:8070/cart/').then((res) => {
             setProducts(res.data);
         });
-    },[products]);
+
+        props.itemCount(productCount);
+    },[products,productCount]);
 
     function deleteProduct(productId) {
         axios.delete(`http://localhost:8070/cart/${productId}`).then((product)=>{
@@ -38,7 +43,7 @@ export default function ItemList(props){
             console.log(err);
         })
     }
-//ffff
+
     return(
         <div>
             <div className="row top-section">
@@ -66,6 +71,7 @@ export default function ItemList(props){
                                         category = {product.category}
                                         price = {product.price}
                                         image = {product.image}
+                                        productCount = {productCount => setProductCount(productCount)}
                                         deleteProduct = {()=>{
                                             axios.delete(`http://localhost:8070/cart/${product._id}`).then((product)=>{
                                                 console.log("Product deleted");

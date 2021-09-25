@@ -61,7 +61,7 @@ router.route("/total").get(async(req,res)=>{
    let itemID = []
    const items = await Item.find();
    items.map((item)=>{
-      total = total+item.price
+      total = total+(item.price*item.productCount)
       itemID.push(item._id)
    });
    res.send({total:total,itemIDs : itemID});

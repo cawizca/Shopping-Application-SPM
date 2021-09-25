@@ -26,6 +26,8 @@ export default function ItemCard(props) {
         updateCount();
     }
 
+
+
     function decreaseCount() {
         setCount(count - 1);
         setProductCount({
@@ -39,7 +41,8 @@ export default function ItemCard(props) {
             console.log('Success')
         }).catch((err)=>{
             console.log(err)
-        })
+        });
+        props.productCount(productCount);
     },[])
 
     function updateCount(){
