@@ -67,7 +67,7 @@ function NavBarCart(props) {
             })
             .catch()
     },[])
-
+       // [products,itemCount]
 
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
