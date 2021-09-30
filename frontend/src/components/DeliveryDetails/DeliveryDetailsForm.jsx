@@ -102,7 +102,7 @@ export default function DeliveryDetailsForm({itemObject , itemsids}){
     const [total , setTotal] = useState(itemObject.totalFee)
     const [itemid , setItemID] = useState(itemsids)
     const [km , setKm] = useState("")
-    const [finaltot , SetFinalTot] = useState("")
+    let [finaltot , SetFinalTot] = useState(0)
     const [userid , setUserID] = useState("")
 
 
@@ -192,7 +192,7 @@ export default function DeliveryDetailsForm({itemObject , itemsids}){
 
     const [product] = useState({
         name: "Your Order is ready After Payment",
-        price:finaltot.toString,
+        price:500,
         description: "Cool car"
     });
 
@@ -265,11 +265,11 @@ export default function DeliveryDetailsForm({itemObject , itemsids}){
             {/* <Gateway total = {finaltot} /> */}
             <div>
             <StripeCheckout
-                stripeKey="pk_test_51JaknZDzPOTabH3b6kMICCKLkwgOgv01zYr6QZHBhfyhPkXZI3vFADbhj0es2w9cSYg36w8sOLSJ0etGJuIJFl8z00OWwQqwAB"
+                stripeKey="pk_test_51JaknZDzPOTabH3bLDtBmfFfsYDg057QbmBQ5SHZQhqKGeUjPu5h84c021phRizQ9Em44pBN9D6b1MtXhuK4xEm200G2qiRSnV"
                 token={makePayment}
-                amount={finaltot * 100}
+                amount={product.price * 100}
                 name="Enter your card details"
-                
+
                 // billingAddress
                 // shippingAddress
             >
@@ -297,7 +297,6 @@ export default function DeliveryDetailsForm({itemObject , itemsids}){
                         Click Here To Get It
                     </Button>
                     <FormHelperText style={{color: "red"}}>{helperText}</FormHelperText>
-
 
                 </DialogContent>
                 <DialogActions>

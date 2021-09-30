@@ -195,11 +195,12 @@ export default function (props) {
 
         } else if (type == '') {
             setHelperText('please Select Vehicle Type');
-
-        } else if (phone.length < 10 || phone.length > 10) {
-            setHelperText('please Enter Valid Phone Number');
-
-        } else {
+        }
+        // } else if (phone.length < 10 || phone.length > 10) {
+        //     setHelperText('please Enter Valid Phone Number');
+        //
+        // }
+            else {
             onSubmit(event)
         }
     };
@@ -270,8 +271,8 @@ export default function (props) {
                                 <TextField
                                     name="phone"
                                     color="secondary"
-                                    inputProps={{pattern: "[0-9]{1,20}"}}
-                                    type='text'
+                                    // inputProps={{pattern: "[0-9]{1,10}"}}
+                                    type='number'
                                     label="Rider Phone"
                                     placeholder="0717845412"
                                     value={data.phone}

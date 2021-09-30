@@ -6,23 +6,22 @@ const OrderModel = require('../models/OrderModel.js')
 
 const createOrder = async (req, res) => {
 
+
+
     const today = new Date()
-    let date = '';
-    let deliverDate = '';
-    const month = today.getMonth() + 1
-    if (month < 10) {
+    let date='';
+    let deliverDate='';
+    const month = today.getMonth()+1
+    if (month<10){
         date = today.getFullYear() + '-0' + month + '-' + today.getDate();
     }
 
-    else {
-        date = today.getFullYear() + '-' + month + '-' + today.getDate();
+    else{
+        date = today.getFullYear() + '-' +month + '-' + today.getDate();
     }
 
-    deliverDate = date
+    deliverDate=date
     console.log(deliverDate)
-
-
-
 
 
 
@@ -105,6 +104,11 @@ const getMyOrders = async (req, res) => {
 }
 
 
+
+
+
+
+
 const getOne = async (req, res) => {
 
     const id = req.params.id
@@ -113,8 +117,8 @@ const getOne = async (req, res) => {
             res.status(200).send(data.riders)
             console.log(data)
         }).catch((error) => {
-            res.status(500).send(error.message)
-        })
+        res.status(500).send(error.message)
+    })
 
 }
 
@@ -164,11 +168,15 @@ const getCount2 = async (req, res) => {
 }
 
 
+
+
 const payedOrders = async (req, res) => {
     try {
         console.log(req.body)
         const userId = req.body;
-         await OrderModel.find({customerID:req.body.customerID})
+
+
+        await OrderModel.find({customerID:req.body.customerID})
             .then((data)=>{
                 console.log(data)
                 res.send(data)
@@ -177,8 +185,28 @@ const payedOrders = async (req, res) => {
     } catch (error) {
         res.status(500).send({error: error.message})
     }
-
 }
+
+
+
+const viewOrders = async (req, res) => {
+    try {
+
+        const id = req.params.id
+
+        await OrderModel.find({_id:id})
+            .then((data)=>{
+                console.log(data)
+                res.send(data)
+            })
+
+    } catch (error) {
+        res.status(500).send({error: error.message})
+    }
+}
+
+
+
 
 module.exports = {
     createOrder,
@@ -188,5 +216,6 @@ module.exports = {
     getOne,
     getCount,
     getCount2,
-    payedOrders
+    payedOrders,
+    viewOrders
 }
