@@ -79,4 +79,20 @@ export const  getProductCategory = (id)=>async(dispatch)=>{
     }
 }
 
+export const patchQtyProduct = (id,product) => async(dispatch)=>{
+
+    try{
+
+        const {data} = await api.updateQtyProduct(id,product);
+
+        dispatch({type:'UPDATE_QTY',payload:data})
+
+    }catch(error){
+
+        console.log(error)
+
+    }
+
+}
+
 

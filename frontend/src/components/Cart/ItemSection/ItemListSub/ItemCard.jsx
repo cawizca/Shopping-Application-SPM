@@ -42,8 +42,9 @@ export default function ItemCard(props) {
         }).catch((err)=>{
             console.log(err)
         });
+
         props.productCount(productCount);
-    },[])
+    },[]);
 
     function updateCount(){
 
