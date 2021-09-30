@@ -152,7 +152,14 @@ export default function OrderTable(){
                                                 state={orderList.request}
 
                                             /></TableCell>
-                                        <TableCell style={{backgroundColor:orderList.request=='-'? '#d7c5c5': ''}}><ViewOrder/></TableCell>
+                                        <TableCell style={{backgroundColor:orderList.request=='-'? '#d7c5c5': ''}}>
+                                            <ViewOrder
+
+                                                orderId={orderList._id}
+
+                                            />
+
+                                        </TableCell>
 
                                     </TableRow>
                                 ))

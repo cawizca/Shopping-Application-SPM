@@ -131,7 +131,9 @@ export default function DeliveredOrderTable() {
                                         <TableCell style={{fontWeight:"bold"}}>{completeList.DeliveryDate}</TableCell>
                                         <TableCell style={{fontWeight:"bold"}}>{completeList.TimeReleased}</TableCell>
                                         <TableCell style={{fontWeight:"bold"}}>{completeList.TimeReceived}</TableCell>
-                                        <TableCell style={{fontWeight:"bold"}}><ViewOrder/></TableCell>
+                                        <TableCell style={{fontWeight:"bold"}}><ViewOrder
+                                            orderId={completeList.orders}
+                                        /></TableCell>
 
 
                                     </TableRow>

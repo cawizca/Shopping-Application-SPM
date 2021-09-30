@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {withStyles} from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
@@ -18,6 +18,7 @@ import TableRow from "@material-ui/core/TableRow";
 import TableBody from "@material-ui/core/TableBody";
 import TableCell from '@material-ui/core/TableCell';
 import Paper from '@material-ui/core/Paper';
+import axios from "axios";
 
 const StyledTableCell = withStyles((theme) => ({
     head: {
@@ -76,12 +77,35 @@ const DialogActions = withStyles((theme) => ({
     },
 }))(MuiDialogActions);
 
-export default function ViewOrder() {
+export default function ViewOrder(props) {
+
+
+    const orderId = props.orderId
 
     const [open, setOpen] = React.useState(false);
+    const [orderList, setOrderList] = useState([]);
+
+    let city = 'kalluthra'
 
     const handleClickOpen = () => {
         setOpen(true);
+        axios.get(`http://localhost:8070/order/view/${orderId}`)
+            .then((response) => {
+                console.log(response.data.city)
+                setOrderList(response.data)
+
+
+                // response.data.map((data)=>{
+                //     city=data.city
+                //
+                // })
+
+
+            })
+            .catch((error) => {
+
+            })
+
     };
     const handleClose = () => {
         setOpen(false);
@@ -103,24 +127,8 @@ export default function ViewOrder() {
 
     const classes = useStyles();
 
-    const types = [
-        {
-            value: 'Van',
-            label: 'Van',
-        },
-        {
-            value: 'Three Wheel',
-            label: 'Three Wheel',
-        },
-        {
-            value: 'Lorry',
-            label: 'Lorry',
-        }
-
-
-    ];
-
-
+    let count = 0;
+    let total = 0;
     return (
         <div>
             <Button style={buttonStyle} onClick={handleClickOpen}>
@@ -133,110 +141,111 @@ export default function ViewOrder() {
                 <form>
                     <DialogContent dividers className="form-background" className='order-info'>
 
-                        <div className="input-set">
-                            <div>
-                                <label>Customer ID</label>
-                                <label style={{marginRight: '95px'}}> - CS4521514</label>
 
-                            </div>
+                        {
+                            orderList.map((data, index) => {
+                                return (
+                                    <div>
 
-                            <div>
-                                <label>Address</label>
-                                <label> - No 15/C Malabe</label>
-
-                            </div>
+                                        <div className="input-set">
 
 
-                        </div>
+                                            <div>
+                                                <label>Customer Name</label>
+                                                <label style={{marginRight: '95px'}}> {data.name}</label>
 
-                        <div className="input-set">
-                            <div>
-                                <label>Order ID</label>
-                                <label> - OR1558456</label>
-                            </div>
+                                            </div>
 
-                            <div>
-                                <label>Phone</label>
-                                <label> - 0717458542</label>
-                            </div>
-                        </div>
+                                            <div>
+                                                <label>Address</label>
+                                                <label> {data.city}</label>
 
-                        <div className="input-set">
-                            <div>
-                                <label>Distance</label>
-                                <label> - 25Km</label>
-                            </div>
+                                            </div>
 
 
-                        </div>
-                        <div className='order-form' style={{marginTop:'-60px'}}>
+                                        </div>
 
-                            <TableContainer component={Paper} style={{width: '350px'}}>
-                                <Table className={classes.table} aria-label="simple table">
-                                    <TableHead>
-                                        <TableRow>
-                                            <StyledTableCell>Item ID</StyledTableCell>
-                                            <StyledTableCell>name</StyledTableCell>
-                                            <StyledTableCell>Price (Rs.)</StyledTableCell>
-                                        </TableRow>
-                                    </TableHead>
-                                    <TableBody>
+                                        <div className="input-set">
+                                            <div>
+                                                <label>Order ID</label>
+                                                <label>{data.orderId}</label>
+                                            </div>
 
-                                        <TableRow>
-                                            <TableCell>28542</TableCell>
-                                            <TableCell>Watch</TableCell>
-                                            <TableCell>500.00</TableCell>
-                                        </TableRow>
+                                            <div>
+                                                <label>Phone</label>
+                                                <label> {data.phone}</label>
+                                            </div>
+                                        </div>
 
-                                        <TableRow>
-                                            <TableCell>28542</TableCell>
-                                            <TableCell>Watch</TableCell>
-                                            <TableCell>500.00</TableCell>
-                                        </TableRow>
-
-                                        <TableRow>
-                                            <TableCell>28542</TableCell>
-                                            <TableCell>Watch</TableCell>
-                                            <TableCell>500.00</TableCell>
-                                        </TableRow>
+                                        <div className="input-set">
+                                            <div>
+                                                <label>Postal </label>
+                                                <label> {data.postal}</label>
+                                            </div>
 
 
-                                        <TableRow className='other-charges'>
-                                            <TableCell>Sub Total</TableCell>
-                                            <TableCell></TableCell>
-                                            <TableCell>2500.00</TableCell>
-                                        </TableRow>
-
-                                        <TableRow className='other-charges'>
-                                            <TableCell>Shipping</TableCell>
-                                            <TableCell></TableCell>
-                                            <TableCell>170.00</TableCell>
-                                        </TableRow>
+                                        </div>
 
 
-                                        <TableRow className='final-total'>
-                                            <TableCell>Total</TableCell>
-                                            <TableCell></TableCell>
-                                            <TableCell>4200.00</TableCell>
-                                        </TableRow>
+                                        <div className='order-form' style={{marginTop: '-60px'}}>
+
+                                            <TableContainer component={Paper} style={{width: '350px'}}>
+                                                <Table className={classes.table} aria-label="simple table">
+                                                    <TableHead>
+                                                        <TableRow>
+
+                                                            <StyledTableCell>Item No</StyledTableCell>
+                                                            <StyledTableCell>Name</StyledTableCell>
+                                                            <StyledTableCell>Price(Rs.)</StyledTableCell>
+                                                        </TableRow>
+                                                    </TableHead>
+                                                    <TableBody>
 
 
-                                    </TableBody>
-                                </Table>
-                            </TableContainer>
+                                                        {
+                                                            data.itemname.map((data2, index) => (
+
+                                                                <TableRow>
+                                                                    <TableCell>{count = count + 1}</TableCell>
+                                                                    <TableCell>{data2}</TableCell>
+                                                                    <TableCell >{data.itemPrice[index]}</TableCell>
+                                                                </TableRow>
 
 
-                        </div>
+                                                            ))
+                                                        }
+
+
+                                                                <TableRow className='final-total'>
+                                                                    <TableCell>Total</TableCell>
+                                                                    <TableCell></TableCell>
+                                                                    <TableCell>4200.00</TableCell>
+                                                                </TableRow>
+
+
+
+
+                                                    </TableBody>
+                                                </Table>
+                                            </TableContainer>
+
+
+                                        </div>
+                                    </div>
+                                )
+                            })
+                        }
+
                     </DialogContent>
 
-                    <div className="input-set" style={{marginLeft: '20px' , marginTop:'-50px'}}>
-                        <div>
-                            <label>Rider</label>
-                            <label> - Not Assigned</label>
-                        </div>
+                    {/*<div className="input-set" style={{marginLeft: '20px', marginTop: '-50px'}}>*/}
+                    {/*    <div>*/}
+                    {/*        <label>Rider</label>*/}
+                    {/*        <label> - Not Assigned</label>*/}
+                    {/*    </div>*/}
 
 
-                    </div>
+                    {/*</div>*/}
                 </form>
 
 

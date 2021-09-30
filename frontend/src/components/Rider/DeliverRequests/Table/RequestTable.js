@@ -174,7 +174,7 @@ export default function RequestTable() {
                                                 >Declined
                                                 </Button>
                                             </TableCell>
-                                            <TableCell style={{backgroundColor:riderList.request=='pending'? '#d7c5c5': '',fontWeight:"bold"}}><ViewOrder/></TableCell>
+                                            <TableCell style={{backgroundColor:riderList.request=='pending'? '#d7c5c5': '',fontWeight:"bold"}}><ViewOrder  orderId={riderList._id}/></TableCell>
                                             <TableCell style={{backgroundColor:riderList.request=='pending'? '#d7c5c5': '',fontWeight:"bold"}}>
                                                 <ComplitionForm
 

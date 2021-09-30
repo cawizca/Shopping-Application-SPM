@@ -11,6 +11,6 @@ module.exports =function (){
     router.get('/count',controller.getCount)
     router.get('/count2/:id',controller.getCount2)
     router.post('/myOrders',controller.payedOrders)
-
+    router.get('/view/:id',controller.viewOrders)
     return router;
 }
