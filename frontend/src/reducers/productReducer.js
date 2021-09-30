@@ -24,6 +24,10 @@ export default(productReducer = [],action)=>{
 
             return productReducer.map((product)=>product._id === action.payload._id ? action.payload:product);
 
+                case 'UPDATE_QTY':
+                    return productReducer.map((product)=>product._id === action.payload._id ? action.payload:product);
+        
+                
         default:
             return productReducer;    
     }

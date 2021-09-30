@@ -148,6 +148,25 @@ router.route('/updateqty/:id').put((req,res)=>{
 
 
 
+router.route('/updateqty').put(async(req,res)=>{
+let productId = req.params.id;
+const{availableQty} = req.body
+
+const updateproduct=(
+    availableQty
+)
+
+const update= await Products.findByIdAndUpdate(productId,updateproduct)
+.then((res)=>{
+   res.status(200).send({status:"conference updated"}) 
+}).
+catch((err)=>{
+    console.log(err);
+    res.status(500).send({status:"error with updating"});
+})
+
+})
+
 module.exports=router;
 
 

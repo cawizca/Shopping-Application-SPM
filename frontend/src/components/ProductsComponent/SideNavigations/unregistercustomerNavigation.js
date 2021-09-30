@@ -31,100 +31,110 @@ const useStyles = makeStyles((theme) => ({
 
 
 
-function ProductNavigation(){
-    const history = useHistory();
-    const classes = useStyles();
+function UnregisterProductNavigation(){
+   
+const history = useHistory();
+const classes = useStyles();
 
-   const navigateAllProduct=()=>{
-        history.push("/ShoppingAll")
-    }
-    
-    
-    //onClick ={()=>navigateAdminProductManage()}
+const Allproduct=()=>{
+    history.push("/ShoppingAll")
+}
 
-    return (
-
-        <div>
-
-        
-
-        <Router>
-            <div style={{ display: 'flex' }}>
-                <Drawer
-                    style={{ width: '240px' }}
-                    variant="persistent"
-                    anchor="left"
-                    open={true}
-                    classes={{ paper: classes.drawerPaper }}
-                >
-                    <List>
-                        <Link to="/ShoppingAll" className={classes.link} >
-                            <ListItem button  onClick ={()=>navigateAllProduct()} href="/ShoppingAll" >
-                                <ListItemIcon>
-                                    <HomeIcon style={{color:"white"}} />
-                                </ListItemIcon>
-                                <ListItemText primary={"All products"} style={{color:"white"}}/>
-                            </ListItem>
-                        </Link>
-
-                        <Link to="#" className={classes.link}>
-                            <ListItem button >
-                                <ListItemIcon>
-                                    <InfoIcon style={{color:"white"}} />
-                                </ListItemIcon>
-                                <ListItemText primary={"Groceries"} style={{color:"white"}} />
-                            </ListItem>
-                        </Link>
-
-                        <Link to="#" className={classes.link}>
-                            <ListItem button >
-                                <ListItemIcon>
-                                    <InfoIcon style={{color:"white"}} />
-                                </ListItemIcon>
-                                <ListItemText primary={"Vegitables"} style={{color:"white"}} />
-                            </ListItem>
-                        </Link>
-
-                        <Link to="#" className={classes.link}>
-                            <ListItem button >
-                                <ListItemIcon>
-                                    <InfoIcon style={{color:"white"}} />
-                                </ListItemIcon>
-                                <ListItemText primary={"Meat"} style={{color:"white"}} />
-                            </ListItem>
-                        </Link>
-
-
-                        <Link to="#" className={classes.link}>
-                            <ListItem button >
-                                <ListItemIcon>
-                                    <InfoIcon style={{color:"white"}} />
-                                </ListItemIcon>
-                                <ListItemText primary={"SeaFood"} style={{color:"white"}} />
-                            </ListItem>
-                        </Link> 
-                        
-                         <Link to="#" className={classes.link}>
-                            <ListItem button >
-                                <ListItemIcon>
-                                    <InfoIcon style={{color:"white"}} />
-                                </ListItemIcon>
-                                <ListItemText primary={"Detergents"} style={{color:"white"}} />
-                            </ListItem>
-                        </Link>
+const category=(catgoryName)=>{
+    history.push("/uncategoryProduct",{
+        catgoryName :catgoryName
+    })
+}
 
 
 
-                    </List>
-                </Drawer>
 
 
 
-            </div>
-        </Router>
+const navigateProductManage=()=>{
+    history.push("/productManage")
+}
+
+return (
+
+    <div style={{ zIndex:"-99" }}>
+    <Router>
+
+        <div >
+            <Drawer
+                style={{ width: '240px' }}
+                variant="persistent"
+                anchor="left"
+                open={true}
+                classes={{ paper: classes.drawerPaper }}
+            >
+                <List>
+                    
+                    <Link to="/ShoppingAll" className={classes.link}>
+                        <ListItem button onClick={()=>Allproduct()}>
+                            <ListItemIcon>
+                                <HomeIcon style={{color:"white"}} />
+                            </ListItemIcon>
+                            <ListItemText style={{zIndex:"99"}} primary={"All products"} style={{color:"white"}} />
+                        </ListItem>
+                    </Link>
+                    <Link to="/uncategoryProduct" className={classes.link}>
+                        <ListItem button onClick={()=>category('Grocery')}>
+                            <ListItemIcon>
+                                <InfoIcon style={{color:"white"}} />
+                            </ListItemIcon>
+                            <ListItemText primary={"Grocery"} style={{color:"white"}} />
+                        </ListItem>
+                    </Link>
+
+                    <Link to="/uncategoryProduct" className={classes.link}>
+                        <ListItem button onClick={()=>category('Vegetables')}>
+                            <ListItemIcon>
+                                <InfoIcon style={{color:"white"}} />
+                            </ListItemIcon>
+                            <ListItemText primary={"Vegitable"} style={{color:"white"}} />
+                        </ListItem>
+                    </Link>
+                    <Link to="/uncategoryProduct" className={classes.link}>
+                        <ListItem button onClick={()=>category('Meat')}>
+                            <ListItemIcon>
+                            <InfoIcon style={{color:"white"}} />
+                            </ListItemIcon>
+                            <ListItemText primary={"Meat"} style={{color:"white"}} />
+                        </ListItem>
+                    </Link>
+
+
+                    <Link to="/uncategoryProduct" className={classes.link}>
+                        <ListItem button onClick={()=>category('Seafood')}>
+                            <ListItemIcon>
+                            <InfoIcon style={{color:"white"}} />
+                            </ListItemIcon>
+                            <ListItemText primary={"Sea food"} style={{color:"white"}} />
+                        </ListItem>
+                    </Link>
+
+                    <Link to="/uncategoryProduct" className={classes.link}>
+                        <ListItem button onClick={()=>category('Detergent')}>
+                            <ListItemIcon>
+                            <InfoIcon style={{color:"white"}} />
+                            </ListItemIcon>
+                            <ListItemText primary={"Detergents"} style={{color:"white"}} />
+                        </ListItem>
+                    </Link>
+
+
+                </List>
+
+                
+            </Drawer>
+
+
 
         </div>
+    </Router>
+    </div>
     );
 }
 
-export default ProductNavigation
+export default UnregisterProductNavigation
