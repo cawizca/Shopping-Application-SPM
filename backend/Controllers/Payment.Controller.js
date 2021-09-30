@@ -1,5 +1,5 @@
 const {v4: uuidv4} = require('uuid');
-const stripe = require("stripe")("sk_test_51JaknZDzPOTabH3b5n5qONDZik9KKZBFZ4dcFvsBFs2PK1IgKWlQtTTcVWefLyleVcxCXNUoLpOssoiQHVgx9HWs00dw278wfy")
+const stripe = require("stripe")("sk_test_51JaknZDzPOTabH3bzEwiG4P0x3dgBHAvZIfbF8uN40LBW0GQw19IVDO3XsLBAuCDBidNxEW52crJ005ED6H6BwVC004EB8n7EB")
 
 
 const makePayment = async (req, res) => {

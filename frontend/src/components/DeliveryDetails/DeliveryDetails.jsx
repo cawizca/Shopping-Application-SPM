@@ -6,6 +6,7 @@ import {useLocation} from "react-router-dom";
 function DeliveryDetails(){
 
     const location = useLocation();
+
     console.log(location.state)
 
     return(

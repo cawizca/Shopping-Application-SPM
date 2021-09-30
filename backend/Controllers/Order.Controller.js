@@ -11,14 +11,23 @@ const createOrder = async (req, res) => {
                 value = data.orderId
             })
 
+
             let value2 = value.toString();
             let value3 = value2.substr(3, 7)
             let value4 = Number(value3) + 1
             const orderData = new OrderModel({
                 "orderId": "ORD" + value4,
                 "customerID": "CUS005",
-                "orderDate": "2021-09/18",
+                "orderDate": "2021-09-30",
                 "request": "-",
+                "total": req.body.total,
+                "name": req.body.name,
+                "address": req.body.address,
+                "city": req.body.city,
+                "postal": req.body.postal,
+                "phone": req.body.phone,
+                "products": req.body.items
+
             })
 
             orderData.save()

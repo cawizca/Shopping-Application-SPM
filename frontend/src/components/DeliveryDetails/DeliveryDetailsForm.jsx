@@ -88,23 +88,8 @@ function Alert(props) {
     return <MuiAlert elevation={6} variant="filled" {...props} />;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 export default function DeliveryDetailsForm({itemObject , itemsids}){
+
     const classes = useStyles();
     const [name , setName] = useState("")
     const [address,setAddress] = useState("")
@@ -182,7 +167,34 @@ export default function DeliveryDetailsForm({itemObject , itemsids}){
     };
     const handleClose = () => {
         setOpen(false);
+
     };
+
+    function makeOrder(){
+
+            const newObject ={
+
+                "total":itemObject.totalFee,
+                "items":itemObject.itemIDs,
+                "name":name,
+                "addres":address,
+                "city":city,
+                "postal":postal,
+                "phone":phone
+
+            }
+
+            axios.post("http://localhost:8070/order/create",newObject).then((response)=>{
+                console.log(response)
+            }).catch((err)=>{
+                console.log(err)
+            })
+
+
+    }
+
+
+
 
     const [openSnack, setOpenSnack] = React.useState(false);
     //snack Bar
@@ -277,13 +289,15 @@ export default function DeliveryDetailsForm({itemObject , itemsids}){
                 token={makePayment}
                 amount={finaltot * 100}
                 name="Enter your card details"
+                
                 // billingAddress
                 // shippingAddress
             >
-
-                {/* <Button style={buttonStyle} >Pay</Button> */}
+                   <Button style={buttonStyle} onClick={e=>{
+                    makeOrder()
+                }} >Pay</Button>
             </StripeCheckout>
-
+         
 
             <Snackbar open={openSnack} autoHideDuration={6000} onClose={handleCloseSnackBar}>
                 <Alert onClose={handleCloseSnackBar} severity="success">

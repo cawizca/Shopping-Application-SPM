@@ -10,6 +10,7 @@ function CartComponent() {
 
     const [searchTerm, setSearchTerm] = useState();
     const [count, setCount] = useState();
+    
     return (
         <div>
             <div className="container">

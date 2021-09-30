@@ -55,9 +55,10 @@ export default function PriceList(props) {
 
     props.buttonPressed(searchTerm)
 
-    const quantity = props.productCount;
+//test
 
-    console.log(quantity)
+
+    const quantity = props.productCount;
 
     const handleChange = (event) => {
         const price = Number(event.target.value);
@@ -72,8 +73,7 @@ export default function PriceList(props) {
         axios.get('http://localhost:8070/cart/').then((res)=>{
             setItems(res.data);
         })
-        
-    },[]);
+    },[items]);
 
     function chnageDiscount(event){
         setCoupon(event.target.value)
@@ -101,6 +101,8 @@ export default function PriceList(props) {
 
         history.push("/deliverydetails",{totDiscount: totDiscount, cartTotal: cartTotal, deliveryFee: deliveryFee, totalFee: totalFee, itemIDs : itemid, products: [items]});
     }
+
+
 
     return(
         <div style={{paddingLeft:"15%"}}>
