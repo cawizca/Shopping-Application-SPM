@@ -5,7 +5,7 @@ import EventPosts from './products/unregistercutomerProducts';
 
 import Styles from './styles';
 import {useDispatch} from 'react-redux';
-import {getProduct} from '../../actions/productAction'
+import {getProduct,searchproduct} from '../../actions/productAction'
 import NavBar from '../HomePage/NavBar/NavBar'
 import ProductNavigation from './SideNavigations/unregistercustomerNavigation'
 import axios from "axios";
@@ -15,54 +15,36 @@ import productPage from '../../images/girl.png'
 const UnRegisterShoppingProducts =() =>{
 
        
-        const [currentId,setCurrentId] = useState(null);
-        const classes = Styles();
-        const dispatch =useDispatch();
-        useEffect(()=>{
+    const [currentId,setCurrentId] = useState(null);
+    const [searchTerm, setSearchTerm] = useState(null);
 
-            const getusertype = async () => {
-                const access_token = localStorage.getItem('token')
-                let config = {
-                    headers: {
-                        'Authorization': 'Bearer ' + access_token
-                    }
-                }
-                axios.get('http://localhost:8070/user/post', config).then((response) => {
-                    if (response.data.message) {
-                        alert(response.data.message)
-                    } else {
-                        setUserType(response.data.user.usertype)
-                    }
-                })
-                    .catch()
-            };
-            getusertype();
-            
-            dispatch(getProduct());  
-            
+    const classes = Styles();
+    const dispatch =useDispatch();
+    useEffect(()=>{
 
-        },[currentId,dispatch]);
+        if(searchTerm){
+            dispatch(searchproduct(searchTerm));   
+        }
+        else{
+        dispatch(getProduct());  
+        }
 
+        console.log(searchTerm)
 
-    const [userType, setUserType] = useState('');
+    },[currentId,searchTerm,dispatch]);
 
+   
 
     return (
         
         <div>
 
-
-            
-
             <Container maxwidth ='lg' style={{zIndex:"-99"}}>
-           
-                <ProductNavigation style={{zIndex:"-99"}} />
-
 
 
                 <ProductNavigation />
+                <div style={{marginLeft:'200px'}}>
 
-                <div style={{marginLeft:'100px'}}>
                     <AppBar className ={classes.appBar} position ="static" >
                         <Typography className={classes.heading} variant ="h2" align = "center"> Buy Products Form Us</Typography>
                     </AppBar>
@@ -75,11 +57,13 @@ const UnRegisterShoppingProducts =() =>{
                     id="outlined-basic"
                     label="Search"
                     variant="outlined"
+                    value={searchTerm}
                     size = "small"
+                    onChange={(e) => { setSearchTerm(e.target.value) }}
 
                 />
 
-                            </div>
+                            </div >
 
                         <Grid container justify ="space-between" alignItems="stretch" spacing ={3}>
 
@@ -90,15 +74,12 @@ const UnRegisterShoppingProducts =() =>{
                     </Container>
 
                 </Grow>
-        </div>
 
+                </div>
+            
             </Container>
             <img src={productPage} className="product-background"/>
-            </div>
-            
-           
-
-            
+           </div>  
            
     );
 }
