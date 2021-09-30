@@ -36,6 +36,50 @@ export default function CustomerMyOrders() {
 
     const classes = useStyles();
 
+    const [ tabledata , SetTable] = useState([])
+
+
+    useEffect(()=>{
+
+        var userID = ""
+
+            const access_token = localStorage.getItem('token')
+            let config = {
+                headers: {
+                    'Authorization': 'Bearer ' + access_token
+                }
+            }
+            axios.get('http://localhost:8070/user/post', config).then((response) => {
+                if (response.data.message) {
+                    alert(response.data.message)
+                } else {
+                    userID= response.data.user._id
+                    console.log(response.data.user._id)
+                    const userrr = {customerID:response.data.user._id}
+                    axios.post("http://localhost:8070/order/myOrders",userrr).then((response)=>{
+            
+                        console.log("hellooo")
+                        console.log(response.data)
+                        SetTable(response.data)
+
+
+                    }).catch((err)=>{
+                        console.log(err)
+                    })
+                }
+            }).catch()
+      
+
+    },[])
+
+
+
+
+
+
+
+
+
     return (
         <div>
             <h4 style={{ color: "#fff", textAlign: "center" }}>My Orders</h4>
@@ -50,20 +94,25 @@ export default function CustomerMyOrders() {
                                 <StyledTableCell>Order Items</StyledTableCell>
                                 <StyledTableCell>Total</StyledTableCell>
                                 <StyledTableCell>Order Date</StyledTableCell>
-                                <StyledTableCell>Order Receved Date</StyledTableCell>
                                 <StyledTableCell>Order State</StyledTableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                            <TableRow>
-                                <TableCell>OR125487958</TableCell>
-                                <TableCell>Chicken</TableCell>
-                                <TableCell>900.00</TableCell>
-                                <TableCell>20/08/2021</TableCell>
-                                <TableCell>20/08/2021</TableCell>
-                                <TableCell>Pending</TableCell>
-                            </TableRow>
 
+                        {tabledata.map((item,Key)=>(
+                            <TableRow>
+                            <TableCell>{item["orderId"]}</TableCell>
+                            <TableCell>
+                                    {item["itemname"].map((e)=>(
+                                        <div><TableCell>{e}</TableCell></div>
+                                    ))}
+                            </TableCell>
+                            <TableCell>{item["total"]}</TableCell>
+                            <TableCell>{item["orderDate"]}</TableCell>
+                            <TableCell>{item["request"]}</TableCell>
+                        </TableRow>
+                        ))}
+                            
 
                         </TableBody>
                     </Table>

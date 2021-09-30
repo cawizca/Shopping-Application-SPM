@@ -163,6 +163,23 @@ const getCount2 = async (req, res) => {
     }
 }
 
+
+const payedOrders = async (req, res) => {
+    try {
+        console.log(req.body)
+        const userId = req.body;
+         await OrderModel.find({customerID:req.body.customerID})
+            .then((data)=>{
+                console.log(data)
+                res.send(data)
+            })
+
+    } catch (error) {
+        res.status(500).send({error: error.message})
+    }
+
+}
+
 module.exports = {
     createOrder,
     getAllOrders,
@@ -170,5 +187,6 @@ module.exports = {
     getMyOrders,
     getOne,
     getCount,
-    getCount2
+    getCount2,
+    payedOrders
 }
