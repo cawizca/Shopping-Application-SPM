@@ -144,7 +144,6 @@ router.route('/updateqty/:id').put((req,res)=>{
         })
 
 
-
 })
 
 
