@@ -61,7 +61,7 @@ function App() {
         };
         getusertype();
 
-    });
+    },[]);
 
   return (
     <div>

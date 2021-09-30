@@ -34,7 +34,8 @@ export default function ItemList(props){
         });
 
         props.itemCount(productCount);
-    },[products,productCount]);
+        
+    },[]);
 
     function deleteProduct(productId) {
         axios.delete(`http://localhost:8070/cart/${productId}`).then((product)=>{

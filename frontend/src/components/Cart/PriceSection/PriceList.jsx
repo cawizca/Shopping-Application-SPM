@@ -72,7 +72,8 @@ export default function PriceList(props) {
         axios.get('http://localhost:8070/cart/').then((res)=>{
             setItems(res.data);
         })
-    },[total,itemid,items]);
+        
+    },[]);
 
     function chnageDiscount(event){
         setCoupon(event.target.value)

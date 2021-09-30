@@ -177,10 +177,6 @@ export default function DeliveryDetailsForm({itemObject , itemsids}){
 
     }
 
-    
-
-
-
     const handleClickOpen = () => {
         setOpen(true);
     };
@@ -219,14 +215,6 @@ export default function DeliveryDetailsForm({itemObject , itemsids}){
             alert("Payment Failed");
         })
     }
-
-
-
-
-
-
-
-
 
     return(
         <div style={{display:"flex"}}>

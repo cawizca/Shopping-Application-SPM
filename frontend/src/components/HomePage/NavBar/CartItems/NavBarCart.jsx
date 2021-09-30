@@ -61,12 +61,10 @@ function NavBarCart(props) {
                 } else {
 
                     setId(response.data.user.riders)
-
                 }
-
             })
             .catch()
-    },[products,itemCount])
+    },[])
 
 
     const handleClick = (event) => {
