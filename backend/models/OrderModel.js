@@ -31,31 +31,36 @@ const orderSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-     address: {
+    address: {
         type: String,
         required: false
     },
-     city: {
+    city: {
         type: String,
         required: false
     },
-     postal: {
+    postal: {
         type: String,
         required: false
-    }, 
+    },
     phone: {
         type: String,
         required: true
     },
-    products: [
+    itemPrice: [
         {
-            type: mongoose.Schema.Types.ObjectId,
-            required: true,
-            ref: 'products'
+            type: String,
+            required: true
+        }
+    ],
+    itemname: [
+        {
+            type: String,
+            required: true
         }
     ]
-
 },
+
     {
         timestamps: true
     })

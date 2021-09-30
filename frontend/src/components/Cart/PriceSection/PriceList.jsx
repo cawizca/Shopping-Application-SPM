@@ -93,13 +93,20 @@ export default function PriceList(props) {
 
     function clickPlay(){
 
-        items.map((item,index)=>{
+        var names = []
+        var prices = []
 
+        items.map((item,index)=>{
             EventDispatch(patchQtyProduct(item.productID,{productCount : item.productCount}))
+
+            names = names.concat({
+                "name": item["name"],
+                "value": item["price"]
+            })
+           
         })
 
-
-        history.push("/deliverydetails",{totDiscount: totDiscount, cartTotal: cartTotal, deliveryFee: deliveryFee, totalFee: totalFee, itemIDs : itemid, products: [items]});
+        history.push("/deliverydetails",{totDiscount: totDiscount, cartTotal: cartTotal, deliveryFee: deliveryFee, totalFee: totalFee, itemIDs : itemid, products : names});
     }
 
 

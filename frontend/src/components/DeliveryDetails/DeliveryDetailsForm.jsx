@@ -145,7 +145,9 @@ export default function DeliveryDetailsForm({itemObject , itemsids}){
     },[km])
 
     function makeobject(){
-    
+  
+
+
     const order ={
 
         "userID":userid,
@@ -172,15 +174,25 @@ export default function DeliveryDetailsForm({itemObject , itemsids}){
 
     function makeOrder(){
 
+            var itemPrice = []
+            var itemname = []
+
+            itemObject.products.map((item)=>{
+                itemPrice = itemPrice.concat(item["value"])
+                itemname = itemname.concat(item["name"])
+            })
+
+
             const newObject ={
 
                 "total":itemObject.totalFee,
-                "items":itemObject.itemIDs,
                 "name":name,
                 "addres":address,
                 "city":city,
                 "postal":postal,
-                "phone":phone
+                "phone":phone,
+                "itemname":itemname,
+                "itemPrice":itemPrice
 
             }
 
