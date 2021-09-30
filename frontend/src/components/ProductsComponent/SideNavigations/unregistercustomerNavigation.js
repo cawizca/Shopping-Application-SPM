@@ -37,7 +37,7 @@ const history = useHistory();
 const classes = useStyles();
 
 const Allproduct=()=>{
-    history.push("/ShoppingAll")
+    history.push("/unregisterAll")
 }
 
 const category=(catgoryName)=>{
@@ -70,7 +70,7 @@ return (
             >
                 <List>
                     
-                    <Link to="/ShoppingAll" className={classes.link}>
+                    <Link to="/unregisterAll" className={classes.link}>
                         <ListItem button onClick={()=>Allproduct()}>
                             <ListItemIcon>
                                 <HomeIcon style={{color:"white"}} />
