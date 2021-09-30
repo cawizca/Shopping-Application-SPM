@@ -55,9 +55,13 @@ export default function PriceList(props) {
 
     props.buttonPressed(searchTerm)
 
+//test
+
+
     const quantity = props.productCount;
 
     console.log(quantity)
+
 
     const handleChange = (event) => {
         const price = Number(event.target.value);
