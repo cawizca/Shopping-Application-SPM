@@ -40,6 +40,7 @@ const createOrder = async (req, res) => {
             let value4 = Number(value3) + 1
 
 
+            //order
             const orderData = new OrderModel({
                 "orderId": "ORD" + value4,
                 "customerID": req.body.userid,
