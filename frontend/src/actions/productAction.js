@@ -68,6 +68,31 @@ export const getInsuffProduct = ()=> async(dispatch)=>{
     }
 } 
 
+export const  getProductCategory = (id)=>async(dispatch)=>{
 
+    try{
+        const{data} = await api.customerCategory(id);
+        dispatch({type:'FETCH_CATAGORY',payload:data})
+        console.log(id)
+    }catch(error){
+        console.log(error)
+    }
+}
+
+export const patchQtyProduct = (id,product) => async(dispatch)=>{
+
+    try{
+
+        const {data} = await api.updateQtyProduct(id,product);
+
+        dispatch({type:'UPDATE_QTY',payload:data})
+
+    }catch(error){
+
+        console.log(error)
+
+    }
+
+}
 
 

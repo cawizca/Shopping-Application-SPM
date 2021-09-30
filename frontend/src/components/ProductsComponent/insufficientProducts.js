@@ -25,14 +25,13 @@ const Inssufficient =() =>{
 
     },[dispatch]);
 
+    
   
 
 
     return (
         
         <div>
-            
-
 
 
             <Container maxwidth ='lg' style={{zIndex:"-99"}}>

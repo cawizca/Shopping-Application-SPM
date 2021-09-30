@@ -30,7 +30,7 @@ export default function WishlistProductSection(){
            setDetails(res.data);
            setProduct(res.data.wishlistProducts)
        })
-    },[]);
+    },[detals,product]);
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -52,7 +52,7 @@ export default function WishlistProductSection(){
                 <div className="wishlist-title">
                     {detals.wishlistName}
                 </div>
-                <div className="wishlist-button">
+                <div className="wishlist-button" >
                     <SearchIcon buttonPressed = {searchTerm => setSerachTerm(searchTerm)}/>
                 </div>
                 <div className="wishlist-button">

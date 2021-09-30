@@ -96,7 +96,21 @@ router.route("/search").get((req,res)=>{
     })
 })
 
+router.route("/categoryProduct").get((req,res)=>{
 
+    let prouctCategory = req.query.id;
+
+    console.log(prouctCategory);
+
+    Products.find({category:prouctCategory})
+    .then((product)=>{
+            
+        res.json(product)
+    }) 
+    .catch(error=>{
+        res.status(500).send(error);
+    })
+})
 
 router.route("/readInsuff").get(async(req,res)=>{
     await Products.find({$expr:{$gt:["$minimumQty","$availableQty"]}})
@@ -108,6 +122,31 @@ router.route("/readInsuff").get(async(req,res)=>{
         res.status(500).send(error.message);
     })
 });
+router.route('/updateqty/:id').put((req,res)=>{
+
+    let productId = req.params.id;
+
+    Products.findByIdAndUpdate(productId,{$inc: {"availableQty": -req.body.productCount}})
+
+        .then((item)=>{
+
+            //res.status(200).send({status:"conference updated"})
+            res.json(item.availableQty);
+
+        }).
+
+        catch((err)=>{
+
+            console.log(err);
+
+            res.status(500).send({status:"error with updating"});
+
+        })
+
+
+
+})
+
 
 
 module.exports=router;

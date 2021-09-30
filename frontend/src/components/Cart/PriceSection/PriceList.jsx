@@ -11,6 +11,13 @@ import PrintInvoice from "./PrintInvoice";
 import SearchIcon from "./SearchIcon";
 import {useHistory} from "react-router-dom";
 
+
+
+import {useDispatch}  from 'react-redux';
+import {patchQtyProduct} from '../../../actions/productAction'
+
+
+
 const useStyles = makeStyles((theme) => ({
     formControl: {
         margin: theme.spacing(1),
@@ -34,6 +41,7 @@ const buttonStyle = {
 
 export default function PriceList(props) {
 
+    const EventDispatch = useDispatch();
     const history = useHistory();
 
     const classes = useStyles();
@@ -42,10 +50,19 @@ export default function PriceList(props) {
     const [discount, setDiscount] = useState({});
     const [coupon, setCoupon] = useState('');
     const [searchTerm, setSearchTerm] = useState();
-    const [itemid , setItemid] = useState([])
+    const [itemid , setItemid] = useState([]);
+    const [items, setItems] = useState([]);
 
     props.buttonPressed(searchTerm)
+
 //test
+
+
+    const quantity = props.productCount;
+
+    console.log(quantity)
+
+
     const handleChange = (event) => {
         const price = Number(event.target.value);
         setPrice(price);
@@ -55,8 +72,11 @@ export default function PriceList(props) {
         axios.get('http://localhost:8070/cart/total').then((total)=>{
             setTotal(total.data)
             setItemid(total.data.itemIDs)
+        });
+        axios.get('http://localhost:8070/cart/').then((res)=>{
+            setItems(res.data);
         })
-    },[]);
+    },[total,itemid,items]);
 
     function chnageDiscount(event){
         setCoupon(event.target.value)
@@ -75,7 +95,14 @@ export default function PriceList(props) {
     const totalFee = totDiscount>0? (parseFloat(Number(cartTotal)+Number(deliveryFee)-totDiscount)).toFixed(2):parseFloat(Number(cartTotal)+Number(deliveryFee)).toFixed(2);
 
     function clickPlay(){
-        history.push("/deliverydetails",{totDiscount: totDiscount, cartTotal: cartTotal, deliveryFee: deliveryFee, totalFee: totalFee, itemIDs : itemid});
+
+        items.map((item,index)=>{
+
+            EventDispatch(patchQtyProduct(item.productID,{productCount : item.productCount}))
+        })
+
+
+        history.push("/deliverydetails",{totDiscount: totDiscount, cartTotal: cartTotal, deliveryFee: deliveryFee, totalFee: totalFee, itemIDs : itemid, products: [items]});
     }
 
     return(

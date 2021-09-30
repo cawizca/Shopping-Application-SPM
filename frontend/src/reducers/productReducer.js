@@ -17,6 +17,13 @@ export default(productReducer = [],action)=>{
                 case 'FEATCH_INSUFF' :
             return action.payload;
 
+            case 'FETCH_CATAGORY' :
+                return action.payload;
+
+        case 'UPDATE_QTY':
+
+            return productReducer.map((product)=>product._id === action.payload._id ? action.payload:product);
+
         default:
             return productReducer;    
     }

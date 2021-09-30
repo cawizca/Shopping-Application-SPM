@@ -1,4 +1,4 @@
-import { useState } from "react";
+import {useEffect, useState} from "react";
 import { UilPlus } from '@iconscout/react-unicons';
 import { UilMinus } from '@iconscout/react-unicons';
 import { UilTimes } from '@iconscout/react-unicons';
@@ -12,15 +12,47 @@ AOS.init();
 export default function ItemCard(props) {
 
     const [count, setCount] = useState(1);
+    const [productCount, setProductCount] = useState({
+        count: 2
+    });
 
     let productId = props.id;
 
     function increaseCount() {
         setCount(count + 1);
+        setProductCount({
+            count: count+2
+        });
+        updateCount();
     }
+
+
 
     function decreaseCount() {
         setCount(count - 1);
+        setProductCount({
+            count: count-2
+        });
+        updateCount()
+    }
+
+    useEffect(()=>{
+        axios.put(`http://localhost:8070/cart/${productId}`,{count: 1}).then(()=>{
+            console.log('Success')
+        }).catch((err)=>{
+            console.log(err)
+        });
+
+        props.productCount(productCount);
+    },[]);
+
+    function updateCount(){
+
+        axios.put(`http://localhost:8070/cart/${productId}`,productCount).then(()=>{
+            console.log('Success')
+        }).catch((err)=>{
+            console.log(err)
+        })
     }
 
 
