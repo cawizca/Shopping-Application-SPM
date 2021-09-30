@@ -20,6 +20,10 @@ export default(productReducer = [],action)=>{
             case 'FETCH_CATAGORY' :
                 return action.payload;
 
+        case 'UPDATE_QTY':
+
+            return productReducer.map((product)=>product._id === action.payload._id ? action.payload:product);
+
         default:
             return productReducer;    
     }
