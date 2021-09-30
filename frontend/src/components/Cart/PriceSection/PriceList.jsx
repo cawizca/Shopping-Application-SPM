@@ -45,7 +45,7 @@ export default function PriceList(props) {
     const [itemid , setItemid] = useState([])
 
     props.buttonPressed(searchTerm)
-
+//test
     const handleChange = (event) => {
         const price = Number(event.target.value);
         setPrice(price);
