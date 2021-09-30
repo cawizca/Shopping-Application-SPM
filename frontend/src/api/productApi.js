@@ -19,4 +19,6 @@ export const adminSearch =(_ID)=>axios.get(urlsearch,{params:{id:_ID}});
 export const insuffProduct = ()=> axios.get(urlinsuff);
 
 export const customerCategory =(_ID)=>axios.get(urlcategory,{params:{id:_ID}});
+
+
 export const updateQtyProduct = (id,updateProduct)=> axios.put(`${urlqtyupdate}/${id}`,updateProduct);

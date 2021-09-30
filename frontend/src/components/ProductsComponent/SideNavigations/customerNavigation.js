@@ -70,9 +70,7 @@ return (
                 classes={{ paper: classes.drawerPaper }}
             >
                 <List>
-                    <div style={{textAlign:"center", marginBottom:"5%"}}>
-                        <Typography style={{color:"white", fontSize:"30px"}}> Admin</Typography>
-                    </div>
+                   
                     <Link to="/ShoppingAll" className={classes.link}>
                         <ListItem button onClick={()=>Allproduct()}>
                             <ListItemIcon>
