@@ -252,16 +252,11 @@ export default function DeliveryDetailsForm({itemObject , itemsids}){
                     setPhone(e.target.value)
                 }} fullWidth/>
             </div>
-            <div className="delivery-text">
-                <TextField id="standard-basic"  name="wishlistDescription"  placeholder="Enter Km" color="secondary" onChange={e=>{
-                    setKm(e.target.value)
-                }} fullWidth/>
+
             </div>
-            </div>
-            <h6> Rs.20 delivery charge per Km</h6>
-            <h6 style={{color:"white", fontSize:"20px"}}>Item Total : {itemObject.totalFee}</h6>
-            <h6 style={{color:"white", fontSize:"20px"}}>Delivery Charges : {km*20}</h6>
-            <h6 style={{color:"white", fontSize:"20px"}}>Final Total : {finaltot}</h6>
+
+            <h6 style={{color:"white", fontSize:"20px"}}>Total Price : {itemObject.totalFee}</h6>
+
             {/* <div className="delivery-button">
                 <Button style={buttonStyle} onClick={e=>{
                     makeobject()

@@ -10,6 +10,7 @@ module.exports =function (){
     router.put('/update/:id',controller.updateOrder)
     router.get('/count',controller.getCount)
     router.get('/count2/:id',controller.getCount2)
+    router.post('/myOrders',controller.payedOrders)
 
     return router;
 }

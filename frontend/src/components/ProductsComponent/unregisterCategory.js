@@ -1,92 +1,92 @@
-import React,{useState,useEffect} from 'react';
-import {Container,AppBar,Typography,Grow,Grid,TextField} from '@material-ui/core';
+import React, { useState, useEffect } from 'react';
+import { Container, AppBar, Typography, Grow, Grid, TextField } from '@material-ui/core';
 
 import EventPosts from './products/unregistercutomerProducts';
 
 import Styles from './styles';
-import {useDispatch} from 'react-redux';
-import {getProduct,getProductCategory,searchproduct} from '../../actions/productAction'
+import { useDispatch } from 'react-redux';
+import { getProduct, getProductCategory, searchproduct } from '../../actions/productAction'
 import NavBar from '../HomePage/NavBar/NavBar'
 import ProductNavigation from './SideNavigations/unregistercustomerNavigation'
 import axios from "axios";
 import productPage from '../../images/girl.png'
 import { useLocation } from "react-router-dom";
 
-const UnRegisterShoppingProducts =() =>{
+const UnRegisterShoppingProducts = () => {
 
-       
-    const [currentId,setCurrentId] = useState(null);
+
+    const [currentId, setCurrentId] = useState(null);
     const [searchTerm, setSearchTerm] = useState(null);
 
     const classes = Styles();
-    const dispatch =useDispatch();
+    const dispatch = useDispatch();
     const location = useLocation();
     const productcategory = location.state.catgoryName
 
     console.log(productcategory)
 
-    useEffect(()=>{
+    useEffect(() => {
 
-        if(searchTerm){
-            dispatch(searchproduct(searchTerm));   
+        if (searchTerm) {
+            dispatch(searchproduct(searchTerm));
         }
-        else{
-        dispatch(getProductCategory(productcategory));  
+        else {
+            dispatch(getProductCategory(productcategory));
         }
 
         console.log(searchTerm)
 
-    },[currentId,searchTerm,productcategory,dispatch]);
+    }, [currentId, searchTerm, productcategory, dispatch]);
 
-   
+
 
     return (
-        
+
         <div>
 
-            <Container maxwidth ='lg' style={{zIndex:"-99"}}>
+            <Container maxwidth='lg' style={{ zIndex: "-99" }}>
 
 
                 <ProductNavigation />
-                <div style={{marginLeft:'200px'}}>
+                <div style={{ marginLeft: '200px' }}>
 
-                    <AppBar className ={classes.appBar} position ="static" >
-                        <Typography className={classes.heading} variant ="h2" align = "center"> Buy Products Form Us</Typography>
+                    <AppBar className={classes.appBar} position="static" >
+                        <Typography className={classes.heading} variant="h2" align="center"> Buy Products Form Us</Typography>
                     </AppBar>
-                <Grow in>
+                    <Grow in>
 
 
-                    <Container >
-                        <div style={{marginLeft:"900px"}}>
-                        <TextField  style={{color:'white',background:'white',marginRight:"-10%",width:'200px'}}
-                    id="outlined-basic"
-                    label="Search"
-                    variant="outlined"
-                    value={searchTerm}
-                    size = "small"
-                    onChange={(e) => { setSearchTerm(e.target.value) }}
+                        <Container >
+                            <div style={{ marginLeft: "900px" }}>
+                                <TextField style={{ color: 'white', background: 'white', marginRight: "-10%", width: '200px' }}
+                                    id="outlined-basic"
+                                    label="Search"
+                                    variant="outlined"
+                                    value={searchTerm}
+                                    size="small"
+                                    onChange={(e) => { setSearchTerm(e.target.value) }}
 
-                />
+                                />
 
                             </div >
 
-                        <Grid container justify ="space-between" alignItems="stretch" spacing ={3}>
+                            <Grid container justify="space-between" alignItems="stretch" spacing={3}>
 
-                                <Grid item xs ={12} sm ={7} style = {{width:"fit-content"}}>
-                                    <EventPosts setCurrentId ={setCurrentId}   />
+                                <Grid item xs={12} sm={7} style={{ width: "fit-content" }}>
+                                    <EventPosts setCurrentId={setCurrentId} />
                                 </Grid >
-                        </Grid>
-                    </Container>
+                            </Grid>
+                        </Container>
 
-                </Grow>
+                    </Grow>
 
                 </div>
-            
+
             </Container>
-            <img src={productPage} className="product-background"/>
-           </div>
-            
-           
+            <img src={productPage} className="product-background" />
+        </div>
+
+
     );
 }
 
