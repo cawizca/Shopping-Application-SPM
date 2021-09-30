@@ -135,34 +135,6 @@ export default function DeliveryDetailsForm({itemObject , itemsids}){
     },[])
 
 
-    React.useEffect(()=>{
-        if(km==""){
-            SetFinalTot(parseFloat(itemObject.totalFee))
-        }else{
-            SetFinalTot(parseFloat(itemObject.totalFee)+(parseFloat(km)*20))
-        }
-        
-    },[km])
-
-    function makeobject(){
-  
-
-
-    const order ={
-
-        "userID":userid,
-        "total" : finaltot,
-        "items" : itemid,
-        "name" : name,
-        "address" : address,
-        "city" : city,
-        "postal" : postal,
-        "phone" : phone,
-        "km":km
-
-    }
-
-    }
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -192,7 +164,8 @@ export default function DeliveryDetailsForm({itemObject , itemsids}){
                 "postal":postal,
                 "phone":phone,
                 "itemname":itemname,
-                "itemPrice":itemPrice
+                "itemPrice":itemPrice,
+                "userid":userid
 
             }
 
