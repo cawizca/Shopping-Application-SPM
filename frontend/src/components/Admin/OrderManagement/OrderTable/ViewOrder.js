@@ -95,13 +95,21 @@ export default function ViewOrder(props) {
                 console.log(response.data.city)
                 setOrderList(response.data)
 
-
+                let total = 0;
                 response.data.map((data)=>{
-                    let total = 0;
-                   data.itemPrice.map((data2,index)=>{
-                       total= total + data2[index]
-                       console.log(total)
-                   })
+
+                    console.log(data.itemPrice)
+
+                    data.itemPrice.map(price=>{
+                        total=total+parseFloat(price)
+                    })
+
+
+
+                   // data.itemPrice.map((data2,index)=>{
+                   //     total= total + parseFloat(data2[index])
+                   //     console.log(data2[index])
+                   // })
                     setTotal(total);
                 })
 
@@ -133,6 +141,7 @@ export default function ViewOrder(props) {
     const classes = useStyles();
 
     let count = 0;
+    let itemTotal=0;
 
     return (
         <div>
@@ -209,6 +218,7 @@ export default function ViewOrder(props) {
 
                                                         {
                                                             data.itemname.map((data2, index) => (
+
 
                                                                 <TableRow>
                                                                     <TableCell>{count = count + 1}</TableCell>
