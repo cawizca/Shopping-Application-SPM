@@ -84,6 +84,7 @@ export default function ViewOrder(props) {
 
     const [open, setOpen] = React.useState(false);
     const [orderList, setOrderList] = useState([]);
+    const [totals, setTotal] = useState(0);
 
     let city = 'kalluthra'
 
@@ -95,10 +96,14 @@ export default function ViewOrder(props) {
                 setOrderList(response.data)
 
 
-                // response.data.map((data)=>{
-                //     city=data.city
-                //
-                // })
+                response.data.map((data)=>{
+                    let total = 0;
+                   data.itemPrice.map((data2,index)=>{
+                       total= total + data2[index]
+                       console.log(total)
+                   })
+                    setTotal(total);
+                })
 
 
             })
@@ -128,7 +133,7 @@ export default function ViewOrder(props) {
     const classes = useStyles();
 
     let count = 0;
-    let total = 0;
+
     return (
         <div>
             <Button style={buttonStyle} onClick={handleClickOpen}>
@@ -151,14 +156,14 @@ export default function ViewOrder(props) {
 
 
                                             <div>
-                                                <label>Customer Name</label>
-                                                <label style={{marginRight: '95px'}}> {data.name}</label>
+                                                <label style={{fontWeight: '600' }} >Customer Name :</label>
+                                                <label style={{marginLeft: '5px' }}> {data.name}</label>
 
                                             </div>
 
                                             <div>
-                                                <label>Address</label>
-                                                <label> {data.city}</label>
+                                                <label style={{fontWeight: '600' }}>Address :</label>
+                                                <label style={{marginLeft: '5px' }}> {data.city}</label>
 
                                             </div>
 
@@ -167,20 +172,20 @@ export default function ViewOrder(props) {
 
                                         <div className="input-set">
                                             <div>
-                                                <label>Order ID</label>
-                                                <label>{data.orderId}</label>
+                                                <label style={{fontWeight: '600' }}>Order ID :</label>
+                                                <label style={{marginLeft: '5px' }}>{data.orderId}</label>
                                             </div>
 
                                             <div>
-                                                <label>Phone</label>
-                                                <label> {data.phone}</label>
+                                                <label style={{fontWeight: '600' }}>Phone :</label>
+                                                <label style={{marginLeft: '5px' }}> {data.phone}</label>
                                             </div>
                                         </div>
 
                                         <div className="input-set">
                                             <div>
-                                                <label>Postal </label>
-                                                <label> {data.postal}</label>
+                                                <label style={{fontWeight: '600' }}>Postal :</label>
+                                                <label style={{marginLeft: '5px' }}> {data.postal}</label>
                                             </div>
 
 
@@ -209,6 +214,7 @@ export default function ViewOrder(props) {
                                                                     <TableCell>{count = count + 1}</TableCell>
                                                                     <TableCell>{data2}</TableCell>
                                                                     <TableCell >{data.itemPrice[index]}</TableCell>
+
                                                                 </TableRow>
 
 
@@ -219,7 +225,7 @@ export default function ViewOrder(props) {
                                                                 <TableRow className='final-total'>
                                                                     <TableCell>Total</TableCell>
                                                                     <TableCell></TableCell>
-                                                                    <TableCell>4200.00</TableCell>
+                                                                    <TableCell>{totals}</TableCell>
                                                                 </TableRow>
 
 
