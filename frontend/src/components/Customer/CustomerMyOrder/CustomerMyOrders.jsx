@@ -9,6 +9,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import Button from "@material-ui/core/Button";
+import MyOrderPDF from "./myorderPdf";
 
 const buttonStyle = {
     color: "#fff",
@@ -34,7 +35,6 @@ const StyledTableCell = withStyles((theme) => ({
 }))(TableCell);
 
 
-
 const useStyles = makeStyles({
     table: {
         minWidth: 650,
@@ -49,7 +49,7 @@ export default function CustomerMyOrders() {
     const classes = useStyles();
 
     const [ tabledata , SetTable] = useState([])
-
+    const [userid , SetID] = useState("")
 
     useEffect(()=>{
 
@@ -67,6 +67,7 @@ export default function CustomerMyOrders() {
                 } else {
                     userID= response.data.user._id
                     console.log(response.data.user._id)
+                    SetID(response.data.user._id)
                     const userrr = {customerID:response.data.user._id}
                     axios.post("http://localhost:8070/order/myOrders",userrr).then((response)=>{
             
@@ -81,16 +82,7 @@ export default function CustomerMyOrders() {
                 }
             }).catch()
       
-
     },[])
-
-
-
-
-
-
-
-
 
     return (
         <div className="container">
@@ -99,7 +91,9 @@ export default function CustomerMyOrders() {
                     <h4 style={{ color: "#fff", textAlign: "center" }}>My Orders</h4>
                 </div>
                 <div >
-                    <Button style={buttonStyle}> Generate report </Button>
+                    <MyOrderPDF
+                    id = {userid}
+                    />
                 </div>
             </div>
             <div >
