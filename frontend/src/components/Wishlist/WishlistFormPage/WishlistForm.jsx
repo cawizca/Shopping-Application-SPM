@@ -58,8 +58,8 @@ export default function WishlistForm(props){
 
         const {name, value} = event.target;
         setWishlist(prevValue=> ({
-                ...prevValue,
-                [name] : value
+            ...prevValue,
+            [name] : value
             })
         );
     };
@@ -99,20 +99,20 @@ export default function WishlistForm(props){
                 <div style={{flex:"15"}}>
 
                     <InputLabel id="demo-simple-select-label" style={{textAlign:"left"}}>Category</InputLabel>
-                    <Select
-                        labelId="demo-simple-select-label"
-                        id="demo-simple-select"
-                        value={type}
-                        onChange={handleChange}
-                        fullWidth
-                        style={{textAlign:"left"}}
-                    >
-                        <MenuItem value={"Vegetables"} >Vegetables</MenuItem>
-                        <MenuItem value={"Meat"}>Meat</MenuItem>
-                        <MenuItem value={"Seafood"}>SeaFoods</MenuItem>
-                        <MenuItem value={"Grocery"}>Grocery</MenuItem>
-                        <MenuItem value={"Detergent"}>Detergent</MenuItem>
-                    </Select>
+                        <Select
+                            labelId="demo-simple-select-label"
+                            id="demo-simple-select"
+                            value={type}
+                            onChange={handleChange}
+                            fullWidth
+                            style={{textAlign:"left"}}
+                        >
+                            <MenuItem value={"Vegetables"} >Vegetables</MenuItem>
+                            <MenuItem value={"Meat"}>Meat</MenuItem>
+                            <MenuItem value={"Seafood"}>SeaFoods</MenuItem>
+                            <MenuItem value={"Grocery"}>Grocery</MenuItem>
+                            <MenuItem value={"Detergent"}>Detergent</MenuItem>
+                        </Select>
 
                 </div>
 
