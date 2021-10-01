@@ -214,8 +214,9 @@ export default function DeliveryDetailsForm({itemObject , itemsids}){
     }
 
     return(
+        <div className="container">
         <div style={{display:"flex"}}>
-            <div style={{justifyContent:"center" , alignItems:"center"}}>
+            <div className="d-flex justify-content-center" style={{marginLeft: "auto", marginRight: "auto"}}>
         <div className="delivery-form" style={{height:"fit-content"}}>
            <h4>Add Delivery Details</h4>
             <h4 style={{color:"white", fontSize:"40px"}}>Delivery Details</h4>
@@ -318,8 +319,6 @@ export default function DeliveryDetailsForm({itemObject , itemsids}){
         </div>
         </div>
         </div>
+        </div>
     );
 }
-
-
-{/*  */}
