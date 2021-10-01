@@ -8,11 +8,23 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import Button from "@material-ui/core/Button";
 
+const buttonStyle = {
+    color: "#fff",
+    backgroundColor: "#FA334E",
+    fontFamily: 'Poppins',
+    fontWeight: 400,
+    borderRadius: '6px',
+    width: '200px',
+    height: '50px',
+    boxShadow: '0px 0px 3px #FA334E',
+    textTransform: 'capitalize'
+}
 
 const StyledTableCell = withStyles((theme) => ({
     head: {
-        backgroundColor: '#5E4FA2',
+        backgroundColor: '#FA334E',
         color: theme.palette.common.white,
     },
     body: {
@@ -81,13 +93,19 @@ export default function CustomerMyOrders() {
 
 
     return (
-        <div>
-            <h4 style={{ color: "#fff", textAlign: "center" }}>My Orders</h4>
-            <br />
+        <div className="container">
+            <div style={{display:"flex", margin:"5% 0"}}>
+                <div style={{flex:"3"}}>
+                    <h4 style={{ color: "#fff", textAlign: "center" }}>My Orders</h4>
+                </div>
+                <div >
+                    <Button style={buttonStyle}> Generate report </Button>
+                </div>
+            </div>
             <div >
-            <div style={{float:"center",marginLeft:"100px"}}>
+            <div>
 
-                    <Table  aria-label="simple table" style={{ width: 1200 }} component={Paper} >
+                    <Table className="table-rows-style"  aria-label="simple table" style={{ width: 1200 }} component={Paper} >
                         <TableHead>
                             <TableRow>
                                 <StyledTableCell>Order ID</StyledTableCell>

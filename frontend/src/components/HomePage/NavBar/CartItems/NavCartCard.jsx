@@ -1,4 +1,3 @@
-import Tomato from '../../../../images/tomato.png'
 import {UilMinus, UilPlus} from "@iconscout/react-unicons";
 
 export default function NavCartCard(props){
