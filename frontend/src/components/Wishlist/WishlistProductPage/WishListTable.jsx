@@ -84,6 +84,8 @@ export default function WishListTable(props){
     const location = useLocation();
     const product = location.state;
 
+    console.log(product)
+
     let count = 0;
 
     return(
@@ -100,7 +102,6 @@ export default function WishListTable(props){
                                 <StyledTableCell>Product Name</StyledTableCell>
                                 <StyledTableCell>Product Category</StyledTableCell>
                                 <StyledTableCell>Price</StyledTableCell>
-                                <StyledTableCell>Quantity</StyledTableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
@@ -112,7 +113,6 @@ export default function WishListTable(props){
                                         <TableCell>{item.product}</TableCell>
                                         <TableCell>{item.category}</TableCell>
                                         <TableCell>{item.price}</TableCell>
-                                        <TableCell>100</TableCell>
                                     </TableRow>
                                 )
                             })}

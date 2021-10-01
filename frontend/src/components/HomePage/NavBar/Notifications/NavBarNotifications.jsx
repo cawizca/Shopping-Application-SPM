@@ -25,7 +25,7 @@ export default function NavBarNotifications() {
          axios.get('http://localhost:8070/notification/').then((notification)=>{
             setNotifications(notification.data);
         });
-    },[])
+    })
 
 
     const handleClick = (event) => {

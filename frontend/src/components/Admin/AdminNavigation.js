@@ -1,5 +1,9 @@
 import React from 'react';
-import { makeStyles } from "@material-ui/core/styles"
+import { makeStyles } from "@material-ui/core/styles";
+import { UilTruck } from '@iconscout/react-unicons';
+import { UilShoppingBag } from '@iconscout/react-unicons';
+import { UilPlane } from '@iconscout/react-unicons';
+import { UilLocationPinAlt } from '@iconscout/react-unicons';
 
 import {
     BrowserRouter as Router,
@@ -77,7 +81,7 @@ function AdminNavbar(){
                         <Link to="/rider" className={classes.link}>
                             <ListItem button onClick={()=>navigateRidermanagement()}>
                                 <ListItemIcon>
-                                    <HomeIcon style={{color:"white"}} />
+                                    <UilPlane style={{color:"white"}} />
                                 </ListItemIcon>
                                 <ListItemText style={{zIndex:"99"}} primary={"Rider Management"} style={{color:"white"}} />
                             </ListItem>
@@ -85,7 +89,7 @@ function AdminNavbar(){
                         <Link to="/orders" className={classes.link}>
                             <ListItem button onClick={()=>navigateOrdermanagement()}>
                                 <ListItemIcon>
-                                    <InfoIcon style={{color:"white"}} />
+                                    <UilTruck style={{color:"white"}} />
                                 </ListItemIcon>
                                 <ListItemText primary={"Order Management"} style={{color:"white"}} />
                             </ListItem>
@@ -94,7 +98,7 @@ function AdminNavbar(){
                         <Link to="/productManage" className={classes.link}>
                             <ListItem button onClick={()=>navigateProductManage()}>
                                 <ListItemIcon>
-                                    <InfoIcon style={{color:"white"}} />
+                                    <UilShoppingBag style={{color:"white"}} />
                                 </ListItemIcon>
                                 <ListItemText primary={"Products Management"} style={{color:"white"}} />
                             </ListItem>
@@ -112,7 +116,7 @@ function AdminNavbar(){
                         <Link to="/complete" className={classes.link}>
                             <ListItem button onClick={()=>navigateDeliveredOrders()}>
                                 <ListItemIcon>
-                                    <CustomerIcon style={{color:"white"}} />
+                                    <UilLocationPinAlt style={{color:"white"}} />
                                 </ListItemIcon>
                                 <ListItemText primary={"Delivered Orders"} style={{color:"white"}} />
                             </ListItem>
