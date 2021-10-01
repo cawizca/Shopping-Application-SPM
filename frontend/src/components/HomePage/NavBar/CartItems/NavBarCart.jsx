@@ -43,9 +43,6 @@ function NavBarCart(props) {
             setProducts(res.data);
             setItemCount(res.data.length);
         });
-        console.log(props.userId)
-
-
         const access_token = localStorage.getItem('token')
         console.log(access_token)
         let config = {
@@ -64,7 +61,7 @@ function NavBarCart(props) {
                 }
             })
             .catch()
-    },[products,itemCount])
+    },[products,itemCount]); // loop here
        // [products,itemCount]
 
     const handleClick = (event) => {

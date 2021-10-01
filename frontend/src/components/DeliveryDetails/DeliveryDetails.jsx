@@ -11,7 +11,7 @@ function DeliveryDetails(){
 
     return(
         <div>
-        <div style={{display:"flex", alignItems:"center", justifyContent:"center"}}>
+        <div style={{alignItems:"center", justifyContent:"center"}}>
         <DeliveryDetailsForm 
          itemObject={location.state}
          itemsids={location.state.itemIDs}
