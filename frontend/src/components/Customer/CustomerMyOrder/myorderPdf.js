@@ -39,7 +39,7 @@ const useStyles = makeStyles({
 });
 
 
-export default function PdfReport(props) {
+export default function MyOrderPDF(props) {
     let count = 0;
     const classes = useStyles();
 
@@ -49,21 +49,18 @@ export default function PdfReport(props) {
 
     useEffect(() => {
 
+        const userrr = {customerID:props.id}
 
-        if (props.reportData == '') {
-            date = 'p'
-        } else {
-            date = props.reportData
-        }
+        axios.post("http://localhost:8070/order/myOrders",userrr).then((response)=>{
+            
+       
+            console.log(response.data)
+            setCompleteList(response.data)
 
-        axios.get(`http://localhost:8070/complete/by-date/${date}`)
-            .then((response) => {
-                setCompleteList(response.data)
-                //console.log(response.data)
-            })
-            .catch((error) => {
-                alert(error)
-            })
+
+        }).catch((err)=>{
+            console.log(err)
+        })
 
 
     })
@@ -78,10 +75,10 @@ export default function PdfReport(props) {
         doc.autoTable({
             columns: [
                 {header: 'Order ID', dataKey: 'orderId'},
-                {header: 'Delivery Date', dataKey: 'DeliveryDate'},
-                {header: 'Time Released', dataKey: 'TimeReleased'},
-                {header: 'Time Received', dataKey: 'TimeReceived'},
-
+                {header: 'Items', dataKey: 'itemname'},
+                {header: 'Toatal', dataKey: 'total'},
+                {header: 'Time Received', dataKey: 'orderDate'},
+                {header: 'Time Received', dataKey: 'request'}
 
             ],
 
