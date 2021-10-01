@@ -105,6 +105,7 @@ function App() {
           <Route path="/unregisterAll" exact component={UnRegisterShoppingProducts} />
 
           <Route path="/categoryProduct" exact component={CategoryProduct} />
+          <Route path="/uncategoryProduct" exact component={UnRegisterCategoryProducts} />
 
       </Router>
     </div>

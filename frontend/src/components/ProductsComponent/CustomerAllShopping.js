@@ -45,7 +45,7 @@ const ShoppingProducts =() =>{
                 <div style={{marginLeft:'200px'}}>
 
                     <AppBar className ={classes.appBar} position ="static" >
-                        <Typography className={classes.heading} variant ="h2" align = "center"> Buy Products Form Us</Typography>
+                        <Typography className={classes.heading} variant ="h2" align = "center"> Buy Products From Us</Typography>
                     </AppBar>
                 <Grow in>
 
