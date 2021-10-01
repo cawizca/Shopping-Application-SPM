@@ -102,7 +102,7 @@ export default function DeliveryDetailsForm({itemObject , itemsids}){
     const [total , setTotal] = useState(itemObject.totalFee)
     const [itemid , setItemID] = useState(itemsids)
     const [km , setKm] = useState("")
-    let [finaltot , SetFinalTot] = useState(0)
+    const [finaltot , SetFinalTot] = useState("")
     const [userid , setUserID] = useState("")
 
 
@@ -192,7 +192,7 @@ export default function DeliveryDetailsForm({itemObject , itemsids}){
 
     const [product] = useState({
         name: "Your Order is ready After Payment",
-        price:500,
+        price:finaltot.toString,
         description: "Cool car"
     });
 
@@ -216,7 +216,7 @@ export default function DeliveryDetailsForm({itemObject , itemsids}){
     return(
         <div style={{display:"flex"}}>
             <div style={{justifyContent:"center" , alignItems:"center"}}>
-        <div className="delivery-form">
+        <div className="delivery-form" style={{height:"fit-content"}}>
            <h4>Add Delivery Details</h4>
             <h4 style={{color:"white", fontSize:"40px"}}>Delivery Details</h4>
             
@@ -252,11 +252,16 @@ export default function DeliveryDetailsForm({itemObject , itemsids}){
                     setPhone(e.target.value)
                 }} fullWidth/>
             </div>
-
+                {/*<div className="delivery-text">
+                <TextField id="standard-basic"  name="wishlistDescription"  placeholder="Enter Km" color="secondary" onChange={e=>{
+                    setKm(e.target.value)
+                }} fullWidth/>
+            </div>*/}
             </div>
-
-            <h6 style={{color:"white", fontSize:"20px"}}>Total Price : {itemObject.totalFee}</h6>
-
+            {/*<h6> Rs.20 delivery charge per Km</h6>
+            <h6 style={{color:"white", fontSize:"20px"}}>Item Total : {itemObject.totalFee}</h6>*/}
+            <p style={{color:"white", fontSize:"15px"}}>Delivery Charges : {itemObject.deliveryFee}</p>
+            <h6 style={{color:"white", fontSize:"20px"}}>Final Total : {finaltot}</h6>
             {/* <div className="delivery-button">
                 <Button style={buttonStyle} onClick={e=>{
                     makeobject()
@@ -264,12 +269,13 @@ export default function DeliveryDetailsForm({itemObject , itemsids}){
             </div> */}
             {/* <Gateway total = {finaltot} /> */}
             <div>
+                <div style={{textAlign:"center"}}>
             <StripeCheckout
-                stripeKey="pk_test_51JaknZDzPOTabH3bLDtBmfFfsYDg057QbmBQ5SHZQhqKGeUjPu5h84c021phRizQ9Em44pBN9D6b1MtXhuK4xEm200G2qiRSnV"
+                stripeKey="pk_test_51JaknZDzPOTabH3b6kMICCKLkwgOgv01zYr6QZHBhfyhPkXZI3vFADbhj0es2w9cSYg36w8sOLSJ0etGJuIJFl8z00OWwQqwAB"
                 token={makePayment}
-                amount={product.price * 100}
+                amount={finaltot * 100}
                 name="Enter your card details"
-
+                
                 // billingAddress
                 // shippingAddress
             >
@@ -277,7 +283,8 @@ export default function DeliveryDetailsForm({itemObject , itemsids}){
                     makeOrder()
                 }} >Pay</Button>
             </StripeCheckout>
-         
+                </div>
+
 
             <Snackbar open={openSnack} autoHideDuration={6000} onClose={handleCloseSnackBar}>
                 <Alert onClose={handleCloseSnackBar} severity="success">
@@ -297,6 +304,7 @@ export default function DeliveryDetailsForm({itemObject , itemsids}){
                         Click Here To Get It
                     </Button>
                     <FormHelperText style={{color: "red"}}>{helperText}</FormHelperText>
+
 
                 </DialogContent>
                 <DialogActions>

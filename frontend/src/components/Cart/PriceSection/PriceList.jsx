@@ -10,6 +10,7 @@ import axios from "axios";
 import PrintInvoice from "./PrintInvoice";
 import SearchIcon from "./SearchIcon";
 import {useHistory} from "react-router-dom";
+import { UilMessage } from '@iconscout/react-unicons'
 
 
 
@@ -143,9 +144,9 @@ export default function PriceList(props) {
                         Coupon Code
                     </div>
                     <div className="col-lg-6" style={{textAlign: "right", display:"flex"}}>
-                        <TextField placeholder="Coupon" value={coupon} onChange={chnageDiscount} />
+                        <TextField placeholder="Coupon" style={{paddingRight:"5%"}} value={coupon} onChange={chnageDiscount} />
                         <div style={{flex:1}}>
-                            <Button onClick={getDiscount}>+</Button>
+                            <Button style={{backgroundColor:"#FA334E", color:"#fff"}} onClick={getDiscount}><UilMessage/></Button>
                         </div>
                     </div>
                 </div>

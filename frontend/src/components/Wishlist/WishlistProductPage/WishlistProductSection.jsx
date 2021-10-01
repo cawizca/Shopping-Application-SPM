@@ -20,6 +20,7 @@ export default function WishlistProductSection(){
     const [detals, setDetails] = useState([]);
     const [product, setProduct] = useState([]);
     const [searchTerm, setSerachTerm] = useState();
+    const [productCount,setProductCount] = useState();
 
     console.log(searchTerm);
 
@@ -81,6 +82,7 @@ export default function WishlistProductSection(){
                             category = {item.category}
                             price = {item.price}
                             image = {item.selectedfile}
+                            productCount = {productCount => setProductCount(productCount)}
                             deleteProduct = {()=>{
                                 axios.delete(`http://localhost:8070/wishlist/${id}/delete/${item._id}`).then((product)=>{
                                     console.log("Product deleted");

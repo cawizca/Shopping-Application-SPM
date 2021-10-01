@@ -1,5 +1,7 @@
 import React, {useEffect, useState} from 'react';
-import { makeStyles } from "@material-ui/core/styles"
+import { makeStyles } from "@material-ui/core/styles";
+import { UilTruck } from '@iconscout/react-unicons';
+import { UilParcel } from '@iconscout/react-unicons'
 
 import {
     BrowserRouter as Router,
@@ -62,7 +64,7 @@ function RiderNavigation(){
                         <Link to="/requests" className={classes.link}>
                             <ListItem button onClick={()=>navigateOrdersRequests()}>
                                 <ListItemIcon>
-                                    <InfoIcon style={{color:"white"}}/>
+                                    <UilParcel style={{color:"white"}}/>
                                 </ListItemIcon>
                                 <ListItemText primary={"Orders Requests"} style={{color:"white"}} />
                             </ListItem>
@@ -72,7 +74,7 @@ function RiderNavigation(){
                     <Link to="/rider-items" className={classes.link}>
                         <ListItem button onClick={()=>navigateMy()}>
                             <ListItemIcon>
-                                <HomeIcon style={{color:"white"}} />
+                                <UilTruck style={{color:"white"}} />
                             </ListItemIcon>
                             <ListItemText primary={"My Delivered Orders"} style={{color:"white"}} />
                         </ListItem>
