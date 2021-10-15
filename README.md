@@ -24,11 +24,16 @@ description.......
 ### How to get started with your app ###
 
 #### Prerequisites ####
-1. 1
-2. 2
-3. 3
+1. Have installed Node JS Environment
+2. Any IDE (VS code, Webstrom etc...)
+3. Web browser
 
 #### Procedure of setting up prerequisites and run the project ####
-1. 1
-2. 2
-3. 3
+1. Frontend
+  * Open frontend folder using IDE which is located in project folder
+  * Type `npm start` on IDE terminal and press enter.
+  * Enjoy
+2. Backend
+  * Open backend folder using IDE which is located in project folder.
+  * Type `node server.js` or `nodemon server.js` on IDE terminal and press enter.
+  * Enjoy
