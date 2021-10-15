@@ -21,4 +21,14 @@ description.......
 * Backend - Node JS, Express JS
 * Database - Mongo DB
 
+### How to get started with your app ###
 
+#### Prerequisites ####
+1. 1
+2. 2
+3. 3
+
+#### Procedure of setting up prerequisites and run the project ####
+1. 1
+2. 2
+3. 3
