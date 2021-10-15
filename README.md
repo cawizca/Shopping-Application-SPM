@@ -17,8 +17,8 @@ A.G.S.P Deshapriya | IT19207100 | shanuka-prabodha
 description.......
 
 ### Technologies ###
-Frontend - React JS, Bootstrap 4
-Backend - Node JS, Express JS
-Database - Mongo DB
+* Frontend - React JS, Bootstrap 4
+* Backend - Node JS, Express JS
+* Database - Mongo DB
 
 
