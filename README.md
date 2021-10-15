@@ -14,7 +14,15 @@ G.A.D.K.M Gardiarachchi | IT19213590 | cawizca
 A.G.S.P Deshapriya | IT19207100 | shanuka-prabodha
 
 ### Project Description ###
-description.......
+The outbreak of the COVID-19 in Sri Lanka caused the government to impose a curfew which sometimes spanned more than one month in certain areas. Customers not being able to leave their homes resulted in many businesses losing profits. Companies that already delivered online did not suffer as much, and this made many companies realize that they would have to move to an online platform if their business want to survive. So we decided to develop Online shopping market web application for a shop so that they can sell and deliver their goods though that web application. We decided to implement few methods to the system. They are, 
+
+  * Customers can register to the system online and they will be able to browse through the products available and select what they want. An online bill will be generated displaying the purchase goods.  
+
+  * Proper inventory management method to show valid data to the customers. Only admin panel can add update and delete product details whenever they want. 
+
+  * Proper deliverer management method to deliver ordered goods to the customers. Admin can add update delete deliverer to the system. So deliverers can deliver ordered goods. 
+
+  * Shopping cart and Wishlist. If someone want to buy item, they have to add that item to the cart then they can pay to the all the goods they added to the cart at once. If someone see a good item while he browses the website, he can add that item to his Wishlist. Then he can add those items to the cart if he wants to buy them. 
 
 ### Technologies ###
 * Frontend - React JS, Bootstrap 4
